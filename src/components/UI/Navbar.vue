@@ -38,6 +38,7 @@ export default {
     padding: 1.5rem 4rem;
     align-items: center;
     box-shadow: 0 2px 45px rgba(0,0,0, .5);
+    position: relative;
  } 
 
 #navbar .logo {
