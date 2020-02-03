@@ -26,7 +26,7 @@
  background-attachment: fixed;
   background-size: cover;
  width: 100%;
- height: 75vh;
+ height: 77vh;
 }
 
 #hero .panel {
@@ -38,19 +38,21 @@
 }
 
 #hero .panel h1 {
-    font-family: 'Cambay', sans-serif;
-    font-size: 3.5em;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3.8em;
     font-weight: 400;
     width: 90%;
     border-bottom: 2px solid #eb9532;
     display: inline;
     color: #494949;
+    padding-bottom: .5rem;
+    line-height: 85px;
     margin: 0 !important;
     letter-spacing: 2px;
 }
 
 #hero .panel p {
-    margin-top: 1.6rem;
+    margin-top: 1.9rem;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
     font-size: 1rem

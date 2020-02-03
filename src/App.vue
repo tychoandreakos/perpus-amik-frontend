@@ -2,18 +2,22 @@
   <div id="app">
     <NavbarComponent />
     <HeroComponent />
+    <MenuComponent />
   </div>
 </template>
 
 <script>
 import NavbarComponent from './components/UI/Navbar.vue';
 import HeroComponent from './components/UI/Hero.vue';
+import MenuComponent from './components/UI/Menu.vue';
+
 
 export default {
   name: 'app',
   components: {
     NavbarComponent,
-    HeroComponent
+    HeroComponent,
+    MenuComponent
   }
 }
 </script>
@@ -22,7 +26,7 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Cambay:400,500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap');
 
 #app {
   -webkit-font-smoothing: antialiased;
