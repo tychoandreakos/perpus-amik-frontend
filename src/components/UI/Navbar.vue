@@ -1,9 +1,9 @@
 <template>
     <section id="navbar">
-        <div class="logo">
+        <a href="#" class="logo">
             <img :src="require('../../assets/main-logo-green.svg')" />
             <div class="title">{{ title }}</div>
-        </div>
+        </a>
         <div class="menu">
             <a href="#">
                 Donate
@@ -41,22 +41,26 @@ export default {
     position: relative;
  } 
 
-#navbar .logo {
+#navbar a {
+    text-decoration: none;
+    color: #494949;
+}
+
+#navbar a.logo {
     display: flex;
     align-items: center;
 }
 
-#navbar .logo img {
+#navbar a.logo img {
     max-width: 70px;
     max-height: 70px;
 }
 
-#navbar .logo .title {
+#navbar a.logo .title {
     margin-left: .6rem;
     font-family: 'Nunito Sans', sans-serif !important;
     font-size: 1.4rem;
     letter-spacing: 1.5px;
-
 }
 
 #navbar .menu a {
@@ -66,6 +70,10 @@ export default {
     font-size: .92rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 500
+}
+
+#navbar .menu a:hover {
+    color: #eb9532;
 }
 
 </style>

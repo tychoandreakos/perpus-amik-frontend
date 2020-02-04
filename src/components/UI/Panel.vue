@@ -1,0 +1,160 @@
+<template>
+   <section id="panel">
+   <div class="panel-menu">
+    <ul :style="{ background: '#e086a6' }" class="panel-left">
+        <li v-for="(link, i) in panelLink" :key="i"><a :href="link.href">{{ link.name }}</a></li>
+    </ul>
+    <div :style="{ background: '#d2527f' }" class="panel-right">
+        <div class="card" v-for="(panel, i) in news" :key="i">
+            <a :href="panel.href">
+            <div class="img">
+                <div :style="{ background: 'url('+ panel.img +')' }" class="img-frame"></div>
+             </div>
+            </a>
+            <div class="text-card">
+            <h3>{{ panel.title }}</h3>
+            <p>{{ panel.description }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+   </section>
+</template>
+<script>
+    export default {
+        name: "Panel",
+        data() {
+            return {
+                panelLink: [
+                    {name: 'Calendar', href: '#'},
+                    {name: 'AuthorsLive', href: '#'},
+                    {name: 'Greenwich Reads Together', href: '#'},
+                    {name: 'STEAM Learning', href:'#'},
+                    {name: 'Book Groups', href: '#'},
+                    {name: 'Concerts', href: '#'},
+                    {name: 'Friends Friday Films'}
+                ],
+
+                news: [
+                    {
+                        img: 'https://www.greenwichlibrary.org/wp-content/themes/greenwich-sage/assets/images/TTC.png',
+                        title: 'AuthorsLive',
+                        href: '#',
+                        description: 'Discover new books, talk to authors about their work, and meet other book lovers? in the community.'
+                    },
+                     {
+                        img: 'https://www.greenwichlibrary.org/wp-content/themes/greenwich-sage/assets/images/TTC.png',
+                        title: 'AuthorsLive',
+                        href: '#',
+                        description: 'Discover new books, talk to authors about their work, and meet other book lovers? in the community.'
+                    },
+                      {
+                        img: 'https://www.greenwichlibrary.org/wp-content/themes/greenwich-sage/assets/images/TTC.png',
+                        title: 'AuthorsLive',
+                        href: '#',
+                        description: 'Discover new books, talk to authors about their work, and meet other book lovers? in the community.'
+                    },
+                       {
+                        img: 'https://www.greenwichlibrary.org/wp-content/themes/greenwich-sage/assets/images/TTC.png',
+                        title: 'AuthorsLive',
+                        href: '#',
+                        description: 'Discover new books, talk to authors about their work, and meet other book lovers? in the community.'
+                    },
+                   
+                ]
+            }
+        },
+    }
+</script>
+<style scoped>
+    #panel {
+        width: 100%;
+    }
+
+    #panel .panel-menu {
+        width: inherit;
+        height: 52vh;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    #panel .panel-left {
+        padding: 2rem 3rem;
+        list-style: none;
+    }
+
+    #panel .panel-left li {
+        padding: .4rem 0;
+    }
+    
+    #panel .panel-left li a {
+        color: #fff;
+        text-decoration: none;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 500;
+        font-size: 1.1rem;
+        position: relative;
+        padding-bottom: .2rem;
+    }
+
+    #panel .panel-left li a:before {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        content: '';
+        border-bottom: 1.8px solid #fff;
+        transition: padding-right .7s ease-in;
+    }
+
+    #panel .panel-left li a:hover::before {
+        padding-right: 100%;
+    }
+
+    #panel .panel-right {
+        padding: 2rem 3.5rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        max-width: 100%;
+    }
+
+    #panel .panel-right .card a {
+        display: inline-block;
+    }
+
+    #panel .panel-right .img {
+        height: 180px;
+        width: 350px;
+        overflow: hidden;
+    }
+
+    #panel .panel-right .img-frame {
+        height: 100%;
+        width: 100%;
+        background-position: center !important;
+        background-size: cover !important;
+        transition: transform 1s, filter 1s ease-in-out;
+        filter: blur(.2px);
+        transform: scale(1.2);
+    }
+
+    #panel .panel-right .card .text-card {
+        padding-top: 1rem;
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+    }
+
+    #panel .panel-right .card .text-card h3 {
+        font-weight: 400;
+    }
+
+    #panel .panel-right .card .text-card p {
+        font-size: .9rem;
+    }
+
+    #panel .panel-right .card a:hover .img-frame {
+      filter: blur(0);
+        transform: scale(1);
+    }
+
+</style>

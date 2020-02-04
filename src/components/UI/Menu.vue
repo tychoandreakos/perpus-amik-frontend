@@ -1,8 +1,10 @@
 <template>
   <section id="menu">
+    <div class="menu-shell">
     <div v-for="(list, title) in lists" class="menu-link" :key="title">
       <a :href="list.link">{{ title }}</a>
       <div :style="{ background: list.color }" class="menu-border"></div>
+    </div>
     </div>
   </section>
 </template>
@@ -47,9 +49,14 @@ export default {
 </script>
 <style scoped>
 #menu {
-  display: flex;
   padding-top: 1rem;
-  margin-left: 4.5rem;
+  height: 2.5rem;
+  box-shadow: 0 4px 45px rgba(0,0,0, .2);
+}
+
+#menu .menu-shell {
+    display: flex;
+    padding-left: 3.5em;
 }
 
 #menu .menu-link {

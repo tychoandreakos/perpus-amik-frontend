@@ -66,9 +66,9 @@
     background: #f2ba7a;
     color: #fff;
     font-family: 'Nunito Sans', sans-serif;
-    font-size: .97rem;
-    padding: .6rem 2.5rem;
-    border-radius: 2px 0 0 0 ;
+    font-size: .92rem;
+    padding: .6rem 1.8rem;
     letter-spacing: 1.1px;
+    cursor: pointer;
 }
 </style>
