@@ -2,7 +2,7 @@
   <section id="menu">
     <div class="menu-shell">
     <div v-for="(list, title) in lists" class="menu-link" :key="title">
-      <a :href="list.link">{{ title }}</a>
+      <a @click.prevent="changeHandler" :href="list.link">{{ title }}</a>
       <div :style="{ background: list.color }" class="menu-border"></div>
     </div>
     </div>
@@ -11,12 +11,17 @@
 <script>
 export default {
   name: "Menu",
+  methods: {
+    changeHandler(val) {
+        this.$emit('changeData', val)
+    }
+  },
   data() {
     return {
       lists: {
         Visit: {
           color: "#e086a6",
-          link: "#"
+          link: "http://google.com"
         },
         Explore: {
           color: "#f2ba7a",
