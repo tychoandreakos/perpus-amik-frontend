@@ -1,7 +1,7 @@
 <template>
   <section id="menu">
     <MenuComponent @changeData="updateData"/>
-    <PanelComponent :showPanel="showPanel" />
+    <PanelComponent :oldMenu="oldMenu ? oldMenu : 'default'" :dataMenu="newMenu.length >= 1 ? newMenu : oldMenu" :showPanel="showPanel" />
   </section>
 </template>
 <script>
@@ -25,7 +25,7 @@ export default {
     updateData(e) {
         if(this.oldMenu.length <= 0) {this.oldMenu = e.target.innerHTML; this.showPanel = !this.showPanel;}
         else if(this.oldMenu === this.newMenu) { 
-            this.showwPanel = !this.showPanel;
+            this.showPanel = !this.showPanel;
         }
         else if(this.oldMenu != this.newMenu) {
             if(this.newMenu.length >= 1) this.oldMenu = this.newMenu;

@@ -37,7 +37,7 @@ export default {
 
 * {
   margin: 0;
-  padding: 0;:term
+  padding: 0;
 }
 
 .welcome {
