@@ -67,6 +67,7 @@ export default {
 #menu .menu-link {
   position: relative;
   margin-right: 2rem;
+  z-index: 5;
 }
 
 #menu .menu-link a {

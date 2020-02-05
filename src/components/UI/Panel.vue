@@ -1,12 +1,29 @@
 <template>
-  <section id="panel"  :style="[this.showPanel ? {height: '100vh'} : {height: '0'}]">
+  <section
+    id="panel"
+    :style="[this.showPanel ? { height: '100vh' } : { height: '0' }]"
+  >
     <div class="panel-menu">
-      <ul :style="this.showPanel ?  {background: panelData[this.dataMenu].panelLeft} : {background: panelData[this.oldMenu].panelLeft}" class="panel-left">
+      <ul
+        :style="
+          this.showPanel
+            ? { background: panelData[this.dataMenu].panelLeft }
+            : { background: panelData[this.oldMenu].panelLeft }
+        "
+        class="panel-left"
+      >
         <li v-for="(link, i) in panelLink" :key="i">
           <a :href="link.href">{{ link.name }}</a>
         </li>
       </ul>
-      <div   :style="this.showPanel ?  {background: panelData[this.dataMenu].panelRight} : {background: panelData[this.oldMenu].panelRight}" class="panel-right">
+      <div
+        :style="
+          this.showPanel
+            ? { background: panelData[this.dataMenu].panelRight }
+            : { background: panelData[this.oldMenu].panelRight }
+        "
+        class="panel-right"
+      >
         <div class="card" v-for="(panel, i) in news" :key="i">
           <a :href="panel.href">
             <div class="img">
@@ -28,7 +45,7 @@
 <script>
 export default {
   name: "Panel",
-  props: ['showPanel', 'dataMenu', 'oldMenu'],
+  props: ["showPanel", "dataMenu", "oldMenu"],
   data() {
     return {
       panelLink: [
@@ -44,32 +61,32 @@ export default {
       panelData: {
         default: {},
         Visit: {
-            panelLeft: '#e086a6',
-            panelRight: '#d2527f'
+          panelLeft: "#e086a6",
+          panelRight: "#d2527f"
         },
         Explore: {
-            panelLeft: '#f2ba7a',
-            panelRight: '#eb9532'
+          panelLeft: "#f2ba7a",
+          panelRight: "#eb9532"
         },
         Learn: {
-            panelLeft: '#78d5ff',
-            panelRight: '#1db9ff',
+          panelLeft: "#78d5ff",
+          panelRight: "#1db9ff"
         },
         Support: {
-            panelLeft: '#7c98ca',
-            panelRight: '#446cb3',
+          panelLeft: "#7c98ca",
+          panelRight: "#446cb3"
         },
         ReImagine: {
-            panelLeft: '#88be7f',
-            panelRight: '#009a4e',
+          panelLeft: "#88be7f",
+          panelRight: "#009a4e"
         },
         About: {
-            panelLeft: '#83cdbc',
-            panelRight: '#4db79f',
+          panelLeft: "#83cdbc",
+          panelRight: "#4db79f"
         },
         Help: {
-            panelLeft: '#e76d69',
-            panelRight: '#d91e18'
+          panelLeft: "#e76d69",
+          panelRight: "#d91e18"
         }
       },
 
@@ -108,16 +125,15 @@ export default {
         }
       ]
     };
-  },
+  }
 };
 </script>
 <style scoped>
 #panel {
   width: 100%;
   overflow: hidden;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
-
 
 #panel .panel-menu {
   width: inherit;

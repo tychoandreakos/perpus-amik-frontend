@@ -1,7 +1,12 @@
 <template>
   <section id="menu">
-    <MenuComponent @changeData="updateData"/>
-    <PanelComponent :oldMenu="oldMenu ? oldMenu : 'default'" :dataMenu="newMenu.length >= 1 ? newMenu : oldMenu" :showPanel="showPanel" />
+    <MenuComponent :activeStatus="showPanel" @changeData="updateData" />
+    <div @click="disabledPanel()" class="backdrop" v-if="showPanel"></div>
+    <PanelComponent
+      :oldMenu="oldMenu ? oldMenu : 'default'"
+      :dataMenu="newMenu.length >= 1 ? newMenu : oldMenu"
+      :showPanel="showPanel"
+    />
   </section>
 </template>
 <script>
@@ -15,30 +20,48 @@ export default {
     PanelComponent
   },
   data() {
-      return {
-          showPanel: false,
-          oldMenu: '',
-          newMenu: ''
-      }
+    return {
+      showPanel: false,
+      oldMenu: "",
+      newMenu: ""
+    };
   },
   methods: {
-    updateData(e) {
-        if(this.oldMenu.length <= 0) {this.oldMenu = e.target.innerHTML; this.showPanel = !this.showPanel;}
-        else if(this.oldMenu === this.newMenu) { 
-            this.showPanel = !this.showPanel;
-        }
-        else if(this.oldMenu != this.newMenu) {
-            if(this.newMenu.length >= 1) this.oldMenu = this.newMenu;
-            this.newMenu = e.target.innerHTML;
-            this.showPanel = false;
-            setTimeout(() => {
-                this.showPanel = !this.showPanel;
-            }, 600)     
-        }
-        else this.newMenu = e.target.innerHTML;
-
+    disabledPanel() {
+      if (this.newMenu.length === 0) this.newMenu = this.oldMenu;
+      else this.oldMenu = this.newMenu;
+      this.showPanel = false;
+      setTimeout(() => {
+        this.oldMenu = "";
+        this.newMenu = "";
+      }, 600);
     },
+    updateData(e) {
+      if (this.oldMenu.length <= 0) {
+        this.oldMenu = e.target.innerHTML;
+        this.showPanel = !this.showPanel;
+      } else if (this.oldMenu === this.newMenu) {
+        this.showPanel = !this.showPanel;
+      } else if (this.oldMenu != this.newMenu) {
+        if (this.newMenu.length >= 1) this.oldMenu = this.newMenu;
+        this.newMenu = e.target.innerHTML;
+        this.showPanel = false;
+        setTimeout(() => {
+          this.showPanel = !this.showPanel;
+        }, 600);
+      } else this.newMenu = e.target.innerHTML;
+    }
   }
 };
 </script>
-<style></style>
+<style scoped>
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+  z-index: 3;
+}
+</style>
