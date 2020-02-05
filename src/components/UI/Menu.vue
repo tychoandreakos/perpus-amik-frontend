@@ -22,7 +22,6 @@ export default {
   name: "Menu",
   methods: {
     changeHandler(val) {
-      console.log(val);
       window.scrollTo({
         top: val.pageY - 32,
         behavior: "smooth"

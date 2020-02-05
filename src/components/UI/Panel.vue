@@ -1,7 +1,7 @@
 <template>
   <section
     id="panel"
-    :style="[this.showPanel ? { height: '100vh' } : { height: '0' }]"
+    :style="[this.showPanel ? { height: '96vh' } : { height: '0' }]"
   >
     <div class="panel-menu">
       <ul

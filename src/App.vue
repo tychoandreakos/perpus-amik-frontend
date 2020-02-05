@@ -4,6 +4,7 @@
       <NavbarComponent />
       <HeroComponent />
       <MenuComponent />
+      <NewsComponent />
     </div>
   </div>
 </template>
@@ -12,13 +13,15 @@
 import NavbarComponent from "./components/UI/Navbar.vue";
 import HeroComponent from "./components/UI/Hero.vue";
 import MenuComponent from "./components/Menu.vue";
+import NewsComponent from './components/UI/News';
 
 export default {
   name: "app",
   components: {
     NavbarComponent,
     HeroComponent,
-    MenuComponent
+    MenuComponent,
+    NewsComponent
   }
 };
 </script>
@@ -33,6 +36,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   height: 550vh;
+  width: 100%;
 }
 
 * {
@@ -41,7 +45,7 @@ export default {
 }
 
 .welcome {
-  max-width: 100%;
+  width: 100%;
   height: 110vh;
 }
 </style>
