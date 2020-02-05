@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <div class="special">{{ posted }}</div>
+    <div class="special">
+      <div class="special-info">
+        {{ posted }}
+      </div>
+      <div class="shadow"></div>
+    </div>
     <section id="news">
       <div class="news-info">
         <a class="title" :href="post.href">{{ post.title }}</a>
@@ -48,15 +53,29 @@ export default {
 
 .container .special {
   position: absolute;
-  background: #eb9532;
+  top: 55px;
+  left: 140px;
+}
+
+.container .special .special-info {
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   padding: 0.7rem;
   font-family: "Quicksand", sans-serif;
   font-weight: 600;
-  top: 55px;
-  left: 140px;
-  border-radius: 10px;
   font-size: 0.77rem;
+  position: relative;
+  z-index: 2;
+}
+
+.container .special .shadow {
+  background: rgba(242, 186, 122, 0.8);
+  height: 30px;
+  width: 105px;
+  position: absolute;
+  top: 13px;
+  left: -5px;
+  z-index: 1;
 }
 
 #news {

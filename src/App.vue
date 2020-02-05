@@ -7,6 +7,7 @@
       <NewsComponent />
       <MoreNewsComponent />
       <ScheduleComponent />
+      <FooterComponent />
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@ import MenuComponent from "./components/Menu.vue";
 import NewsComponent from "./components/UI/News";
 import MoreNewsComponent from "./components/UI/NewsMore";
 import ScheduleComponent from "./components/UI/Schedule";
+import FooterComponent from "./components/UI/Footer";
 
 export default {
   name: "app",
@@ -27,7 +29,8 @@ export default {
     MenuComponent,
     NewsComponent,
     MoreNewsComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    FooterComponent
   }
 };
 </script>
@@ -41,7 +44,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  height: 550vh;
   width: 100%;
 }
 
