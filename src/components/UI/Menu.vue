@@ -1,10 +1,11 @@
 <template>
   <section id="menu">
     <div class="menu-shell">
-    <div v-for="(list, title) in lists" class="menu-link" :key="title">
-      <a @click.prevent="changeHandler" :href="list.link">{{ title }}</a>
-      <div :style="{ background: list.color }" class="menu-border"></div>
-    </div>
+      <div v-for="(list, title) in lists" class="menu-link" :key="title">
+        <a @click.prevent="changeHandler" :href="list.link">{{ title }}</a>
+        <div v-if="titleFromData == title" :style="{ background: list.color }" :class="['menu-border', activeStatus ? 'active' : '']"></div>
+        <div v-else :style="{ background: list.color }" class="menu-border"></div>
+      </div>
     </div>
   </section>
 </template>
@@ -13,11 +14,14 @@ export default {
   name: "Menu",
   methods: {
     changeHandler(val) {
-        this.$emit('changeData', val)
+      this.titleFromData = val.target.innerHTML;
+      this.$emit("changeData", val);
     }
   },
+  props: ['activeStatus'],
   data() {
     return {
+      titleFromData: "",
       lists: {
         Visit: {
           color: "#e086a6",
@@ -56,12 +60,12 @@ export default {
 #menu {
   padding-top: 1rem;
   height: 2.5rem;
-  box-shadow: 0 4px 45px rgba(0,0,0, .2);
+  box-shadow: 0 4px 45px rgba(0, 0, 0, 0.2);
 }
 
 #menu .menu-shell {
-    display: flex;
-    padding-left: 3.5em;
+  display: flex;
+  padding-left: 3.5em;
 }
 
 #menu .menu-link {
@@ -85,12 +89,10 @@ export default {
   bottom: 0;
   top: 25px;
   height: 2.5px;
-  transition: padding-right .3s ease-in-out;
+  transition: padding-right 0.3s ease-in-out;
 }
 
-
-#menu .menu-link a:hover ~ .menu-border {
-    padding-right: 100%;
+#menu .menu-link a:hover ~ .menu-border, .active {
+  padding-right: 100%;
 }
-
 </style>
