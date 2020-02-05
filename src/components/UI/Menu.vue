@@ -72,7 +72,6 @@ export default {
 #menu {
   padding-top: 1rem;
   height: 2.5rem;
-  box-shadow: 0 4px 45px rgba(0, 0, 0, 0.2);
 }
 
 #menu .menu-shell {

@@ -5,6 +5,8 @@
       <HeroComponent />
       <MenuComponent />
       <NewsComponent />
+      <MoreNewsComponent />
+      <ScheduleComponent />
     </div>
   </div>
 </template>
@@ -13,7 +15,9 @@
 import NavbarComponent from "./components/UI/Navbar.vue";
 import HeroComponent from "./components/UI/Hero.vue";
 import MenuComponent from "./components/Menu.vue";
-import NewsComponent from './components/UI/News';
+import NewsComponent from "./components/UI/News";
+import MoreNewsComponent from "./components/UI/NewsMore";
+import ScheduleComponent from "./components/UI/Schedule";
 
 export default {
   name: "app",
@@ -21,7 +25,9 @@ export default {
     NavbarComponent,
     HeroComponent,
     MenuComponent,
-    NewsComponent
+    NewsComponent,
+    MoreNewsComponent,
+    ScheduleComponent
   }
 };
 </script>

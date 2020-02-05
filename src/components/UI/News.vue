@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="special">Berita Terbaru</div>
+    <div class="special">{{ posted }}</div>
     <section id="news">
       <div class="news-info">
         <a class="title" :href="post.href">{{ post.title }}</a>
@@ -25,6 +25,7 @@ export default {
   },
   data() {
     return {
+      posted: "Berita Terbaru",
       post: {
         title: "Valentines For Vets",
         href: "#",

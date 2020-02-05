@@ -25,7 +25,7 @@ export default {
   name: "Navbar",
   data() {
     return {
-      title: "Greenwich Library"
+      title: "Manisku Library"
     };
   }
 };
@@ -36,7 +36,7 @@ export default {
   justify-content: space-between;
   padding: 1.5rem 4rem;
   align-items: center;
-  box-shadow: 0 2px 45px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 85px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
