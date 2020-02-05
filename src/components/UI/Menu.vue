@@ -3,8 +3,16 @@
     <div class="menu-shell">
       <div v-for="(list, title) in lists" class="menu-link" :key="title">
         <a @click.prevent="changeHandler" :href="list.link">{{ title }}</a>
-        <div v-if="titleFromData == title" :style="{ background: list.color }" :class="['menu-border', activeStatus ? 'active' : '']"></div>
-        <div v-else :style="{ background: list.color }" class="menu-border"></div>
+        <div
+          v-if="titleFromData == title"
+          :style="{ background: list.color }"
+          :class="['menu-border', activeStatus ? 'active' : '']"
+        ></div>
+        <div
+          v-else
+          :style="{ background: list.color }"
+          class="menu-border"
+        ></div>
       </div>
     </div>
   </section>
@@ -14,11 +22,16 @@ export default {
   name: "Menu",
   methods: {
     changeHandler(val) {
+      console.log(val);
+      window.scrollTo({
+        top: val.pageY - 32,
+        behavior: "smooth"
+      });
       this.titleFromData = val.target.innerHTML;
       this.$emit("changeData", val);
     }
   },
-  props: ['activeStatus'],
+  props: ["activeStatus"],
   data() {
     return {
       titleFromData: "",
@@ -92,7 +105,8 @@ export default {
   transition: padding-right 0.3s ease-in-out;
 }
 
-#menu .menu-link a:hover ~ .menu-border, .active {
+#menu .menu-link a:hover ~ .menu-border,
+.active {
   padding-right: 100%;
 }
 </style>
