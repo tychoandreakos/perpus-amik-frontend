@@ -43,8 +43,11 @@ export default {
       } else if (this.oldMenu === this.newMenu) {
         this.showPanel = !this.showPanel;
       } else if (this.oldMenu != this.newMenu) {
-        if (this.newMenu.length >= 1) this.oldMenu = this.newMenu;
-        this.newMenu = e.target.innerHTML;
+        if (this.newMenu.length >= 1) {
+          this.oldMenu = this.newMenu
+          this.newMenu = '';
+        };
+        if (this.oldMenu != e.target.innerHTML) this.newMenu = e.target.innerHTML;
         this.showPanel = false;
         setTimeout(() => {
           this.showPanel = !this.showPanel;

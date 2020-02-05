@@ -4,13 +4,18 @@
       <h1>Take Your Child to</h1>
       <h1>the Library Day!</h1>
       <p>{{ info }}</p>
-      <button class="btn btn-attend">{{ buttonTitle }}</button>
+      <Button class="btn-position" :title="buttonTitle"/>
     </div>
   </section>
 </template>
 <script>
+import Button from "./ButtonSimple.vue";
+
 export default {
   name: "Hero",
+  components: {
+    Button
+  },
   data() {
     return {
       title: "Take Your Child to the Library Day!",
@@ -35,7 +40,7 @@ export default {
   background: rgba(255, 255, 255, 0.92);
   width: 55%;
   padding: 4rem;
-  height: 55%;
+  height: 58%;
   position: relative;
 }
 
@@ -43,7 +48,6 @@ export default {
   font-family: "Quicksand", sans-serif;
   font-size: 3.8em;
   font-weight: 400;
-  width: 90%;
   border-bottom: 2px solid #eb9532;
   display: inline-block;
   color: #494949;
@@ -60,17 +64,9 @@ export default {
   font-size: 1rem;
 }
 
-#hero .panel .btn.btn-attend {
+#hero .panel .btn-position{
   position: absolute;
-  right: 0;
-  bottom: 0;
-  border: none;
-  background: #f2ba7a;
-  color: #fff;
-  font-family: "Nunito Sans", sans-serif;
-  font-size: 0.92rem;
-  padding: 0.6rem 1.8rem;
-  letter-spacing: 1.1px;
-  cursor: pointer;
+  right: 30px;
+  bottom: 17px;
 }
 </style>
