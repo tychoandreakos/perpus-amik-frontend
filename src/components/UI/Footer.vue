@@ -33,7 +33,7 @@ export default {
         imgOne: "https://www.washoecountylibrary.us/_files/img/wcemblem.png",
         imgTwo: "https://www.washoecountylibrary.us/_files/img/wclfriends.png"
       },
-      copyright: "Copyright Washoe County Library System ©2016-2020",
+      copyright: "Copyright Manisku Library System ©2020",
       links: [
         {
           title: "Location & Hourse",
