@@ -1,6 +1,10 @@
 <template>
   <section
-    :style="search ? { position: 'fixed', background: '#fff', width: '90%', zIndex: '99' } : { position: 'relative' }"
+    :style="
+      search
+        ? { position: 'fixed', background: '#fff', width: '90%', zIndex: '99' }
+        : { position: 'relative' }
+    "
     id="navbar"
   >
     <a href="/" class="logo">
@@ -17,9 +21,12 @@
       <a href="/account">
         Account
       </a>
-      <a href="#" @click.prevent="search = !search">
-        Search
-      </a>
+      <a
+        href="#"
+        :style="search ? { color: '#ec4439' } : {}"
+        @click.prevent="search = !search"
+        >{{ search ? "Tutup Pencarian" : "Search" }}</a
+      >
     </div>
 
     <SearchComponent :open="search" />
