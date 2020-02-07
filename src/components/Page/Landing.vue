@@ -35,7 +35,10 @@ export default {
         title: "Take Your Child to the Library Day!",
         info:
           "On February 1, drop in to the Library, sign up for your very first Greenwich Library card, create a Lunar New Year craft, and pick up a free copy of Dr. Seuss’s Gerald McBoing Boing in the Children’s Room!",
-        buttonTitle: "Attend a Program"
+       button: {
+         title: "Attend a Program",
+         href: '#'
+       }
       }
     };
   }

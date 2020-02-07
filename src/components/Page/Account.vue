@@ -15,7 +15,7 @@
           Learn the way you learn best—through books, videos, interactive
           tutorials, or live online classes.
         </p>
-        <ButtonComponent title="Masuk Disini" />
+        <ButtonComponent :link="buttonSignin" />
       </div>
       <div class="right">
         <div class="info">
@@ -37,6 +37,10 @@ import HeroComponent from "../UI/Hero";
 import ButtonComponent from "../UI/ButtonSimple";
 import FooterComponent from "../UI/Footer";
 
+const signin = {
+  name: "signin"
+};
+
 export default {
   name: "Account",
   components: {
@@ -47,6 +51,10 @@ export default {
   },
   data() {
     return {
+      buttonSignin: {
+        title: "Masuk Disini",
+        href: signin
+      },
       panel: {
         width: "52%",
         padding: "4rem",
@@ -55,7 +63,7 @@ export default {
       titleHero: {
         fontSize: "2.9rem",
         lineHeight: "50px",
-        borderBottom: '0'
+        borderBottom: "0"
       },
       hero: {
         height: "40vh",

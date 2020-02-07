@@ -1,5 +1,6 @@
 import LandingComponent from "../src/components/Page/Landing";
 import AccountComponent from "../src/components/Page/Account";
+import SigninComponent from "../src/components/Page/Signin";
 
 const title = "Diglib STMIK AMIK BANDUNG";
 
@@ -28,7 +29,7 @@ const router = [
   },
   {
     path: "/account",
-    name: "Account",
+    name: "account",
     component: AccountComponent,
     meta: {
       title: putTitle("Account"),
@@ -43,6 +44,11 @@ const router = [
         }
       ]
     }
+  },
+  {
+    path: "/signin",
+    name: "signin",
+    component: SigninComponent
   }
 ];
 

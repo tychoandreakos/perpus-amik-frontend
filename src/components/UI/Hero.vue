@@ -4,7 +4,7 @@
       <h1 :style="propsTitle ? propsTitle : ''" v-html="propsInfo.title"></h1>
       <p v-if="propsInfo.info">{{ propsInfo.info }}</p>
       <template v-if="propsButtonEnabled">
-        <Button class="btn-position" :title="propsInfo.buttonTitle" />
+        <Button class="btn-position" :link="propsInfo.button" />
       </template>
     </div>
   </section>
@@ -20,7 +20,7 @@ export default {
       required: false
     },
     propsPanel: {
-      type: Boolean,
+      type: Object,
       required: false
     },
     propsButtonEnabled: {

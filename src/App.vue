@@ -31,6 +31,6 @@ export default {
 
 .welcome {
   width: 100%;
-  height: 110vh;
+  height: 100vh;
 }
 </style>
