@@ -22,7 +22,7 @@
           </div>
         </li>
         <div class="btn">
-          <Button :title="title" />
+          <Button :link="title" />
         </div>
       </ul>
 
@@ -42,7 +42,10 @@ export default {
   },
   data() {
     return {
-      title: "Lihat Jadwal Selengkapnya",
+      title: {
+        href: "#",
+        title: "Lihat Jadwal Selengkapnya"
+      },
       schedules: [
         {
           buka: {

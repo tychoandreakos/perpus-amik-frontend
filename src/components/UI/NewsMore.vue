@@ -6,7 +6,7 @@
       <div class="news-info">
         <a class="news-link" :href="post.href">{{ post.title }}</a>
         <p>{{ post.description }}</p>
-        <Button :title="buttonTitle" />
+        <Button :link="buttonTitle" />
       </div>
     </div>
   </section>
@@ -21,7 +21,10 @@ export default {
   },
   data() {
     return {
-      buttonTitle: "Baca Selengkapnya",
+      buttonTitle: {
+        title: "Baca Selengkapnya",
+        href: "#"
+      },
       titleNews: "Berita Lainnya",
       posts: [
         {

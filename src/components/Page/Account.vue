@@ -68,7 +68,7 @@ export default {
       hero: {
         height: "40vh",
         background:
-          "url('https://wallpapersmug.com/download/2560x1024/d00534/facade-building-architecture.jpg') center/cover no-repeat fixed"
+          "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed"
       },
       panelInfo: {
         title: "Sign in to <br> your Account"

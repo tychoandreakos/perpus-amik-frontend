@@ -48,7 +48,20 @@ const router = [
   {
     path: "/signin",
     name: "signin",
-    component: SigninComponent
+    component: SigninComponent,
+    meta: {
+      title: putTitle("Sign in"),
+      metaTags: [
+        {
+          name: "description",
+          content: "The about page of our example app."
+        },
+        {
+          property: "og:description",
+          content: "The about page of our example app."
+        }
+      ]
+    }
   }
 ];
 
