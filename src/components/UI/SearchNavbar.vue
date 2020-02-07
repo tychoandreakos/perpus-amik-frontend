@@ -1,0 +1,200 @@
+<template>
+  <section :style="open ? { height: '100vh' } : { height: '0' }" id="search">
+    <div class="info">
+      <h3>Lorem ipsum dolor sit amet.</h3>
+      <span
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quam
+        eligendi in rem officia repudiandae.</span
+      >
+    </div>
+    <form>
+      <Input
+        class="input"
+        typeInput="text"
+        placeholder="Ingin baca buku apa hari ini?"
+        name="cari"
+      />
+      <div class="btn">
+        <Button :submit="true" :link="link" />
+      </div>
+    </form>
+    <div
+      v-if="dropdownHandler"
+      @click="dropdownHandler = !dropdownHandler"
+      class="backdrop"
+    ></div>
+    <div :style="dropdownHandler" class="dropdown">
+      <div class="dropdown-elem">
+        <div class="dropdown-text" @click="dropdownHandler = !dropdownHandler">
+          <input type="text" v-model="defaultDropdown" />
+        </div>
+        <div
+          :style="dropdownHandler ? { height: '170px' } : { height: '0' }"
+          class="dropdown-list"
+        >
+          <ul>
+            <li v-for="(list, i) in dropdown" :key="i" @click="liHandler(list)">
+              {{ list }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+<script>
+import Input from "./InputOne";
+import Button from "./ButtonSimple";
+
+export default {
+  name: "SearchNavbar",
+  props: {
+    open: {
+      type: String,
+      required: true
+    }
+  },
+  components: {
+    Input,
+    Button
+  },
+  methods: {
+    liHandler(list) {
+      this.defaultDropdown = list;
+      this.dropdownHandler = false;
+    }
+  },
+  data() {
+    return {
+      link: {
+        title: "Cari!"
+      },
+      dropdown: ["buku", "pengarang", "ISBN", "Tahun Terbit"],
+      defaultDropdown: "buku",
+      dropdownHandler: false
+    };
+  }
+};
+</script>
+<style scoped>
+#search {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 90px;
+  background: #fff;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  transition: height 0.3s ease;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+#search .info {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+#search .info h3 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.4rem;
+}
+
+#search .info span {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.87rem;
+  display: inline-block;
+  width: 60%;
+  font-weight: 400;
+  margin-top: 0.4rem;
+}
+
+#search form {
+  background: #fff;
+  width: 70%;
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: flex;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  margin: 0 auto;
+}
+
+#search form .input {
+  border: 1px solid #eee;
+  padding: 0.2rem 0.8rem;
+  border-radius: 4px;
+  transition: border 0.3s ease-in;
+}
+
+#search form .input:focus {
+  border: 1px solid #019875;
+}
+
+#search .backdrop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 2;
+}
+
+#search .dropdown {
+  margin: 0 auto;
+  margin-top: 1rem;
+  font-family: "Quicksand", sans-serif;
+  z-index: 3;
+  display: flex;
+}
+
+#search .dropdown-elem {
+  width: 100%;
+  border: 1px solid #019875;
+  border-radius: 5px;
+}
+
+#search .dropdown .dropdown-text {
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.89rem;
+}
+
+#search .dropdown .dropdown-text input {
+  background: inherit;
+  width: 100%;
+  border: none;
+  pointer-events: none;
+  font-size: inherit;
+  font-weight: 400;
+  color: inherit;
+  font-family: inherit;
+  text-transform: capitalize;
+}
+
+#search .dropdown .dropdown-list {
+  overflow: hidden;
+  transition: height 0.4s ease-in;
+}
+
+#search .dropdown .dropdown-list ul {
+  list-style: none;
+  text-transform: capitalize;
+}
+
+#search .dropdown .dropdown-list ul li {
+  cursor: pointer;
+  padding: 0.7rem;
+  font-size: 0.89rem;
+  transition: background 0.1s ease-in;
+}
+
+#search .dropdown .dropdown-list ul li:hover {
+  background: #019875;
+  color: #fff;
+}
+</style>

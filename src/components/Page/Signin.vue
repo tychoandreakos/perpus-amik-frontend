@@ -14,20 +14,25 @@
       <Input
         placeholder="Masukkan username"
         name="username"
+        class="input"
         v-model="formData.username"
         typeInput="text"
+        :showLabel="true"
       />
       <Input
         placeholder="Masukkan password"
         typeInput="password"
         name="password"
+        class="input"
         v-model="formData.password"
+        :showLabel="true"
       />
       <Button
         :style="{ marginTop: '.8rem' }"
         :disabled="true"
         :submit="true"
         :link="link"
+        :showLabel="true"
       />
     </form>
   </section>
@@ -68,6 +73,14 @@ export default {
   flex-direction: column;
   width: 30%;
   align-items: center;
+}
+
+#signin form .input {
+  border-bottom: 1.5px solid #ccc;
+}
+
+#signin form .input:focus {
+  border-bottom: 1.5px solid #019875;
 }
 
 #signin form h3 {

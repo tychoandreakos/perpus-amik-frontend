@@ -1,10 +1,18 @@
 <template>
   <div class="input">
-    <label :placeholder="placeholder" :for="name">{{ name }}</label>
-    <input :placeholder="placeholder" :id="name" :type="typeInput" />
+    <label v-if="showLabel" :placeholder="placeholder" :for="name">{{
+      name
+    }}</label>
+    <input :placeholder="placeholder" :id="name" :type="typeInput" required />
   </div>
 </template>
 <script>
+// props available
+
+// 1. Name -> name for label & input name
+// 2. typeInput -> typeInput determine the input must be type of (text / password / email)
+// 3. placeholder -> String, this is for adding placeholder
+
 export default {
   name: "InputOne",
   props: {
@@ -19,6 +27,10 @@ export default {
     placeholder: {
       required: true,
       type: String
+    },
+    showLabel: {
+      required: false,
+      type: Boolean
     }
   }
 };
@@ -28,7 +40,6 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: #fff;
   margin: 0.7rem;
 }
 
@@ -38,19 +49,13 @@ export default {
 }
 
 .input input {
-  width: 100%;
   font-family: "Quicksand", sans-serif;
   font-weight: 500;
   background: inherit;
   border: none;
   position: relative;
   padding: 0.6rem 0.4rem;
-  border-bottom: 1.5px solid #ccc;
   font-size: 0.96rem;
   transition: border-bottom 0.7s ease-in;
-}
-
-.input input:focus {
-  border-bottom: 1.5px solid #019875;
 }
 </style>

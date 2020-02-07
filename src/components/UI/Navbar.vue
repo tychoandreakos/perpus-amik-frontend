@@ -1,5 +1,8 @@
 <template>
-  <section id="navbar">
+  <section
+    :style="search ? { position: 'fixed', background: '#fff', width: '90%', zIndex: '99' } : { position: 'relative' }"
+    id="navbar"
+  >
     <a href="/" class="logo">
       <img :src="require('../../assets/main-logo-green.svg')" />
       <div class="title">{{ title }}</div>
@@ -14,17 +17,25 @@
       <a href="/account">
         Account
       </a>
-      <a href="#">
+      <a href="#" @click.prevent="search = !search">
         Search
       </a>
     </div>
+
+    <SearchComponent :open="search" />
   </section>
 </template>
 <script>
+import SearchComponent from "./SearchNavbar";
+
 export default {
   name: "Navbar",
+  components: {
+    SearchComponent
+  },
   data() {
     return {
+      search: false,
       title: "Manisku Library"
     };
   }
@@ -37,7 +48,6 @@ export default {
   padding: 1.5rem 4rem;
   align-items: center;
   box-shadow: 0 2px 85px rgba(0, 0, 0, 0.5);
-  position: relative;
 }
 
 #navbar a {
