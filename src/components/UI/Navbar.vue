@@ -1,6 +1,6 @@
 <template>
   <section id="navbar">
-    <a href="#" class="logo">
+    <a href="/" class="logo">
       <img :src="require('../../assets/main-logo-green.svg')" />
       <div class="title">{{ title }}</div>
     </a>
@@ -11,7 +11,7 @@
       <a href="#">
         Library Card
       </a>
-      <a href="#">
+      <a href="/account">
         Account
       </a>
       <a href="#">

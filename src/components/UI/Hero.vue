@@ -1,10 +1,12 @@
 <template>
-  <section id="hero">
-    <div class="panel">
+  <section :style="propsHero ? propsHero : heroStyle" id="hero">
+    <div :style="propsPanel ? propsPanel : defaultPanel" class="panel">
       <h1>Take Your Child to</h1>
       <h1>the Library Day!</h1>
-      <p>{{ info }}</p>
-      <Button class="btn-position" :title="buttonTitle"/>
+      <p v-if="propsInfo.info">{{ propsInfo.info }}</p>
+      <template v-if="propsButtonEnabled">
+        <Button class="btn-position" :title="propsInfo.buttonTitle" />
+      </template>
     </div>
   </section>
 </template>
@@ -13,34 +15,51 @@ import Button from "./ButtonSimple.vue";
 
 export default {
   name: "Hero",
+  props: {
+    propsPanel: {
+      type: Boolean,
+      required: false
+    },
+    propsButtonEnabled: {
+      type: Boolean,
+      required: true
+    },
+    propsInfo: {
+      type: Object,
+      required: true
+    },
+    propsHero: {
+      type: Object,
+      required: false
+    }
+  },
   components: {
     Button
   },
   data() {
     return {
-      title: "Take Your Child to the Library Day!",
-      info:
-        "On February 1, drop in to the Library, sign up for your very first Greenwich Library card, create a Lunar New Year craft, and pick up a free copy of Dr. Seuss’s Gerald McBoing Boing in the Children’s Room!",
-      buttonTitle: "Attend a Program"
+      defaultPanel: {
+        width: "55%",
+        padding: "4rem",
+        height: "58%"
+      },
+
+      heroStyle: {
+        height: "77vh",
+        background:
+          "url('https://wallpapersmug.com/download/2560x1024/d00534/facade-building-architecture.jpg') center/cover no-repeat fixed"
+      }
     };
   }
 };
 </script>
 <style scoped>
 #hero {
-  background: url("https://wallpapersmug.com/download/2560x1024/d00534/facade-building-architecture.jpg")
-    center no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
   width: 100%;
-  height: 77vh;
 }
 
 #hero .panel {
   background: rgba(255, 255, 255, 0.92);
-  width: 55%;
-  padding: 4rem;
-  height: 58%;
   position: relative;
 }
 
@@ -64,7 +83,7 @@ export default {
   font-size: 1rem;
 }
 
-#hero .panel .btn-position{
+#hero .panel .btn-position {
   position: absolute;
   right: 30px;
   bottom: 17px;

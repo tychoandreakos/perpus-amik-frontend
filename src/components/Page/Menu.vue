@@ -10,8 +10,8 @@
   </section>
 </template>
 <script>
-import MenuComponent from "./UI/Menu.vue";
-import PanelComponent from "./UI/Panel.vue";
+import MenuComponent from "../UI/Menu.vue";
+import PanelComponent from "../UI/Panel.vue";
 
 export default {
   name: "Menu",

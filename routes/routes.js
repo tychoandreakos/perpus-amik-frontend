@@ -1,10 +1,16 @@
-import Landing from "../src/components/Landing";
+import LandingComponent from "../src/components/Page/Landing";
+import AccountComponent from "../src/components/Page/Account";
 
 const router = [
   {
     path: "/",
-    name: 'landing',
-    component: Landing
+    name: "landing",
+    component: LandingComponent
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: AccountComponent
   }
 ];
 
