@@ -176,6 +176,7 @@ export default {
   flex-direction: column;
   position: sticky;
   top: 0;
+  padding: 0.9rem 0.9rem 0.9rem 0;
 }
 
 #library-card .library-card .left a {

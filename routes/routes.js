@@ -1,7 +1,7 @@
 import LandingComponent from "../src/components/Page/Landing";
 import AccountComponent from "../src/components/Page/Account";
 import SigninComponent from "../src/components/Page/Signin";
-import LibraryCardComponent from '../src/components/Page/LibraryCard';
+import LibraryCardComponent from "../src/components/Page/LibraryCard";
 
 const title = "Diglib STMIK AMIK BANDUNG";
 
@@ -65,20 +65,22 @@ const router = [
     }
   },
   {
-    path: '/library-card',
+    path: "/library-card",
     component: LibraryCardComponent,
-    name: 'libraryCard',
-    title: putTitle("Library Card"),
-    metaTags: [
-      {
-        name: "description",
-        content: "The about page of our example app."
-      },
-      {
-        property: "og:description",
-        content: "The about page of our example app."
-      }
-    ]
+    name: "libraryCard",
+    meta: {
+      title: putTitle("Library Card"),
+      metaTags: [
+        {
+          name: "description",
+          content: "The about page of our example app."
+        },
+        {
+          property: "og:description",
+          content: "The about page of our example app."
+        }
+      ]
+    }
   }
 ];
 
