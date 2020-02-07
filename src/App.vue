@@ -1,37 +1,14 @@
 <template>
   <div id="app">
     <div class="welcome">
-      <NavbarComponent />
-      <HeroComponent />
-      <MenuComponent />
-      <NewsComponent />
-      <MoreNewsComponent />
-      <ScheduleComponent />
-      <FooterComponent />
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import NavbarComponent from "./components/UI/Navbar.vue";
-import HeroComponent from "./components/UI/Hero.vue";
-import MenuComponent from "./components/Menu.vue";
-import NewsComponent from "./components/UI/News";
-import MoreNewsComponent from "./components/UI/NewsMore";
-import ScheduleComponent from "./components/UI/Schedule";
-import FooterComponent from "./components/UI/Footer";
-
 export default {
-  name: "app",
-  components: {
-    NavbarComponent,
-    HeroComponent,
-    MenuComponent,
-    NewsComponent,
-    MoreNewsComponent,
-    ScheduleComponent,
-    FooterComponent
-  }
+  name: "app"
 };
 </script>
 
