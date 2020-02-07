@@ -56,7 +56,7 @@ export default {
         href: signin
       },
       panel: {
-        width: "52%",
+        width: "32%",
         padding: "4rem",
         height: "38%"
       },
