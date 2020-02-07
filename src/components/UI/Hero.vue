@@ -1,8 +1,7 @@
 <template>
   <section :style="propsHero ? propsHero : heroStyle" id="hero">
     <div :style="propsPanel ? propsPanel : defaultPanel" class="panel">
-      <h1>Take Your Child to</h1>
-      <h1>the Library Day!</h1>
+      <h1 :style="propsTitle ? propsTitle : ''" v-html="propsInfo.title"></h1>
       <p v-if="propsInfo.info">{{ propsInfo.info }}</p>
       <template v-if="propsButtonEnabled">
         <Button class="btn-position" :title="propsInfo.buttonTitle" />
@@ -16,6 +15,10 @@ import Button from "./ButtonSimple.vue";
 export default {
   name: "Hero",
   props: {
+    propsTitle: {
+      type: Object,
+      required: false
+    },
     propsPanel: {
       type: Boolean,
       required: false
@@ -65,7 +68,7 @@ export default {
 
 #hero .panel h1 {
   font-family: "Quicksand", sans-serif;
-  font-size: 3.8em;
+  font-size: 3.8rem;
   font-weight: 400;
   border-bottom: 2px solid #eb9532;
   display: inline-block;
