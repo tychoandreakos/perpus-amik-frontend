@@ -170,7 +170,7 @@ export default {
 
 #library-card .library-card .left {
   margin: 0 4rem;
-  height: 250px;
+  height: 320px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

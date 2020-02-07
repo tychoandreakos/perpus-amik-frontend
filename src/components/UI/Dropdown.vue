@@ -40,8 +40,8 @@ export default {
 }
 
 #dropdown .dropdown {
-  border: 1.5px solid #ccc;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.2);
+  border: 1.5px solid #d5d8d6;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
   font-family: "Quicksand", sans-serif;
   font-weight: 400 !important;
   display: flex;
@@ -57,7 +57,7 @@ export default {
 }
 
 #dropdown .dropdown .arrow {
-  background: #ccc;
+  background: #d5d8d6;
   padding: 0 1.5rem;
   display: flex;
 }
@@ -69,9 +69,9 @@ export default {
 #dropdown .panel-dropdown {
   background: #fff;
   width: 100%;
-  border-left: 1.5px solid #ccc;
-  border-right: 1.5px solid #ccc;
-  border-bottom: 1.5px solid #ccc;
+  border-left: 1.5px solid #d5d8d6;
+  border-right: 1.5px solid #d5d8d6;
+  border-bottom: 1.5px solid #d5d8d6;
   box-shadow: 0 5px 6px rgba(0, 0, 0, 0.2);
   transition: height 0.2s ease-in;
   overflow: hidden;
