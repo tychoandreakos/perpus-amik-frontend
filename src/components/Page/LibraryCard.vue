@@ -81,12 +81,12 @@ export default {
       ],
       dropdownData: [
         {
-          title: "Who may get a free Greenwich Library Card?",
+          title: "Who may get a free Manisku Library Card?",
           description:
             "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library."
         },
         {
-          title: "What if i do not live in greenwich",
+          title: "What if i do not live in Bandung",
           description:
             "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library."
         },
