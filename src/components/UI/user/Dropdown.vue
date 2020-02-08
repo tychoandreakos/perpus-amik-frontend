@@ -10,7 +10,7 @@
         ></span>
       </div>
       <div
-        :style="dropdown ? { height: '160px' } : { height: '0' }"
+        :style="dropdown ? { height: '100px' } : { height: '0' }"
         class="dropdown-list"
       >
         <ul>
@@ -58,7 +58,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #fff;
+  background: inherit;
   z-index: 5;
   position: relative;
   width: 100%;
@@ -69,7 +69,7 @@ export default {
   cursor: pointer;
   font-family: "Quicksand", sans-serif;
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: 500;
   z-index: 5;
 }
 
@@ -89,7 +89,7 @@ p {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #fff;
+  background: #fcfcfc;
   width: 100%;
   overflow: hidden;
   margin-top: 1.95rem;
