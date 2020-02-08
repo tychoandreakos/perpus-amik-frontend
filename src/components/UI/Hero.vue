@@ -12,6 +12,38 @@
 <script>
 import Button from "./ButtonSimple.vue";
 
+/**
+ * Props must be required
+ * 
+ * Propsinfo {
+ *    title: "Sign in to your account",
+ *    info: "lorem10"
+ * }
+ * 
+ * PropsButtonEnabled="true" enabled button on hero
+ * 
+ * PropsHero {
+ *    height: "40vh";
+ *  background: "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed"
+ * }
+ * 
+ * propsPanel {
+ *    panel is white on hero
+ *    width: 32%,
+ *    padding: 4rem,
+ *     height: 38%
+ * }
+ * 
+ * 
+ * PropsTitle {
+ *      fontSize: "2.9rem",
+        lineHeight: "50px",
+        borderBottom: "0"
+ * }
+ * 
+ * 
+ */
+
 export default {
   name: "Hero",
   props: {

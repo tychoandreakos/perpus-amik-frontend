@@ -1,12 +1,25 @@
 <template>
-  <router-link v-if="!submit" :to="link.href" class="btn btn-attend">
+  <a v-if="!submit" :href="$router.resolve(link.href).href" class="btn btn-attend">
     {{ link.title }}
-  </router-link>
+  </a>
   <button v-else class="btn btn-attend">
     {{ link.title }}
   </button>
 </template>
 <script>
+
+/**
+ *  props available
+ * 
+ * link => {
+ *    title: "",
+ *    href: "",
+ * }
+ * 
+ * submit => true / false
+ * 
+ */
+
 export default {
   name: "ButtonSimple",
   props: {

@@ -52,6 +52,10 @@ import HeroComponent from "../UI/Hero";
 import DropdownComponent from "../UI/Dropdown";
 import FooterComponent from "../UI/Footer";
 
+const regist = {
+  name: "signup"
+};
+
 export default {
   name: "LibraryCard",
   components: {
@@ -115,7 +119,7 @@ export default {
         desc: "Click through the link to sign up for a Library card online.",
         buttonElem: {
           title: "Registrasi Sekarang",
-          href: "#"
+          href: regist
         }
       },
       linkPanel: [

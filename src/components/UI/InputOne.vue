@@ -1,9 +1,17 @@
 <template>
   <div class="input">
-    <label v-if="showLabel" :placeholder="placeholder" :for="name">{{
-      name
-    }}</label>
-    <input :placeholder="placeholder" :id="name" :type="typeInput" required />
+    <label
+      v-if="showLabel"
+      :placeholder="placeholder"
+      :for="name | convertText"
+      >{{ name }}</label
+    >
+    <input
+      :placeholder="placeholder"
+      :id="name | convertText"
+      :type="typeInput"
+      required
+    />
   </div>
 </template>
 <script>
@@ -15,6 +23,14 @@
 
 export default {
   name: "InputOne",
+  filters: {
+    convertText(txt) {
+      return txt
+        .split(" ")
+        .join("-")
+        .toLowerCase();
+    }
+  },
   props: {
     name: {
       required: true,
@@ -57,5 +73,6 @@ export default {
   padding: 0.6rem 0.4rem;
   font-size: 0.96rem;
   transition: border-bottom 0.7s ease-in;
+  width: 100%;
 }
 </style>

@@ -2,6 +2,7 @@ import LandingComponent from "../src/components/Page/Landing";
 import AccountComponent from "../src/components/Page/Account";
 import SigninComponent from "../src/components/Page/Signin";
 import LibraryCardComponent from "../src/components/Page/LibraryCard";
+import SignupComponent from "../src/components/Page/Signup";
 
 const title = "Diglib STMIK AMIK BANDUNG";
 
@@ -70,6 +71,24 @@ const router = [
     name: "libraryCard",
     meta: {
       title: putTitle("Library Card"),
+      metaTags: [
+        {
+          name: "description",
+          content: "The about page of our example app."
+        },
+        {
+          property: "og:description",
+          content: "The about page of our example app."
+        }
+      ]
+    }
+  },
+  {
+    path: "/registrasi",
+    component: SignupComponent,
+    name: "signup",
+    meta: {
+      title: putTitle("Registrasi"),
       metaTags: [
         {
           name: "description",
