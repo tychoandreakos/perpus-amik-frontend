@@ -3,6 +3,9 @@
     <NavbarComponent placeholder="Cari buku disini .." />
     <div class="main-page">
       <SidebarComponent />
+      <div class="main-wrapper">
+        <router-view />
+      </div>
     </div>
   </section>
 </template>
@@ -23,5 +26,11 @@ export default {
   padding-top: 6.5rem;
   display: grid;
   grid-template-columns: 15% 1fr;
+}
+
+#homepage .main-page .main-wrapper {
+  margin-left: 10.5rem;
+  width: 87.5vw;
+  overflow: hidden;
 }
 </style>

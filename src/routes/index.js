@@ -1,9 +1,12 @@
-import LandingComponent from "../src/components/Page/Landing";
-import AccountComponent from "../src/components/Page/Account";
-import SigninComponent from "../src/components/Page/Signin";
-import LibraryCardComponent from "../src/components/Page/LibraryCard";
-import SignupComponent from "../src/components/Page/Signup";
-import UserComponent from "../src/components/Page/user/Homepage";
+import LandingComponent from "../components/Page/Landing";
+import AccountComponent from "../components/Page/Account";
+import SigninComponent from "../components/Page/Signin";
+import LibraryCardComponent from "../components/Page/LibraryCard";
+import SignupComponent from "../components/Page/Signup";
+import UserComponent from "../components/Page/user/Homepage";
+
+// children
+import PanelUserComponent from "../components/UI/user/Panel";
 
 const title = "Diglib STMIK AMIK BANDUNG";
 
@@ -118,7 +121,14 @@ const router = [
           content: "The about page of our example app."
         }
       ]
-    }
+    },
+    children: [
+      {
+        path: "/",
+        component: PanelUserComponent,
+        name: "panel"
+      }
+    ]
   }
 ];
 

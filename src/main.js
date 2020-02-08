@@ -4,7 +4,10 @@ import VueRouter from "vue-router";
 import App from "./App.vue";
 
 // import router
-import routes from "../routes/routes.js";
+import routes from "./routes";
+
+// import data management
+import { store } from "./store";
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
@@ -68,5 +71,6 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount("#app");
