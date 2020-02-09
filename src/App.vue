@@ -16,7 +16,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap");
-
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400&display=swap');
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,6 +32,5 @@ export default {
 
 .welcome {
   width: 100%;
-  overflow-y: hidden;
 }
 </style>

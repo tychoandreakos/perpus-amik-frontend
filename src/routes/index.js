@@ -7,6 +7,7 @@ import UserComponent from "../components/Page/user/Homepage";
 
 // children
 import FirstPage from "../components/Page/user/FirstPage";
+import InSearchComponent from "../components/Page/user/InSearch";
 
 const title = "Diglib STMIK AMIK BANDUNG";
 
@@ -109,24 +110,42 @@ const router = [
     path: "/home",
     component: UserComponent,
     name: "homepage",
-    meta: {
-      title: putTitle("Home"),
-      metaTags: [
-        {
-          name: "description",
-          content: "The about page of our example app."
-        },
-        {
-          property: "og:description",
-          content: "The about page of our example app."
-        }
-      ]
-    },
     children: [
       {
         path: "/",
         component: FirstPage,
-        name: "firstPage"
+        name: "firstPage",
+        meta: {
+          title: putTitle("Home"),
+          metaTags: [
+            {
+              name: "description",
+              content: "The about page of our example app."
+            },
+            {
+              property: "og:description",
+              content: "The about page of our example app."
+            }
+          ]
+        }
+      },
+      {
+        path: "search",
+        component: InSearchComponent,
+        name: "search",
+        meta: {
+          title: putTitle("Search"),
+          metaTags: [
+            {
+              name: "description",
+              content: "The about page of our example app."
+            },
+            {
+              property: "og:description",
+              content: "The about page of our example app."
+            }
+          ]
+        }
       }
     ]
   }

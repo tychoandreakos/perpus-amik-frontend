@@ -17,7 +17,6 @@ export default {
   },
   data() {
     return {
-     
       sidebarData: [
         {
           title: "Home",
@@ -86,7 +85,7 @@ export default {
 }
 
 #sidebar-user ul {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.9rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
 }
 </style>

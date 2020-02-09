@@ -2,7 +2,7 @@
   <section
     :style="
       search
-        ? { position: 'fixed', background: '#fff', width: '90%', zIndex: '99' }
+        ? { position: 'fixed', background: '#fff', width: '100%', zIndex: '99' }
         : { position: 'relative' }
     "
     id="navbar"
