@@ -54,6 +54,7 @@ export default {
   align-items: center;
   transition: all 0.7s ease;
   position: fixed;
+  z-index: 8;
 }
 
 #navbar-user .logo {

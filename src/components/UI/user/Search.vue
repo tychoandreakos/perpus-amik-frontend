@@ -46,7 +46,8 @@ export default {
 </script>
 <style scoped>
 #search-user {
-  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
+      0 2px 2px 0 rgba(40, 44, 53, 0.08);
   border: 1px solid #eee;
   width: 100%;
   padding: 0.8rem 1rem;
