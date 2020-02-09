@@ -26,11 +26,12 @@ export default {
   padding-top: 6.5rem;
   display: grid;
   grid-template-columns: 15% 1fr;
+  background: #fff;
 }
 
 #homepage .main-page .main-wrapper {
   margin-left: 10.5rem;
-  width: 87.5vw;
+  width: 86.6vw;
   overflow: hidden;
 }
 </style>

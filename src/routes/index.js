@@ -6,7 +6,7 @@ import SignupComponent from "../components/Page/Signup";
 import UserComponent from "../components/Page/user/Homepage";
 
 // children
-import PanelUserComponent from "../components/UI/user/Panel";
+import FirstPage from "../components/Page/user/FirstPage";
 
 const title = "Diglib STMIK AMIK BANDUNG";
 
@@ -125,8 +125,8 @@ const router = [
     children: [
       {
         path: "/",
-        component: PanelUserComponent,
-        name: "panel"
+        component: FirstPage,
+        name: "firstPage"
       }
     ]
   }

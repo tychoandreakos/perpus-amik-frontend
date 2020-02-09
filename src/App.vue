@@ -32,5 +32,6 @@ export default {
 
 .welcome {
   width: 100%;
+  overflow-y: hidden;
 }
 </style>
