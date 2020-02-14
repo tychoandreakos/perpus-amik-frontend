@@ -1,6 +1,11 @@
 <template>
   <section id="navbar-user">
-    <div class="logo">s</div>
+    <div class="logo">
+      s
+      <div class="show-sidebar" @click="setSidebar">
+        <Icon :icon="icons.menu" />
+      </div>
+    </div>
     <div class="element">
       <SearchComponent
         @valueList="listSelected"
@@ -17,16 +22,22 @@
 <script>
 import SearchComponent from "./Search";
 import Button from "./Button";
+import Icon from "vue-themify-icons";
+import { mapMutations } from "vuex";
 
 export default {
   name: "NavbarUser",
   data() {
     return {
       filterBy: ["Buku", "Pengarang", "ISBN"],
-      listData: ""
+      listData: "",
+      icons: {
+        menu: "menu"
+      }
     };
   },
   methods: {
+    ...mapMutations(["setSidebar"]),
     listSelected(val) {
       this.listData = val;
     }
@@ -39,11 +50,12 @@ export default {
   },
   components: {
     SearchComponent,
-    Button
+    Button,
+    Icon
   }
 };
 </script>
-<style scoped>
+<style>
 #navbar-user {
   background: #fff;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -88,5 +100,35 @@ export default {
 #navbar-user .element .btn-wrapper {
   margin-left: 1.5rem;
   align-self: center;
+}
+
+#navbar-user .logo .show-sidebar {
+  display: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 800px) {
+  #navbar-user {
+    flex-direction: column;
+    height: 140px;
+  }
+  #navbar-user .logo {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.4rem;
+  }
+
+  #navbar-user .logo .show-sidebar {
+    display: block;
+  }
+
+  #navbar-user .element {
+    height: 45px;
+    margin-top: 1.3rem;
+  }
 }
 </style>

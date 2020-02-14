@@ -233,4 +233,10 @@ h1 {
   margin-bottom: 0;
   color: $vue-teal;
 }
+
+@media only screen and (min-width: 200px) and (max-width: 800px) {
+  .card-carousel {
+    width: 80%;
+  }
+}
 </style>

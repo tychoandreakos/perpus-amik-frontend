@@ -27,11 +27,24 @@ export default {
   display: grid;
   grid-template-columns: 15% 1fr;
   background: #fff;
+  width: 100%;
 }
 
 #homepage .main-page .main-wrapper {
   margin-left: 10.5rem;
   width: 86.6vw;
   overflow: hidden;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 800px) {
+  #homepage .main-page {
+    display: block;
+    padding-top: 9rem;
+  }
+
+  #homepage .main-page .main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 </style>

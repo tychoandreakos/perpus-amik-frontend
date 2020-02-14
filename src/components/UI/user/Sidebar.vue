@@ -1,5 +1,5 @@
 <template>
-  <section id="sidebar-user">
+  <section id="sidebar-user" v-show="sidebarState">
     <ul>
       <template v-for="(list, i) in sidebarData">
         <ListComponent :key="i" :list="list" />
@@ -14,6 +14,11 @@ export default {
   name: "Sidebar",
   components: {
     ListComponent
+  },
+  computed: {
+    sidebarState() {
+      return this.$store.state.sidebarState;
+    }
   },
   data() {
     return {
@@ -89,10 +94,12 @@ export default {
   font-size: 1rem;
 }
 
-@media only screen and (min-width: 200px) {
+@media only screen and (min-width: 200px) and (max-width: 800px) {
   #sidebar-user {
     width: 100%;
     position: fixed;
+    z-index: 99;
+    top: 3rem;
   }
 
   #sidebar-user ul {

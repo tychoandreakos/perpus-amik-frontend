@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
+    sidebarState: false,
     book: [
       {
         titleBook: {
@@ -138,6 +139,12 @@ export const store = new Vuex.Store({
         author: "Matt Stauffer"
       }
     ]
+  },
+
+  mutations: {
+    setSidebar(state) {
+      state.sidebarState = !state.sidebarState;
+    }
   }
 
   // mutations: {

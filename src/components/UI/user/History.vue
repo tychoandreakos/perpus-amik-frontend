@@ -4,10 +4,11 @@
     <ul>
       <li v-for="(history, i) in bookHistory" :key="i">
         <div class="card">
-          <div
+          <a
+            href="#"
             class="img"
             :style="{ background: 'url(' + history.img + ')' }"
-          ></div>
+          ></a>
           <div class="desc">
             <a class="link" href="#">{{ history.title }}</a>
             <span
@@ -109,5 +110,30 @@ export default {
   font-family: "Poppins", sans-serif;
   color: inherit;
   font-size: 0.95rem;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 800px) {
+  #history-user {
+    width: 90%;
+    margin: auto;
+  }
+
+  #history-user ul li .card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #history-user ul li .card .img {
+    width: 200px;
+    height: 300px;
+    align-self: center;
+    margin-bottom: 1rem;
+  }
+
+  #history-user ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3rem;
+  }
 }
 </style>

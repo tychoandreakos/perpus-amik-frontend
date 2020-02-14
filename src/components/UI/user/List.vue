@@ -25,7 +25,10 @@
           <ThemifyIcon :icon="list.icon" />
           {{ list.title }}
         </div>
-        <ThemifyIcon :class="[dropdownPanel ? 'rotate' : '', 'caret']" :icon="caret" />
+        <ThemifyIcon
+          :class="[dropdownPanel ? 'rotate' : '', 'caret']"
+          :icon="caret"
+        />
       </div>
       <template v-for="(listData, i) in list.child">
         <DropdownComponent
@@ -78,9 +81,12 @@ li a i,
   margin-right: 0.8rem;
 }
 
-.active,
 li a:hover,
 .dropdown:hover {
+  background: rgba(196, 207, 220, 0.2);
+}
+
+.active {
   background: #27262f;
   border-left: 4px solid #613ff4;
 }
