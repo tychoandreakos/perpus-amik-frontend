@@ -1,8 +1,12 @@
 <template>
   <section id="list-user">
     <li :class="list.active ? 'active' : ''" v-if="!list.child">
-      <ThemifyIcon icon="user" />
-      <a class="link" :href="list.href">{{ list.title }}</a>
+      <div class="link-wrap">
+        <router-link class="link" :to="list.href">
+          <ThemifyIcon :icon="list.icon" />
+          {{ list.title }}</router-link
+        >
+      </div>
     </li>
     <li
       @click="dropdownPanel = !dropdownPanel"
@@ -17,7 +21,11 @@
         "
         class="link dropdown"
       >
-        {{ list.title }}
+        <div>
+          <ThemifyIcon :icon="list.icon" />
+          {{ list.title }}
+        </div>
+        <ThemifyIcon :class="[dropdownPanel ? 'rotate' : '', 'caret']" :icon="caret" />
       </div>
       <template v-for="(listData, i) in list.child">
         <DropdownComponent
@@ -42,7 +50,8 @@ export default {
   },
   data() {
     return {
-      dropdownPanel: false
+      dropdownPanel: false,
+      caret: "angle-down"
     };
   },
   props: {
@@ -63,6 +72,12 @@ li a {
   transition: all 0.2s ease-in-out;
 }
 
+li a i,
+.dropdown i {
+  font-size: 0.9rem;
+  margin-right: 0.8rem;
+}
+
 .active,
 li a:hover,
 .dropdown:hover {
@@ -81,5 +96,17 @@ li .link {
 li .dropdown {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li .dropdown .caret {
+  font-size: 0.7rem;
+  transition: transform 0.4s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
 </style>

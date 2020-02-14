@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown-panel">
-    <a :href="list.href">{{ list.title }}</a>
+    <router-link :to="list.href">{{ list.title }}</router-link>
   </div>
 </template>
 <script>

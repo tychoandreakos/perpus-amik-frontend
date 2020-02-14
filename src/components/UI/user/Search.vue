@@ -3,7 +3,9 @@
     :style="dropdownData ? { border: '1px solid #613ff4' } : {}"
     id="search-user"
   >
-    <div class="icon">x</div>
+    <div class="icon">
+      <ThemifyIcons :icon="searchIcon" />
+    </div>
     <input :placeholder="placeholder" type="text" />
     <DropdownComponent
       @open="dropdownHandler"
@@ -14,14 +16,17 @@
 </template>
 <script>
 import DropdownComponent from "./Dropdown";
+import ThemifyIcons from "vue-themify-icons";
 export default {
   name: "SearchUser",
   components: {
-    DropdownComponent
+    DropdownComponent,
+    ThemifyIcons
   },
   data() {
     return {
-      dropdownData: false
+      dropdownData: false,
+      searchIcon: "search"
     };
   },
   methods: {
@@ -45,9 +50,13 @@ export default {
 };
 </script>
 <style scoped>
+@media screen and (min-width: 100px) and (max-width: 956px) {
+  
+}
+
 #search-user {
   box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
-      0 2px 2px 0 rgba(40, 44, 53, 0.08);
+    0 2px 2px 0 rgba(40, 44, 53, 0.08);
   border: 1px solid #eee;
   width: 100%;
   padding: 0.8rem 1rem;
@@ -57,6 +66,7 @@ export default {
   font-size: 0.9rem;
   grid-template-columns: 4% 6fr 2fr;
   transition: border 0.2s ease-in-out;
+  align-content: center;
 }
 
 #search-user input {
@@ -67,5 +77,10 @@ export default {
   font-size: inherit;
   background: inherit;
   font-weight: 500;
+}
+
+#search-user .icon {
+  margin: auto;
+  margin-top: 2px;
 }
 </style>

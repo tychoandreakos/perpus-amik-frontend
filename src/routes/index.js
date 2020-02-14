@@ -110,6 +110,7 @@ const router = [
     path: "/home",
     component: UserComponent,
     name: "homepage",
+    redirect: "/home",
     children: [
       {
         path: "/",

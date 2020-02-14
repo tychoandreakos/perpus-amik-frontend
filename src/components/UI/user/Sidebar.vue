@@ -20,13 +20,13 @@ export default {
       sidebarData: [
         {
           title: "Home",
-          icon: "fa fa-home",
-          href: "#",
+          icon: "home",
+          href: { name: "homepage" },
           active: true
         },
         {
           title: "Featured",
-          icon: "fa fa-home",
+          icon: "star",
           child: [
             {
               title: "Resource Centers",
@@ -40,7 +40,7 @@ export default {
         },
         {
           title: "Practive",
-          icon: "fa fa-home",
+          icon: "link",
           child: [
             {
               title: "Katacoda",
@@ -58,17 +58,17 @@ export default {
         },
         {
           title: "Kubernetes",
-          icon: "fa fa-home",
+          icon: "book",
           href: "#"
         },
         {
           title: "Settings",
-          icon: "fa fa-home",
+          icon: "settings",
           href: "#"
         },
         {
           title: "Sign out",
-          icon: "fa fa-home",
+          icon: "arrow-circle-right",
           href: "#"
         }
       ]
@@ -76,7 +76,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 #sidebar-user {
   background: #3d3b49;
   width: 12.5%;
@@ -87,5 +87,16 @@ export default {
 #sidebar-user ul {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1rem;
+}
+
+@media only screen and (min-width: 200px) {
+  #sidebar-user {
+    width: 100%;
+    position: fixed;
+  }
+
+  #sidebar-user ul {
+    font-size: 1.5rem;
+  }
 }
 </style>
