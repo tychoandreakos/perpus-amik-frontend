@@ -71,7 +71,7 @@ export default {
 <style scoped>
 #menu {
   padding-top: 1rem;
-  height: 2.5rem;
+  height: 4rem;
 }
 
 #menu .menu-shell {

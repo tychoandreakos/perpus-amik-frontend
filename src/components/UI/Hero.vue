@@ -74,9 +74,9 @@ export default {
   data() {
     return {
       defaultPanel: {
-        width: "55%",
+        width: "70%",
         padding: "4rem",
-        height: "58%"
+        height: "85%"
       },
 
       heroStyle: {

@@ -1,6 +1,7 @@
 <template>
   <section id="list-user">
     <li :class="list.active ? 'active' : ''" v-if="!list.child">
+      <ThemifyIcon icon="user" />
       <a class="link" :href="list.href">{{ list.title }}</a>
     </li>
     <li
@@ -31,10 +32,13 @@
 </template>
 <script>
 import DropdownComponent from "./DropdownSidebar";
+import ThemifyIcon from "vue-themify-icons";
+
 export default {
   name: "List",
   components: {
-    DropdownComponent
+    DropdownComponent,
+    ThemifyIcon
   },
   data() {
     return {

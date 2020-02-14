@@ -12,14 +12,8 @@
       <div class="title">{{ title }}</div>
     </a>
     <div class="menu">
-      <a href="#">
-        Donate
-      </a>
-      <a href="/library-card">
-        Library Card
-      </a>
-      <a href="/account">
-        Account
+      <a v-for="(link, i) in menuLink" :key="i" :href="link.href">
+        {{ link.title }}
       </a>
       <a
         href="#"
@@ -43,7 +37,24 @@ export default {
   data() {
     return {
       search: false,
-      title: "Manisku Library"
+      title: "Manisku Library",
+      menuLink: [
+        {
+          title: "Donate",
+          href: "#",
+          icon: "@icon/themify-icons/icons/money.svg"
+        },
+        {
+          title: "Library Card",
+          href: "/library-card",
+          icon: "@icon/themify-icons/icons/credit-card.svg"
+        },
+        {
+          title: "Account",
+          href: "/account",
+          icon: "@icon/themify-icons/icons/user.svg"
+        }
+      ]
     };
   }
 };

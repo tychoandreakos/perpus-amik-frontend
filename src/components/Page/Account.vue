@@ -56,9 +56,9 @@ export default {
         href: signin
       },
       panel: {
-        width: "32%",
+        width: "42%",
         padding: "4rem",
-        height: "38%"
+        height: "75%"
       },
       titleHero: {
         fontSize: "2.9rem",
