@@ -75,4 +75,10 @@ export default {
 #first-wrapper .slider .text a:hover {
   color: #613ff4;
 }
+
+@media only screen and (max-width: 365px) {
+  #first-wrapper .slider .text {
+    margin-left: 2rem;
+  }
+}
 </style>

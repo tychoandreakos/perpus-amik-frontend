@@ -94,12 +94,13 @@ export default {
   font-size: 1rem;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   #sidebar-user {
     width: 100%;
     position: fixed;
     z-index: 99;
     top: 3rem;
+    height: 100vh;
   }
 
   #sidebar-user ul {

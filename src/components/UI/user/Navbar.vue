@@ -2,8 +2,13 @@
   <section id="navbar-user">
     <div class="logo">
       s
-      <div class="show-sidebar" @click="setSidebar">
-        <Icon :icon="icons.menu" />
+      <div class="edges">
+        <div class="show-search">
+          <Icon :icon="icons.search" />
+        </div>
+        <div class="show-sidebar" @click="setSidebar">
+          <Icon :icon="icons.menu" />
+        </div>
       </div>
     </div>
     <div class="element">
@@ -32,7 +37,8 @@ export default {
       filterBy: ["Buku", "Pengarang", "ISBN"],
       listData: "",
       icons: {
-        menu: "menu"
+        menu: "menu",
+        search: "search"
       }
     };
   },
@@ -75,6 +81,11 @@ export default {
   background: #3d3b49;
 }
 
+#navbar-user .edges {
+  display: flex;
+  align-items: center;
+}
+
 #navbar-user .element {
   margin-left: 3.5rem;
   display: flex;
@@ -83,6 +94,13 @@ export default {
 
 #navbar-user .element .search {
   width: 70%;
+}
+
+#navbar-user .edges .show-search {
+  cursor: pointer;
+  margin-right: 0.4rem;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
 }
 
 #navbar-user .element .dropdown {
@@ -98,16 +116,16 @@ export default {
 }
 
 #navbar-user .element .btn-wrapper {
-  margin-left: 1.5rem;
   align-self: center;
 }
 
 #navbar-user .logo .show-sidebar {
   display: none;
   cursor: pointer;
+  margin-left: 1rem;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (min-width: 365px) and (max-width: 800px) {
   #navbar-user {
     flex-direction: column;
     height: 140px;
@@ -129,6 +147,42 @@ export default {
   #navbar-user .element {
     height: 45px;
     margin-top: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 365px) {
+  #navbar-user {
+    flex-direction: column;
+    height: 140px;
+  }
+  #navbar-user .logo {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.4rem;
+  }
+
+  #navbar-user .logo .show-sidebar {
+    display: block;
+  }
+
+  #navbar-user .element {
+    height: 45px;
+    margin-top: 1.3rem;
+    margin-left: 0;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  #navbar-user .element .btn-wrapper {
+    display: none;
+  }
+
+  #navbar-user .element .search {
+    width: 100%;
   }
 }
 </style>

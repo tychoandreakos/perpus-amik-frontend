@@ -7,7 +7,7 @@
       <ThemifyIcons :icon="searchIcon" />
     </div>
     <input :placeholder="placeholder" type="text" />
-    <DropdownComponent
+    <DropdownComponent v-show="false"
       @open="dropdownHandler"
       @listValue="listHandler"
       :list="dropdown"
@@ -50,10 +50,6 @@ export default {
 };
 </script>
 <style scoped>
-@media screen and (min-width: 100px) and (max-width: 956px) {
-  
-}
-
 #search-user {
   box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
     0 2px 2px 0 rgba(40, 44, 53, 0.08);
@@ -83,4 +79,5 @@ export default {
   margin: auto;
   margin-top: 2px;
 }
+
 </style>

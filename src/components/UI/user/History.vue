@@ -136,4 +136,11 @@ export default {
     grid-gap: 3rem;
   }
 }
+
+@media only screen and (max-width: 365px) {
+  #history-user ul li .card .img {
+    width: 85px;
+    height: 125px;
+  }
+}
 </style>

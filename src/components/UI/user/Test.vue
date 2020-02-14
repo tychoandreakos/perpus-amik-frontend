@@ -239,4 +239,10 @@ h1 {
     width: 80%;
   }
 }
+
+@media only screen and (max-width: 365px) {
+  .card-carousel {
+    width: 60%;
+  }
+}
 </style>
