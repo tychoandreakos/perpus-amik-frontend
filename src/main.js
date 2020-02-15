@@ -13,8 +13,9 @@ import { store } from "./store";
 Vue.use(VueRouter);
 Vue.use(VueMq, {
   breakpoints: {
-    mobile: 365,
-    tabletOrDesktop: 800
+    mobile: 580,
+    tabletOrDesktop: 872,
+    desktop: 1200
   }
 });
 Vue.config.productionTip = false;

@@ -17,7 +17,11 @@ export default {
   },
   computed: {
     sidebarState() {
-      return this.$mq === "mobile" ? this.$store.state.sidebarState : true;
+      return this.$mq === "mobile"
+        ? this.$store.state.sidebarState
+        : this.$mq === "tabletOrDesktop"
+        ? this.$store.state.sidebarState
+        : true;
     }
   },
   data() {
@@ -94,12 +98,26 @@ export default {
   font-size: 1rem;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 580px) {
   #sidebar-user {
     width: 100%;
     position: fixed;
     z-index: 99;
     top: 3rem;
+    height: 100vh;
+  }
+
+  #sidebar-user ul {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 580px) and (max-width: 872px) {
+  #sidebar-user {
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    top: 4rem;
     height: 100vh;
   }
 

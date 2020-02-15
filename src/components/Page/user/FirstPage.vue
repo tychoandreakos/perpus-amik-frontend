@@ -76,7 +76,7 @@ export default {
   color: #613ff4;
 }
 
-@media only screen and (max-width: 365px) {
+@media only screen and (max-width: 580px) {
   #first-wrapper .slider .text {
     margin-left: 2rem;
   }

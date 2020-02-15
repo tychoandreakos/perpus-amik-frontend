@@ -114,6 +114,7 @@ export default {
   margin-right: 0.4rem;
   font-size: 0.9rem;
   margin-top: 0.2rem;
+  display: none;
 }
 
 #navbar-user .element .dropdown {
@@ -138,14 +139,14 @@ export default {
   margin-left: 1rem;
 }
 
-@media only screen and (min-width: 365px) and (max-width: 800px) {
+@media only screen and (min-width: 580px) and (max-width: 872px) {
   #navbar-user {
     flex-direction: column;
-    height: 140px;
+    height: 155px;
   }
   #navbar-user .logo {
     width: 100%;
-    height: 50px;
+    height: 70px;
     display: flex;
     color: #fff;
     align-items: center;
@@ -163,7 +164,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 365px) {
+@media only screen and (max-width: 580px) {
   #navbar-user {
     flex-direction: column;
     height: 50px;
@@ -179,6 +180,10 @@ export default {
   }
 
   #navbar-user .logo .show-sidebar {
+    display: block;
+  }
+
+  #navbar-user .edges .show-search {
     display: block;
   }
 

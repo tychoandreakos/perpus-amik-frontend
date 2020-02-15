@@ -21,11 +21,10 @@ export default {
   grid-template-columns: 2fr 1fr;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (max-width: 870px) {
   #panel-user {
     display: flex;
     flex-direction: column;
   }
 }
-
 </style>

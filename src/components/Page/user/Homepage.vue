@@ -41,7 +41,7 @@ export default {
   overflow: hidden;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (min-width: 580px) and (max-width: 870px) {
   #homepage .main-page {
     display: block;
     padding-top: 9rem;
@@ -49,7 +49,14 @@ export default {
 
   #homepage .main-page .main-wrapper {
     margin-left: 0;
-    width: 100%;
+    width: 86.6vw;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  #homepage .main-page .main-wrapper {
+    margin-left: 0;
+      width: 100vw;
   }
 }
 </style>

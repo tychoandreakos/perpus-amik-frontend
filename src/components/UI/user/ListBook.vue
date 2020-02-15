@@ -119,6 +119,7 @@ export default {
   width: 100%;
   display: flex;
   margin-bottom: 1rem;
+  align-items: center;
 }
 
 #list-book .media-wrapper .media-info-wrapper .img {
@@ -244,7 +245,7 @@ export default {
   font-size: 1.07rem;
 }
 
-@media screen and (max-width: 365px) {
+@media screen and (max-width: 580px) {
   #list-book .media-wrapper .media-description .info-rating {
     width: 55%;
   }

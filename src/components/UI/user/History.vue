@@ -10,7 +10,12 @@
             :style="{ background: 'url(' + history.img + ')' }"
           ></a>
           <div class="desc">
-            <a class="link" href="#">{{ history.title }}</a>
+            <router-link class="link" v-if="$mq === 'mobile'" to="#">{{
+              history.title | shortTextMobile
+            }}</router-link>
+            <router-link class="link" v-else to="#">{{
+              history.title
+            }}</router-link>
             <span
               >By <a href="#">{{ history.author }}</a></span
             >
@@ -18,7 +23,7 @@
         </div>
       </li>
     </ul>
-    <a class="see" :href="more.href">{{ more.title }}</a>
+    <a class="see">{{ more.title }}</a>
   </section>
 </template>
 <script>
@@ -27,6 +32,11 @@ export default {
   computed: {
     bookHistory() {
       return this.$store.state.bookHistory;
+    }
+  },
+  filters: {
+    shortTextMobile(val) {
+      return val.length > 50 ? val.substring(0, 50) + " ..." : val;
     }
   },
   data() {
@@ -112,7 +122,7 @@ export default {
   font-size: 0.95rem;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (min-width: 580px) and (max-width: 870px) {
   #history-user {
     width: 90%;
     margin: auto;
@@ -137,10 +147,28 @@ export default {
   }
 }
 
-@media only screen and (max-width: 365px) {
+@media only screen and (max-width: 580px) {
+  #history-user {
+    width: 90%;
+    margin: auto;
+  }
+
+  #history-user ul li .card {
+    display: flex;
+    flex-direction: column;
+  }
+
   #history-user ul li .card .img {
-    width: 85px;
-    height: 125px;
+    align-self: center;
+    margin-bottom: 1rem;
+    width: 125px;
+    height: 180px;
+  }
+
+  #history-user ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3rem;
   }
 }
 </style>

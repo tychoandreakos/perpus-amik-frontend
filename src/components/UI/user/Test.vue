@@ -237,13 +237,13 @@ h1 {
   color: $vue-teal;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (min-width: 580px) and (max-width: 870px) {
   .card-carousel {
     width: 80%;
   }
 }
 
-@media only screen and (max-width: 365px) {
+@media only screen and (max-width: 580px) {
   .card-carousel {
     width: 60%;
   }
