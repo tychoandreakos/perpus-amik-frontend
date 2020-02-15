@@ -11,8 +11,19 @@
         ></a>
         <div class="media-info">
           <div class="media-categories">
-            <div class="category">Video</div>
-            <div class="playlist">x</div>
+            <template v-if="true">
+              <div class="category">
+                <Icon icon="book" />
+                Book
+              </div>
+            </template>
+            <template v-else>
+              <div class="category">
+                <Icon icon="video-camera" />
+                Video
+              </div>
+            </template>
+            <div class="playlist"><Icon icon="list" /></div>
           </div>
           <a :href="item.titleBook.href" class="title">{{
             item.titleBook.title
@@ -48,7 +59,12 @@
           <span>{{ item.rating }} Reviews</span>
         </div>
         <p>Pack Publishing May 2018</p>
-        <span class="description">{{ item.description | descFilter }}</span>
+        <span class="description" v-if="$mq !== 'mobile'">{{
+          item.description | descFilter
+        }}</span>
+        <span class="description" v-else>{{
+          item.description | descMobile
+        }}</span>
       </div>
     </div>
   </section>
@@ -74,6 +90,9 @@ export default {
     descFilter(val) {
       if (val.length >= 400) return val.substring(0, 400) + " ...";
       else return val;
+    },
+    descMobile(val) {
+      return val.substring(0, 60) + " ...";
     }
   },
   props: {
@@ -127,11 +146,54 @@ export default {
   .media-info-wrapper
   .media-info
   .media-categories
+  .playlist {
+  cursor: pointer;
+}
+
+#list-book
+  .media-wrapper
+  .media-info-wrapper
+  .media-info
+  .media-categories
+  .playlist
+  i:hover {
+  color: #613ff4;
+  box-shadow: 0 1px 5px #ebebeb;
+}
+
+#list-book
+  .media-wrapper
+  .media-info-wrapper
+  .media-info
+  .media-categories
+  .playlist
+  i {
+  color: #222;
+  font-size: 1.2rem;
+}
+
+#list-book
+  .media-wrapper
+  .media-info-wrapper
+  .media-info
+  .media-categories
   .category {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   font-size: 0.88rem;
   color: #613ff4;
+}
+
+#list-book
+  .media-wrapper
+  .media-info-wrapper
+  .media-info
+  .media-categories
+  .category
+  i {
+  margin-right: 0.3rem;
+  font-weight: bold;
+  font-size: 0.85rem;
 }
 
 #list-book .media-wrapper .media-info-wrapper .media-info .title {
@@ -180,5 +242,20 @@ export default {
 #list-book .media-wrapper .media-description .description {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.07rem;
+}
+
+@media screen and (max-width: 365px) {
+  #list-book .media-wrapper .media-description .info-rating {
+    width: 55%;
+  }
+
+  #list-book .media-wrapper .media-info-wrapper .img {
+    width: 150px;
+    height: 125px;
+  }
+
+  #list-book {
+    padding: 0 2rem;
+  }
 }
 </style>
