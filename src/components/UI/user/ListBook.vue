@@ -37,13 +37,30 @@
         <div class="info-rating">
           <div class="rating">
             <template v-if="item.rating">
-              <Icon v-for="(rating, i) in item.rating" :key="i" class="fully-color" icon="star" />
+              <!-- <Icon
+                v-for="(rating, i) in item.rating"
+                :key="i"
+                class="fully-color"
+                icon="star"
+              /> -->
+              <Rating
+                :max-rating="5"
+                :increment="1"
+                :rating="item.rating"
+                :star-size="15"
+                active-color="#613ff4"
+                :show-rating="false"
+              />
             </template>
             <template v-else>
-              <Icon v-for="(restRating, i) in item.rating - 5" :key="i" icon="star" />
+              <Icon
+                v-for="(restRating, i) in item.rating - 5"
+                :key="i"
+                icon="star"
+              />
             </template>
           </div>
-          <span>3 Reviews</span>
+          <span>{{ item.rating }} Reviews</span>
         </div>
         <p>Pack Publishing May 2018</p>
         <span class="description">{{ item.description | descFilter }}</span>
@@ -53,11 +70,13 @@
 </template>
 <script>
 import Icon from "vue-themify-icons";
+import Rating from "vue-star-rating";
 
 export default {
   name: "ListBook",
   components: {
-    Icon
+    Icon,
+    Rating
   },
   methods: {
     isArray(val) {
@@ -154,7 +173,7 @@ export default {
 
 #list-book .media-wrapper .media-description .info-rating {
   display: flex;
-  width: 12%;
+  width: 15%;
   justify-content: space-between;
   align-items: center;
 }
