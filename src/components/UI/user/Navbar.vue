@@ -1,5 +1,8 @@
 <template>
-  <section id="navbar-user" :style="showSearch ? { height: '104px' } : {}">
+  <section
+    id="navbar-user"
+    :style="showSearch ? { height: $mq === 'mobile' ? '140px' : '104px' } : {}"
+  >
     <div class="logo">
       s
       <div class="edges">
@@ -41,12 +44,13 @@ export default {
       icons: {
         menu: "menu",
         search: "search"
-      }
+      },
+      anotherHandler: true
     };
   },
   computed: {
     showSearch() {
-      return this.$store.state.showSearch;
+      return this.$mq === "mobile" ? this.$store.state.showSearch : true;
     }
   },
   methods: {
@@ -100,7 +104,8 @@ export default {
 }
 
 #navbar-user .element .search {
-  width: 70%;
+  width: 67%;
+  margin-right: 1.5rem;
 }
 
 #navbar-user .edges .show-search {

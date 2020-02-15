@@ -7,7 +7,8 @@
       <ThemifyIcons :icon="searchIcon" />
     </div>
     <input :placeholder="placeholder" type="text" />
-    <DropdownComponent v-show="false"
+    <DropdownComponent
+      v-if="$mq !== 'mobile'"
       @open="dropdownHandler"
       @listValue="listHandler"
       :list="dropdown"
@@ -79,5 +80,4 @@ export default {
   margin: auto;
   margin-top: 2px;
 }
-
 </style>
