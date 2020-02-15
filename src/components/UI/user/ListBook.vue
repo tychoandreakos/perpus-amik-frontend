@@ -36,29 +36,14 @@
       <div class="media-description">
         <div class="info-rating">
           <div class="rating">
-            <template v-if="item.rating">
-              <!-- <Icon
-                v-for="(rating, i) in item.rating"
-                :key="i"
-                class="fully-color"
-                icon="star"
-              /> -->
-              <Rating
-                :max-rating="5"
-                :increment="1"
-                :rating="item.rating"
-                :star-size="15"
-                active-color="#613ff4"
-                :show-rating="false"
-              />
-            </template>
-            <template v-else>
-              <Icon
-                v-for="(restRating, i) in item.rating - 5"
-                :key="i"
-                icon="star"
-              />
-            </template>
+            <Rating
+              :max-rating="5"
+              :increment="1"
+              :rating="item.rating"
+              :star-size="15"
+              active-color="#613ff4"
+              :show-rating="false"
+            />
           </div>
           <span>{{ item.rating }} Reviews</span>
         </div>
@@ -70,6 +55,8 @@
 </template>
 <script>
 import Icon from "vue-themify-icons";
+
+// you can get more info about vue-star-rating in this particular website => https://vuejsexamples.com/a-simple-and-highly-customisable-star-rating-component-for-vue/
 import Rating from "vue-star-rating";
 
 export default {
