@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     sidebarState: false,
+    showSearch: true,
     book: [
       {
         titleBook: {
@@ -144,6 +145,9 @@ export const store = new Vuex.Store({
   mutations: {
     setSidebar(state) {
       state.sidebarState = !state.sidebarState;
+    },
+    setSearch(state) {
+      state.showSearch = !state.showSearch;
     }
   }
 

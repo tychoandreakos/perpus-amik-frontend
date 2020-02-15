@@ -1,9 +1,9 @@
 <template>
-  <section id="navbar-user">
+  <section id="navbar-user" :style="showSearch ? { height: '104px' } : {}">
     <div class="logo">
       s
       <div class="edges">
-        <div class="show-search">
+        <div class="show-search" @click="setSearch">
           <Icon :icon="icons.search" />
         </div>
         <div class="show-sidebar" @click="setSidebar">
@@ -11,17 +11,19 @@
         </div>
       </div>
     </div>
-    <div class="element">
-      <SearchComponent
-        @valueList="listSelected"
-        class="search"
-        :dropdown="filterBy"
-        :placeholder="placeholder"
-      />
-      <div class="btn-wrapper">
-        <Button class="btn" title="Cari" />
+    <template v-if="showSearch">
+      <div class="element">
+        <SearchComponent
+          @valueList="listSelected"
+          class="search"
+          :dropdown="filterBy"
+          :placeholder="placeholder"
+        />
+        <div class="btn-wrapper">
+          <Button class="btn" title="Cari" />
+        </div>
       </div>
-    </div>
+    </template>
   </section>
 </template>
 <script>
@@ -42,8 +44,13 @@ export default {
       }
     };
   },
+  computed: {
+    showSearch() {
+      return this.$store.state.showSearch;
+    }
+  },
   methods: {
-    ...mapMutations(["setSidebar"]),
+    ...mapMutations(["setSidebar", "setSearch"]),
     listSelected(val) {
       this.listData = val;
     }
@@ -137,7 +144,7 @@ export default {
     color: #fff;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2.4rem;
+    padding: 1.5rem 2.4rem;
   }
 
   #navbar-user .logo .show-sidebar {
@@ -153,7 +160,7 @@ export default {
 @media only screen and (max-width: 365px) {
   #navbar-user {
     flex-direction: column;
-    height: 140px;
+    height: 50px;
   }
   #navbar-user .logo {
     width: 100%;
@@ -162,7 +169,7 @@ export default {
     color: #fff;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2.4rem;
+    padding: 0.9rem 2.4rem;
   }
 
   #navbar-user .logo .show-sidebar {

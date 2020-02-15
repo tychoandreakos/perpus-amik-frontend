@@ -1,7 +1,7 @@
 <template>
   <section id="homepage">
     <NavbarComponent placeholder="Cari buku disini .." />
-    <div class="main-page">
+    <div class="main-page" :style="showSearch ? '' : { paddingTop: '3.4rem' }">
       <SidebarComponent />
       <div class="main-wrapper">
         <router-view />
@@ -18,6 +18,11 @@ export default {
   components: {
     NavbarComponent,
     SidebarComponent
+  },
+  computed: {
+    showSearch() {
+      return this.$store.state.showSearch;
+    }
   }
 };
 </script>

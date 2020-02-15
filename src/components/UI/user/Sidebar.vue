@@ -1,5 +1,5 @@
 <template>
-  <section id="sidebar-user" v-show="sidebarState">
+  <section id="sidebar-user" v-if="sidebarState">
     <ul>
       <template v-for="(list, i) in sidebarData">
         <ListComponent :key="i" :list="list" />
@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     sidebarState() {
-      return this.$store.state.sidebarState;
+      return this.$mq === "mobile" ? this.$store.state.sidebarState : true;
     }
   },
   data() {

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import VueMq from "vue-mq";
 
 import App from "./App.vue";
 
@@ -10,6 +11,12 @@ import routes from "./routes";
 import { store } from "./store";
 
 Vue.use(VueRouter);
+Vue.use(VueMq, {
+  breakpoints: {
+    mobile: 365,
+    tabletOrDesktop: 800
+  }
+});
 Vue.config.productionTip = false;
 
 const router = new VueRouter({

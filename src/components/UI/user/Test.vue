@@ -27,8 +27,8 @@ export default {
   data() {
     return {
       currentOffset: 0,
-      windowSize: 3,
-      paginationFactor: 220
+      windowSize: this.$mq == "mobile" ? 10 : 3,
+      paginationFactor: this.$mq == "mobile" ? 150 : 220
     };
   },
   computed: {
@@ -36,7 +36,7 @@ export default {
       return this.$store.state.book;
     },
     atEndOfList() {
-      if (this.currentOffset === -1760) return true;
+      if (this.currentOffset === -5760) return true;
       return (
         this.currentOffset <=
         this.paginationFactor * -1 * (this.items.length - this.windowSize)
@@ -57,8 +57,11 @@ export default {
     },
     moveCarousel(direction) {
       // Find a more elegant way to express the :style. consider using props to make it truly generic
+      const responsive = this.$mq === "mobile";
       if (direction === 1 && !this.atEndOfList) {
-        this.currentOffset -= this.paginationFactor * 4;
+        responsive
+          ? (this.currentOffset -= this.paginationFactor)
+          : (this.currentOffset -= this.paginationFactor * 4);
       } else if (direction === -1 && !this.atHeadOfList) {
         this.currentOffset += this.paginationFactor;
       }
