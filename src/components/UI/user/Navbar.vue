@@ -4,7 +4,7 @@
     :style="showSearch ? { height: $mq === 'mobile' ? '140px' : '104px' } : {}"
   >
     <div class="logo">
-      s
+      {{ title }}
       <div class="edges">
         <div class="show-search" @click="setSearch">
           <Icon :icon="icons.search" />
@@ -45,6 +45,7 @@ export default {
         menu: "menu",
         search: "search"
       },
+      title: "Manisku Library",
       anotherHandler: true
     };
   },

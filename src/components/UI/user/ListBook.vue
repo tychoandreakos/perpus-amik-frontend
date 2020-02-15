@@ -35,7 +35,14 @@
       </div>
       <div class="media-description">
         <div class="info-rating">
-          <div class="rating">*****</div>
+          <div class="rating">
+            <template v-if="item.rating">
+              <Icon v-for="(rating, i) in item.rating" :key="i" class="fully-color" icon="star" />
+            </template>
+            <template v-else>
+              <Icon v-for="(restRating, i) in item.rating - 5" :key="i" icon="star" />
+            </template>
+          </div>
           <span>3 Reviews</span>
         </div>
         <p>Pack Publishing May 2018</p>
@@ -45,8 +52,13 @@
   </section>
 </template>
 <script>
+import Icon from "vue-themify-icons";
+
 export default {
   name: "ListBook",
+  components: {
+    Icon
+  },
   methods: {
     isArray(val) {
       return Array.isArray(val);

@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
           href: "#",
           img: "https://learning.oreilly.com/library/cover/9781484255520/"
         },
+        rating: 5,
         authorBook: {
           href: "#",
           author: "George Calhoun"
@@ -30,6 +31,7 @@ export const store = new Vuex.Store({
           title:
             "Game Development with GameMaker Studio 2: Make Your Own Games with GameMaker Language"
         },
+        rating: 2,
         imgBook: {
           href: "#",
           img: "https://learning.oreilly.com/library/cover/9781484250105/"
@@ -51,6 +53,7 @@ export const store = new Vuex.Store({
           href: "#",
           img: "https://learning.oreilly.com/library/cover/9781484250525/"
         },
+        rating: 3,
         authorBook: {
           href: "#",
           author: ["Massimo Nardone", "Carlo Scarioni"]
@@ -63,6 +66,7 @@ export const store = new Vuex.Store({
           href: "#",
           title: "Clean Ruby: A Guide to Crafting Better Code for Rubyists"
         },
+        rating: 0,
         imgBook: {
           href: "#",
           img: "https://learning.oreilly.com/library/cover/9781484255469/"
@@ -80,6 +84,7 @@ export const store = new Vuex.Store({
           title:
             "Query Store for SQL Server 2019: Identify and Fix Poorly Performing Queries"
         },
+        rating: 0,
         imgBook: {
           href: "#",
           img: "https://learning.oreilly.com/library/cover/9781484250044/"
@@ -97,6 +102,7 @@ export const store = new Vuex.Store({
           title:
             "Building Scalable PHP Web Applications Using the Cloud: A Simple Guide to Programming and Administering Cloud-Based Applications"
         },
+        rating: 3,
         imgBook: {
           href: "#",
           img: "https://learning.oreilly.com/library/cover/9781484252123/"
@@ -114,6 +120,7 @@ export const store = new Vuex.Store({
           title:
             "Hands-on Azure Boards : Configuring and Customizing Process Workflows in Azure DevOps Services"
         },
+        rating: 1,
         imgBook: {
           href: "#",
           img: "https://learning.oreilly.com/library/cover/9781484250464/"
