@@ -216,6 +216,10 @@ export default {
   color: inherit;
 }
 
+#list-book .media-wrapper .media-info-wrapper .media-info span a + a::before {
+  content: ", ";
+}
+
 #list-book .media-wrapper .media-info-wrapper .media-info span a:hover,
 #list-book .media-wrapper .media-info-wrapper .media-info .title:hover {
   color: #613ff4;

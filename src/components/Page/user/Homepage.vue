@@ -1,7 +1,12 @@
 <template>
   <section id="homepage">
     <NavbarComponent placeholder="Cari buku disini .." />
-    <div class="main-page" :style="showSearch ? '' : { paddingTop: '3.4rem' }">
+    <div
+      class="main-page"
+      :style="
+        showSearch ? '' : { paddingTop: $mq === 'mobile' ? '3.4rem' : '' }
+      "
+    >
       <SidebarComponent />
       <div class="main-wrapper">
         <router-view />
@@ -44,19 +49,19 @@ export default {
 @media only screen and (min-width: 580px) and (max-width: 870px) {
   #homepage .main-page {
     display: block;
-    padding-top: 9rem;
+    padding-top: 10rem;
   }
 
   #homepage .main-page .main-wrapper {
     margin-left: 0;
-    width: 86.6vw;
+    width: 100vw;
   }
 }
 
 @media only screen and (max-width: 580px) {
   #homepage .main-page .main-wrapper {
     margin-left: 0;
-      width: 100vw;
+    width: 100vw;
   }
 }
 </style>

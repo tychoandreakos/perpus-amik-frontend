@@ -80,4 +80,10 @@ export default {
   margin: auto;
   margin-top: 2px;
 }
+
+@media screen and (min-width: 580px) and (max-width: 872px) {
+  #search-user {
+    grid-template-columns: 4% 5fr 2fr;
+  }
+}
 </style>

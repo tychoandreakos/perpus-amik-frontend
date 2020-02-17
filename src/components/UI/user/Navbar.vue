@@ -1,7 +1,18 @@
 <template>
   <section
     id="navbar-user"
-    :style="showSearch ? { height: $mq === 'mobile' ? '140px' : '104px' } : {}"
+    :style="
+      showSearch
+        ? {
+            height:
+              $mq === 'mobile'
+                ? '140px'
+                : $mq === 'tabletOrDesktop'
+                ? '155px'
+                : '104px'
+          }
+        : {}
+    "
   >
     <div class="logo">
       {{ title }}

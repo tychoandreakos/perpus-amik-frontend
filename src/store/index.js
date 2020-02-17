@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     sidebarState: false,
-    showSearch: true,
+    showSearch: false,
     book: [
       {
         titleBook: {
