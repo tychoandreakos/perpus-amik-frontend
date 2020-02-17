@@ -65,6 +65,7 @@ export default {
   bottom: 0;
   transition: width 0.3s ease-in-out;
   transition-delay: 0.2s;
+  z-index: 99;
 }
 
 #sidebar-alternate:hover {

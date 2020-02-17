@@ -2,19 +2,25 @@
   <section id="read-book">
     <SidebarComponent />
     <div class="main-wrapper">
-      <PdfComponent />
+      <PdfComponent v-bind="{ url, scale }" />
     </div>
   </section>
 </template>
 <script>
 import SidebarComponent from '../../UI/user/SidebarAlternate';
-import PdfComponent from '../../UI/user/PdfRead';
+import PdfComponent from '../../UI/user/PdfDocument';
 
 export default {
   name: 'ReadBook',
   components: {
     SidebarComponent,
     PdfComponent
+  },
+  data() {
+    return {
+      url: 'https://cdn.filestackcontent.com/5qOCEpKzQldoRsVatUPS', // a PDF
+      scale: 2
+    };
   }
 };
 </script>
@@ -25,7 +31,7 @@ export default {
 }
 
 #read-book .main-wrapper {
-  margin-left: 3rem;
+  margin-left: 2rem;
   padding: 1rem;
 }
 </style>
