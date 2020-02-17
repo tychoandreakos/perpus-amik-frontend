@@ -5,6 +5,7 @@ import LibraryCardComponent from '../components/Page/LibraryCard';
 import SignupComponent from '../components/Page/Signup';
 import UserComponent from '../components/Page/user/Homepage';
 import ResultComponent from '../components/Page/user/Result';
+import ReadBookComponent from '../components/Page/user/ReadBook';
 
 // children
 import FirstPage from '../components/Page/user/FirstPage';
@@ -152,12 +153,30 @@ const router = [
     ]
   },
   {
-    path: '/library-result',
+    path: '/result',
     component: ResultComponent,
     name: 'result',
     meta: {
       title: putTitle('Result'),
       metaTags: [
+        {
+          name: 'description',
+          content: 'The about page of our example app.'
+        },
+        {
+          property: 'og:description',
+          content: 'The about page of our example app.'
+        }
+      ]
+    }
+  },
+  {
+    path: '/book',
+    component: ReadBookComponent,
+    name: 'bookView',
+    meta: {
+      title: putTitle('Read'),
+      etaTags: [
         {
           name: 'description',
           content: 'The about page of our example app.'

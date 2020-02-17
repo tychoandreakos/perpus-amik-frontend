@@ -1,7 +1,7 @@
 <template>
   <section id="result">
     <NavbarComponent class="result--navbar" />
-    <SidebarComponent />
+    <SidebarComponent style="margin-top: 30px" />
     <div class="result--main-wrapper">
       <ResultComponent />
     </div>

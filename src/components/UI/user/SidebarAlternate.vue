@@ -60,7 +60,7 @@ export default {
   overflow: hidden;
   width: 3.5%;
   position: fixed;
-  top: 30px;
+  top: 0;
   left: 0;
   bottom: 0;
   transition: width 0.3s ease-in-out;
