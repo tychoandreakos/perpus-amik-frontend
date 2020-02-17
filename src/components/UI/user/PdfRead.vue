@@ -1,7 +1,7 @@
 <template></template>
 <script>
 export default {
-  name: 'Pdf'
+  name: 'PdfRead'
 };
 </script>
 <style></style>

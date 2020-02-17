@@ -2,17 +2,19 @@
   <section id="read-book">
     <SidebarComponent />
     <div class="main-wrapper">
-      <h3>assdsdssdas</h3>
+      <PdfComponent />
     </div>
   </section>
 </template>
 <script>
 import SidebarComponent from '../../UI/user/SidebarAlternate';
+import PdfComponent from '../../UI/user/PdfRead';
 
 export default {
   name: 'ReadBook',
   components: {
-    SidebarComponent
+    SidebarComponent,
+    PdfComponent
   }
 };
 </script>
