@@ -109,7 +109,7 @@ export default {
 .pdf-document {
   position: absolute;
   overflow: auto;
-  width: 100%;
+  width: 96.5%;
   top: 0;
   bottom: 0;
   left: 3rem;
