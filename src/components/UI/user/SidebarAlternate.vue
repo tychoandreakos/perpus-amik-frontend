@@ -58,9 +58,9 @@ export default {
 #sidebar-alternate {
   height: 100%;
   overflow: hidden;
-  width: 4%;
+  width: 3.5%;
   position: fixed;
-  top: 0;
+  top: 30px;
   left: 0;
   bottom: 0;
   transition: width 0.3s ease-in-out;

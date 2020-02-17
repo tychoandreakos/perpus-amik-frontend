@@ -116,13 +116,13 @@ export default {
 }
 
 #result-book .info-book .book-description {
-  flex-basis: 65%;
+  flex-basis: 64%;
 }
 
 #result-book .info-book .book-description h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 500;
   padding-bottom: 0.2rem;
 }
 
