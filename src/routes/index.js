@@ -7,6 +7,9 @@ import UserComponent from '../components/Page/user/Homepage';
 import ResultComponent from '../components/Page/user/Result';
 import ReadBookComponent from '../components/Page/user/ReadBook';
 
+// admin component
+import AdminComponent from '../components/Page/admin/HomepageAdmin';
+
 // children
 import FirstPage from '../components/Page/user/FirstPage';
 import InSearchComponent from '../components/Page/user/InSearch';
@@ -176,7 +179,25 @@ const router = [
     name: 'bookView',
     meta: {
       title: putTitle('Read'),
-      etaTags: [
+      metaTags: [
+        {
+          name: 'description',
+          content: 'The about page of our example app.'
+        },
+        {
+          property: 'og:description',
+          content: 'The about page of our example app.'
+        }
+      ]
+    }
+  },
+  {
+    path: '/admin',
+    component: AdminComponent,
+    name: 'admin',
+    meta: {
+      title: putTitle('admin'),
+      metaTags: [
         {
           name: 'description',
           content: 'The about page of our example app.'
