@@ -12,7 +12,9 @@
     </div>
     <div
       class="main-wrapper"
-      :style="metaSidebar ? { width: '80.8%' } : { width: '100%' }"
+      :style="
+        metaSidebar ? { width: '80.8%' } : { width: '100%', paddingLeft: '7.4%' }
+      "
     >
       <router-view></router-view>
     </div>
@@ -67,8 +69,8 @@ export default {
 }
 
 #homepage-admin .main-wrapper {
-  background: red;
   float: right;
   transition: width 0.2s ease;
+  padding: 1.5rem 2rem;
 }
 </style>

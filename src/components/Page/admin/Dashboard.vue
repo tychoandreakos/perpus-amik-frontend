@@ -1,13 +1,15 @@
 <template>
   <section id="dashboard-admin">
-    <h3>its workingasasasassasaasaasasasasas</h3>
+    <HeaderComponent />
   </section>
 </template>
 <script>
+import HeaderComponent from '../../UI/admin/Navbar';
 export default {
-  name: 'DashboardAdmin'
+  name: 'DashboardAdmin',
+  components: {
+    HeaderComponent
+  }
 };
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
