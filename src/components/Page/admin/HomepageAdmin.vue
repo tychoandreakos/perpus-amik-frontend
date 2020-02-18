@@ -18,12 +18,18 @@
           : { width: '100%', paddingLeft: '7.4%' }
       "
     >
+      <HeaderComponent
+        :style="metaSidebar ? { width: '76.2%' } : { width: '90%' }"
+      />
+      <div class="clearfix"></div>
       <router-view></router-view>
     </div>
   </section>
 </template>
 <script>
 import SidebarComponent from '../../UI/admin/SidebarAdmin';
+import HeaderComponent from '../../UI/admin/Navbar';
+
 export default {
   name: 'HomepageAdmin',
   data() {
@@ -37,7 +43,8 @@ export default {
     }
   },
   components: {
-    SidebarComponent
+    SidebarComponent,
+    HeaderComponent
   }
 };
 </script>
@@ -56,6 +63,7 @@ export default {
   box-shadow: 0 15px 25px #f2f2f2;
   transition: width 0.2s ease;
   transition-delay: 0.3s;
+  z-index: 99;
 }
 
 #homepage-admin .sidebar-active {
@@ -75,5 +83,9 @@ export default {
   transition: width 0.2s ease;
   padding: 1rem 2rem;
   height: 100%;
+}
+
+.clearfix {
+  margin-top: 4.3rem;
 }
 </style>

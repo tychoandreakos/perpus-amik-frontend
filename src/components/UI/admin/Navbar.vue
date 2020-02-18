@@ -10,9 +10,10 @@ export default {
 </script>
 <style scoped>
 #navbar-admin {
-  width: 100%;
   background: #fff;
   border-radius: 7px;
   padding: 1rem;
+  position: fixed;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.2);
 }
 </style>

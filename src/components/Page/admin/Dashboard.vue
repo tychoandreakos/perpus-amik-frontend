@@ -1,6 +1,5 @@
 <template>
   <section id="dashboard-admin">
-    <HeaderComponent />
     <div class="cards">
       <CardComponent :cardProperties="welcome" class="welcome-admin">
         <section class="welcome-card">
@@ -25,14 +24,12 @@
   </section>
 </template>
 <script>
-import HeaderComponent from '../../UI/admin/Navbar';
 import CardComponent from '../../UI/admin/Card';
 import Icon from 'vue-themify-icons';
 
 export default {
   name: 'DashboardAdmin',
   components: {
-    HeaderComponent,
     CardComponent,
     Icon
   },

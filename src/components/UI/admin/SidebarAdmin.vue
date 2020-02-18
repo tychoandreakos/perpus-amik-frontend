@@ -71,7 +71,7 @@ export default {
         }
       ],
       metaSidebar: {
-        title: 'Vuexy'
+        title: 'Library'
       }
     };
   }

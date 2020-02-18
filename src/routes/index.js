@@ -14,6 +14,7 @@ import AdminComponent from '../components/Page/admin/HomepageAdmin';
 import FirstPage from '../components/Page/user/FirstPage';
 import InSearchComponent from '../components/Page/user/InSearch';
 import DashboardAdmin from '../components/Page/admin/Dashboard';
+import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -214,8 +215,43 @@ const router = [
             }
           ]
         }
+      },
+      {
+        path: 'bibliobigrafi',
+        component: BibliobigrafiComponent,
+        name: 'bibliobigrafi',
+        meta: {
+          title: putTitle('Bibliobigrafi'),
+          metaTags: [
+            {
+              name: 'description',
+              content: 'The about page of our example app.'
+            },
+            {
+              property: 'og:description',
+              content: 'The about page of our example app.'
+            }
+          ]
+        }
       }
     ]
+  },
+  {
+    path: '*',
+    name: 'notFound',
+    meta: {
+      title: putTitle('Not Found'),
+      metaTags: [
+        {
+          name: 'description',
+          content: 'The about page of our example app.'
+        },
+        {
+          property: 'og:description',
+          content: 'The about page of our example app.'
+        }
+      ]
+    }
   }
 ];
 
