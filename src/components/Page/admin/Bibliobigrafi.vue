@@ -5,23 +5,44 @@
       <BreadCrumbsComponent :breadcrumbs="breadcrumbs" />
     </div>
     <div class="panel-action">
-      <DropdownComponent />
+      <div class="panel-wrap">
+        <DropdownComponent />
+        <ButtonComponent
+          :style="{ marginLeft: '1.2rem' }"
+          :buttonProp="button"
+        />
+      </div>
+      <div class="panel-wrap">
+        <PageNumberComponent />
+        <ButtonComponent
+          :style="{ marginLeft: '1.2rem' }"
+          :buttonProp="button"
+        />
+      </div>
     </div>
   </section>
 </template>
 <script>
 import BreadCrumbsComponent from '../../UI/admin/Breadcrumbs';
 import DropdownComponent from '../../UI/admin/Dropdown';
+import ButtonComponent from '../../UI/admin/Button';
+import PageNumberComponent from '../../UI/admin/PageNumber';
 
 export default {
   name: 'Bibliobigrafi',
   components: {
     BreadCrumbsComponent,
-    DropdownComponent
+    DropdownComponent,
+    ButtonComponent,
+    PageNumberComponent
   },
   data() {
     return {
-      breadcrumbs: ['Data List']
+      breadcrumbs: ['Data List'],
+      button: {
+        title: 'Add New Bibliobigrafi',
+        icon: 'plus'
+      }
     };
   }
 };
@@ -47,5 +68,11 @@ export default {
   padding-right: 0.8rem;
   border-right: 1px solid #dae1e7;
   color: #676363;
+}
+
+#bibliobigrafi .panel-action,
+.panel-wrap {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

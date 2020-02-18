@@ -1,13 +1,16 @@
 <template>
   <section id="dropdown">
     <div class="dropdown-action" @click="dropdown = !dropdown">
-      <span>{{ action.title }}</span>
+      <span>{{ action.title }} of {{ action.totalCount }}</span>
       <Icon :icon="action.icon" />
       <transition name="fade">
         <ul v-if="dropdown" class="dropdown-list">
-          <li v-for="(meta, i) in action.dropdownMeta" :key="i">
-            <Icon :icon="meta.icon" />
-            <span>{{ meta.title }}</span>
+          <li
+            @click="actionHandler(meta)"
+            v-for="(meta, i) in action.dropdownMeta"
+            :key="i"
+          >
+            <span>{{ meta }}</span>
           </li>
         </ul>
       </transition>
@@ -18,34 +21,23 @@
 <script>
 import Icon from 'vue-themify-icons';
 export default {
-  name: 'DropdownAdmin',
+  name: 'PageNumber',
   components: {
     Icon
+  },
+  methods: {
+    actionHandler(val) {
+      this.action.title = val;
+    }
   },
   data() {
     return {
       dropdown: false,
       action: {
-        title: 'Actions',
+        title: '1 - 5',
+        totalCount: 50,
         icon: 'angle-down',
-        dropdownMeta: [
-          {
-            title: 'See Detail',
-            icon: 'eye'
-          },
-          {
-            title: 'Edit / Update',
-            icon: 'pencil'
-          },
-          {
-            title: 'Delete',
-            icon: 'trash'
-          },
-          {
-            title: 'Delete All',
-            icon: 'close'
-          }
-        ]
+        dropdownMeta: ['1 - 5', '5 - 10', '10 - 15']
       }
     };
   }
@@ -54,13 +46,13 @@ export default {
 <style scoped>
 #dropdown .dropdown-action {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 1rem 1.4rem;
-  width: 120px;
+  width: 155px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   position: relative;
@@ -71,10 +63,6 @@ export default {
 
 #dropdown .dropdown-action:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-#dropdown .dropdown-action i {
-  font-size: 0.8rem;
 }
 
 #dropdown .dropdown-action span {
