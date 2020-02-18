@@ -13,6 +13,7 @@ import AdminComponent from '../components/Page/admin/HomepageAdmin';
 // children
 import FirstPage from '../components/Page/user/FirstPage';
 import InSearchComponent from '../components/Page/user/InSearch';
+import DashboardAdmin from '../components/Page/admin/Dashboard';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -195,19 +196,26 @@ const router = [
     path: '/admin',
     component: AdminComponent,
     name: 'admin',
-    meta: {
-      title: putTitle('admin'),
-      metaTags: [
-        {
-          name: 'description',
-          content: 'The about page of our example app.'
-        },
-        {
-          property: 'og:description',
-          content: 'The about page of our example app.'
+    children: [
+      {
+        path: '/',
+        component: DashboardAdmin,
+        name: 'dashboard',
+        meta: {
+          title: putTitle('Dashboard Admin'),
+          metaTags: [
+            {
+              name: 'description',
+              content: 'The about page of our example app.'
+            },
+            {
+              property: 'og:description',
+              content: 'The about page of our example app.'
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   }
 ];
 

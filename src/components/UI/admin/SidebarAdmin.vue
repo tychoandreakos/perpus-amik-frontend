@@ -26,6 +26,7 @@ export default {
   methods: {
     bulletHandler() {
       this.bullet = !this.bullet;
+      this.$emit('sidebarMetaChild', this.bullet);
     }
   },
   data() {
@@ -82,6 +83,7 @@ export default {
   height: 100%;
   background: #fff;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #sidebar-admin .logo {
@@ -144,6 +146,7 @@ export default {
 }
 
 #sidebar-admin ul li a i {
-  margin-right: 0.8rem;
+  margin-right: 1.6rem;
+  font-size: 1.1rem;
 }
 </style>
