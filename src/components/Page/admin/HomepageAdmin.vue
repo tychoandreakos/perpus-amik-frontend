@@ -13,7 +13,9 @@
     <div
       class="main-wrapper"
       :style="
-        metaSidebar ? { width: '80.8%' } : { width: '100%', paddingLeft: '7.4%' }
+        metaSidebar
+          ? { width: '80.8%' }
+          : { width: '100%', paddingLeft: '7.4%' }
       "
     >
       <router-view></router-view>
@@ -71,6 +73,7 @@ export default {
 #homepage-admin .main-wrapper {
   float: right;
   transition: width 0.2s ease;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
+  height: 100%;
 }
 </style>

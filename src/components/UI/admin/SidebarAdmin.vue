@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      bullet: false,
+      bullet: true,
       sidebarData: [
         {
           title: 'Dashboard',
