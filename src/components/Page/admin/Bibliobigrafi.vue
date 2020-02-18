@@ -14,10 +14,7 @@
       </div>
       <div class="panel-wrap">
         <PageNumberComponent />
-        <ButtonComponent
-          :style="{ marginLeft: '1.2rem' }"
-          :buttonProp="button"
-        />
+        <SearchComponent :search="search" />
       </div>
     </div>
   </section>
@@ -27,6 +24,7 @@ import BreadCrumbsComponent from '../../UI/admin/Breadcrumbs';
 import DropdownComponent from '../../UI/admin/Dropdown';
 import ButtonComponent from '../../UI/admin/Button';
 import PageNumberComponent from '../../UI/admin/PageNumber';
+import SearchComponent from '../../UI/admin/Search';
 
 export default {
   name: 'Bibliobigrafi',
@@ -34,7 +32,8 @@ export default {
     BreadCrumbsComponent,
     DropdownComponent,
     ButtonComponent,
-    PageNumberComponent
+    PageNumberComponent,
+    SearchComponent
   },
   data() {
     return {
@@ -42,6 +41,9 @@ export default {
       button: {
         title: 'Add New Bibliobigrafi',
         icon: 'plus'
+      },
+      search: {
+        placeholder: 'Search Bibliobigrafi'
       }
     };
   }
@@ -74,5 +76,6 @@ export default {
 .panel-wrap {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 </style>
