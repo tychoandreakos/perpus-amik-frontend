@@ -12,6 +12,7 @@
         </ul>
       </transition>
     </div>
+    <div class="backdrop" @click="dropdown = !dropdown" v-if="dropdown"></div>
   </section>
 </template>
 <script>
@@ -63,6 +64,7 @@ export default {
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   position: relative;
+  z-index: 8;
 }
 
 #dropdown .dropdown-action:hover {
@@ -70,7 +72,7 @@ export default {
 }
 
 #dropdown .dropdown-action i {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
 }
 
 #dropdown .dropdown-action span {
@@ -124,7 +126,19 @@ export default {
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
+}
+
+#dropdown .backdrop {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background: transparent;
+  z-index: 1;
+  overflow: hidden;
 }
 </style>
