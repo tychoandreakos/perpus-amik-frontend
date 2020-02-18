@@ -14,6 +14,7 @@ export default {
   border-radius: 7px;
   padding: 1rem;
   position: fixed;
-  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10
 }
 </style>

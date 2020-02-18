@@ -53,6 +53,7 @@ export default {
   background: #f3f3f3;
   width: 100%;
   height: 100%;
+  /* overflow: hidden; */
 }
 
 #homepage-admin .sidebar {
@@ -61,7 +62,7 @@ export default {
   left: 0;
   bottom: 0;
   box-shadow: 0 15px 25px #f2f2f2;
-  transition: width 0.2s ease;
+  transition: width 0.3s ease-in;
   transition-delay: 0.3s;
   z-index: 99;
 }
@@ -80,7 +81,7 @@ export default {
 
 #homepage-admin .main-wrapper {
   float: right;
-  transition: width 0.2s ease;
+  transition: width 0.7s ease-in-out;
   padding: 1rem 2rem;
   height: 100%;
 }
