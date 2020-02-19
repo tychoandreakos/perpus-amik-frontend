@@ -1,5 +1,5 @@
 <template>
-  <section id="author">
+  <section id="item-status">
     <HeaderComponent :title="title" :breadcrumbsHeader="breadcrumbs" />
     <PanelActionComponent :search="search" :button="button" />
     <TableComponent :tableProps="table" />
@@ -11,7 +11,7 @@ import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
 
 export default {
-  name: 'Author',
+  name: 'itemStatus',
   components: {
     HeaderComponent,
     PanelActionComponent,
@@ -20,35 +20,30 @@ export default {
   data() {
     return {
       breadcrumbs: ['Data List'],
-      title: 'Author',
+      title: 'Item Status',
       button: {
-        title: 'Add New Author',
+        title: 'Add New Item Status',
         icon: 'plus'
       },
       search: {
-        placeholder: 'Search Author'
+        placeholder: 'Search Item Status'
       },
       table: {
-        title: ['Author Name', 'Last Update'],
+        title: ['Item Status Code', 'Item Status Name', 'Last Update'],
         sample: [
           {
-            name: 'Valade, Janet',
+            code: 'MIS',
+            name: 'Missing',
             updated: '2020-02-19'
           },
           {
-            name: 'Rosen, Richart',
+            code: 'NL',
+            name: 'No Loan',
             updated: '2020-02-19'
           },
           {
-            name: 'Woychowsky, Edmond',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Taylor, Arlene G.',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Stueart, Robert D.',
+            code: 'R',
+            name: 'Repair',
             updated: '2020-02-19'
           }
         ]
@@ -58,7 +53,7 @@ export default {
 };
 </script>
 <style scoped>
-#author {
+#item-status {
   width: 100%;
   height: 100%;
 }

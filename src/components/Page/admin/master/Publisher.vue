@@ -11,7 +11,7 @@ import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
 
 export default {
-  name: 'GMD',
+  name: 'publisher',
   components: {
     HeaderComponent,
     PanelActionComponent,

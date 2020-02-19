@@ -1,5 +1,5 @@
 <template>
-  <section id="place">
+  <section id="collection-type">
     <HeaderComponent :title="title" :breadcrumbsHeader="breadcrumbs" />
     <PanelActionComponent :search="search" :button="button" />
     <TableComponent :tableProps="table" />
@@ -20,27 +20,27 @@ export default {
   data() {
     return {
       breadcrumbs: ['Data List'],
-      title: 'Place',
+      title: 'Collection',
       button: {
-        title: 'Add New Place',
+        title: 'Add New Collection',
         icon: 'plus'
       },
       search: {
-        placeholder: 'Search Place'
+        placeholder: 'Search Collection'
       },
       table: {
-        title: ['Place Name', 'Last Update'],
+        title: ['Collection Type', 'Last Update'],
         sample: [
           {
-            name: 'Indianapolis',
+            name: 'Fiction',
             updated: '2020-02-19'
           },
           {
-            name: 'London',
+            name: 'Reference',
             updated: '2020-02-19'
           },
           {
-            name: 'New York',
+            name: 'Textbook',
             updated: '2020-02-19'
           }
         ]
@@ -50,7 +50,7 @@ export default {
 };
 </script>
 <style scoped>
-#place {
+#collection-type {
   width: 100%;
   height: 100%;
 }

@@ -23,6 +23,8 @@ import AuthorComponent from '../components/Page/admin/master/Author';
 import SubjectComponent from '../components/Page/admin/master/Subject';
 import LocationComponent from '../components/Page/admin/master/Location';
 import PlaceComponent from '../components/Page/admin/master/Place';
+import ItemStatusComponent from '../components/Page/admin/master/ItemStatus';
+import CollectionTypeComponent from '../components/Page/admin/master/CollectionType';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -362,6 +364,42 @@ const router = [
             name: 'place',
             meta: {
               title: putTitle('Place'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
+            }
+          },
+          {
+            path: 'item-status',
+            component: ItemStatusComponent,
+            name: 'itemStatus',
+            meta: {
+              title: putTitle('Item Status'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
+            }
+          },
+          {
+            path: 'collection',
+            component: CollectionTypeComponent,
+            name: 'collection',
+            meta: {
+              title: putTitle('Collection Type'),
               metaTags: [
                 {
                   name: 'description',
