@@ -2,11 +2,17 @@
   <section id="table">
     <table>
       <thead>
+        <th>
+          <div @click="selectAllHandler">
+            <CheckBox :checkbox="checkboxControl" />
+          </div>
+        </th>
         <th v-for="(header, i) in tableProps.title" :key="i">{{ header }}</th>
         <th>Action</th>
       </thead>
       <tbody>
         <tr v-for="(body, i) in tableProps.sample" :key="i">
+          <td><CheckBox :checkbox="checkboxControl" /></td>
           <template v-for="(list, i) in body">
             <td v-if="checkList(list)" :key="i">{{ list }}</td>
             <td v-else :key="i">
@@ -36,10 +42,18 @@
 </template>
 <script>
 import Icon from 'vue-themify-icons';
+import CheckBox from '../../UI/admin/Checkbox';
+
 export default {
   name: 'tableAdmin',
   components: {
-    Icon
+    Icon,
+    CheckBox
+  },
+  data() {
+    return {
+      checkboxControl: false
+    };
   },
   props: {
     tableProps: {
@@ -50,6 +64,9 @@ export default {
   methods: {
     checkList(val) {
       return !val.hasOwnProperty('title');
+    },
+    selectAllHandler() {
+      this.checkboxControl = !this.checkboxControl;
     }
   }
 };
