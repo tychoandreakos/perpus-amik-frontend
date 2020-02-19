@@ -270,6 +270,7 @@ const router = [
         path: 'circulation',
         component: CirculationComponent,
         name: 'circulation',
+        redirect: { name: 'circulationPrime' },
         children: [
           {
             path: '/',
