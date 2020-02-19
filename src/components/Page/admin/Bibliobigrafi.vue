@@ -1,39 +1,21 @@
 <template>
   <section id="bibliobigrafi">
     <HeaderComponent :title="title" :breadcrumbsHeader="breadcrumbs" />
-    <div class="panel-action">
-      <div class="panel-wrap">
-        <DropdownComponent />
-        <ButtonComponent
-          :style="{ marginLeft: '1.2rem' }"
-          :buttonProp="button"
-        />
-      </div>
-      <div class="panel-wrap">
-        <PageNumberComponent />
-        <SearchComponent :search="search" />
-      </div>
-    </div>
+    <PanelActionComponent :search="search" :button="button" />
     <TableComponent :tableProps="table" />
   </section>
 </template>
 <script>
 import HeaderComponent from '../../UI/admin/Header';
-import DropdownComponent from '../../UI/admin/Dropdown';
-import ButtonComponent from '../../UI/admin/Button';
-import PageNumberComponent from '../../UI/admin/PageNumber';
-import SearchComponent from '../../UI/admin/Search';
+import PanelActionComponent from '../../UI/admin/PanelAction';
 import TableComponent from '../../UI/admin/TableAdmin';
 
 export default {
   name: 'Bibliobigrafi',
   components: {
     HeaderComponent,
-    DropdownComponent,
-    ButtonComponent,
-    PageNumberComponent,
-    SearchComponent,
-    TableComponent
+    TableComponent,
+    PanelActionComponent
   },
   data() {
     return {
@@ -98,11 +80,5 @@ export default {
 <style scoped>
 #bibliobigrafi {
   width: 100%;
-}
-#bibliobigrafi .panel-action,
-.panel-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 </style>
