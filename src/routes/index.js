@@ -18,6 +18,8 @@ import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi';
 import MembershipComponent from '../components/Page/admin/Membership';
 import MasterComponent from '../components/Page/admin/Master';
 import GMDComponent from '../components/Page/admin/master/GMD';
+import PublisherComponent from '../components/Page/admin/master/Publisher';
+import AuthorComponent from '../components/Page/admin/master/Author';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -267,6 +269,42 @@ const router = [
             name: 'gmd',
             meta: {
               title: putTitle('GMD'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
+            }
+          },
+          {
+            path: 'publisher',
+            component: PublisherComponent,
+            name: 'publisher',
+            meta: {
+              title: putTitle('Publisher'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
+            }
+          },
+          {
+            path: 'author',
+            component: AuthorComponent,
+            name: 'author',
+            meta: {
+              title: putTitle('Author'),
               metaTags: [
                 {
                   name: 'description',
