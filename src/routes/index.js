@@ -27,6 +27,8 @@ import PlaceComponent from '../components/Page/admin/master/Place';
 import ItemStatusComponent from '../components/Page/admin/master/ItemStatus';
 import CollectionTypeComponent from '../components/Page/admin/master/CollectionType';
 import LanguageComponent from '../components/Page/admin/master/Language';
+import CirculationSearchComponent from '../components/Page/admin/CirculationSearch';
+import CirculationTransactionComponent from '../components/Page/admin/CirculationTransaction';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -268,19 +270,44 @@ const router = [
         path: 'circulation',
         component: CirculationComponent,
         name: 'circulation',
-        meta: {
-          title: putTitle('Circulation'),
-          metaTags: [
-            {
-              name: 'description',
-              content: 'The about page of our example app.'
-            },
-            {
-              property: 'og:description',
-              content: 'The about page of our example app.'
+        children: [
+          {
+            path: '/',
+            component: CirculationSearchComponent,
+            name: 'circulationPrime',
+            meta: {
+              title: putTitle('Circulation'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
             }
-          ]
-        }
+          },
+          {
+            path: 'user',
+            component: CirculationTransactionComponent,
+            name: 'circulationTransaction',
+            meta: {
+              title: putTitle('Circulation Transaction'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
+            }
+          }
+        ]
       },
       {
         path: 'master',
