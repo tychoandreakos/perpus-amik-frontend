@@ -20,6 +20,8 @@ import MasterComponent from '../components/Page/admin/Master';
 import GMDComponent from '../components/Page/admin/master/GMD';
 import PublisherComponent from '../components/Page/admin/master/Publisher';
 import AuthorComponent from '../components/Page/admin/master/Author';
+import SubjectComponent from '../components/Page/admin/master/Subject';
+import LocationComponent from '../components/Page/admin/master/Location';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -305,6 +307,42 @@ const router = [
             name: 'author',
             meta: {
               title: putTitle('Author'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
+            }
+          },
+          {
+            path: 'subject',
+            component: SubjectComponent,
+            name: 'subject',
+            meta: {
+              title: putTitle('Subject'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.'
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.'
+                }
+              ]
+            }
+          },
+          {
+            path: 'location',
+            component: LocationComponent,
+            name: 'location',
+            meta: {
+              title: putTitle('Location'),
               metaTags: [
                 {
                   name: 'description',
