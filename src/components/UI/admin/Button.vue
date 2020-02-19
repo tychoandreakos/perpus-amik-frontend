@@ -1,5 +1,5 @@
 <template>
-  <button class="btn">
+  <button :style="buttonProp.style" class="btn">
     <Icon :icon="buttonProp.icon" />
     <span>{{ buttonProp.title }}</span>
   </button>

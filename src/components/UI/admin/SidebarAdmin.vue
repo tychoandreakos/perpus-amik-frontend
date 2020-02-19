@@ -44,7 +44,8 @@ export default {
         },
         {
           title: 'Circulation',
-          icon: 'reload'
+          icon: 'reload',
+          href: 'circulation'
         },
         {
           title: 'Membership',

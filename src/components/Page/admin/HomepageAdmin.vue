@@ -14,12 +14,12 @@
       class="main-wrapper"
       :style="
         metaSidebar
-          ? { width: '80.8%' }
-          : { width: '100%', paddingLeft: '7.4%' }
+          ? { width: '80.8%', transform: 'scale(0.98)' }
+          : { width: '100%', paddingLeft: '7.4%', transform: 'scale(1)' }
       "
     >
       <HeaderComponent
-        :style="metaSidebar ? { width: '76.2%' } : { width: '90%' }"
+        :style="metaSidebar ? { width: '95%' } : { width: '90%' }"
       />
       <div class="clearfix"></div>
       <router-view></router-view>
@@ -81,7 +81,7 @@ export default {
 
 #homepage-admin .main-wrapper {
   float: right;
-  transition: width 0.7s ease-in-out;
+  transition: width 0.7s ease-in-out, transform 0.2s ease-in;
   padding: 1rem 2rem;
   height: 100%;
 }
