@@ -80,5 +80,6 @@ export default {
 <style scoped>
 #bibliobigrafi {
   width: 100%;
+  height: 100%;
 }
 </style>

@@ -71,4 +71,9 @@ export default {
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+#membership {
+  height: 100%;
+  width: 100%;
+}
+</style>

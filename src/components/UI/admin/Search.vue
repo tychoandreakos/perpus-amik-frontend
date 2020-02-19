@@ -40,5 +40,6 @@ export default {
   font-weight: 400;
   border: none;
   padding: 0.3rem 0;
+  background: inherit;
 }
 </style>
