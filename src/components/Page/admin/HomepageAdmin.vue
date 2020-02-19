@@ -14,8 +14,8 @@
       class="main-wrapper"
       :style="
         metaSidebar
-          ? { scale: '1' }
-          : { scale: '1.5', paddingLeft: '7.4%' }
+          ? { width: '80.8%' }
+          : { width: '100%', paddingLeft: '7.4%' }
       "
     >
       <HeaderComponent
@@ -62,7 +62,7 @@ export default {
   left: 0;
   bottom: 0;
   box-shadow: 0 15px 25px #f2f2f2;
-  transition: width 0.3s ease-in;
+  transition: all 0.3s ease-in;
   transition-delay: 0.3s;
   z-index: 99;
 }
@@ -81,7 +81,7 @@ export default {
 
 #homepage-admin .main-wrapper {
   float: right;
-  transition: all 0.7s ease-in-out;
+  transition: width 0.7s ease-in-out;
   padding: 1rem 2rem;
   height: 100%;
 }
