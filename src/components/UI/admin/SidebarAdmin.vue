@@ -8,7 +8,7 @@
     </div>
     <ul>
       <li v-for="(data, i) in sidebarData" :key="i">
-        <router-link to="#">
+        <router-link :to="{ name: data.href ? data.href : 'dashboard' }">
           <Icon :icon="data.icon" />
           {{ data.title }}
         </router-link>
@@ -39,7 +39,8 @@ export default {
         },
         {
           title: 'Bibliobigrafi',
-          icon: 'receipt'
+          icon: 'receipt',
+          href: 'bibliobigrafi'
         },
         {
           title: 'Circulation',
@@ -47,7 +48,8 @@ export default {
         },
         {
           title: 'Membership',
-          icon: 'id-badge'
+          icon: 'id-badge',
+          href: 'membership'
         },
         {
           title: 'Master File',

@@ -1,9 +1,6 @@
 <template>
   <section id="bibliobigrafi">
-    <div class="header">
-      <h3>Bibliobigrafi</h3>
-      <BreadCrumbsComponent :breadcrumbs="breadcrumbs" />
-    </div>
+    <HeaderComponent :title="title" :breadcrumbsHeader="breadcrumbs" />
     <div class="panel-action">
       <div class="panel-wrap">
         <DropdownComponent />
@@ -21,7 +18,7 @@
   </section>
 </template>
 <script>
-import BreadCrumbsComponent from '../../UI/admin/Breadcrumbs';
+import HeaderComponent from '../../UI/admin/Header';
 import DropdownComponent from '../../UI/admin/Dropdown';
 import ButtonComponent from '../../UI/admin/Button';
 import PageNumberComponent from '../../UI/admin/PageNumber';
@@ -31,7 +28,7 @@ import TableComponent from '../../UI/admin/TableAdmin';
 export default {
   name: 'Bibliobigrafi',
   components: {
-    BreadCrumbsComponent,
+    HeaderComponent,
     DropdownComponent,
     ButtonComponent,
     PageNumberComponent,
@@ -45,6 +42,7 @@ export default {
         title: 'Add New Bibliobigrafi',
         icon: 'plus'
       },
+      title: 'Bibliobigrafi',
       search: {
         placeholder: 'Search Bibliobigrafi'
       },
@@ -100,26 +98,7 @@ export default {
 <style scoped>
 #bibliobigrafi {
   width: 100%;
-  padding-top: 0.5rem;
 }
-
-#bibliobigrafi .header {
-  display: flex;
-  width: 100%;
-  margin-bottom: 1.8rem;
-}
-
-#bibliobigrafi h3 {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 500;
-  font-size: 1.3rem;
-  letter-spacing: 1.5px;
-  margin-right: 0.8rem;
-  padding-right: 0.8rem;
-  border-right: 1px solid #dae1e7;
-  color: #676363;
-}
-
 #bibliobigrafi .panel-action,
 .panel-wrap {
   display: flex;

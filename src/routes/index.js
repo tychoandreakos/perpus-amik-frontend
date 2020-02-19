@@ -15,6 +15,7 @@ import FirstPage from '../components/Page/user/FirstPage';
 import InSearchComponent from '../components/Page/user/InSearch';
 import DashboardAdmin from '../components/Page/admin/Dashboard';
 import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi';
+import MembershipComponent from '../components/Page/admin/Membership';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -222,6 +223,24 @@ const router = [
         name: 'bibliobigrafi',
         meta: {
           title: putTitle('Bibliobigrafi'),
+          metaTags: [
+            {
+              name: 'description',
+              content: 'The about page of our example app.'
+            },
+            {
+              property: 'og:description',
+              content: 'The about page of our example app.'
+            }
+          ]
+        }
+      },
+      {
+        path: 'membership',
+        component: MembershipComponent,
+        name: 'membership',
+        meta: {
+          title: putTitle('Membership'),
           metaTags: [
             {
               name: 'description',
