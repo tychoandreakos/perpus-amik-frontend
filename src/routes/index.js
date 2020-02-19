@@ -16,6 +16,7 @@ import InSearchComponent from '../components/Page/user/InSearch';
 import DashboardAdmin from '../components/Page/admin/Dashboard';
 import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi';
 import MembershipComponent from '../components/Page/admin/Membership';
+import CirculationComponent from '../components/Page/admin/Circulation';
 import MasterComponent from '../components/Page/admin/Master';
 import GMDComponent from '../components/Page/admin/master/GMD';
 import PublisherComponent from '../components/Page/admin/master/Publisher';
@@ -251,6 +252,24 @@ const router = [
         name: 'membership',
         meta: {
           title: putTitle('Membership'),
+          metaTags: [
+            {
+              name: 'description',
+              content: 'The about page of our example app.'
+            },
+            {
+              property: 'og:description',
+              content: 'The about page of our example app.'
+            }
+          ]
+        }
+      },
+      {
+        path: 'circulation',
+        component: CirculationComponent,
+        name: 'circulation',
+        meta: {
+          title: putTitle('Circulation'),
           metaTags: [
             {
               name: 'description',

@@ -14,8 +14,8 @@
       class="main-wrapper"
       :style="
         metaSidebar
-          ? { width: '80.8%' }
-          : { width: '100%', paddingLeft: '7.4%' }
+          ? { scale: '1' }
+          : { scale: '1.5', paddingLeft: '7.4%' }
       "
     >
       <HeaderComponent
@@ -81,7 +81,7 @@ export default {
 
 #homepage-admin .main-wrapper {
   float: right;
-  transition: width 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
   padding: 1rem 2rem;
   height: 100%;
 }
