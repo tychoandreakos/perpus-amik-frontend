@@ -81,7 +81,7 @@ export default {
 
 #homepage-admin .main-wrapper {
   float: right;
-  transition: width 0.7s ease-in-out, transform 0.2s ease-in;
+  transition: width 0.7s ease-in-out, transform 0.8s ease;
   padding: 1rem 2rem;
   height: 100%;
 }

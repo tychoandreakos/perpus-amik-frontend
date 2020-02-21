@@ -160,9 +160,9 @@ export const store = new Vuex.Store({
     setSearch(state) {
       state.showSearch = !state.showSearch;
     },
-    setCirculation(state) {
+    setCirculation(state, payload) {
       state.circulation = {
-        ...state
+        ...payload
       };
     }
   }

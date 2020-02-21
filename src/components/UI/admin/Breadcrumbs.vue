@@ -2,8 +2,20 @@
   <div class="breadcrumbs">
     <Icon icon="home" />
     <div class="simple" v-for="(bread, i) in breadcrumbs" :key="i">
-      <Icon icon="angle-double-right" />
-      <router-link to="#">{{ bread }}</router-link>
+      <template v-if="breadcrumbs.length > 1">
+        <template v-if="i == 0">
+          <Icon icon="angle-double-right" />
+          <span>{{ bread }}</span>
+        </template>
+        <template v-else>
+          <Icon icon="angle-double-right" />
+          <router-link to="#">{{ bread }}</router-link>
+        </template>
+      </template>
+      <template v-else>
+        <Icon icon="angle-double-right" />
+        <router-link to="#">{{ bread }}</router-link>
+      </template>
     </div>
   </div>
 </template>
@@ -26,7 +38,6 @@ export default {
 <style scoped>
 .breadcrumbs {
   display: flex;
-
   align-items: center;
   font-size: 0.9rem;
 }
@@ -38,6 +49,11 @@ export default {
 .breadcrumbs .simple i {
   font-size: 0.7rem;
   margin: 0 0.7rem;
+}
+
+.breadcrumbs .simple span {
+  cursor: default;
+  user-select: none;
 }
 
 .breadcrumbs .simple a {

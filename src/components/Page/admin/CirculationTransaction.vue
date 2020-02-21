@@ -1,18 +1,19 @@
 <template>
-  <section id="circulation-transaction">
-    <HeaderComponent :title="title" :breadcrumbsHeader="breadcrumbs" />
-  </section>
+  <section id="circulation-transaction"></section>
 </template>
 <script>
-import HeaderComponent from '../../UI/admin/Header';
 export default {
   name: 'CirculationTransaction',
-  components: {
-    HeaderComponent
+  components: {},
+  mounted() {
+    this.$store.commit('setCirculation', {
+      title: this.title,
+      breadcrumbs: this.breadcrumbs
+    });
   },
   data() {
     return {
-      breadcrumbs: ['1702018 - Elang Indra'],
+      breadcrumbs: ['Search Member ID', '1702018 - Elang Indra'],
       title: 'Circulation'
     };
   }

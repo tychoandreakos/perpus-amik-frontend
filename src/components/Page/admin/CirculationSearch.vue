@@ -25,6 +25,12 @@ export default {
     ButtonComponent,
     SuggestSearchComponent
   },
+  mounted() {
+    this.$store.commit('setCirculation', {
+      title: this.title,
+      breadcrumbs: this.breadcrumbs
+    });
+  },
   data() {
     return {
       breadcrumbs: ['Search Member ID'],
