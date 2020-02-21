@@ -76,14 +76,16 @@ export default {
         JSON.stringify(this.headTab[this.current]) !=
         JSON.stringify(this.headTab[val.tabIndex])
       ) {
-        this.borderWidth = val.clientWidth;
-        this.borderLeft = val.offsetLeft;
-        delete this.headTab[this.current].active;
-        this.current = val.tabIndex;
-        this.headTab[val.tabIndex] = {
-          ...this.headTab[val.tabIndex],
-          active: true
-        };
+        setTimeout(() => {
+          this.borderWidth = val.clientWidth;
+          this.borderLeft = val.offsetLeft;
+          delete this.headTab[this.current].active;
+          this.current = val.tabIndex;
+          this.headTab[val.tabIndex] = {
+            ...this.headTab[val.tabIndex],
+            active: true
+          };
+        }, 100);
       }
     }
   },
@@ -182,7 +184,8 @@ export default {
   position: absolute;
   border: 1px solid #aea7f5;
   box-shadow: 0 5px 10px #f6f5fe;
-  transition: all 0.2s ease;
+  transition: left 0.2s ease;
+  transition-delay: 0.1s;
 }
 
 #circulation-transaction .user .img {
