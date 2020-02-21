@@ -39,7 +39,7 @@
             ></div>
           </div>
           <div class="body">
-            x
+            <router-view />
           </div>
         </div>
       </CardComponent>
@@ -112,23 +112,28 @@ export default {
       headTab: [
         {
           title: 'Loans',
-          icon: 'check'
+          icon: 'check',
+          href: 'loans'
         },
         {
           title: 'Current Loans',
-          icon: 'reload'
+          icon: 'reload',
+          href: 'current'
         },
         {
           title: 'Reserve',
-          icon: 'back-right'
+          icon: 'back-right',
+          href: 'reserve'
         },
         {
           title: 'Fines',
-          icon: 'hummer'
+          icon: 'hummer',
+          href: 'fines'
         },
         {
           title: 'Loan History',
-          icon: 'agenda'
+          icon: 'agenda',
+          href: 'history'
         }
       ],
       current: 0
@@ -186,6 +191,10 @@ export default {
   box-shadow: 0 5px 10px #f6f5fe;
   transition: left 0.2s ease;
   transition-delay: 0.1s;
+}
+
+#circulation-transaction .transaction .card-action .body {
+  padding: 1rem;
 }
 
 #circulation-transaction .user .img {

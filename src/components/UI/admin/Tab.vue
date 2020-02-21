@@ -2,7 +2,7 @@
   <section class="tab">
     <li ref="tab" @click="tabHandler(iKey)">
       <Icon :icon="tab.icon" />
-      <span>{{ tab.title }}</span>
+      <router-link :to="{ name: tab.href }">{{ tab.title }}</router-link>
     </li>
   </section>
 </template>
@@ -38,6 +38,11 @@ export default {
 <style scoped>
 .tab li i {
   margin-right: 0.5rem;
+}
+
+.tab li a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .tab li:hover {

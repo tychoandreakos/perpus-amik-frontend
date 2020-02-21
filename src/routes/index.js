@@ -29,6 +29,11 @@ import CollectionTypeComponent from '../components/Page/admin/master/CollectionT
 import LanguageComponent from '../components/Page/admin/master/Language';
 import CirculationSearchComponent from '../components/Page/admin/CirculationSearch';
 import CirculationTransactionComponent from '../components/Page/admin/CirculationTransaction';
+import LoansComponent from '../components/Page/admin/Member/Loans';
+import FinesComponent from '../components/Page/admin/Member/Fines';
+import CurrentComponent from '../components/Page/admin/Member/Current';
+import ReserveComponent from '../components/Page/admin/Member/Reserve';
+import HistoryComponent from '../components/Page/admin/Member/History';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -306,7 +311,34 @@ const router = [
                   content: 'The about page of our example app.'
                 }
               ]
-            }
+            },
+            children: [
+              {
+                path: '/',
+                component: LoansComponent,
+                name: 'loans'
+              },
+              {
+                path: 'fines',
+                component: FinesComponent,
+                name: 'fines'
+              },
+              {
+                path: 'history',
+                component: HistoryComponent,
+                name: 'history'
+              },
+              {
+                path: 'reserve',
+                component: ReserveComponent,
+                name: 'reserve'
+              },
+              {
+                path: 'current',
+                component: CurrentComponent,
+                name: 'current'
+              }
+            ]
           }
         ]
       },
