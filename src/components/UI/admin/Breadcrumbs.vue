@@ -3,13 +3,13 @@
     <Icon icon="home" />
     <div class="simple" v-for="(bread, i) in breadcrumbs" :key="i">
       <template v-if="breadcrumbs.length > 1">
-        <template v-if="i == 0">
+        <template v-if="i == breadcrumbs.length - 1">
           <Icon icon="angle-double-right" />
-          <span>{{ bread }}</span>
+          <router-link to="#">{{ bread }}</router-link>
         </template>
         <template v-else>
           <Icon icon="angle-double-right" />
-          <router-link to="#">{{ bread }}</router-link>
+          <span>{{ bread }}</span>
         </template>
       </template>
       <template v-else>

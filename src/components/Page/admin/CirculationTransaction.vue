@@ -20,7 +20,28 @@
     </CardComponent>
     <div class="transaction">
       <CardComponent :cardProperties="styleCard">
-        x
+        <div class="card-action">
+          <div class="head">
+            <ul>
+              <TabComponent
+                :tab="tab"
+                v-for="(tab, i) in headTab"
+                :key="i"
+                :iKey="i"
+                ref="tab"
+                @tabElem="tabHandler"
+                :class="[tab.active ? 'active' : '', 'tab']"
+              />
+            </ul>
+            <div
+              class="border"
+              :style="{ width: `${borderWidth}px`, left: `${borderLeft}px` }"
+            ></div>
+          </div>
+          <div class="body">
+            x
+          </div>
+        </div>
       </CardComponent>
     </div>
   </section>
@@ -28,12 +49,20 @@
 <script>
 import CardComponent from '../../UI/admin/Card';
 import StripedTableComponent from '../../UI/admin/table/Striped';
+import TabComponent from '../../UI/admin/Tab';
 
 export default {
   name: 'CirculationTransaction',
   components: {
     CardComponent,
-    StripedTableComponent
+    StripedTableComponent,
+    TabComponent
+  },
+  created() {
+    this.headTab[0] = {
+      ...this.headTab[0],
+      active: true
+    };
   },
   mounted() {
     this.$store.commit('setCirculation', {
@@ -41,10 +70,27 @@ export default {
       breadcrumbs: this.breadcrumbs
     });
   },
+  methods: {
+    tabHandler(val) {
+      if (
+        JSON.stringify(this.headTab[this.current]) !=
+        JSON.stringify(this.headTab[val.tabIndex])
+      ) {
+        this.borderWidth = val.clientWidth;
+        this.borderLeft = val.offsetLeft;
+        delete this.headTab[this.current].active;
+        this.current = val.tabIndex;
+        this.headTab[val.tabIndex] = {
+          ...this.headTab[val.tabIndex],
+          active: true
+        };
+      }
+    }
+  },
   data() {
     return {
-      breadcrumbs: ['Search Member ID', '1702018 - Elang Indra'],
-      title: 'Circulation',
+      breadcrumbs: ['Circulation', 'Search Member ID', '1702018 - Elang Indra'],
+      title: 'Member List',
       styleCard: {
         background: '#fff'
       },
@@ -58,7 +104,32 @@ export default {
           'Member Type': 'Mahasiswa',
           'Expiry Date': '2021 - 02 - 18'
         }
-      }
+      },
+      borderWidth: 80,
+      borderLeft: 14,
+      headTab: [
+        {
+          title: 'Loans',
+          icon: 'check'
+        },
+        {
+          title: 'Current Loans',
+          icon: 'reload'
+        },
+        {
+          title: 'Reserve',
+          icon: 'back-right'
+        },
+        {
+          title: 'Fines',
+          icon: 'hummer'
+        },
+        {
+          title: 'Loan History',
+          icon: 'agenda'
+        }
+      ],
+      current: 0
     };
   }
 };
@@ -68,8 +139,50 @@ export default {
   width: 100%;
 }
 
+#circulation-transaction .transaction .card-action .head ul .active {
+  color: #7367f0;
+}
+
+#circulation-transaction .transaction .card-action .head ul {
+  display: flex;
+  list-style: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+
+  font-weight: 500;
+  padding-bottom: 0.5rem;
+}
+
+#circulation-transaction
+  .transaction
+  .card-action
+  .head
+  ul
+  .tab:not(:last-child) {
+  margin-right: 2rem;
+}
+
+#circulation-transaction .transaction .card-action .head ul .tab.active {
+  color: #7367f0;
+  cursor: pointer;
+}
+
 #circulation-transaction .transaction {
   margin-top: 3rem;
+}
+
+#circulation-transaction .transaction .card-action .head {
+  padding: 1rem;
+  width: 100%;
+  box-shadow: 0 5px 15px #fcfcfc;
+  position: relative;
+}
+
+#circulation-transaction .transaction .card-action .head .border {
+  position: absolute;
+  border: 1px solid #aea7f5;
+  box-shadow: 0 5px 10px #f6f5fe;
+  transition: all 0.2s ease;
 }
 
 #circulation-transaction .user .img {

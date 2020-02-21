@@ -7,13 +7,7 @@
 </template>
 <script>
 export default {
-  name: 'Striped',
-  props: {
-    tableData: {
-      type: Object,
-      required: true
-    }
-  }
+  name: 'Striped'
 };
 </script>
 <style scoped>
