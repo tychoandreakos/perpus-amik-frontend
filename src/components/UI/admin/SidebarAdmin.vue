@@ -8,20 +8,46 @@
     </div>
     <ul>
       <li v-for="(data, i) in sidebarData" :key="i">
-        <router-link :to="{ name: data.href ? data.href : 'dashboard' }">
-          <Icon :icon="data.icon" />
-          {{ data.title }}
-        </router-link>
+        <template v-if="data.children">
+          <div class="dropdown" @click="dropdown = !dropdown">
+            <div class="link">
+              <Icon :icon="data.icon" />
+              <div class="text">
+                {{ data.title }}
+                <Icon
+                  :style="dropdown ? { transform: 'rotate(90deg)' } : {}"
+                  icon="angle-right"
+                />
+              </div>
+            </div>
+            <DropdownComponent
+              :style="dropdown ? { height: '350px' } : { height: '0px' }"
+              :dropdownProps="data.children"
+            />
+          </div>
+        </template>
+        <template v-else>
+          <router-link
+            class="link"
+            :to="{ name: data.href ? data.href : 'dashboard' }"
+          >
+            <Icon :icon="data.icon" />
+            {{ data.title }}
+          </router-link>
+        </template>
       </li>
     </ul>
   </aside>
 </template>
 <script>
 import Icon from 'vue-themify-icons';
+import DropdownComponent from './DropdownSidebar';
+
 export default {
   name: 'SidebarAdmin',
   components: {
-    Icon
+    Icon,
+    DropdownComponent
   },
   methods: {
     bulletHandler() {
@@ -32,6 +58,7 @@ export default {
   data() {
     return {
       bullet: true,
+      dropdown: false,
       sidebarData: [
         {
           title: 'Dashboard',
@@ -54,7 +81,54 @@ export default {
         },
         {
           title: 'Master File',
-          icon: 'file'
+          icon: 'file',
+          children: [
+            {
+              title: 'GMD',
+              icon: '',
+              href: 'gmd'
+            },
+            {
+              title: 'Publisher',
+              icon: '',
+              href: 'publisher'
+            },
+            {
+              title: 'Author',
+              icon: '',
+              href: 'author'
+            },
+            {
+              title: 'Subject',
+              icon: '',
+              href: 'subject'
+            },
+            {
+              title: 'Location',
+              icon: '',
+              href: 'location'
+            },
+            {
+              title: 'Place',
+              icon: '',
+              href: 'place'
+            },
+            {
+              title: 'Item Status',
+              icon: '',
+              href: 'itemStatus'
+            },
+            {
+              title: 'Collection',
+              icon: '',
+              href: 'collection'
+            },
+            {
+              title: 'Language',
+              icon: '',
+              href: 'language'
+            }
+          ]
         },
         {
           title: 'Settings',
@@ -131,7 +205,24 @@ export default {
   list-style: none;
 }
 
-#sidebar-admin ul li a {
+#sidebar-admin ul li .dropdown {
+  cursor: pointer;
+}
+
+#sidebar-admin ul li .dropdown .text {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#sidebar-admin ul li .dropdown .text i {
+  font-size: 0.8rem;
+  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+#sidebar-admin ul li .link {
   font-family: 'Quicksand', sans-serif;
   display: flex;
   align-items: center;
@@ -144,11 +235,11 @@ export default {
   padding: 0.8rem 0;
 }
 
-#sidebar-admin ul li a:hover {
+#sidebar-admin ul li .link:hover {
   padding-left: 0.3rem;
 }
 
-#sidebar-admin ul li a i {
+#sidebar-admin ul li .link i {
   margin-right: 1.6rem;
   font-size: 1.1rem;
 }

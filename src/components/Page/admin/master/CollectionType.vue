@@ -20,11 +20,11 @@ export default {
   data() {
     return {
       enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
+        checkbox: true,
+        edit: true,
+        remove: true,
+        action: true
+      },
       breadcrumbs: ['Data List'],
       title: 'Collection',
       button: {
@@ -35,6 +35,12 @@ export default {
         placeholder: 'Search Collection'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Collection Type', 'Last Update'],
         sample: [
           {
