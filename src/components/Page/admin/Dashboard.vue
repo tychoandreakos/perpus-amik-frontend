@@ -47,6 +47,20 @@
           />
         </div>
       </CardComponent>
+      <CardComponent :cardProperties="cardProperties">
+        x
+      </CardComponent>
+      <CardComponent class="speedo" :cardProperties="cardProperties">
+        x
+      </CardComponent>
+      <CardComponent :cardProperties="cardProperties">
+        x
+      </CardComponent>
+      <CardComponent class="table" :cardProperties="cardProperties">
+        <h3>{{ table.title }}</h3>
+        <div class="hr"></div>
+        <TableComponent :tableData="table.body" :tableHead="table.head" />
+      </CardComponent>
     </div>
   </section>
 </template>
@@ -54,19 +68,43 @@
 import CardComponent from '../../UI/admin/Card';
 import Icon from 'vue-themify-icons';
 import ChartOne from './analytics/ChartOne';
+import TableComponent from '../../UI/admin/table/Checkout';
 
 export default {
   name: 'DashboardAdmin',
   components: {
     CardComponent,
     Icon,
-    ChartOne
+    ChartOne,
+    TableComponent
   },
   data() {
     return {
       welcome: {
         background: 'linear-gradient(to bottom,#8075f1, #948bf3)',
         color: '#fff'
+      },
+      table: {
+        title: 'Checkout Items',
+        head: ['item code', 'member ID', 'title', 'loan date', 'due date'],
+        body: [
+          {
+            code: 'B0002',
+            id: 1702018,
+            title:
+              'PostgreSQL : a comprehensive guide to building, programming, and administering PostgreSQL databases',
+            loan: '2020-02-22',
+            due: '2020-02-29'
+          },
+          {
+            code: 'B0002',
+            id: 1702018,
+            title:
+              'PostgreSQL : a comprehensive guide to building, programming, and administering PostgreSQL databases',
+            loan: '2020-02-22',
+            due: '2020-02-29'
+          }
+        ]
       },
       cardData: [
         {
@@ -104,6 +142,29 @@ export default {
   margin-top: 1rem;
   grid-template-columns: 45% repeat(2, 25%);
   grid-gap: 2rem;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+#dashboard-admin .cards .table {
+  grid-column: 1 / 4;
+}
+
+#dashboard-admin .cards .table h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  padding: 1rem;
+  color: #3f3932;
+}
+
+#dashboard-admin .cards .table .hr {
+  border-bottom: 3px solid #f8f8f8;
+  width: 100%;
+  height: 2px;
+}
+
+#dashboard-admin .cards .speedo {
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
 }
 
 #dashboard-admin .cards .chart .text {

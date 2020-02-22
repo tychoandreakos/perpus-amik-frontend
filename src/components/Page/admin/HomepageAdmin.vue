@@ -10,6 +10,7 @@
     >
       <SidebarComponent @sidebarMetaChild="childHandler" />
     </div>
+    <div class="backdrop"></div>
     <HeaderComponent
       :style="metaSidebar ? { width: '76.6%' } : { width: '91%' }"
     />
@@ -65,6 +66,17 @@ export default {
   transition: all 0.3s ease-in;
   transition-delay: 0.3s;
   z-index: 99;
+}
+
+#homepage-admin .backdrop {
+  width: 100%;
+  position: fixed;
+  background: #f2f2f2;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 30px;
+  z-index: 8;
 }
 
 #homepage-admin .sidebar-active {
