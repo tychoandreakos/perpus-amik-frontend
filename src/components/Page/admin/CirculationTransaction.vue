@@ -17,6 +17,8 @@
           </StripedTableComponent>
         </div>
       </section>
+      <ButtonComponent class="btn-done" :buttonProp="button" />
+      <div class="clearfix"></div>
     </CardComponent>
     <div class="transaction">
       <CardComponent :cardProperties="styleCard">
@@ -57,6 +59,7 @@
 import CardComponent from '../../UI/admin/Card';
 import StripedTableComponent from '../../UI/admin/table/Striped';
 import TabComponent from '../../UI/admin/Tab';
+import ButtonComponent from '../../UI/admin/Button';
 
 const DEFAULT_TRANSITION = 'fade';
 
@@ -65,7 +68,8 @@ export default {
   components: {
     CardComponent,
     StripedTableComponent,
-    TabComponent
+    TabComponent,
+    ButtonComponent
   },
   created() {
     this.headTab[0] = {
@@ -123,6 +127,10 @@ export default {
       title: 'Member List',
       styleCard: {
         background: '#fff'
+      },
+      button: {
+        icon: 'check',
+        title: 'Finish Transaction'
       },
       prevHeight: 0,
       transitionName: DEFAULT_TRANSITION,
@@ -200,6 +208,15 @@ export default {
   margin-right: 2rem;
 }
 
+#circulation-transaction .btn-done {
+  float: right;
+  margin-right: 1.8rem;
+}
+
+#circulation-transaction .clearfix {
+  overflow: auto;
+}
+
 #circulation-transaction .transaction .card-action .head ul .tab.active {
   color: #7367f0;
   cursor: pointer;
@@ -220,7 +237,7 @@ export default {
   position: absolute;
   border: 1px solid #aea7f5;
   box-shadow: 0 5px 10px #f6f5fe;
-  transition: left 0.2s ease;
+  transition: left 0.2s ease, width 0.2s ease;
   transition-delay: 0.1s;
 }
 
