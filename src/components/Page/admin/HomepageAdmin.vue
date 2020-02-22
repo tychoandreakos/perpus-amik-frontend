@@ -10,6 +10,9 @@
     >
       <SidebarComponent @sidebarMetaChild="childHandler" />
     </div>
+    <HeaderComponent
+      :style="metaSidebar ? { width: '76.6%' } : { width: '91%' }"
+    />
     <div
       class="main-wrapper"
       :style="
@@ -18,9 +21,6 @@
           : { width: '100%', paddingLeft: '7.4%', transform: 'scale(1)' }
       "
     >
-      <HeaderComponent
-        :style="metaSidebar ? { width: '95%' } : { width: '90%' }"
-      />
       <div class="clearfix"></div>
       <router-view></router-view>
     </div>
