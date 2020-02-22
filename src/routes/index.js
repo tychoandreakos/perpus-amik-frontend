@@ -316,27 +316,32 @@ const router = [
               {
                 path: '/',
                 component: LoansComponent,
-                name: 'loans'
+                name: 'loans',
+                meta: { transitionName: 'slide' }
               },
               {
                 path: 'fines',
                 component: FinesComponent,
-                name: 'fines'
+                name: 'fines',
+                meta: { transitionName: 'slide' }
               },
               {
                 path: 'history',
                 component: HistoryComponent,
-                name: 'history'
+                name: 'history',
+                meta: { transitionName: 'slide' }
               },
               {
                 path: 'reserve',
                 component: ReserveComponent,
-                name: 'reserve'
+                name: 'reserve',
+                meta: { transitionName: 'slide' }
               },
               {
                 path: 'current',
                 component: CurrentComponent,
-                name: 'current'
+                name: 'current',
+                meta: { transitionName: 'slide' }
               }
             ]
           }

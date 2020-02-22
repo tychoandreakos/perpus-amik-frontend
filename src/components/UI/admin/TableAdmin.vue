@@ -2,7 +2,7 @@
   <section id="table">
     <table>
       <thead>
-        <th>
+        <th v-if="tableProps.enabled.checkbox">
           <div @click="selectAllHandler">
             <CheckBox :checkbox="checkboxControl" />
           </div>
@@ -12,7 +12,9 @@
       </thead>
       <tbody>
         <tr v-for="(body, i) in tableProps.sample" :key="i">
-          <td><CheckBox :checkbox="checkboxControl" /></td>
+          <td v-if="tableProps.enabled.checkbox">
+            <CheckBox :checkbox="checkboxControl" />
+          </td>
           <template v-for="(list, i) in body">
             <td v-if="checkList(list)" :key="i">{{ list }}</td>
             <td v-else :key="i">
@@ -27,12 +29,12 @@
               </div>
             </td>
           </template>
-          <td class="action">
+          <td class="action" v-if="tableProps.enabled.action">
             <router-link to="#">
-              <Icon icon="pencil" />
+              <Icon v-if="tableProps.enabled.edit" />
             </router-link>
             <router-link to="#">
-              <Icon icon="trash" />
+              <Icon v-if="tableProps.enabled.remove" icon="trash" />
             </router-link>
           </td>
         </tr>
@@ -93,6 +95,7 @@ export default {
   font-weight: 500;
   color: #333;
   padding: 0.5rem;
+  text-transform: capitalize;
 }
 
 #table tr {

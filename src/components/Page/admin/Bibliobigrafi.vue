@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Bibliobigrafi'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Title', 'ISBN/ISNN', 'Copies', 'Last Update'],
         sample: [
           {

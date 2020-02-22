@@ -19,6 +19,12 @@ export default {
   },
   data() {
     return {
+      enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
       breadcrumbs: ['Data List'],
       title: 'Collection',
       button: {

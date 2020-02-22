@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Subject'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Subject Name', 'Subject Type', 'Last Update'],
         sample: [
           {

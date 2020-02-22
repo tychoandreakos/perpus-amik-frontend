@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Item Status'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Item Status Code', 'Item Status Name', 'Last Update'],
         sample: [
           {

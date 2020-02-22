@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Author'
       },
       table: {
+         enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Author Name', 'Last Update'],
         sample: [
           {

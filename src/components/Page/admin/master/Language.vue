@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Language'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Language', 'Last Update'],
         sample: [
           {

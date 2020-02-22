@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Publisher'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Publisher Name', 'Last Update'],
         sample: [
           {

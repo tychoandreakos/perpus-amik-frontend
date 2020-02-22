@@ -39,7 +39,14 @@
             ></div>
           </div>
           <div class="body">
-            <router-view />
+            <transition
+              :name="transitionName"
+              mode="out-in"
+              @beforeLeave="beforeLeave"
+              @enter="enter"
+            >
+              <router-view />
+            </transition>
           </div>
         </div>
       </CardComponent>
@@ -50,6 +57,8 @@
 import CardComponent from '../../UI/admin/Card';
 import StripedTableComponent from '../../UI/admin/table/Striped';
 import TabComponent from '../../UI/admin/Tab';
+
+const DEFAULT_TRANSITION = 'fade';
 
 export default {
   name: 'CirculationTransaction',
@@ -63,6 +72,22 @@ export default {
       ...this.headTab[0],
       active: true
     };
+
+    this.$router.push({ name: this.headTab[0].href });
+
+    this.$router.beforeEach((to, from, next) => {
+      let transitionName = to.meta.transitionName || from.meta.transitionName;
+
+      if (transitionName === 'slide') {
+        const toDepth = to.path.split('/').length;
+        const fromDepth = from.path.split('/').length;
+        transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+      }
+
+      this.transitionName = transitionName || DEFAULT_TRANSITION;
+
+      next();
+    });
   },
   mounted() {
     this.$store.commit('setCirculation', {
@@ -71,6 +96,9 @@ export default {
     });
   },
   methods: {
+    beforeLeave(element) {
+      this.prevHeight = getComputedStyle(element).height;
+    },
     tabHandler(val) {
       if (
         JSON.stringify(this.headTab[this.current]) !=
@@ -96,6 +124,8 @@ export default {
       styleCard: {
         background: '#fff'
       },
+      prevHeight: 0,
+      transitionName: DEFAULT_TRANSITION,
       userList: {
         includeHead: false,
         body: {
@@ -144,6 +174,7 @@ export default {
 <style scoped>
 #circulation-transaction {
   width: 100%;
+  margin-bottom: 3rem;
 }
 
 #circulation-transaction .transaction .card-action .head ul .active {
@@ -219,5 +250,27 @@ export default {
   width: 100%;
   align-items: center;
   height: 100%;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition-duration: 0.5s;
+  transition-property: height, opacity, transform;
+  transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+  overflow: hidden;
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(-2em, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  transform: translate(2em, 0);
 }
 </style>

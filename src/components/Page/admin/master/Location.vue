@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Location'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['Location Code', 'Location Name', 'Last Update'],
         sample: [
           {

@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search GMD'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: ['GMD CODE', 'GMD NAME', 'Last Update'],
         sample: [
           {
