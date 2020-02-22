@@ -2,24 +2,30 @@
   <section id="loans">
     <div class="input">
       <span>{{ config.placeholder }}</span>
-      <InputComponent class="input-text" :config="config" />
+      <div class="input-text">
+        <InputComponent :config="config" />
+        <PlaceholderComponent v-if="false" :placeholder="placeholderData" />
+      </div>
       <ButtonComponent class="btn" :buttonProp="button" />
+    </div>
+    <div class="table" v-if="false">
       <TableComponent :tableProps="table" />
     </div>
-    <div class="table"></div>
   </section>
 </template>
 <script>
 import InputComponent from '../../../UI/admin/input/Default';
 import ButtonComponent from '../../../UI/admin/Button';
 import TableComponent from '../../../UI/admin/TableAdmin';
+import PlaceholderComponent from '../../../UI/admin/input/suggestion/Default';
 
 export default {
   name: 'Loans',
   components: {
     InputComponent,
     ButtonComponent,
-    TableComponent
+    TableComponent,
+    PlaceholderComponent
   },
   data() {
     return {
@@ -28,6 +34,13 @@ export default {
         type: 'text',
         name: 'search-loans'
       },
+      placeholderData: [
+        {
+          search: 'B0002',
+          result:
+            'PostgreSQL : a comprehensive guide to building, programming, and administering PostgreSQL databases'
+        }
+      ],
       table: {
         enabled: {
           checkbox: false,
@@ -35,27 +48,14 @@ export default {
           remove: true,
           action: true
         },
-        title: ['item code', 'Title', 'Loan Date', 'Due Date'],
+        title: ['code', 'Title', 'Loan Date', 'Due Date'],
         sample: [
           {
-            name: 'Valade, Janet',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Rosen, Richart',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Woychowsky, Edmond',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Taylor, Arlene G.',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Stueart, Robert D.',
-            updated: '2020-02-19'
+            code: 'B0002',
+            title:
+              'PostgreSQL : a comprehensive guide to building, programming, and administering PostgreSQL databases',
+            loan: '2020-02-19',
+            due: '2020-02-26'
           }
         ]
       },
@@ -83,6 +83,7 @@ export default {
 
 #loans .input .input-text {
   margin: 0.8rem 0;
+  position: relative;
 }
 
 #loans .input .btn {

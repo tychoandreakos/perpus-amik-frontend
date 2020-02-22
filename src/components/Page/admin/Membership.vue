@@ -29,6 +29,12 @@ export default {
         placeholder: 'Search Member'
       },
       table: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
         title: [
           'MEMBER ID',
           'MEMBER NAME',

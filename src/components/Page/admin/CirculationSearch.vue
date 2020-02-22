@@ -4,7 +4,7 @@
       <h3>Search Member ID</h3>
       <div class="member-search">
         <InputDefaultComponent :config="config">
-          <SuggestSearchComponent v-if="false"
+          <SuggestSearchComponent :placeholder="placeholderData" v-if="false"
         /></InputDefaultComponent>
       </div>
       <ButtonComponent :buttonProp="button" />
@@ -35,6 +35,16 @@ export default {
     return {
       breadcrumbs: ['Search Member ID'],
       title: 'Circulation',
+      placeholderData: [
+        {
+          search: 'Elang',
+          result: 'Elang Indra ( 1702019 )'
+        },
+        {
+          search: 'Elang',
+          result: 'Elang Indro ( 1702018 )'
+        }
+      ],
       config: {
         placeholder: 'Masukkan Member ID',
         type: 'text',

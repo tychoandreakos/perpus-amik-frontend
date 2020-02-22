@@ -30,11 +30,11 @@
             </td>
           </template>
           <td class="action" v-if="tableProps.enabled.action">
-            <router-link to="#">
-              <Icon v-if="tableProps.enabled.edit" />
+            <router-link v-if="tableProps.enabled.edit" to="#">
+              <Icon icon="pencil" />
             </router-link>
-            <router-link to="#">
-              <Icon v-if="tableProps.enabled.remove" icon="trash" />
+            <router-link v-if="tableProps.enabled.remove" to="#">
+              <Icon icon="trash" />
             </router-link>
           </td>
         </tr>
@@ -107,6 +107,7 @@ export default {
 
 #table tr:hover {
   transform: translateY(-4px);
+  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
 }
 
 #table tr td {

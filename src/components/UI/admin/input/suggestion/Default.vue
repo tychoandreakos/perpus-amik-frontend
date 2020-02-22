@@ -1,12 +1,19 @@
 <template>
   <ul class="suggest-default">
-    <li><b>1702018</b> - Elang Indra</li>
-    <li><b>1702018</b> - Elang Indra</li>
+    <li v-for="(data, i) in placeholder" :key="i">
+      <b>{{ data.search }}</b> - {{ data.result }}
+    </li>
   </ul>
 </template>
 <script>
 export default {
-  name: 'SuggestDefault'
+  name: 'SuggestDefault',
+  props: {
+    placeholder: {
+      type: Array,
+      required: true
+    }
+  }
 };
 </script>
 <style scoped>
@@ -19,7 +26,7 @@ export default {
   border-radius: 4px;
   z-index: 7;
   list-style: none;
-   box-shadow: 0 5px 15px #ebebeb;
+  box-shadow: 0 5px 15px #ebebeb;
 }
 
 .suggest-default li {
