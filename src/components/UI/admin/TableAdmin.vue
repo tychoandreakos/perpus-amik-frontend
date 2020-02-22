@@ -17,10 +17,19 @@
           </td>
           <slot v-if="tableProps.enabled.slot"></slot>
           <template v-for="(list, i) in body">
-            <td v-if="checkList(list)" :key="i">{{ list }}</td>
+            <td
+              :class="tableProps.enabled.normal ? 'normal' : ''"
+              v-if="checkList(list)"
+              :key="i"
+            >
+              <span>{{ list }}</span>
+            </td>
             <td v-else :key="i">
               <div class="book-info" :key="i">
-                <span class="title">{{ body.book.title }}</span>
+                <span
+                  :class="tableProps.normal ? ['title', 'normal'] : ['active']"
+                  >{{ body.book.title }}</span
+                >
                 <span
                   class="author"
                   v-for="(author, i) in body.book.author"
@@ -120,6 +129,12 @@ export default {
   display: block;
   font-weight: bold;
   font-family: 'Quicksand', sans-serif;
+}
+
+#table tr .normal:last-child {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  width: 120px;
 }
 
 #table tr td .book-info .author + .author:before {

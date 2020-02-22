@@ -46,7 +46,8 @@ export default {
           checkbox: false,
           edit: false,
           remove: true,
-          action: true
+          action: true,
+          slot: false
         },
         title: ['code', 'Title', 'Loan Date', 'Due Date'],
         sample: [
