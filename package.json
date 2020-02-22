@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "chart.js": "^2.9.3",
     "core-js": "^3.4.4",
     "node-sass": "^4.13.1",
     "pdfjs-dist": "^2.2.228",
@@ -16,6 +17,7 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.2",
     "vue": "^2.6.10",
+    "vue-chartjs": "^3.5.0",
     "vue-mq": "^1.0.1",
     "vue-router": "^3.1.5",
     "vue-star-rating": "^1.6.1",
