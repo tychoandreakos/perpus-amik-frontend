@@ -22,7 +22,11 @@ export default {
   cursor: pointer;
   border-radius: 6px;
   font-family: 'Quicksand', sans-serif;
-  font-size: 0.8rem;
   font-weight: 600;
+  transition: box-shadow 0.3s ease;
+}
+
+.mini-button:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 </style>
