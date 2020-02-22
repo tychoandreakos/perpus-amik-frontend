@@ -8,13 +8,14 @@
           </div>
         </th>
         <th v-for="(header, i) in tableProps.title" :key="i">{{ header }}</th>
-        <th>Action</th>
+        <th v-if="tableProps.enabled.action">Action</th>
       </thead>
       <tbody>
         <tr v-for="(body, i) in tableProps.sample" :key="i">
           <td v-if="tableProps.enabled.checkbox">
             <CheckBox :checkbox="checkboxControl" />
           </td>
+          <slot v-if="tableProps.enabled.slot"></slot>
           <template v-for="(list, i) in body">
             <td v-if="checkList(list)" :key="i">{{ list }}</td>
             <td v-else :key="i">
