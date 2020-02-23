@@ -2,7 +2,12 @@
   <div class="panel-action">
     <div class="panel-wrap">
       <DropdownComponent />
-      <ButtonComponent :style="{ marginLeft: '1.2rem' }" :buttonProp="button" />
+      <div @click="setPanel" class="panel-wrap">
+        <ButtonComponent
+          :style="{ marginLeft: '1.2rem' }"
+          :buttonProp="button"
+        />
+      </div>
     </div>
     <div class="panel-wrap">
       <PageNumberComponent />
@@ -15,6 +20,8 @@ import DropdownComponent from './Dropdown';
 import ButtonComponent from './Button';
 import PageNumberComponent from './PageNumber';
 import SearchComponent from './Search';
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'PanelAction',
   components: {
@@ -22,6 +29,9 @@ export default {
     ButtonComponent,
     PageNumberComponent,
     SearchComponent
+  },
+  methods: {
+  ...mapMutations(['setPanel'])
   },
   props: {
     button: {

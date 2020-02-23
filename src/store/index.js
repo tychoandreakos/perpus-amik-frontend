@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
+    panel: false,
     sidebarState: false,
     showSearch: false,
     circulation: {
@@ -164,6 +165,9 @@ export const store = new Vuex.Store({
       state.circulation = {
         ...payload
       };
+    },
+    setPanel(state) {
+      state.panel = !state.panel;
     }
   }
 

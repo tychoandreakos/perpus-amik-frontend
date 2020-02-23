@@ -1,5 +1,6 @@
 <template>
   <section id="homepage-admin">
+    <CreateComponent />
     <div
       :class="
         metaSidebar
@@ -30,6 +31,7 @@
 <script>
 import SidebarComponent from '../../UI/admin/SidebarAdmin';
 import HeaderComponent from '../../UI/admin/Navbar';
+import CreateComponent from '../../UI/admin/Create';
 
 export default {
   name: 'HomepageAdmin',
@@ -45,7 +47,8 @@ export default {
   },
   components: {
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateComponent
   }
 };
 </script>
@@ -65,7 +68,7 @@ export default {
   box-shadow: 0 15px 25px #f2f2f2;
   transition: all 0.3s ease-in;
   transition-delay: 0.3s;
-  z-index: 99;
+  z-index: 77;
 }
 
 #homepage-admin .backdrop {
