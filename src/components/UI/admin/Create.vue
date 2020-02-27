@@ -2,31 +2,41 @@
   <section class="none" ref="cr" id="create">
     <div v-show="panel" @click="setPanel" class="backdrop-create"></div>
     <div :style="panel ? { width: '30%' } : { width: '0%' }" class="panel">
-      xx
+      <CreateInput :header="header" :createInput="createInput" />
     </div>
   </section>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';
+import CreateInput from './input/CreateInput';
 
 export default {
   name: 'create',
+  components: {
+    CreateInput
+  },
   methods: {
     ...mapMutations(['setPanel'])
   },
   computed: {
-    ...mapState(['panel'])
+    ...mapState(['panel', 'createInput', 'header'])
   },
   updated() {
-    const elem = this.$refs.cr;
+    this.$store.state.countUpdate === 2
+      ? 0
+      : this.$store.commit('setCountUpdate');
 
-    let found = elem.classList;
-    if (found[0] === 'none') {
-      elem.className = 'block';
-    } else {
-      setTimeout(() => {
-        elem.className = 'none';
-      }, 550);
+    if (this.$store.state.countUpdate === 2) {
+      const elem = this.$refs.cr;
+
+      let found = elem.classList;
+      if (found[0] === 'none') {
+        elem.className = 'block';
+      } else {
+        setTimeout(() => {
+          elem.className = 'none';
+        }, 200);
+      }
     }
   }
 };
@@ -67,6 +77,6 @@ export default {
   background: #fff;
   box-shadow: 5px 0 10px #c8c8c8;
   max-width: 90vw;
-  transition: width 0.5s ease;
+  transition: width 0.3s ease;
 }
 </style>

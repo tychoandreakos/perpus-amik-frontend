@@ -17,6 +17,11 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -25,6 +30,15 @@ export default {
         title: 'Add New Publisher',
         icon: 'plus'
       },
+      header: 'Publisher',
+      createProp: [
+        {
+          label: 'Publisher Name',
+          id: 'name',
+          placeholder: 'Please type a Publisher Name',
+          type: 'text'
+        }
+      ],
       search: {
         placeholder: 'Search Publisher'
       },

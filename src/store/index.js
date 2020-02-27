@@ -12,6 +12,9 @@ export const store = new Vuex.Store({
       title: 'Circulation',
       breadcrumbs: ['Circulation']
     },
+    countUpdate: 0,
+    header: '',
+    createInput: [],
     book: [
       {
         titleBook: {
@@ -168,6 +171,18 @@ export const store = new Vuex.Store({
     },
     setPanel(state) {
       state.panel = !state.panel;
+    },
+    setCreateInput(state, payload) {
+      state.createInput = [...payload];
+    },
+    setCountUpdate(state) {
+      state.countUpdate += 1;
+    },
+    setCountUpdateDefault(state) {
+      state.countUpdate = 0;
+    },
+    setHeader(state, payload) {
+      state.header = payload;
     }
   }
 

@@ -17,6 +17,11 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -25,6 +30,21 @@ export default {
         title: 'Add New GMD',
         icon: 'plus'
       },
+      header: 'GMD',
+      createProp: [
+        {
+          label: 'GMD Code',
+          id: 'code',
+          placeholder: 'Please type a GMD Code',
+          type: 'text'
+        },
+        {
+          label: 'GMD Name',
+          id: 'name',
+          placeholder: 'Please type a GMD Name',
+          type: 'text'
+        }
+      ],
       search: {
         placeholder: 'Search GMD'
       },
