@@ -49,7 +49,7 @@ export default {
 .dropdown-default ul li {
   padding: 0.7rem 1rem;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.81rem;
   font-family: 'Noto Sans', sans-serif;
   color: #222;
 }

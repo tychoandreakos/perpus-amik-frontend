@@ -17,6 +17,11 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+  },
   data() {
     return {
       enabled: {
@@ -34,6 +39,15 @@ export default {
       search: {
         placeholder: 'Search Collection'
       },
+      header: 'Collection Type',
+      createProp: [
+        {
+          label: 'Collection Type',
+          id: 'type',
+          placeholder: 'Please type a Collection Type',
+          type: 'text'
+        }
+      ],
       table: {
         enabled: {
           checkbox: true,

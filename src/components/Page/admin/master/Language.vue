@@ -17,6 +17,11 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -28,6 +33,21 @@ export default {
       search: {
         placeholder: 'Search Language'
       },
+      header: 'Language',
+      createProp: [
+        {
+          label: 'Language Code',
+          id: 'code',
+          placeholder: 'Please type a Language Code',
+          type: 'text'
+        },
+        {
+          label: 'Language Name',
+          id: 'name',
+          placeholder: 'Please type a Language Name',
+          type: 'text'
+        }
+      ],
       table: {
         enabled: {
           checkbox: true,

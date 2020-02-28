@@ -36,7 +36,7 @@ export default {
       header: 'Author',
       createProp: [
         {
-          label: 'GMD Name',
+          label: 'Author Name',
           id: 'name',
           placeholder: 'Please type a Author Name',
           type: 'text'

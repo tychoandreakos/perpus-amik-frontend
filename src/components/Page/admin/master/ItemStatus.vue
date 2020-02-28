@@ -17,6 +17,12 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+    this.$store.commit('setSelectedDropdown', this.selected);
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -25,6 +31,22 @@ export default {
         title: 'Add New Item Status',
         icon: 'plus'
       },
+      selected: 'Missing',
+      header: 'Item Status',
+      createProp: [
+        {
+          label: 'Item Status Code',
+          id: 'code',
+          placeholder: 'Please type a Status Code of Item',
+          type: 'text'
+        },
+        {
+          label: 'Item Status Name',
+          id: 'name',
+          dropdown: true,
+          dropdownList: ['Missing', 'No Loan', 'Repair']
+        }
+      ],
       search: {
         placeholder: 'Search Item Status'
       },

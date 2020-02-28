@@ -17,6 +17,11 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -25,6 +30,15 @@ export default {
         title: 'Add New Place',
         icon: 'plus'
       },
+      header: 'Place',
+      createProp: [
+        {
+          label: 'Place Name',
+          id: 'name',
+          placeholder: 'Please type a Place Name',
+          type: 'text'
+        },
+      ],
       search: {
         placeholder: 'Search Place'
       },
