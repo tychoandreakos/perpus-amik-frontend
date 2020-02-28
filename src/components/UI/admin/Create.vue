@@ -2,24 +2,42 @@
   <section class="none" ref="cr" id="create">
     <div v-show="panel" @click="setPanel" class="backdrop-create"></div>
     <div :style="panel ? { width: '30%' } : { width: '0%' }" class="panel">
-      <CreateInput :header="header" :createInput="createInput" />
+      <form>
+        <CreateInput :header="header" :createInput="createInput" />
+        <div class="footer">
+          <SmallButton :btn="button" />
+        </div>
+      </form>
     </div>
   </section>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';
 import CreateInput from './input/CreateInput';
+import SmallButton from './button/MiniButton';
 
 export default {
   name: 'create',
   components: {
-    CreateInput
+    CreateInput,
+    SmallButton
   },
   methods: {
     ...mapMutations(['setPanel'])
   },
   computed: {
     ...mapState(['panel', 'createInput', 'header'])
+  },
+  data() {
+    return {
+      button: {
+        title: 'Submit',
+        style: {
+          background: '#7367f0',
+          padding: '.7rem 2.5rem'
+        }
+      }
+    };
   },
   updated() {
     this.$store.state.countUpdate === 2
@@ -78,5 +96,18 @@ export default {
   box-shadow: 5px 0 10px #c8c8c8;
   max-width: 90vw;
   transition: width 0.3s ease;
+}
+
+#create .panel .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #ddd;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
 }
 </style>
