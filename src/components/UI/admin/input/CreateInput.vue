@@ -9,7 +9,30 @@
     <div class="border"></div>
     <div class="input" v-for="(inputElem, i) in createInput" :key="i">
       <label :for="inputElem.id">{{ inputElem.label }}</label>
+      <DropdownComponent v-if="inputElem.dropdown">
+        <template v-slot:inputText>
+          <div style="cursor: pointer" @click="dropdownOpen = !dropdownOpen" class="input-text">
+            <div class="input-group">
+              <input type="text" readonly :value="dropddownWatch" />
+              <Icon icon="angle-down" />
+            </div>
+          </div>
+        </template>
+        <template v-slot:dropdownList>
+          <ul v-if="dropdownOpen" class="dropdown-list">
+            <li
+              @click="dropdownHandler(listElm)"
+              v-for="(listElm, i) in inputElem.dropdownList"
+              :key="i"
+            >
+              {{ listElm }}
+            </li>
+          </ul>
+        </template>
+      </DropdownComponent>
       <input
+        class="input-text"
+        v-else
         value=""
         type="text"
         :placeholder="inputElem.placeholder"
@@ -20,15 +43,36 @@
 </template>
 <script>
 import Icon from 'vue-themify-icons';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
+import DropdownComponent from '../dropdown/Default';
 
 export default {
   name: 'CreateInput',
   components: {
-    Icon
+    Icon,
+    DropdownComponent
+  },
+  watch: {
+    dropddownWatch(newVal, oldVal) {
+      console.log(newVal);
+    }
+  },
+  computed: {
+    dropddownWatch() {
+      return this.$store.state.selectedDropdown;
+    }
+  },
+  data() {
+    return {
+      dropdownOpen: false
+    };
   },
   methods: {
-    ...mapMutations(['setPanel'])
+    ...mapMutations(['setPanel']),
+    dropdownHandler(val) {
+      this.$store.commit('setSelectedDropdown', val);
+      this.dropdownOpen = false;
+    }
   },
   props: {
     header: {
@@ -87,7 +131,7 @@ export default {
   color: #676363;
 }
 
-.input input {
+.input .input-text {
   padding: 0.6rem 1rem;
   border: 1px solid #ddd;
   background: #fcfcfc;
@@ -95,7 +139,19 @@ export default {
   border-radius: 5px;
 }
 
-.input input:focus {
+.input .input-text .input-group {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input .input-text .input-group i {
+  color: #222;
+  font-size: 0.8rem;
+}
+
+.input .input-text:focus {
   box-shadow: 0 5px 15px #e8e8e8;
   border: 1px solid #7367f0;
 }

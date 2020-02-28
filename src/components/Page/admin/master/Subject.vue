@@ -17,6 +17,12 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+    this.$store.commit('setSelectedDropdown', this.selected);
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -28,6 +34,35 @@ export default {
       search: {
         placeholder: 'Search Subject'
       },
+      header: 'Subject',
+      selected: 'Topic',
+      createProp: [
+        {
+          label: 'Subject',
+          id: 'subject',
+          placeholder: 'Please type a Subject',
+          type: 'text'
+        },
+        {
+          label: 'Classification Code',
+          id: 'code',
+          placeholder: 'Please type a Classification Code',
+          type: 'text'
+        },
+        {
+          label: 'Subject Type',
+          id: 'stype',
+          dropdown: true,
+          dropdownList: [
+            'Topic',
+            'Geographic',
+            'Name',
+            'Temporal',
+            'Genre',
+            'Ocuppation'
+          ]
+        }
+      ],
       table: {
         enabled: {
           checkbox: true,

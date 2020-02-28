@@ -17,6 +17,11 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  created() {
+    this.$store.commit('setCountUpdateDefault');
+    this.$store.commit('setHeader', this.header);
+    this.$store.commit('setCreateInput', this.createProp);
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -28,8 +33,17 @@ export default {
       search: {
         placeholder: 'Search Author'
       },
+      header: 'Author',
+      createProp: [
+        {
+          label: 'GMD Name',
+          id: 'name',
+          placeholder: 'Please type a Author Name',
+          type: 'text'
+        }
+      ],
       table: {
-         enabled: {
+        enabled: {
           checkbox: true,
           edit: true,
           remove: true,
