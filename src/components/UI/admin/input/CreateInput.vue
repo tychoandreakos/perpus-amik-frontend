@@ -11,7 +11,11 @@
       <label :for="inputElem.id">{{ inputElem.label }}</label>
       <DropdownComponent v-if="inputElem.dropdown">
         <template v-slot:inputText>
-          <div style="cursor: pointer" @click="dropdownOpen = !dropdownOpen" class="input-text">
+          <div
+            style="cursor: pointer"
+            @click="dropdownOpen = !dropdownOpen"
+            class="input-text"
+          >
             <div class="input-group">
               <input type="text" readonly :value="dropddownWatch" />
               <Icon icon="angle-down" />
@@ -37,6 +41,8 @@
         type="text"
         :placeholder="inputElem.placeholder"
         :id="inputElem.id"
+        v-model.lazy="inputParams[i]"
+        ref="inputElem"
       />
     </div>
   </section>
@@ -53,8 +59,20 @@ export default {
     DropdownComponent
   },
   watch: {
-    dropddownWatch(newVal, oldVal) {
-      console.log(newVal);
+    inputParams(newVal, oldVal) {
+      let modifiedVal = [];
+      if (
+        this.$refs.inputElem != undefined &&
+        newVal.length > this.createInput.length - 1
+      ) {
+        for (let i = 0; i < newVal.length; i++) {
+          modifiedVal.push({
+            [this.$refs.inputElem[i].getAttribute('id')]: newVal[i]
+          });
+        }
+        console.log(modifiedVal);
+        this.$store.commit('setInputParams', modifiedVal);
+      }
     }
   },
   computed: {
@@ -64,7 +82,8 @@ export default {
   },
   data() {
     return {
-      dropdownOpen: false
+      dropdownOpen: false,
+      inputParams: []
     };
   },
   methods: {

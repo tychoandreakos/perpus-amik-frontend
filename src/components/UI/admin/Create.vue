@@ -2,10 +2,10 @@
   <section class="none" ref="cr" id="create">
     <div v-show="panel" @click="setPanel" class="backdrop-create"></div>
     <div :style="panel ? { width: '30%' } : { width: '0%' }" class="panel">
-      <form>
+      <form @submit.prevent="submitHandler">
         <CreateInput :header="header" :createInput="createInput" />
         <div class="footer">
-          <SmallButton :btn="button" />
+          <SmallButton :disabled="inputParams.length < 1" :btn="button" />
         </div>
       </form>
     </div>
@@ -23,10 +23,13 @@ export default {
     SmallButton
   },
   methods: {
-    ...mapMutations(['setPanel'])
+    ...mapMutations(['setPanel']),
+    submitHandler() {
+      // console.log(this.inputParams);
+    }
   },
   computed: {
-    ...mapState(['panel', 'createInput', 'header'])
+    ...mapState(['panel', 'createInput', 'header', 'inputParams'])
   },
   data() {
     return {
@@ -44,17 +47,41 @@ export default {
       ? 0
       : this.$store.commit('setCountUpdate');
 
-    if (this.$store.state.countUpdate === 2) {
+    const panelControl = () => {
       const elem = this.$refs.cr;
-
       let found = elem.classList;
-      if (found[0] === 'none') {
-        elem.className = 'block';
-      } else {
-        setTimeout(() => {
+
+      const closePanelTimeout = () => {
+        return setTimeout(() => {
           elem.className = 'none';
         }, 200);
+      };
+
+      const checkElemClass = () => {
+        if (found[0] === 'none') {
+          return (elem.className = 'block');
+        }
+
+        return false;
+      };
+
+      const panelController = () => {
+        if (!checkElemClass()) closePanelTimeout();
+      };
+
+      if (this.$store.state.inputParams.length > 0) {
+        if (this.$store.state.panel == false) {
+          closePanelTimeout();
+        } else {
+          checkElemClass();
+        }
+      } else {
+        panelController();
       }
+    };
+
+    if (this.$store.state.countUpdate === 2) {
+      panelControl();
     }
   }
 };
