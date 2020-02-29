@@ -32,13 +32,18 @@ export default {
   methods: {
     ...mapMutations(['setPanel']),
     submitHandler() {
-      this.$store.commit('setTable', {
-        title: getTitle(),
-        data: {
-          ...this.$store.state.inputParams[0],
-          updated: '2020-02-19'
-        }
-      });
+      let confirmSubmit = confirm('Apakah anda ingin menyimpannya?');
+      alert(confirmSubmit);
+
+      if (confirmSubmit) {
+        this.$store.commit('setTable', {
+          title: getTitle(),
+          data: {
+            ...this.$store.state.inputParams[0],
+            updated: '2020-02-19'
+          }
+        });
+      }
 
       this.$store.commit('setPanel');
       this.$store.commit('setDefaultParams');

@@ -17,6 +17,16 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  computed: {
+    table() {
+      return this.$store.state.tableMaster.place;
+    }
+  },
+  watch: {
+    table(newVal) {
+      return newVal;
+    }
+  },
   created() {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);
@@ -38,33 +48,10 @@ export default {
           id: 'name',
           placeholder: 'Please type a Place Name',
           type: 'text'
-        },
+        }
       ],
       search: {
         placeholder: 'Search Place'
-      },
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Place Name', 'Last Update'],
-        sample: [
-          {
-            name: 'Indianapolis',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'London',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'New York',
-            updated: '2020-02-19'
-          }
-        ]
       }
     };
   }

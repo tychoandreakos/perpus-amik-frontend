@@ -17,6 +17,16 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  computed: {
+    table() {
+      return this.$store.state.tableMaster.author;
+    }
+  },
+  watch: {
+    table(newVal) {
+      return newVal;
+    }
+  },
   created() {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);
@@ -42,38 +52,7 @@ export default {
           placeholder: 'Please type a Author Name',
           type: 'text'
         }
-      ],
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Author Name', 'Last Update'],
-        sample: [
-          {
-            name: 'Valade, Janet',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Rosen, Richart',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Woychowsky, Edmond',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Taylor, Arlene G.',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Stueart, Robert D.',
-            updated: '2020-02-19'
-          }
-        ]
-      }
+      ]
     };
   }
 };

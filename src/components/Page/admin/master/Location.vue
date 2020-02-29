@@ -17,6 +17,16 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  computed: {
+    table() {
+      return this.$store.state.tableMaster.location;
+    }
+  },
+  watch: {
+    table(newVal) {
+      return newVal;
+    }
+  },
   created() {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);
@@ -48,33 +58,7 @@ export default {
           placeholder: 'Please type a Location Name',
           type: 'text'
         }
-      ],
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Location Code', 'Location Name', 'Last Update'],
-        sample: [
-          {
-            code: 'SL',
-            name: 'Manisku Library',
-            updated: '2020-02-19'
-          },
-          {
-            code: 'XL',
-            name: 'Manisku Library',
-            updated: '2020-02-19'
-          },
-          {
-            code: 'AB',
-            name: 'Manisku Library',
-            updated: '2020-02-19'
-          }
-        ]
-      }
+      ]
     };
   }
 };

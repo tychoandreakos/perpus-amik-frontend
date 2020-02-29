@@ -13,6 +13,105 @@ export const store = new Vuex.Store({
       breadcrumbs: ['Circulation']
     },
     tableMaster: {
+      language: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Language', 'Last Update'],
+        sample: [
+          {
+            name: 'English',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Indonesia',
+            updated: '2020-02-19'
+          }
+        ]
+      },
+      place: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Place Name', 'Last Update'],
+        sample: [
+          {
+            name: 'Indianapolis',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'London',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'New York',
+            updated: '2020-02-19'
+          }
+        ]
+      },
+      location: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Location Code', 'Location Name', 'Last Update'],
+        sample: [
+          {
+            code: 'SL',
+            name: 'Manisku Library',
+            updated: '2020-02-19'
+          },
+          {
+            code: 'XL',
+            name: 'Manisku Library',
+            updated: '2020-02-19'
+          },
+          {
+            code: 'AB',
+            name: 'Manisku Library',
+            updated: '2020-02-19'
+          }
+        ]
+      },
+      author: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Author Name', 'Last Update'],
+        sample: [
+          {
+            name: 'Valade, Janet',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Rosen, Richart',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Woychowsky, Edmond',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Taylor, Arlene G.',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Stueart, Robert D.',
+            updated: '2020-02-19'
+          }
+        ]
+      },
       gmd: {
         enabled: {
           checkbox: true,

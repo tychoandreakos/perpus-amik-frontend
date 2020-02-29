@@ -23,6 +23,16 @@ export default {
     this.$store.commit('setCreateInput', this.createProp);
     this.$store.commit('setDefaultParams');
   },
+  computed: {
+    table() {
+      return this.$store.state.tableMaster.language;
+    }
+  },
+  watch: {
+    table(newValue) {
+      return newValue;
+    }
+  },
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -37,37 +47,12 @@ export default {
       header: 'Language',
       createProp: [
         {
-          label: 'Language Code',
-          id: 'code',
-          placeholder: 'Please type a Language Code',
-          type: 'text'
-        },
-        {
           label: 'Language Name',
           id: 'name',
           placeholder: 'Please type a Language Name',
           type: 'text'
         }
-      ],
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Language', 'Last Update'],
-        sample: [
-          {
-            name: 'English',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Indonesia',
-            updated: '2020-02-19'
-          }
-        ]
-      }
+      ]
     };
   }
 };
