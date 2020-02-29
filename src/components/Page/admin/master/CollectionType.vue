@@ -21,6 +21,7 @@ export default {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);
     this.$store.commit('setCreateInput', this.createProp);
+    this.$store.commit('setDefaultParams');
   },
   data() {
     return {

@@ -22,6 +22,7 @@ export default {
     this.$store.commit('setHeader', this.header);
     this.$store.commit('setCreateInput', this.createProp);
     this.$store.commit('setSelectedDropdown', this.selected);
+    this.$store.commit('setDefaultParams');
   },
   data() {
     return {
