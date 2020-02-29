@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
       breadcrumbs: ['Circulation']
     },
     selectedDropdown: '',
+    inputParams: [],
     countUpdate: 0,
     header: '',
     createInput: [],
@@ -187,6 +188,12 @@ export const store = new Vuex.Store({
     },
     setSelectedDropdown(state, payload) {
       state.selectedDropdown = payload;
+    },
+    setInputParams(state, payload) {
+      state.inputParams = [...payload];
+    },
+    setDefaultParams(state) {
+      state.inputParams = [];
     }
   }
 
