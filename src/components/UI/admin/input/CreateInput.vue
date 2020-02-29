@@ -1,5 +1,5 @@
 <template>
-  <section class="create-input">
+  <section class="create-input" v-if="panel">
     <div class="header">
       <h3>Add new {{ header }}</h3>
       <div @click="setPanel">
@@ -59,23 +59,28 @@ export default {
     DropdownComponent
   },
   watch: {
+    panel(newVal) {
+      this.inputParams = [];
+      return newVal;
+    },
     inputParams(newVal, oldVal) {
-      let modifiedVal = [];
+      let modifiedVal = {};
       if (
         this.$refs.inputElem != undefined &&
         newVal.length > this.createInput.length - 1
       ) {
         for (let i = 0; i < newVal.length; i++) {
-          modifiedVal.push({
+          modifiedVal = {
+            ...modifiedVal,
             [this.$refs.inputElem[i].getAttribute('id')]: newVal[i]
-          });
+          };
         }
-        console.log(modifiedVal);
         this.$store.commit('setInputParams', modifiedVal);
       }
     }
   },
   computed: {
+    ...mapState(['panel']),
     dropddownWatch() {
       return this.$store.state.selectedDropdown;
     }

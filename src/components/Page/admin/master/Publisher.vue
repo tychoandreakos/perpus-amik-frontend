@@ -17,6 +17,16 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  watch: {
+    table(newVal) {
+      return newVal;
+    }
+  },
+  computed: {
+    table() {
+      return this.$store.state.tableMaster.publisher;
+    }
+  },
   created() {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);
@@ -42,37 +52,6 @@ export default {
       ],
       search: {
         placeholder: 'Search Publisher'
-      },
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Publisher Name', 'Last Update'],
-        sample: [
-          {
-            name: 'Apress',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Jhon Wiley',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'OReilly',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'SAMS',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Crown Publisher',
-            updated: '2020-02-19'
-          }
-        ]
       }
     };
   }

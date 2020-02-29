@@ -12,6 +12,70 @@ export const store = new Vuex.Store({
       title: 'Circulation',
       breadcrumbs: ['Circulation']
     },
+    tableMaster: {
+      gmd: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['GMD CODE', 'GMD NAME', 'Last Update'],
+        sample: [
+          {
+            code: 'AR',
+            name: 'Art Original',
+            updated: '2020-02-19'
+          },
+          {
+            code: 'CA',
+            name: 'Cartongraphic Material',
+            updated: '2020-02-19'
+          },
+          {
+            code: 'CD',
+            name: 'CD-ROM',
+            updated: '2020-02-19'
+          },
+          {
+            code: 'CH',
+            name: 'Chart',
+            updated: '2020-02-19'
+          }
+        ]
+      },
+      publisher: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Publisher Name', 'Last Update'],
+        sample: [
+          {
+            name: 'Apress',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Jhon Wiley',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'OReilly',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'SAMS',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Crown Publisher',
+            updated: '2020-02-19'
+          }
+        ]
+      }
+    },
     selectedDropdown: '',
     inputParams: [],
     countUpdate: 0,
@@ -190,10 +254,14 @@ export const store = new Vuex.Store({
       state.selectedDropdown = payload;
     },
     setInputParams(state, payload) {
-      state.inputParams = [...payload];
+      state.inputParams.push(payload);
     },
     setDefaultParams(state) {
       state.inputParams = [];
+    },
+    setTable(state, payload) {
+      const { title, data } = payload;
+      state.tableMaster[title].sample.push(data);
     }
   }
 

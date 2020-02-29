@@ -5,7 +5,7 @@
       <form @submit.prevent="submitHandler">
         <CreateInput :header="header" :createInput="createInput" />
         <div class="footer">
-          <SmallButton :disabled="inputParams.length < 1" :btn="button" />
+          <SmallButton :btn="button" />
         </div>
       </form>
     </div>
@@ -16,6 +16,13 @@ import { mapState, mapMutations } from 'vuex';
 import CreateInput from './input/CreateInput';
 import SmallButton from './button/MiniButton';
 
+const getTitle = () => {
+  return document.title
+    .split('-')[0]
+    .trim()
+    .toLowerCase();
+};
+
 export default {
   name: 'create',
   components: {
@@ -25,7 +32,16 @@ export default {
   methods: {
     ...mapMutations(['setPanel']),
     submitHandler() {
-      // console.log(this.inputParams);
+      this.$store.commit('setTable', {
+        title: getTitle(),
+        data: {
+          ...this.$store.state.inputParams[0],
+          updated: '2020-02-19'
+        }
+      });
+
+      this.$store.commit('setPanel');
+      this.$store.commit('setDefaultParams');
     }
   },
   computed: {
