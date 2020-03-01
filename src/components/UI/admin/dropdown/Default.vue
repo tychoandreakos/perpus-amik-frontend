@@ -8,12 +8,7 @@
 </template>
 <script>
 export default {
-  name: 'DropdownDefault',
-  methods: {
-    dropdownHandler() {
-      console.log('hasem');
-    }
-  }
+  name: 'DropdownDefault'
 };
 </script>
 <style scoped>
@@ -21,6 +16,7 @@ export default {
 .dropdown-default .input,
 .dropdown-default .input input {
   width: 100%;
+  z-index: 10;
 }
 
 .dropdown-default .input input {
@@ -44,6 +40,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 10;
 }
 
 .dropdown-default ul li {

@@ -32,6 +32,12 @@
               {{ listElm }}
             </li>
           </ul>
+
+          <div
+            @click="dropdownOpen = !dropdownOpen"
+            class="dropdown-backdrop"
+            v-if="dropdownOpen"
+          ></div>
         </template>
       </DropdownComponent>
       <input
@@ -61,6 +67,7 @@ export default {
   watch: {
     panel(newVal) {
       this.inputParams = [];
+      this.dropdownOpen = false;
       return newVal;
     },
     inputParams(newVal, oldVal) {
@@ -116,6 +123,16 @@ export default {
   width: 100%;
 }
 
+.dropdown-backdrop {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vw;
+  z-index: 4;
+}
+
 .create-input .header {
   display: flex;
   justify-content: space-between;
@@ -161,6 +178,7 @@ export default {
   background: #fcfcfc;
   transition: box-shadow 0.4s ease, border 0.4s ease;
   border-radius: 5px;
+  z-index: 10;
 }
 
 .input .input-text .input-group {

@@ -45,12 +45,6 @@ export default {
           type: 'text'
         },
         {
-          label: 'Classification Code',
-          id: 'code',
-          placeholder: 'Please type a Classification Code',
-          type: 'text'
-        },
-        {
           label: 'Subject Type',
           id: 'stype',
           dropdown: true,
