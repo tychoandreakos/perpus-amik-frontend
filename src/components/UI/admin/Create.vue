@@ -32,6 +32,17 @@ export default {
   methods: {
     ...mapMutations(['setPanel']),
     submitHandler() {
+      for (let key in this.$store.state.selectedDropdown) {
+        if (this.$store.state.selectedDropdown.hasOwnProperty(key)) {
+          this.$store.state.inputParams[0] = {
+            ...this.$store.state.inputParams[0],
+            ...this.$store.state.selectedDropdown
+          };
+
+          console.log(this.$store.state.selectedDropdown);
+        }
+      }
+
       let confirmSubmit = confirm('Apakah anda ingin menyimpannya?');
       alert(confirmSubmit);
 

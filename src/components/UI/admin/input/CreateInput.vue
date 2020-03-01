@@ -17,7 +17,13 @@
             class="input-text"
           >
             <div class="input-group">
-              <input type="text" readonly :value="dropddownWatch" />
+              <input
+                type="text"
+                readonly
+                :value="dropdownWatch.type"
+                ref="inputElem"
+                :id="inputElem.id"
+              />
               <Icon icon="angle-down" />
             </div>
           </div>
@@ -25,7 +31,7 @@
         <template v-slot:dropdownList>
           <ul v-if="dropdownOpen" class="dropdown-list">
             <li
-              @click="dropdownHandler(listElm)"
+              @click="dropdownHandler(listElm, inputElem.id)"
               v-for="(listElm, i) in inputElem.dropdownList"
               :key="i"
             >
@@ -70,8 +76,19 @@ export default {
       this.dropdownOpen = false;
       return newVal;
     },
-    inputParams(newVal, oldVal) {
+    dropdownWatch(newVal) {
+      return newVal;
+    },
+    inputParams(oldVal) {
       let modifiedVal = {};
+      const newVal = [...oldVal];
+
+      for (let key in this.$store.state.selectedDropdown) {
+        if (this.dropdownWatch.hasOwnProperty(key)) {
+          newVal.push(this.dropdownWatch.type);
+        }
+      }
+
       if (
         this.$refs.inputElem != undefined &&
         newVal.length > this.createInput.length - 1
@@ -88,7 +105,7 @@ export default {
   },
   computed: {
     ...mapState(['panel']),
-    dropddownWatch() {
+    dropdownWatch() {
       return this.$store.state.selectedDropdown;
     }
   },
@@ -100,8 +117,10 @@ export default {
   },
   methods: {
     ...mapMutations(['setPanel']),
-    dropdownHandler(val) {
-      this.$store.commit('setSelectedDropdown', val);
+    dropdownHandler(val, key) {
+      this.$store.commit('setSelectedDropdown', {
+        [key]: val
+      });
       this.dropdownOpen = false;
     }
   },

@@ -13,6 +13,47 @@ export const store = new Vuex.Store({
       breadcrumbs: ['Circulation']
     },
     tableMaster: {
+      subject: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Subject Name', 'Subject Type', 'Last Update'],
+        sample: [
+          {
+            name: 'Computer',
+            type: 'Topic',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Database',
+            type: 'Topic',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Corruption',
+            type: 'Topic',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Design',
+            type: 'Topic',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Development',
+            type: 'Topic',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Information',
+            type: 'Topic',
+            updated: '2020-02-19'
+          }
+        ]
+      },
       language: {
         enabled: {
           checkbox: true,
@@ -175,7 +216,7 @@ export const store = new Vuex.Store({
         ]
       }
     },
-    selectedDropdown: '',
+    selectedDropdown: {},
     inputParams: [],
     countUpdate: 0,
     header: '',
@@ -350,13 +391,17 @@ export const store = new Vuex.Store({
       state.header = payload;
     },
     setSelectedDropdown(state, payload) {
-      state.selectedDropdown = payload;
+      state.selectedDropdown = {
+        ...state.selectedDropdown,
+        ...payload
+      };
     },
     setInputParams(state, payload) {
       state.inputParams.push(payload);
     },
     setDefaultParams(state) {
       state.inputParams = [];
+      state.selectedDropdown = {};
     },
     setTable(state, payload) {
       const { title, data } = payload;

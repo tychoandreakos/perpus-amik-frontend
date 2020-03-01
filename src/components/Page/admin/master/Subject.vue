@@ -17,12 +17,25 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  computed: {
+    table() {
+      return this.$store.state.tableMaster.subject;
+    }
+  },
+  watch: {
+    table(newVal) {
+      return newVal;
+    }
+  },
+
   created() {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);
     this.$store.commit('setCreateInput', this.createProp);
-    this.$store.commit('setSelectedDropdown', this.selected);
     this.$store.commit('setDefaultParams');
+    this.$store.commit('setSelectedDropdown', {
+      type: this.selected
+    });
   },
   data() {
     return {
@@ -46,7 +59,7 @@ export default {
         },
         {
           label: 'Subject Type',
-          id: 'stype',
+          id: 'type',
           dropdown: true,
           dropdownList: [
             'Topic',
@@ -57,48 +70,7 @@ export default {
             'Ocuppation'
           ]
         }
-      ],
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Subject Name', 'Subject Type', 'Last Update'],
-        sample: [
-          {
-            name: 'Computer',
-            type: 'Topic',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Database',
-            type: 'Topic',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Corruption',
-            type: 'Topic',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Design',
-            type: 'Topic',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Development',
-            type: 'Topic',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Information',
-            type: 'Topic',
-            updated: '2020-02-19'
-          }
-        ]
-      }
+      ]
     };
   }
 };
