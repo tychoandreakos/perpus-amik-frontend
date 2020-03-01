@@ -38,8 +38,6 @@ export default {
             ...this.$store.state.inputParams[0],
             ...this.$store.state.selectedDropdown
           };
-
-          console.log(this.$store.state.selectedDropdown);
         }
       }
 

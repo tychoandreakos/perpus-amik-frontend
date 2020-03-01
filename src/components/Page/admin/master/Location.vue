@@ -22,11 +22,6 @@ export default {
       return this.$store.state.tableMaster.location;
     }
   },
-  watch: {
-    table(newVal) {
-      return newVal;
-    }
-  },
   created() {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);

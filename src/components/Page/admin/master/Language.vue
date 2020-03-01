@@ -28,11 +28,6 @@ export default {
       return this.$store.state.tableMaster.language;
     }
   },
-  watch: {
-    table(newValue) {
-      return newValue;
-    }
-  },
   data() {
     return {
       breadcrumbs: ['Data List'],

@@ -390,6 +390,11 @@ export const store = new Vuex.Store({
     setHeader(state, payload) {
       state.header = payload;
     },
+    setResetDropdown(state, payload) {
+      state.selectedDropdown = {
+        ...payload
+      };
+    },
     setSelectedDropdown(state, payload) {
       state.selectedDropdown = {
         ...state.selectedDropdown,

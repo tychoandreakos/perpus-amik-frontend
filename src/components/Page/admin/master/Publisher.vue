@@ -17,11 +17,6 @@ export default {
     PanelActionComponent,
     TableComponent
   },
-  watch: {
-    table(newVal) {
-      return newVal;
-    }
-  },
   computed: {
     table() {
       return this.$store.state.tableMaster.publisher;
