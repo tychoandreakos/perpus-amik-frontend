@@ -18,7 +18,7 @@ export const store = new Vuex.Store({
     },
     tableTypes: '',
     tableMaster: {
-      subject: {
+      [types.masterSUBJECT]: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -59,7 +59,7 @@ export const store = new Vuex.Store({
           }
         ]
       },
-      language: {
+      [types.masterLANGUAGE]: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -78,7 +78,7 @@ export const store = new Vuex.Store({
           }
         ]
       },
-      place: {
+      [types.masterPLACE]: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -101,7 +101,7 @@ export const store = new Vuex.Store({
           }
         ]
       },
-      location: {
+      [types.masterLOCATION]: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -127,7 +127,7 @@ export const store = new Vuex.Store({
           }
         ]
       },
-      author: {
+      [types.masterAUTHOR]: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -189,7 +189,7 @@ export const store = new Vuex.Store({
           }
         ]
       },
-      publisher: {
+      [types.masterPUBLISHER]: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -369,6 +369,5 @@ export const store = new Vuex.Store({
   },
 
   getters,
-
   mutations
 });
