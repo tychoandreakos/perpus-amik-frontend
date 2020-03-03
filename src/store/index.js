@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import * as types from './types';
+import * as mutations from './mutations';
+import * as getters from './getters';
 
 Vue.use(Vuex);
 
@@ -366,63 +368,7 @@ export const store = new Vuex.Store({
     ]
   },
 
-  getters: {
-    table(state) {
-      return state.tableMaster[state.tableTypes];
-    }
-  },
+  getters,
 
-  mutations: {
-    setSidebar(state) {
-      state.sidebarState = !state.sidebarState;
-    },
-    setTableTypes(state, payload) {
-      state.tableTypes = payload;
-    },
-    setSearch(state) {
-      state.showSearch = !state.showSearch;
-    },
-    setCirculation(state, payload) {
-      state.circulation = {
-        ...payload
-      };
-    },
-    setPanel(state) {
-      state.panel = !state.panel;
-    },
-    setCreateInput(state, payload) {
-      state.createInput = [...payload];
-    },
-    setCountUpdate(state) {
-      state.countUpdate += 1;
-    },
-    setCountUpdateDefault(state) {
-      state.countUpdate = 0;
-    },
-    setHeader(state, payload) {
-      state.header = payload;
-    },
-    setResetDropdown(state, payload) {
-      state.selectedDropdown = {
-        ...payload
-      };
-    },
-    setSelectedDropdown(state, payload) {
-      state.selectedDropdown = {
-        ...state.selectedDropdown,
-        ...payload
-      };
-    },
-    setInputParams(state, payload) {
-      state.inputParams.push(payload);
-    },
-    setDefaultParams(state) {
-      state.inputParams = [];
-      state.selectedDropdown = {};
-    },
-    setTable(state, payload) {
-      const { title, data } = payload;
-      state.tableMaster[title].sample.push(data);
-    }
-  }
+  mutations
 });
