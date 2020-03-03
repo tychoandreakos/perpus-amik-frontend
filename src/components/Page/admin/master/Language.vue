@@ -9,7 +9,7 @@
 import HeaderComponent from '../../../UI/admin/Header';
 import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { masterLANGUAGE } from '../../../../store/types';
 
 export default {
@@ -19,12 +19,21 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  methods: {
+    ...mapMutations([
+      'setCountUpdateDefault',
+      'setHeader',
+      'setCreateInput',
+      'setDefaultParams',
+      'setTableTypes'
+    ])
+  },
   created() {
-    this.$store.commit('setCountUpdateDefault');
-    this.$store.commit('setHeader', this.header);
-    this.$store.commit('setCreateInput', this.createProp);
-    this.$store.commit('setDefaultParams');
-    this.$store.commit('setTableTypes', masterLANGUAGE);
+    this.setCountUpdateDefault();
+    this.setHeader(this.header);
+    this.setCreateInput(this.createProp);
+    this.setDefaultParams();
+    this.setTableTypes(masterLANGUAGE);
   },
   computed: {
     ...mapGetters({

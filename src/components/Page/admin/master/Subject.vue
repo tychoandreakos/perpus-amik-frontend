@@ -9,7 +9,7 @@
 import HeaderComponent from '../../../UI/admin/Header';
 import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { masterSUBJECT } from '../../../../store/types';
 
 export default {
@@ -24,16 +24,27 @@ export default {
       table: 'table'
     })
   },
+  methods: {
+    ...mapMutations([
+      'setCountUpdateDefault',
+      'setHeader',
+      'setCreateInput',
+      'setDefaultParams',
+      'setTableTypes',
+      'setDropdownChoice',
+      'setSelectedDropdown'
+    ])
+  },
   created() {
-    this.$store.commit('setCountUpdateDefault');
-    this.$store.commit('setHeader', this.header);
-    this.$store.commit('setCreateInput', this.createProp);
-    this.$store.commit('setDefaultParams');
-    this.$store.commit('setTableTypes', masterSUBJECT);
-    this.$store.commit('setDropdownChoice', {
+    this.setCountUpdateDefault();
+    this.setHeader(this.header);
+    this.setCreateInput(this.createProp);
+    this.setDefaultParams();
+    this.setTableTypes(masterSUBJECT);
+    this.setDropdownChoice({
       type: this.selected
     });
-    this.$store.commit('setSelectedDropdown', {
+    this.setSelectedDropdown({
       type: this.selected
     });
   },
