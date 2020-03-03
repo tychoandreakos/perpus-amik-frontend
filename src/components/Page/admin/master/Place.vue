@@ -35,10 +35,10 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
-    this.setTableTypes(masterGMD);
+    this.setTableTypes(masterPLACE);
   },
   data() {
     return {
@@ -48,7 +48,6 @@ export default {
         title: 'Add New Place',
         icon: 'plus'
       },
-      header: 'Place',
       createProp: [
         {
           label: 'Place Name',

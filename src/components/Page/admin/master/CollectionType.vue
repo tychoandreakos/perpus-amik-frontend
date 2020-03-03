@@ -26,7 +26,7 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterCOLLECTION);
@@ -57,7 +57,6 @@ export default {
       search: {
         placeholder: 'Search Collection'
       },
-      header: 'Collection Type',
       createProp: [
         {
           label: 'Collection Type',

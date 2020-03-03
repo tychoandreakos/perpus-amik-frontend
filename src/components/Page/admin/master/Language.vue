@@ -30,7 +30,7 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterLANGUAGE);
@@ -51,7 +51,6 @@ export default {
       search: {
         placeholder: 'Search Language'
       },
-      header: 'Language',
       createProp: [
         {
           label: 'Language Name',

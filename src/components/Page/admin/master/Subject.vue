@@ -37,7 +37,7 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterSUBJECT);
@@ -59,7 +59,6 @@ export default {
       search: {
         placeholder: 'Search Subject'
       },
-      header: 'Subject',
       selected: 'Topic',
       createProp: [
         {

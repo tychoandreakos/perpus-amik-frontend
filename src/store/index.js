@@ -9,6 +9,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
+    getUpdate: '',
     panel: false,
     sidebarState: false,
     showSearch: false,
@@ -16,6 +17,7 @@ export const store = new Vuex.Store({
       title: 'Circulation',
       breadcrumbs: ['Circulation']
     },
+    updateInputState: [],
     tableTypes: '',
     dropdownChoice: {},
     tableMaster: {
@@ -29,14 +31,17 @@ export const store = new Vuex.Store({
         title: ['Collection Type', 'Last Update'],
         sample: [
           {
+            id: 1,
             name: 'Fiction',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             name: 'Reference',
             updated: '2020-02-19'
           },
           {
+            id:3,
             name: 'Textbook',
             updated: '2020-02-19'
           }
@@ -52,16 +57,19 @@ export const store = new Vuex.Store({
         title: ['Item Status Code', 'Item Status Name', 'Last Update'],
         sample: [
           {
+            id: 1,
             code: 'MIS',
             name: 'Missing',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             code: 'NL',
             name: 'No Loan',
             updated: '2020-02-19'
           },
           {
+            id: 3,
             code: 'R',
             name: 'Repair',
             updated: '2020-02-19'
@@ -78,31 +86,37 @@ export const store = new Vuex.Store({
         title: ['Subject Name', 'Subject Type', 'Last Update'],
         sample: [
           {
+            id: 1,
             name: 'Computer',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             name: 'Database',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
+            id: 3,
             name: 'Corruption',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
+            id: 4,
             name: 'Design',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
+            id: 5,
             name: 'Development',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
+            id: 6,
             name: 'Information',
             type: 'Topic',
             updated: '2020-02-19'
@@ -119,10 +133,12 @@ export const store = new Vuex.Store({
         title: ['Language', 'Last Update'],
         sample: [
           {
+            id: 1,
             name: 'English',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             name: 'Indonesia',
             updated: '2020-02-19'
           }
@@ -138,14 +154,17 @@ export const store = new Vuex.Store({
         title: ['Place Name', 'Last Update'],
         sample: [
           {
+            id: 1,
             name: 'Indianapolis',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             name: 'London',
             updated: '2020-02-19'
           },
           {
+            id: 3,
             name: 'New York',
             updated: '2020-02-19'
           }
@@ -161,16 +180,19 @@ export const store = new Vuex.Store({
         title: ['Location Code', 'Location Name', 'Last Update'],
         sample: [
           {
+            id: 1,
             code: 'SL',
             name: 'Manisku Library',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             code: 'XL',
             name: 'Manisku Library',
             updated: '2020-02-19'
           },
           {
+            id: 3,
             code: 'AB',
             name: 'Manisku Library',
             updated: '2020-02-19'
@@ -187,22 +209,27 @@ export const store = new Vuex.Store({
         title: ['Author Name', 'Last Update'],
         sample: [
           {
+            id: 1,
             name: 'Valade, Janet',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             name: 'Rosen, Richart',
             updated: '2020-02-19'
           },
           {
+            id: 3,
             name: 'Woychowsky, Edmond',
             updated: '2020-02-19'
           },
           {
+            id: 4,
             name: 'Taylor, Arlene G.',
             updated: '2020-02-19'
           },
           {
+            id: 5,
             name: 'Stueart, Robert D.',
             updated: '2020-02-19'
           }
@@ -218,21 +245,25 @@ export const store = new Vuex.Store({
         title: ['GMD CODE', 'GMD NAME', 'Last Update'],
         sample: [
           {
+            id: 1,
             code: 'AR',
             name: 'Art Original',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             code: 'CA',
             name: 'Cartongraphic Material',
             updated: '2020-02-19'
           },
           {
+            id: 3,
             code: 'CD',
             name: 'CD-ROM',
             updated: '2020-02-19'
           },
           {
+            id: 4,
             code: 'CH',
             name: 'Chart',
             updated: '2020-02-19'
@@ -249,22 +280,27 @@ export const store = new Vuex.Store({
         title: ['Publisher Name', 'Last Update'],
         sample: [
           {
+            id: 1,
             name: 'Apress',
             updated: '2020-02-19'
           },
           {
+            id: 2,
             name: 'Jhon Wiley',
             updated: '2020-02-19'
           },
           {
+            id: 3,
             name: 'OReilly',
             updated: '2020-02-19'
           },
           {
+            id: 4,
             name: 'SAMS',
             updated: '2020-02-19'
           },
           {
+            id: 5,
             name: 'Crown Publisher',
             updated: '2020-02-19'
           }

@@ -1,7 +1,7 @@
 <template>
   <section class="create-input" v-if="panel">
     <div class="header">
-      <h3>Add new {{ header }}</h3>
+      <h3>{{ header }}</h3>
       <div @click="setPanel">
         <Icon class="icon" icon="close" />
       </div>
@@ -74,16 +74,22 @@ export default {
     panel(newVal) {
       this.inputParams = [];
       this.dropdownOpen = false;
+      this.setClearupdateInputState();
       return newVal;
     },
     inputParams(newVal) {
       let modifiedVal = {};
+
       for (let key = 0; key < newVal.length; key++) {
-        modifiedVal = {
-          ...modifiedVal,
-          [this.$refs.inputElem[key].getAttribute('id')]: newVal[key]
-        };
+        if (this.$refs.inputElem !== undefined) {
+          // console.log('x');
+          modifiedVal = {
+            ...modifiedVal,
+            [this.$refs.inputElem[key].getAttribute('id')]: newVal[key]
+          };
+        }
       }
+      console.log(modifiedVal);
       this.$store.commit('setInputParams', modifiedVal);
     }
   },
@@ -91,16 +97,29 @@ export default {
     ...mapState(['panel']),
     ...mapGetters({
       dropdownWatch: 'dropdownChoice'
-    })
+    }),
+    inputParams: {
+      get() {
+        return this.updated;
+      },
+
+      set(val) {
+        this.updated = this.$store.getters.updateInputState
+          ? this.$store.getters.updateInputState
+          : val
+          ? val
+          : [];
+      }
+    }
   },
   data() {
     return {
       dropdownOpen: false,
-      inputParams: []
+      updated: []
     };
   },
   methods: {
-    ...mapMutations(['setPanel']),
+    ...mapMutations(['setPanel', 'setClearupdateInputState']),
     dropdownHandler(val, key) {
       this.$store.commit('setSelectedDropdown', {
         [key]: val

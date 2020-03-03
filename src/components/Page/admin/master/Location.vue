@@ -35,7 +35,7 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterLOCATION);
@@ -51,7 +51,6 @@ export default {
       search: {
         placeholder: 'Search Location'
       },
-      header: 'Location',
       createProp: [
         {
           label: 'Location Code',

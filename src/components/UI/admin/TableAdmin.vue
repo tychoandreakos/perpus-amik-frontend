@@ -11,7 +11,7 @@
         <th v-if="tableProps.enabled.action">Action</th>
       </thead>
       <tbody>
-        <tr v-for="(body, i) in tableProps.sample" :key="i">
+        <tr v-for="body in tableProps.sample" :key="body.id">
           <td v-if="tableProps.enabled.checkbox">
             <CheckBox :checkbox="checkboxControl" />
           </td>
@@ -40,12 +40,15 @@
             </td>
           </template>
           <td class="action" v-if="tableProps.enabled.action">
-            <router-link v-if="tableProps.enabled.edit" to="#">
+            <button
+              @click="editHandler(body, body.id)"
+              v-if="tableProps.enabled.edit"
+            >
               <Icon icon="pencil" />
-            </router-link>
-            <router-link v-if="tableProps.enabled.remove" to="#">
+            </button>
+            <button v-if="tableProps.enabled.remove">
               <Icon icon="trash" />
-            </router-link>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -55,6 +58,7 @@
 <script>
 import Icon from 'vue-themify-icons';
 import CheckBox from '../../UI/admin/Checkbox';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'tableAdmin',
@@ -62,9 +66,13 @@ export default {
     Icon,
     CheckBox
   },
+  computed: {
+    ...mapGetters(['getUpdate'])
+  },
   data() {
     return {
-      checkboxControl: false
+      checkboxControl: false,
+      headerEdit: 'Update '
     };
   },
   props: {
@@ -74,6 +82,17 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setPanel', 'setHeader', 'setUpdateInputState']),
+    splitUpdate() {
+      return this.getUpdate.split('/')[1];
+    },
+    editHandler(val) {
+      this.setUpdateInputState({
+        ...val
+      });
+      this.setHeader(this.headerEdit + this.splitUpdate());
+      this.setPanel();
+    },
     checkList(val) {
       return !val.hasOwnProperty('title');
     },
@@ -123,6 +142,11 @@ export default {
 #table tr td {
   padding: 1rem;
   background: #fff;
+  text-align: center;
+}
+
+#table tr td:nth-child(2) {
+  display: none;
 }
 
 #table tr td .book-info .title {
@@ -141,20 +165,23 @@ export default {
   content: ', ';
 }
 
-#table tr td a:last-child {
+#table tr td button:last-child {
   margin: 0 1rem;
 }
 
-#table tr td a:first-child:hover {
+#table tr td button:first-child:hover {
   color: #7367f0;
 }
 
-#table tr td a:last-child:hover {
+#table tr td button:last-child:hover {
   color: red;
 }
 
-#table tr td a {
+#table tr td button {
   text-decoration: none;
   color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 </style>

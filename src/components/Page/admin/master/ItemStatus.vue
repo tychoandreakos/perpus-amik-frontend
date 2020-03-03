@@ -21,7 +21,7 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setSelectedDropdown(this.selected);
     this.setDefaultParams();
@@ -59,7 +59,6 @@ export default {
         icon: 'plus'
       },
       selected: 'Missing',
-      header: 'Item Status',
       createProp: [
         {
           label: 'Item Status Code',

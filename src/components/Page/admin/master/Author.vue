@@ -31,15 +31,17 @@ export default {
       'setHeader',
       'setCreateInput',
       'setDefaultParams',
-      'setTableTypes'
+      'setTableTypes',
+      'setGetUpdate'
     ])
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterAUTHOR);
+    this.setGetUpdate(masterAUTHOR);
   },
   data() {
     return {
@@ -52,7 +54,6 @@ export default {
       search: {
         placeholder: 'Search Author'
       },
-      header: 'Author',
       createProp: [
         {
           label: 'Author Name',

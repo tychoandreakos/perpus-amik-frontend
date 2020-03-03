@@ -21,6 +21,9 @@ export const setCreateInput = (state, payload) => {
 export const setCountUpdate = state => {
   state.countUpdate += 1;
 };
+export const setGetUpdate = (state, payload) => {
+  state.getUpdate = payload;
+};
 export const setCountUpdateDefault = state => {
   state.countUpdate = 0;
 };
@@ -58,4 +61,17 @@ export const setDropdownVal = (state, payload) => {
 export const setTable = (state, payload) => {
   const { title, data } = payload;
   state.tableMaster[title].sample.push(data);
+};
+export const setUpdateInputState = (state, payload) => {
+  const temporaryInput = [];
+  for (let key in payload) {
+    if (key !== 'updated') {
+      temporaryInput.push(payload[key]);
+    }
+  }
+
+  state.updateInputState = [...temporaryInput];
+};
+export const setClearupdateInputState = state => {
+  state.updateInputState = [];
 };

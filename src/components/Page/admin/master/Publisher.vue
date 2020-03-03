@@ -35,7 +35,7 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterPUBLISHER);
@@ -48,7 +48,6 @@ export default {
         title: 'Add New Publisher',
         icon: 'plus'
       },
-      header: 'Publisher',
       createProp: [
         {
           label: 'Publisher Name',

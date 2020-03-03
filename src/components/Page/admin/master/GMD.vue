@@ -32,15 +32,17 @@ export default {
       'setHeader',
       'setCreateInput',
       'setDefaultParams',
-      'setTableTypes'
+      'setTableTypes',
+      'setGetUpdate'
     ])
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.header);
+    this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterGMD);
+    this.setGetUpdate(masterGMD);
   },
 
   data() {
@@ -51,7 +53,6 @@ export default {
         title: 'Add New GMD',
         icon: 'plus'
       },
-      header: 'GMD',
       createProp: [
         {
           label: 'GMD Code',

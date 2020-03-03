@@ -13,3 +13,11 @@ export const dropdownChoice = state => {
 export const selectedDropdown = state => {
   return state.selectedDropdown;
 };
+
+export const getUpdate = state => {
+  return state.getUpdate;
+};
+
+export const updateInputState = state => {
+  return state.updateInputState;
+};
