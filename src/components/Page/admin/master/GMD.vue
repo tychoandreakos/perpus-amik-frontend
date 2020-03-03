@@ -9,7 +9,9 @@
 import HeaderComponent from '../../../UI/admin/Header';
 import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
+
+import { masterGMD } from '../../../../store/types';
 
 export default {
   name: 'GMD',
@@ -20,15 +22,16 @@ export default {
   },
   computed: {
     ...mapState(['resultInput']),
-    table() {
-      return this.$store.state.tableMaster.gmd;
-    }
+    ...mapGetters({
+      table: 'table'
+    })
   },
   created() {
     this.$store.commit('setCountUpdateDefault');
     this.$store.commit('setHeader', this.header);
     this.$store.commit('setCreateInput', this.createProp);
     this.$store.commit('setDefaultParams');
+    this.$store.commit('setTableTypes', masterGMD);
   },
 
   data() {

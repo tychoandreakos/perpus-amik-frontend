@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import * as types from './types';
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -12,6 +14,7 @@ export const store = new Vuex.Store({
       title: 'Circulation',
       breadcrumbs: ['Circulation']
     },
+    tableTypes: '',
     tableMaster: {
       subject: {
         enabled: {
@@ -153,7 +156,7 @@ export const store = new Vuex.Store({
           }
         ]
       },
-      gmd: {
+      [types.masterGMD]: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -363,9 +366,18 @@ export const store = new Vuex.Store({
     ]
   },
 
+  getters: {
+    table(state) {
+      return state.tableMaster[state.tableTypes];
+    }
+  },
+
   mutations: {
     setSidebar(state) {
       state.sidebarState = !state.sidebarState;
+    },
+    setTableTypes(state, payload) {
+      state.tableTypes = payload;
     },
     setSearch(state) {
       state.showSearch = !state.showSearch;
@@ -413,22 +425,4 @@ export const store = new Vuex.Store({
       state.tableMaster[title].sample.push(data);
     }
   }
-
-  // mutations: {
-  //   setProducts(state, products) {
-  //     state.products = products;
-  //   }
-  // },
-
-  // actions: {
-  //   setProduct({ commit }, products) {
-  //     commit("setProducts", products);
-  //   }
-  // },
-
-  // getters: {
-  //   getProducts(state) {
-  //     return [...state.products];
-  //   }
-  // }
 });
