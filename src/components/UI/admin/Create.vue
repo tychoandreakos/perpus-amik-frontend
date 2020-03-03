@@ -27,17 +27,25 @@ export default {
       'setPanel',
       'setTable',
       'setDefaultParams',
-      'setCountUpdate'
+      'setCountUpdate',
+      'setDropdownVal'
     ]),
     checkDropdown() {
       let dropdownData;
+
       for (let key in this.selectedDropdown) {
         if (this.selectedDropdown.hasOwnProperty(key)) {
           dropdownData = {
-            ...this.inputParams[0],
+            ...this.inputParams[this.inputParams.length - 1],
             ...this.selectedDropdown
           };
         }
+      }
+
+      if (!dropdownData) {
+        dropdownData = {
+          ...this.inputParams[this.inputParams.length - 1]
+        };
       }
 
       return dropdownData;
@@ -69,7 +77,8 @@ export default {
       'createInput',
       'header',
       'inputParams',
-      'countUpdate'
+      'countUpdate',
+      'dropdownChoice'
     ]),
     ...mapGetters({
       getTitle: 'tableTypes',

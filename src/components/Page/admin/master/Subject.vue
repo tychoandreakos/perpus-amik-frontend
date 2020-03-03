@@ -33,6 +33,9 @@ export default {
     this.$store.commit('setDropdownChoice', {
       type: this.selected
     });
+    this.$store.commit('setSelectedDropdown', {
+      type: this.selected
+    });
   },
   data() {
     return {

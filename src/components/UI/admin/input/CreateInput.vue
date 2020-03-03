@@ -76,28 +76,26 @@ export default {
       this.dropdownOpen = false;
       return newVal;
     },
-    inputParams(oldVal) {
+    inputParams(newVal) {
       let modifiedVal = {};
-      const newVal = [...oldVal];
+      // const newVal = [...oldVal];
+      // if (this.$refs.inputElem != undefined) {
+      //   for (let i = 0; i < newVal.length; i++) {
+      //     modifiedVal = {
+      //       ...modifiedVal,
+      //       [this.$refs.inputElem[i].getAttribute('id')]: newVal[i]
+      //     };
+      //   }
+      //   this.$store.commit('setInputParams', modifiedVal);
+      // }
 
-      for (let key in this.$store.state.selectedDropdown) {
-        if (this.dropdownWatch.hasOwnProperty(key)) {
-          newVal.push(this.dropdownWatch.type);
-        }
+      for (let key = 0; key < newVal.length; key++) {
+        modifiedVal = {
+          ...modifiedVal,
+          [this.$refs.inputElem[key].getAttribute('id')]: newVal[key]
+        };
       }
-
-      if (
-        this.$refs.inputElem != undefined &&
-        newVal.length > this.createInput.length - 1
-      ) {
-        for (let i = 0; i < newVal.length; i++) {
-          modifiedVal = {
-            ...modifiedVal,
-            [this.$refs.inputElem[i].getAttribute('id')]: newVal[i]
-          };
-        }
-        this.$store.commit('setInputParams', modifiedVal);
-      }
+      this.$store.commit('setInputParams', modifiedVal);
     }
   },
   computed: {
