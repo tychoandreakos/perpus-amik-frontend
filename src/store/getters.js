@@ -5,3 +5,11 @@ export const table = state => {
 export const tableTypes = state => {
   return state.tableTypes;
 };
+
+export const dropdownChoice = state => {
+  return state.dropdownChoice;
+};
+
+export const selectedDropdown = state => {
+  return state.selectedDropdown;
+};

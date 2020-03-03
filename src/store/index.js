@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
       breadcrumbs: ['Circulation']
     },
     tableTypes: '',
+    dropdownChoice: {},
     tableMaster: {
       [types.masterSUBJECT]: {
         enabled: {

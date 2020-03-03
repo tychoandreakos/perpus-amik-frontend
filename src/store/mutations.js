@@ -45,6 +45,16 @@ export const setDefaultParams = state => {
   state.inputParams = [];
   state.selectedDropdown = {};
 };
+export const setDropdownChoice = (state, payload) => {
+  state.dropdownChoice = {
+    ...payload
+  };
+};
+export const setDropdownVal = (state, payload) => {
+  state.selectedDropdown = {
+    ...payload
+  };
+};
 export const setTable = (state, payload) => {
   const { title, data } = payload;
   state.tableMaster[title].sample.push(data);
