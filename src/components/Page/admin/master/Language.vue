@@ -9,6 +9,8 @@
 import HeaderComponent from '../../../UI/admin/Header';
 import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
+import { mapGetters } from 'vuex';
+import { masterLANGUAGE } from '../../../../store/types';
 
 export default {
   name: 'language',
@@ -22,11 +24,12 @@ export default {
     this.$store.commit('setHeader', this.header);
     this.$store.commit('setCreateInput', this.createProp);
     this.$store.commit('setDefaultParams');
+    this.$store.commit('setTableTypes', masterLANGUAGE);
   },
   computed: {
-    table() {
-      return this.$store.state.tableMaster.language;
-    }
+    ...mapGetters({
+      table: 'table'
+    })
   },
   data() {
     return {

@@ -12,16 +12,9 @@
   </section>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import CreateInput from './input/CreateInput';
 import SmallButton from './button/MiniButton';
-
-const getTitle = () => {
-  return document.title
-    .split('-')[0]
-    .trim()
-    .toLowerCase();
-};
 
 export default {
   name: 'create',
@@ -46,7 +39,7 @@ export default {
 
       if (confirmSubmit) {
         this.$store.commit('setTable', {
-          title: getTitle(),
+          title: this.getTitle,
           data: {
             ...this.$store.state.inputParams[0],
             updated: '2020-02-19'
@@ -59,7 +52,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['panel', 'createInput', 'header', 'inputParams'])
+    ...mapState(['panel', 'createInput', 'header', 'inputParams']),
+    ...mapGetters({
+      getTitle: 'tableTypes'
+    })
   },
   data() {
     return {
