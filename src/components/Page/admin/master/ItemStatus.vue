@@ -9,6 +9,8 @@
 import HeaderComponent from '../../../UI/admin/Header';
 import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
+import { mapMutations, mapGetters } from 'vuex';
+import { masterITEM } from '../../../../store/types';
 
 export default {
   name: 'itemStatus',
@@ -18,11 +20,35 @@ export default {
     TableComponent
   },
   created() {
-    this.$store.commit('setCountUpdateDefault');
-    this.$store.commit('setHeader', this.header);
-    this.$store.commit('setCreateInput', this.createProp);
-    this.$store.commit('setSelectedDropdown', this.selected);
-    this.$store.commit('setDefaultParams');
+    this.setCountUpdateDefault();
+    this.setHeader(this.header);
+    this.setCreateInput(this.createProp);
+    this.setSelectedDropdown(this.selected);
+    this.setDefaultParams();
+    this.setTableTypes(masterITEM);
+    this.setDropdownChoice({
+      name: this.selected
+    });
+    this.setSelectedDropdown({
+      name: this.selected
+    });
+  },
+  computed: {
+    ...mapGetters({
+      table: 'table'
+    })
+  },
+  methods: {
+    ...mapMutations([
+      'setCountUpdateDefault',
+      'setHeader',
+      'setCreateInput',
+      'setSelectedDropdown',
+      'setDefaultParams',
+      'setTableTypes',
+      'setDropdownChoice',
+      'setSelectedDropdown'
+    ])
   },
   data() {
     return {
@@ -50,32 +76,6 @@ export default {
       ],
       search: {
         placeholder: 'Search Item Status'
-      },
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Item Status Code', 'Item Status Name', 'Last Update'],
-        sample: [
-          {
-            code: 'MIS',
-            name: 'Missing',
-            updated: '2020-02-19'
-          },
-          {
-            code: 'NL',
-            name: 'No Loan',
-            updated: '2020-02-19'
-          },
-          {
-            code: 'R',
-            name: 'Repair',
-            updated: '2020-02-19'
-          }
-        ]
       }
     };
   }

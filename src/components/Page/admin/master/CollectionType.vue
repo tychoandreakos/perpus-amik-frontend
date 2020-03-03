@@ -9,6 +9,8 @@
 import HeaderComponent from '../../../UI/admin/Header';
 import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
+import { mapMutations, mapGetters } from 'vuex';
+import { masterCOLLECTION } from '../../../../store/types';
 
 export default {
   name: 'place',
@@ -17,11 +19,26 @@ export default {
     PanelActionComponent,
     TableComponent
   },
+  computed: {
+    ...mapGetters({
+      table: 'table'
+    })
+  },
   created() {
-    this.$store.commit('setCountUpdateDefault');
-    this.$store.commit('setHeader', this.header);
-    this.$store.commit('setCreateInput', this.createProp);
-    this.$store.commit('setDefaultParams');
+    this.setCountUpdateDefault();
+    this.setHeader(this.header);
+    this.setCreateInput(this.createProp);
+    this.setDefaultParams();
+    this.setTableTypes(masterCOLLECTION);
+  },
+  methods: {
+    ...mapMutations([
+      'setCountUpdateDefault',
+      'setHeader',
+      'setCreateInput',
+      'setDefaultParams',
+      'setTableTypes'
+    ])
   },
   data() {
     return {
@@ -48,30 +65,7 @@ export default {
           placeholder: 'Please type a Collection Type',
           type: 'text'
         }
-      ],
-      table: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Collection Type', 'Last Update'],
-        sample: [
-          {
-            name: 'Fiction',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Reference',
-            updated: '2020-02-19'
-          },
-          {
-            name: 'Textbook',
-            updated: '2020-02-19'
-          }
-        ]
-      }
+      ]
     };
   }
 };

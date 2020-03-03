@@ -20,7 +20,7 @@
               <input
                 type="text"
                 readonly
-                :value="dropdownWatch.type"
+                :value="dropdownWatch[inputElem.id]"
                 ref="inputElem"
                 :id="inputElem.id"
               />
@@ -78,17 +78,6 @@ export default {
     },
     inputParams(newVal) {
       let modifiedVal = {};
-      // const newVal = [...oldVal];
-      // if (this.$refs.inputElem != undefined) {
-      //   for (let i = 0; i < newVal.length; i++) {
-      //     modifiedVal = {
-      //       ...modifiedVal,
-      //       [this.$refs.inputElem[i].getAttribute('id')]: newVal[i]
-      //     };
-      //   }
-      //   this.$store.commit('setInputParams', modifiedVal);
-      // }
-
       for (let key = 0; key < newVal.length; key++) {
         modifiedVal = {
           ...modifiedVal,

@@ -7,4 +7,5 @@ export const masterPLACE = 'master/PLACE';
 export const masterLOCATION = 'master/LOCATION';
 export const masterAUTHOR = 'master/AUTHOR';
 export const masterPUBLISHER = 'master/PUBLISHER';
-
+export const masterITEM = 'master/ITEM';
+export const masterCOLLECTION = 'master/COLLECTION';

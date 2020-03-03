@@ -19,6 +19,55 @@ export const store = new Vuex.Store({
     tableTypes: '',
     dropdownChoice: {},
     tableMaster: {
+      [types.masterCOLLECTION]: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Collection Type', 'Last Update'],
+        sample: [
+          {
+            name: 'Fiction',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Reference',
+            updated: '2020-02-19'
+          },
+          {
+            name: 'Textbook',
+            updated: '2020-02-19'
+          }
+        ]
+      },
+      [types.masterITEM]: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true
+        },
+        title: ['Item Status Code', 'Item Status Name', 'Last Update'],
+        sample: [
+          {
+            code: 'MIS',
+            name: 'Missing',
+            updated: '2020-02-19'
+          },
+          {
+            code: 'NL',
+            name: 'No Loan',
+            updated: '2020-02-19'
+          },
+          {
+            code: 'R',
+            name: 'Repair',
+            updated: '2020-02-19'
+          }
+        ]
+      },
       [types.masterSUBJECT]: {
         enabled: {
           checkbox: true,
