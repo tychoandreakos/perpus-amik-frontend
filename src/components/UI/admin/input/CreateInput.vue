@@ -61,7 +61,7 @@
 </template>
 <script>
 import Icon from 'vue-themify-icons';
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapGetters } from 'vuex';
 import DropdownComponent from '../dropdown/Default';
 
 export default {
@@ -74,9 +74,6 @@ export default {
     panel(newVal) {
       this.inputParams = [];
       this.dropdownOpen = false;
-      return newVal;
-    },
-    dropdownWatch(newVal) {
       return newVal;
     },
     inputParams(oldVal) {
@@ -105,9 +102,9 @@ export default {
   },
   computed: {
     ...mapState(['panel']),
-    dropdownWatch() {
-      return this.$store.state.selectedDropdown;
-    }
+    ...mapGetters({
+      dropdownWatch: 'dropdownChoice'
+    })
   },
   data() {
     return {
@@ -119,6 +116,9 @@ export default {
     ...mapMutations(['setPanel']),
     dropdownHandler(val, key) {
       this.$store.commit('setSelectedDropdown', {
+        [key]: val
+      });
+      this.$store.commit('setDropdownChoice', {
         [key]: val
       });
       this.dropdownOpen = false;

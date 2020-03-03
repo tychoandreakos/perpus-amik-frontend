@@ -30,7 +30,7 @@ export default {
     this.$store.commit('setCreateInput', this.createProp);
     this.$store.commit('setDefaultParams');
     this.$store.commit('setTableTypes', masterSUBJECT);
-    this.$store.commit('setSelectedDropdown', {
+    this.$store.commit('setDropdownChoice', {
       type: this.selected
     });
   },

@@ -23,38 +23,58 @@ export default {
     SmallButton
   },
   methods: {
-    ...mapMutations(['setPanel']),
-    submitHandler() {
-      for (let key in this.$store.state.selectedDropdown) {
-        if (this.$store.state.selectedDropdown.hasOwnProperty(key)) {
-          this.$store.state.inputParams[0] = {
-            ...this.$store.state.inputParams[0],
-            ...this.$store.state.selectedDropdown
+    ...mapMutations([
+      'setPanel',
+      'setTable',
+      'setDefaultParams',
+      'setCountUpdate'
+    ]),
+    checkDropdown() {
+      let dropdownData;
+      for (let key in this.selectedDropdown) {
+        if (this.selectedDropdown.hasOwnProperty(key)) {
+          dropdownData = {
+            ...this.inputParams[0],
+            ...this.selectedDropdown
           };
         }
       }
 
-      let confirmSubmit = confirm('Apakah anda ingin menyimpannya?');
+      return dropdownData;
+    },
+    submitWithAlert(dataSubmit, message) {
+      let confirmSubmit = confirm(message);
       alert(confirmSubmit);
 
       if (confirmSubmit) {
-        this.$store.commit('setTable', {
+        this.setTable({
           title: this.getTitle,
           data: {
-            ...this.$store.state.inputParams[0],
+            ...dataSubmit,
             updated: '2020-02-19'
           }
         });
       }
-
-      this.$store.commit('setPanel');
-      this.$store.commit('setDefaultParams');
+    },
+    submitHandler() {
+      const dropdownVal = this.checkDropdown();
+      this.submitWithAlert(dropdownVal, 'Apakah anda ingin menyimpannya?');
+      this.setPanel();
+      this.setDefaultParams();
     }
   },
   computed: {
-    ...mapState(['panel', 'createInput', 'header', 'inputParams']),
+    ...mapState([
+      'panel',
+      'createInput',
+      'header',
+      'inputParams',
+      'countUpdate'
+    ]),
     ...mapGetters({
-      getTitle: 'tableTypes'
+      getTitle: 'tableTypes',
+      dropdownChoice: 'dropdownChoice',
+      selectedDropdown: 'selectedDropdown'
     })
   },
   data() {
@@ -69,9 +89,7 @@ export default {
     };
   },
   updated() {
-    this.$store.state.countUpdate === 2
-      ? 0
-      : this.$store.commit('setCountUpdate');
+    this.countUpdate === 2 ? 0 : this.setCountUpdate();
 
     const panelControl = () => {
       const elem = this.$refs.cr;
@@ -95,8 +113,8 @@ export default {
         if (!checkElemClass()) closePanelTimeout();
       };
 
-      if (this.$store.state.inputParams.length > 0) {
-        if (this.$store.state.panel == false) {
+      if (this.inputParams.length > 0) {
+        if (this.panel == false) {
           closePanelTimeout();
         } else {
           checkElemClass();
@@ -106,7 +124,7 @@ export default {
       }
     };
 
-    if (this.$store.state.countUpdate === 2) {
+    if (this.countUpdate === 2) {
       panelControl();
     }
   }
