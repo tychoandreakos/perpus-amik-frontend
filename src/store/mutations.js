@@ -65,13 +65,34 @@ export const setTable = (state, payload) => {
 export const setUpdateInputState = (state, payload) => {
   const temporaryInput = [];
   for (let key in payload) {
-    if (key !== 'updated') {
+    if (key !== 'updated' && key !== 'id') {
       temporaryInput.push(payload[key]);
     }
   }
 
+  state.idInputState = payload.id;
   state.updateInputState = [...temporaryInput];
 };
 export const setClearupdateInputState = state => {
   state.updateInputState = [];
+};
+
+export const setEditProps = state => {
+  state.editProps = true;
+};
+
+export const setClearEditProps = state => {
+  state.editProps = false;
+};
+
+export const updateMaster = (state, payload) => {
+  state.tableMaster[payload.key].sample.find(item => {
+    if (item.id == payload.id) {
+      for (let key in payload.data) {
+        item[key] = payload.data[key];
+      }
+    }
+  });
+
+  console.log(payload.data);
 };

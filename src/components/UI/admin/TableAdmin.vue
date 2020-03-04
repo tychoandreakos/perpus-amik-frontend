@@ -82,7 +82,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setPanel', 'setHeader', 'setUpdateInputState']),
+    ...mapMutations([
+      'setPanel',
+      'setHeader',
+      'setUpdateInputState',
+      'setEditProps'
+    ]),
     splitUpdate() {
       return this.getUpdate.split('/')[1];
     },
@@ -91,6 +96,7 @@ export default {
         ...val
       });
       this.setHeader(this.headerEdit + this.splitUpdate());
+      this.setEditProps();
       this.setPanel();
     },
     checkList(val) {

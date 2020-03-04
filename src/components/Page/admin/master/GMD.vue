@@ -26,6 +26,11 @@ export default {
       table: 'table'
     })
   },
+  watch: {
+    table(newVal) {
+      return newVal;
+    }
+  },
   methods: {
     ...mapMutations([
       'setCountUpdateDefault',
@@ -33,7 +38,8 @@ export default {
       'setCreateInput',
       'setDefaultParams',
       'setTableTypes',
-      'setGetUpdate'
+      'setGetUpdate',
+      'setClearEditProps'
     ])
   },
   created() {
@@ -43,6 +49,7 @@ export default {
     this.setDefaultParams();
     this.setTableTypes(masterGMD);
     this.setGetUpdate(masterGMD);
+    this.setClearEditProps();
   },
 
   data() {

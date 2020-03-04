@@ -1,84 +1,23 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import * as types from './types';
-import * as mutations from './mutations';
-import * as getters from './getters';
+import counter from './modules/counter';
+
+import * as actions from './action';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    getUpdate: '',
     panel: false,
     sidebarState: false,
     showSearch: false,
-    editProps: false,
-    idInputState: '',
     circulation: {
       title: 'Circulation',
       breadcrumbs: ['Circulation']
     },
-    updateInputState: [],
-    tableTypes: '',
-    dropdownChoice: {},
     tableMaster: {
-      [types.masterCOLLECTION]: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Collection Type', 'Last Update'],
-        sample: [
-          {
-            id: 1,
-            name: 'Fiction',
-            updated: '2020-02-19'
-          },
-          {
-            id: 2,
-            name: 'Reference',
-            updated: '2020-02-19'
-          },
-          {
-            id: 3,
-            name: 'Textbook',
-            updated: '2020-02-19'
-          }
-        ]
-      },
-      [types.masterITEM]: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true
-        },
-        title: ['Item Status Code', 'Item Status Name', 'Last Update'],
-        sample: [
-          {
-            id: 1,
-            code: 'MIS',
-            name: 'Missing',
-            updated: '2020-02-19'
-          },
-          {
-            id: 2,
-            code: 'NL',
-            name: 'No Loan',
-            updated: '2020-02-19'
-          },
-          {
-            id: 3,
-            code: 'R',
-            name: 'Repair',
-            updated: '2020-02-19'
-          }
-        ]
-      },
-      [types.masterSUBJECT]: {
+      subject: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -88,44 +27,38 @@ export const store = new Vuex.Store({
         title: ['Subject Name', 'Subject Type', 'Last Update'],
         sample: [
           {
-            id: 1,
-            subject: 'Computer',
+            name: 'Computer',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
-            id: 2,
-            subject: 'Database',
+            name: 'Database',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
-            id: 3,
-            subject: 'Corruption',
+            name: 'Corruption',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
-            id: 4,
-            subject: 'Design',
+            name: 'Design',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
-            id: 5,
-            subject: 'Development',
+            name: 'Development',
             type: 'Topic',
             updated: '2020-02-19'
           },
           {
-            id: 6,
-            subject: 'Information',
+            name: 'Information',
             type: 'Topic',
             updated: '2020-02-19'
           }
         ]
       },
-      [types.masterLANGUAGE]: {
+      language: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -135,18 +68,16 @@ export const store = new Vuex.Store({
         title: ['Language', 'Last Update'],
         sample: [
           {
-            id: 1,
             name: 'English',
             updated: '2020-02-19'
           },
           {
-            id: 2,
             name: 'Indonesia',
             updated: '2020-02-19'
           }
         ]
       },
-      [types.masterPLACE]: {
+      place: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -156,23 +87,20 @@ export const store = new Vuex.Store({
         title: ['Place Name', 'Last Update'],
         sample: [
           {
-            id: 1,
             name: 'Indianapolis',
             updated: '2020-02-19'
           },
           {
-            id: 2,
             name: 'London',
             updated: '2020-02-19'
           },
           {
-            id: 3,
             name: 'New York',
             updated: '2020-02-19'
           }
         ]
       },
-      [types.masterLOCATION]: {
+      location: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -182,26 +110,23 @@ export const store = new Vuex.Store({
         title: ['Location Code', 'Location Name', 'Last Update'],
         sample: [
           {
-            id: 1,
             code: 'SL',
             name: 'Manisku Library',
             updated: '2020-02-19'
           },
           {
-            id: 2,
             code: 'XL',
             name: 'Manisku Library',
             updated: '2020-02-19'
           },
           {
-            id: 3,
             code: 'AB',
             name: 'Manisku Library',
             updated: '2020-02-19'
           }
         ]
       },
-      [types.masterAUTHOR]: {
+      author: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -211,33 +136,28 @@ export const store = new Vuex.Store({
         title: ['Author Name', 'Last Update'],
         sample: [
           {
-            id: 1,
             name: 'Valade, Janet',
             updated: '2020-02-19'
           },
           {
-            id: 2,
             name: 'Rosen, Richart',
             updated: '2020-02-19'
           },
           {
-            id: 3,
             name: 'Woychowsky, Edmond',
             updated: '2020-02-19'
           },
           {
-            id: 4,
             name: 'Taylor, Arlene G.',
             updated: '2020-02-19'
           },
           {
-            id: 5,
             name: 'Stueart, Robert D.',
             updated: '2020-02-19'
           }
         ]
       },
-      [types.masterGMD]: {
+      gmd: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -247,32 +167,28 @@ export const store = new Vuex.Store({
         title: ['GMD CODE', 'GMD NAME', 'Last Update'],
         sample: [
           {
-            id: 1,
             code: 'AR',
             name: 'Art Original',
             updated: '2020-02-19'
           },
           {
-            id: 2,
             code: 'CA',
             name: 'Cartongraphic Material',
             updated: '2020-02-19'
           },
           {
-            id: 3,
             code: 'CD',
             name: 'CD-ROM',
             updated: '2020-02-19'
           },
           {
-            id: 4,
             code: 'CH',
             name: 'Chart',
             updated: '2020-02-19'
           }
         ]
       },
-      [types.masterPUBLISHER]: {
+      publisher: {
         enabled: {
           checkbox: true,
           edit: true,
@@ -282,27 +198,22 @@ export const store = new Vuex.Store({
         title: ['Publisher Name', 'Last Update'],
         sample: [
           {
-            id: 1,
             name: 'Apress',
             updated: '2020-02-19'
           },
           {
-            id: 2,
             name: 'Jhon Wiley',
             updated: '2020-02-19'
           },
           {
-            id: 3,
             name: 'OReilly',
             updated: '2020-02-19'
           },
           {
-            id: 4,
             name: 'SAMS',
             updated: '2020-02-19'
           },
           {
-            id: 5,
             name: 'Crown Publisher',
             updated: '2020-02-19'
           }
@@ -456,6 +367,101 @@ export const store = new Vuex.Store({
     ]
   },
 
-  getters,
-  mutations
+  mutations: {
+    setSidebar(state) {
+      state.sidebarState = !state.sidebarState;
+    },
+    setSearch(state) {
+      state.showSearch = !state.showSearch;
+    },
+    setCirculation(state, payload) {
+      state.circulation = {
+        ...payload
+      };
+    },
+    setPanel(state) {
+      state.panel = !state.panel;
+    },
+    setCreateInput(state, payload) {
+      state.createInput = [...payload];
+    },
+    setCountUpdate(state) {
+      state.countUpdate += 1;
+    },
+    setCountUpdateDefault(state) {
+      state.countUpdate = 0;
+    },
+    setHeader(state, payload) {
+      state.header = payload;
+    },
+    setResetDropdown(state, payload) {
+      state.selectedDropdown = {
+        ...payload
+      };
+    },
+    setSelectedDropdown(state, payload) {
+      state.selectedDropdown = {
+        ...state.selectedDropdown,
+        ...payload
+      };
+    },
+    setInputParams(state, payload) {
+      state.inputParams.push(payload);
+    },
+    setDefaultParams(state) {
+      state.inputParams = [];
+      state.selectedDropdown = {};
+    },
+    setTable(state, payload) {
+      const { title, data } = payload;
+      state.tableMaster[title].sample.push(data);
+    }
+  },
+
+  // mutations: {
+  //   setProducts(state, products) {
+  //     state.products = products;
+  //   }
+  // },
+
+  actions: {
+    setProduct({ commit }, products) {
+      commit('setProducts', products);
+    },
+    increment({ commit }, payload) {
+      commit('increment', payload);
+    },
+    ayncIncrement({ commit }) {
+      setTimeout(() => {
+        commit('increment');
+      }, 1000);
+    }
+  },
+
+  modules: {
+    counter
+  }
+
+  // getters: {
+  //   getProducts(state) {
+  //     return [...state.products];
+  //   }
+  // }
 });
+
+function inrement() {
+  this.$store.dispatch('increment');
+}
+
+const x = {
+  computed: {
+    value: {
+      get() {
+        return this.$store.getters.value;
+      },
+      set(val) {
+        this.$store.dispatch('updateValue', value);
+      }
+    }
+  }
+};

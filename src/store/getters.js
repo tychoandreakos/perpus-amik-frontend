@@ -21,3 +21,7 @@ export const getUpdate = state => {
 export const updateInputState = state => {
   return state.updateInputState;
 };
+
+export const editPropsUpdate = state => {
+  return state.editProps;
+};

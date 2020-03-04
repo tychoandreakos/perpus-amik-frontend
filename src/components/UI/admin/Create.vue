@@ -28,11 +28,12 @@ export default {
       'setTable',
       'setDefaultParams',
       'setCountUpdate',
-      'setDropdownVal'
+      'setDropdownVal',
+      'setClearEditProps',
+      'updateMaster'
     ]),
     checkDropdown() {
       let dropdownData;
-
       for (let key in this.selectedDropdown) {
         if (this.selectedDropdown.hasOwnProperty(key)) {
           dropdownData = {
@@ -50,24 +51,43 @@ export default {
 
       return dropdownData;
     },
-    submitWithAlert(dataSubmit, message) {
+    alertMessage(message) {
       let confirmSubmit = confirm(message);
       alert(confirmSubmit);
+
+      return confirmSubmit;
+    },
+    submitWithAlert(dataSubmit, message) {
+      const confirmSubmit = this.alertMessage(message);
 
       if (confirmSubmit) {
         this.setTable({
           title: this.getTitle,
           data: {
+            id: Math.floor(Math.random() * 1),
             ...dataSubmit,
             updated: '2020-02-19'
           }
         });
       }
     },
+    updateHandler(updateVal, message) {
+      const confirmSubmit = this.alertMessage(message);
+      this.updateMaster({
+        key: this.table,
+        id: this.$store.state.idInputState,
+        data: updateVal
+      });
+    },
     submitHandler() {
       const dropdownVal = this.checkDropdown();
-      this.submitWithAlert(dropdownVal, 'Apakah anda ingin menyimpannya?');
+      if (this.editPropsUpdate) {
+        this.updateHandler(dropdownVal, 'Apakah anda ingin mengubahnya?');
+      } else {
+        this.submitWithAlert(dropdownVal, 'Apakah anda ingin menyimpannya?');
+      }
       this.setPanel();
+      this.setClearEditProps();
       this.setDefaultParams();
     }
   },
@@ -83,7 +103,9 @@ export default {
     ...mapGetters({
       getTitle: 'tableTypes',
       dropdownChoice: 'dropdownChoice',
-      selectedDropdown: 'selectedDropdown'
+      selectedDropdown: 'selectedDropdown',
+      editPropsUpdate: 'editPropsUpdate',
+      table: 'tableTypes'
     })
   },
   data() {
@@ -107,6 +129,7 @@ export default {
       const closePanelTimeout = () => {
         return setTimeout(() => {
           elem.className = 'none';
+          this.setClearEditProps();
         }, 200);
       };
 

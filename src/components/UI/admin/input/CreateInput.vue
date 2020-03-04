@@ -49,7 +49,6 @@
       <input
         class="input-text"
         v-else
-        value=""
         type="text"
         :placeholder="inputElem.placeholder"
         :id="inputElem.id"
@@ -81,15 +80,16 @@ export default {
       let modifiedVal = {};
 
       for (let key = 0; key < newVal.length; key++) {
-        if (this.$refs.inputElem !== undefined) {
-          // console.log('x');
+        if (
+          this.$refs.inputElem !== undefined &&
+          this.$refs.inputElem[key] !== undefined
+        ) {
           modifiedVal = {
             ...modifiedVal,
             [this.$refs.inputElem[key].getAttribute('id')]: newVal[key]
           };
         }
       }
-      console.log(modifiedVal);
       this.$store.commit('setInputParams', modifiedVal);
     }
   },
