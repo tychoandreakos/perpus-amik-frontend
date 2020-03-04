@@ -46,7 +46,10 @@
             >
               <Icon icon="pencil" />
             </button>
-            <button v-if="tableProps.enabled.remove">
+            <button
+              @click="deleteHandler(body.id, $event)"
+              v-if="tableProps.enabled.remove"
+            >
               <Icon icon="trash" />
             </button>
           </td>
@@ -67,7 +70,7 @@ export default {
     CheckBox
   },
   computed: {
-    ...mapGetters(['getUpdate'])
+    ...mapGetters(['getUpdate', 'tableTypes'])
   },
   data() {
     return {
@@ -86,10 +89,28 @@ export default {
       'setPanel',
       'setHeader',
       'setUpdateInputState',
-      'setEditProps'
+      'setEditProps',
+      'deleteMaster'
     ]),
     splitUpdate() {
       return this.getUpdate.split('/')[1];
+    },
+    deleteHandler(id, e) {
+      const parent = e.originalTarget.offsetParent.parentElement;
+      const confirmSubmit = confirm('Are you sure want to delete it?');
+      alert(confirmSubmit);
+      if (confirmSubmit) {
+        parent.classList.add('remove');
+        setTimeout(() => {
+          parent.classList.add('none');
+        }, 450);
+      }
+      setTimeout(() => {
+        this.deleteMaster({
+          key: this.tableTypes,
+          id
+        });
+      }, 500);
     },
     editHandler(val) {
       this.setUpdateInputState({
@@ -136,13 +157,22 @@ export default {
 #table tr {
   line-height: 30px;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease-in;
+  transition: all 0.2s ease-in;
   font-size: 0.9rem;
 }
 
 #table tr:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
+}
+
+#table .none {
+  display: none;
+}
+
+#table .remove {
+  opacity: 0;
+  transform: translateX(-70rem);
 }
 
 #table tr td {

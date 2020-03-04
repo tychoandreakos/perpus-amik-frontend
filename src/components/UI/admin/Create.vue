@@ -15,6 +15,7 @@
 import { mapState, mapMutations, mapGetters } from 'vuex';
 import CreateInput from './input/CreateInput';
 import SmallButton from './button/MiniButton';
+import moment from 'moment';
 
 export default {
   name: 'create',
@@ -66,7 +67,7 @@ export default {
           data: {
             id: Math.floor(Math.random() * 1),
             ...dataSubmit,
-            updated: '2020-02-19'
+            updated: moment().calendar()
           }
         });
       }
@@ -76,7 +77,10 @@ export default {
       this.updateMaster({
         key: this.table,
         id: this.$store.state.idInputState,
-        data: updateVal
+        data: {
+          ...updateVal,
+          updated: moment().calendar()
+        }
       });
     },
     submitHandler() {

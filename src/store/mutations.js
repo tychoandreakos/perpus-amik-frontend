@@ -60,12 +60,12 @@ export const setDropdownVal = (state, payload) => {
 };
 export const setTable = (state, payload) => {
   const { title, data } = payload;
-  state.tableMaster[title].sample.push(data);
+  state.tableMaster[title].sample.unshift(data);
 };
 export const setUpdateInputState = (state, payload) => {
   const temporaryInput = [];
   for (let key in payload) {
-    if (key !== 'updated' && key !== 'id') {
+    if (key !== 'id') {
       temporaryInput.push(payload[key]);
     }
   }
@@ -93,6 +93,15 @@ export const updateMaster = (state, payload) => {
       }
     }
   });
+};
 
-  console.log(payload.data);
+export const deleteMaster = (state, payload) => {
+  let newItem = [];
+  state.tableMaster[payload.key].sample.find(item => {
+    if (item.id != payload.id) {
+      newItem.push(item);
+    }
+  });
+
+  state.tableMaster[payload.key].sample = [...newItem];
 };
