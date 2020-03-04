@@ -32,6 +32,7 @@ export default {
     this.setSelectedDropdown({
       name: this.selected
     });
+    this.setGetUpdate(masterITEM);
   },
   computed: {
     ...mapGetters({
@@ -47,7 +48,8 @@ export default {
       'setDefaultParams',
       'setTableTypes',
       'setDropdownChoice',
-      'setSelectedDropdown'
+      'setSelectedDropdown',
+      'setGetUpdate'
     ])
   },
   data() {

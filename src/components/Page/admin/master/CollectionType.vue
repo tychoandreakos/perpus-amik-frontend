@@ -30,6 +30,7 @@ export default {
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterCOLLECTION);
+    this.setGetUpdate(masterCOLLECTION);
   },
   methods: {
     ...mapMutations([
@@ -37,7 +38,8 @@ export default {
       'setHeader',
       'setCreateInput',
       'setDefaultParams',
-      'setTableTypes'
+      'setTableTypes',
+      'setGetUpdate'
     ])
   },
   data() {

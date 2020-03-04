@@ -30,7 +30,8 @@ export default {
       'setHeader',
       'setCreateInput',
       'setDefaultParams',
-      'setTableTypes'
+      'setTableTypes',
+      'setGetUpdate'
     ])
   },
   created() {
@@ -39,6 +40,7 @@ export default {
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterPUBLISHER);
+    this.setGetUpdate(masterPUBLISHER);
   },
   data() {
     return {

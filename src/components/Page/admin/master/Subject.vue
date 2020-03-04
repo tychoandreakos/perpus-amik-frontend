@@ -32,7 +32,8 @@ export default {
       'setDefaultParams',
       'setTableTypes',
       'setDropdownChoice',
-      'setSelectedDropdown'
+      'setSelectedDropdown',
+      'setGetUpdate'
     ])
   },
   created() {
@@ -41,6 +42,7 @@ export default {
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterSUBJECT);
+    this.setGetUpdate(masterSUBJECT);
     this.setDropdownChoice({
       type: this.selected
     });

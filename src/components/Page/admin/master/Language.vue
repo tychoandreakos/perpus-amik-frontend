@@ -25,7 +25,8 @@ export default {
       'setHeader',
       'setCreateInput',
       'setDefaultParams',
-      'setTableTypes'
+      'setTableTypes',
+      'setGetUpdate'
     ])
   },
   created() {
@@ -34,6 +35,7 @@ export default {
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
     this.setTableTypes(masterLANGUAGE);
+    this.setGetUpdate(masterLANGUAGE);
   },
   computed: {
     ...mapGetters({
