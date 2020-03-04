@@ -31,6 +31,7 @@ export default {
     this.setDefaultParams();
     this.setTableTypes(masterCOLLECTION);
     this.setGetUpdate(masterCOLLECTION);
+    this.setClearEditProps();
   },
   methods: {
     ...mapMutations([
@@ -39,7 +40,8 @@ export default {
       'setCreateInput',
       'setDefaultParams',
       'setTableTypes',
-      'setGetUpdate'
+      'setGetUpdate',
+      'setClearEditProps'
     ])
   },
   data() {

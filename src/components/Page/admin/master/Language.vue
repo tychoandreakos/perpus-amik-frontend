@@ -26,7 +26,8 @@ export default {
       'setCreateInput',
       'setDefaultParams',
       'setTableTypes',
-      'setGetUpdate'
+      'setGetUpdate',
+      'setClearUpdateProps'
     ])
   },
   created() {
@@ -36,6 +37,7 @@ export default {
     this.setDefaultParams();
     this.setTableTypes(masterLANGUAGE);
     this.setGetUpdate(masterLANGUAGE);
+    this.setClearEditProps();
   },
   computed: {
     ...mapGetters({

@@ -33,7 +33,8 @@ export default {
       'setTableTypes',
       'setDropdownChoice',
       'setSelectedDropdown',
-      'setGetUpdate'
+      'setGetUpdate',
+      'setClearUpdateProps'
     ])
   },
   created() {
@@ -49,6 +50,7 @@ export default {
     this.setSelectedDropdown({
       type: this.selected
     });
+    this.setClearEditProps();
   },
   data() {
     return {

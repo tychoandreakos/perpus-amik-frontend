@@ -33,6 +33,7 @@ export default {
       name: this.selected
     });
     this.setGetUpdate(masterITEM);
+    this.setClearEditProps();
   },
   computed: {
     ...mapGetters({
@@ -49,7 +50,8 @@ export default {
       'setTableTypes',
       'setDropdownChoice',
       'setSelectedDropdown',
-      'setGetUpdate'
+      'setGetUpdate',
+      'setClearUpdateProps'
     ])
   },
   data() {

@@ -55,9 +55,9 @@ export default {
 <style>
 #homepage-admin {
   background: #f3f3f3;
+  margin-bottom: 4rem;
   width: 100%;
-  height: 100%;
-  /* overflow: hidden; */
+  height: 120vh;
 }
 
 #homepage-admin .sidebar {
