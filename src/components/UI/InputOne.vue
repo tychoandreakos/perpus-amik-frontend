@@ -29,26 +29,26 @@ export default {
         .split(" ")
         .join("-")
         .toLowerCase();
-    }
+    },
   },
   props: {
     name: {
       required: true,
-      type: String
+      type: String,
     },
     typeInput: {
       required: false,
-      type: String
+      type: String,
     },
     placeholder: {
       required: true,
-      type: String
+      type: String,
     },
     showLabel: {
       required: false,
-      type: Boolean
-    }
-  }
+      type: Boolean,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -64,6 +64,10 @@ export default {
   text-transform: capitalize;
 }
 
+.input input:focus {
+  border-bottom: 1.8px solid #888;
+}
+
 .input input {
   font-family: "Quicksand", sans-serif;
   font-weight: 500;
@@ -72,7 +76,8 @@ export default {
   position: relative;
   padding: 0.6rem 0.4rem;
   font-size: 0.96rem;
-  transition: border-bottom 0.7s ease-in;
+  transition: border-bottom 0.4s ease-in;
   width: 100%;
+  border-bottom: 1.5px solid #ccc;
 }
 </style>

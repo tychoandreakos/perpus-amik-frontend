@@ -13,7 +13,7 @@
       <span>{{ info.desc }}</span>
     </div>
     <form>
-      <div class="input">
+      <div class="input-signup">
         <Input
           v-for="(input, i) in inputs"
           :key="i"
@@ -42,7 +42,7 @@ export default {
     HeroComponent,
     FooterComponent,
     Input,
-    Button
+    Button,
   },
   data() {
     return {
@@ -50,67 +50,67 @@ export default {
         {
           name: "NPM",
           placeholder: "Your NPM",
-          typeInput: "text"
+          typeInput: "text",
         },
 
         {
           name: "Username",
           placeholder: "Your Username",
-          typeInput: "text"
+          typeInput: "text",
         },
         {
           name: "Password",
           placeholder: "Your Password",
-          typeInput: "password"
+          typeInput: "password",
         },
         {
           name: "Name",
           placeholder: "Your name",
-          typeInput: "text"
+          typeInput: "text",
         },
         {
           name: "Email",
           placeholder: "Your Email",
-          typeInput: "email"
+          typeInput: "email",
         },
         {
           name: "Telephone",
           placeholder: "Your Telephone",
-          typeInput: "text"
-        }
+          typeInput: "text",
+        },
       ],
       link: {
         title: "Daftar Sekarang",
-        href: "#"
+        href: "#",
       },
       info: {
         title: "Start your free 10-day trial",
         desc:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos alias sequi illum placeat excepturi pariatur, ipsam assumenda!"
+          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos alias sequi illum placeat excepturi pariatur, ipsam assumenda!",
       },
       hero: {
         propsInfo: {
-          title: "Registrasi Member"
+          title: "Registrasi Member",
         },
         buttonEnabled: false,
         propsHero: {
           height: "40vh",
           background:
-            "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed"
+            "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed",
         },
         propsPanel: {
           width: "32%",
           padding: "4rem",
-          height: "35%"
+          height: "80%",
         },
         propsTitle: {
           fontSize: "2.9rem",
           lineHeight: "50px",
-          borderBottom: "0"
-        }
-      }
+          borderBottom: "0",
+        },
+      },
     };
-  }
+  },
 };
 </script>
 <style scoped>
@@ -145,7 +145,7 @@ export default {
   width: 80%;
 }
 
-#signup form .input {
+#signup form .input-signup {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -153,8 +153,12 @@ export default {
   position: relative;
 }
 
-#signup form .input .form-input {
-  border-bottom: 1px solid #eee;
+#signup form .input-signup input {
+  width: 200%;
+}
+
+#signup form .input-signup .form-input {
   width: 100%;
+  position: relative;
 }
 </style>

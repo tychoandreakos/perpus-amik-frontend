@@ -44,19 +44,19 @@ export default {
   name: "Signin",
   components: {
     Input,
-    Button
+    Button,
   },
   data() {
     return {
       formData: {
         username: "",
-        password: ""
+        password: "",
       },
       link: {
-        title: "Masuk Sekarang"
-      }
+        title: "Masuk Sekarang",
+      },
     };
-  }
+  },
 };
 </script>
 <style scoped>
@@ -73,14 +73,6 @@ export default {
   flex-direction: column;
   width: 30%;
   align-items: center;
-}
-
-#signin form .input {
-  border-bottom: 1.5px solid #ccc;
-}
-
-#signin form .input:focus {
-  border-bottom: 1.5px solid #019875;
 }
 
 #signin form h3 {
