@@ -1,16 +1,19 @@
 <template>
   <section id="panel-user">
-    <div class="ax"></div>
+    <NewsPanel />
     <HistoryComponent />
   </section>
 </template>
 <script>
 import HistoryComponent from "./History";
+import NewsPanel from "./NewsPanel";
+
 export default {
   name: "PanelUser",
   components: {
-    HistoryComponent
-  }
+    HistoryComponent,
+    NewsPanel,
+  },
 };
 </script>
 <style scoped>

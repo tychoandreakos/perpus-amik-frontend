@@ -11,11 +11,13 @@ div
                     .card-carousel--card(v-for="item in items")
                         img(:src="item.imgBook.img")
                         .card-carousel--card--footer
-                            p {{ item.titleBook.title | titleSplice}}
+                            a(href="#") {{ item.titleBook.title | titleSplice}}
                             <template v-if="checkingObject(item.authorBook.author)">
                               p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") {{ tag }}
                             </template>
                               p.tag(v-else) {{ item.authorBook.author }}
+                              div.desc(style={marginTop: '20px'})
+                                span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun....
         .card-carousel--nav__right(
         @click="moveCarousel(1)"
         :disabled="atEndOfList"
@@ -28,7 +30,7 @@ export default {
     return {
       currentOffset: 0,
       windowSize: this.$mq == "mobile" ? 10 : 3,
-      paginationFactor: this.$mq == "mobile" ? 150 : 220
+      paginationFactor: this.$mq == "mobile" ? 150 : 220,
     };
   },
   computed: {
@@ -44,12 +46,12 @@ export default {
     },
     atHeadOfList() {
       return this.currentOffset === 0;
-    }
+    },
   },
   filters: {
     titleSplice(val) {
       return val.substring(0, 40) + " ...";
-    }
+    },
   },
   methods: {
     checkingObject(val) {
@@ -65,8 +67,8 @@ export default {
       } else if (direction === -1 && !this.atHeadOfList) {
         this.currentOffset += this.paginationFactor;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -96,8 +98,8 @@ $light-gray: #f8f8f8;
   &--nav__left,
   &--nav__right {
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 28px;
+    height: 28px;
     padding: 10px;
     box-sizing: border-box;
     border-top: 2px solid $vue-teal;
@@ -133,21 +135,26 @@ $light-gray: #f8f8f8;
   width: 100%;
 
   .card-carousel--card {
-    margin: 0 10px;
+    margin: 15px 10px;
     cursor: pointer;
     box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
       0 2px 2px 0 rgba(40, 44, 53, 0.08);
     background-color: fff;
-    border-radius: 4px;
+    border-radius: 2px;
     margin-bottom: 2px;
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-items: center;
     padding: 1rem;
+    border: 1.5px solid white;
 
     &:first-child {
       margin-left: 0;
+    }
+
+    &:hover {
+      border: 1.5px solid #613ff4;
     }
 
     &:last-child {
@@ -156,32 +163,27 @@ $light-gray: #f8f8f8;
 
     img {
       vertical-align: bottom;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
       transition: opacity 150ms linear;
       user-select: none;
-
-      &:hover {
-        opacity: 0.5;
-      }
+      width: 150px;
     }
 
     &--footer {
       border-top: 0;
-      padding: 7px 15px;
+      padding: 7px 1px;
+
+      .desc {
+        font-size: 0.9rem;
+
+        span {
+          margin-top: 6rem;
+        }
+      }
 
       p {
-        padding: 0.3rem 0;
-        margin: 0;
-        margin-bottom: 0.3rem;
-        font-size: 0.96rem;
-        font-family: "Quicksand", sans-serif;
-        font-weight: 600;
-        color: $vue-navy;
-        user-select: none;
-
+        margin-top: 0.6rem;
         &.tag {
-          font-size: 11px;
+          font-size: 0.8rem;
           font-weight: 300;
           padding: 4px;
           background: rgba(40, 44, 53, 0.06);
@@ -223,6 +225,22 @@ $light-gray: #f8f8f8;
             background: white;
             box-shadow: -0px -0px 0px #004977;
           }
+        }
+      }
+
+      a {
+        padding: 0.3rem 0;
+        margin: 0;
+        margin-bottom: 0.3rem;
+        font-size: 1.1rem;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 600;
+        color: $vue-navy;
+        user-select: none;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
         }
       }
     }

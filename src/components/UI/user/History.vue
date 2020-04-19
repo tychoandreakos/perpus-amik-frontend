@@ -100,6 +100,7 @@ export default {
 #history-user .see:hover {
   text-decoration: underline;
   color: #613ff4;
+  cursor: pointer;
 }
 
 #history-user ul li .card .desc span {
