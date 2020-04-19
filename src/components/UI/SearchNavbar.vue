@@ -7,7 +7,7 @@
         eligendi in rem officia repudiandae.</span
       >
     </div>
-    <form>
+    <form @submit.prevent="submitForm">
       <Input
         class="input"
         typeInput="text"
@@ -30,7 +30,7 @@
           <input type="text" v-model="defaultDropdown" />
         </div>
         <div
-          :style="dropdownHandler ? { height: '170px' } : { height: '0' }"
+          :style="dropdownHandler ? { height: '130px' } : { height: '0' }"
           class="dropdown-list"
         >
           <ul>
@@ -47,6 +47,8 @@
 import Input from "./InputOne";
 import Button from "./ButtonSimple";
 
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "SearchNavbar",
   props: {
@@ -55,14 +57,43 @@ export default {
       required: true,
     },
   },
+  computed: {
+    ...mapGetters(["getFormData"]),
+    dropdown() {
+      const list = ["buku", "pengarang", "ISBN", "Tahun Terbit"];
+      return this.removeList(list);
+    },
+  },
   components: {
     Input,
     Button,
   },
+  created() {
+    this.insertInput({
+      filter: this.defaultDropdown,
+    });
+  },
   methods: {
+    ...mapMutations(["insertInput"]),
+    removeList(list) {
+      const newList = [];
+      for (let key of list) {
+        if (key != this.defaultDropdown) newList.push(key);
+      }
+      return newList;
+    },
     liHandler(list) {
+      this.insertInput({
+        filter: list,
+      });
       this.defaultDropdown = list;
       this.dropdownHandler = false;
+    },
+    submitForm() {
+      const form = this.getFormData;
+      for (let key in form) {
+        console.log(`${key}:`, form[key]);
+      }
     },
   },
   data() {
@@ -70,7 +101,6 @@ export default {
       link: {
         title: "Cari!",
       },
-      dropdown: ["buku", "pengarang", "ISBN", "Tahun Terbit"],
       defaultDropdown: "buku",
       dropdownHandler: false,
     };

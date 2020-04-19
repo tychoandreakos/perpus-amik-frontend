@@ -49,7 +49,7 @@ export default {
   computed: {
     ...mapGetters(["getFormData"]),
     buttonChecker() {
-      const { username, password } = this.getFormData;
+      const { username } = this.getFormData;
       let check = false;
       if (username) {
         check = username.length > 0;
@@ -59,9 +59,10 @@ export default {
   },
   methods: {
     submitForm() {
-      const { username, password } = this.getFormData;
-      console.log(username);
-      console.log(password);
+      const form = this.getFormData;
+      for (let key in form) {
+        console.log(`${key}:`, form[key]);
+      }
     },
   },
   data() {

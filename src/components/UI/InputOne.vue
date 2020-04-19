@@ -7,7 +7,8 @@
       :placeholder="placeholder"
       :id="formName"
       :type="typeInput"
-      v-model.lazy="myInput"
+      v-model="myInput"
+      @keypress.enter="submit"
       @blur="submit"
       required
     />
