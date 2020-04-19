@@ -32,9 +32,11 @@ export default {
   methods: {
     ...mapMutations(["insertInput"]),
     submit() {
-      this.insertInput({
-        [this.formName]: this.myInput,
-      });
+      if (this.myInput.length > 0) {
+        this.insertInput({
+          [this.formName]: this.myInput,
+        });
+      }
     },
   },
   props: {

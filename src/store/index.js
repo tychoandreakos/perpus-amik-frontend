@@ -5,6 +5,7 @@ import * as types from "./types";
 import * as mutations from "./mutations";
 import * as getters from "./getters";
 
+// modules
 import Input from "./module/input";
 
 Vue.use(Vuex);

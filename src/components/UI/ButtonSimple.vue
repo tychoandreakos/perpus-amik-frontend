@@ -51,7 +51,15 @@ export default {
   text-decoration: none;
 }
 
-.btn.btn-attend:hover {
+.btn.btn-attend:disabled,
+.btn.btn-attend[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: no-drop;
+}
+
+.btn.btn-attend:not([disabled]):hover {
   background: #f2ba7a;
   color: #fff;
 }

@@ -10,7 +10,7 @@
       <span>{{ signin.desc }}</span>
       <Input
         placeholder="Masukkan username atau Npm"
-        name="username / npm"
+        name="username / NPM"
         class="input"
         typeInput="text"
         :showLabel="true"
@@ -24,10 +24,9 @@
         :showLabel="true"
         formName="password"
       />
-      <button type="submit">Masuk Sekarang</button>
       <Button
         :style="{ marginTop: '.8rem' }"
-        :disabled="true"
+        :disabled="buttonChecker"
         :submit="true"
         :link="link"
         :showLabel="true"
@@ -49,10 +48,20 @@ export default {
   },
   computed: {
     ...mapGetters(["getFormData"]),
+    buttonChecker() {
+      const { username, password } = this.getFormData;
+      let check = false;
+      if (username) {
+        check = username.length > 0;
+      }
+      return !check;
+    },
   },
   methods: {
     submitForm() {
-      console.log(this.getFormData);
+      const { username, password } = this.getFormData;
+      console.log(username);
+      console.log(password);
     },
   },
   data() {

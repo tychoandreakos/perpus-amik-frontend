@@ -13,6 +13,7 @@
         typeInput="text"
         placeholder="Ingin baca buku apa hari ini?"
         name="cari"
+        formName="search"
       />
       <div class="btn">
         <Button :submit="true" :link="link" />
@@ -50,30 +51,30 @@ export default {
   name: "SearchNavbar",
   props: {
     open: {
-      type: String,
-      required: true
-    }
+      type: Boolean,
+      required: true,
+    },
   },
   components: {
     Input,
-    Button
+    Button,
   },
   methods: {
     liHandler(list) {
       this.defaultDropdown = list;
       this.dropdownHandler = false;
-    }
+    },
   },
   data() {
     return {
       link: {
-        title: "Cari!"
+        title: "Cari!",
       },
       dropdown: ["buku", "pengarang", "ISBN", "Tahun Terbit"],
       defaultDropdown: "buku",
-      dropdownHandler: false
+      dropdownHandler: false,
     };
-  }
+  },
 };
 </script>
 <style scoped>

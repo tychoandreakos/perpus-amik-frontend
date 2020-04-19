@@ -12,7 +12,7 @@
       <h3>{{ info.title }}</h3>
       <span>{{ info.desc }}</span>
     </div>
-    <form>
+    <form @submit.prevent="submitForm">
       <div class="input-signup">
         <Input
           v-for="(input, i) in inputs"
@@ -21,9 +21,15 @@
           :name="input.name"
           :placeholder="input.placeholder"
           :typeInput="input.typeInput"
+          :formName="input.formName"
         />
       </div>
-      <Button :style="{ marginTop: '1rem' }" :link="link" :submit="true" />
+      <Button
+        :disabled="buttonChecker"
+        :style="{ marginTop: '1rem' }"
+        :link="link"
+        :submit="true"
+      />
     </form>
     <FooterComponent :style="{ marginTop: '4rem' }" />
   </section>
@@ -35,6 +41,8 @@ import Input from "../UI/InputOne";
 import Button from "../UI/ButtonSimple";
 import FooterComponent from "../UI/Footer";
 
+import { mapGetters } from "vuex";
+
 export default {
   name: "Signup",
   components: {
@@ -44,6 +52,30 @@ export default {
     Input,
     Button,
   },
+  methods: {
+    submitForm() {
+      const form = this.getFormData;
+      for (let key in form) {
+        console.log(`${key}:`, form[key]);
+      }
+    },
+  },
+  computed: {
+    ...mapGetters(["getFormData"]),
+    buttonChecker() {
+      const { npm, username, password, name, email } = this.getFormData;
+      let check = false;
+      if (npm && username && password && name && email) {
+        check =
+          npm.length > 0 &&
+          username.length > 0 &&
+          password.length > 0 &&
+          name.length > 0 &&
+          email.length > 0;
+      }
+      return !check;
+    },
+  },
   data() {
     return {
       inputs: [
@@ -51,32 +83,38 @@ export default {
           name: "NPM",
           placeholder: "Your NPM",
           typeInput: "text",
+          formName: "npm",
         },
 
         {
           name: "Username",
           placeholder: "Your Username",
           typeInput: "text",
+          formName: "username",
         },
         {
           name: "Password",
           placeholder: "Your Password",
           typeInput: "password",
+          formName: "password",
         },
         {
           name: "Name",
           placeholder: "Your name",
           typeInput: "text",
+          formName: "name",
         },
         {
           name: "Email",
           placeholder: "Your Email",
           typeInput: "email",
+          formName: "email",
         },
         {
           name: "Telephone",
           placeholder: "Your Telephone",
           typeInput: "text",
+          formName: "telp",
         },
       ],
       link: {
