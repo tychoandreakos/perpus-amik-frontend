@@ -1,15 +1,14 @@
 <template>
   <div class="input">
-    <label
-      v-if="showLabel"
-      :placeholder="placeholder"
-      :for="name | convertText"
-      >{{ name }}</label
-    >
+    <label v-if="showLabel" :placeholder="placeholder" :for="formName">{{
+      name
+    }}</label>
     <input
       :placeholder="placeholder"
-      :id="name | convertText"
+      :id="formName"
       :type="typeInput"
+      v-model.lazy="myInput"
+      @blur="submit"
       required
     />
   </div>
@@ -21,18 +20,29 @@
 // 2. typeInput -> typeInput determine the input must be type of (text / password / email)
 // 3. placeholder -> String, this is for adding placeholder
 
+import { mapMutations } from "vuex";
+
 export default {
   name: "InputOne",
-  filters: {
-    convertText(txt) {
-      return txt
-        .split(" ")
-        .join("-")
-        .toLowerCase();
+  data() {
+    return {
+      myInput: "",
+    };
+  },
+  methods: {
+    ...mapMutations(["insertInput"]),
+    submit() {
+      this.insertInput({
+        [this.formName]: this.myInput,
+      });
     },
   },
   props: {
     name: {
+      required: true,
+      type: String,
+    },
+    formName: {
       required: true,
       type: String,
     },

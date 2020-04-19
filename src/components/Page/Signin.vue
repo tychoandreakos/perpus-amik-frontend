@@ -1,32 +1,30 @@
 <template>
   <section id="signin">
-    <form>
+    <form @submit.prevent="submitForm">
       <img
         style="width: 250px"
         :src="require('../../assets/main-logo-green.svg')"
         alt="logo"
       />
-      <h3>Sign In</h3>
-      <span
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet et
-        similique hic inventore suscipit mollitia.</span
-      >
+      <h3>{{ signin.title }}</h3>
+      <span>{{ signin.desc }}</span>
       <Input
-        placeholder="Masukkan username"
-        name="username"
+        placeholder="Masukkan username atau Npm"
+        name="username / npm"
         class="input"
-        v-model="formData.username"
         typeInput="text"
         :showLabel="true"
+        formName="username"
       />
       <Input
         placeholder="Masukkan password"
         typeInput="password"
         name="password"
         class="input"
-        v-model="formData.password"
         :showLabel="true"
+        formName="password"
       />
+      <button type="submit">Masuk Sekarang</button>
       <Button
         :style="{ marginTop: '.8rem' }"
         :disabled="true"
@@ -40,17 +38,30 @@
 <script>
 import Input from "../UI/InputOne";
 import Button from "../UI/ButtonSimple";
+
+import { mapGetters } from "vuex";
+
 export default {
   name: "Signin",
   components: {
     Input,
     Button,
   },
+  computed: {
+    ...mapGetters(["getFormData"]),
+  },
+  methods: {
+    submitForm() {
+      console.log(this.getFormData);
+    },
+  },
   data() {
     return {
-      formData: {
-        username: "",
-        password: "",
+      signin: {
+        title: "Sign In",
+        desc:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet et\
+        similique hic inventore suscipit mollitia.",
       },
       link: {
         title: "Masuk Sekarang",

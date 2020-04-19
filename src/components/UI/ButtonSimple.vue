@@ -1,23 +1,26 @@
 <template>
-  <a v-if="!submit" :href="$router.resolve(link.href).href" class="btn btn-attend">
+  <a
+    v-if="!submit"
+    :href="$router.resolve(link.href).href"
+    class="btn btn-attend"
+  >
     {{ link.title }}
   </a>
-  <button v-else class="btn btn-attend">
+  <button v-else type="submit" class="btn btn-attend">
     {{ link.title }}
   </button>
 </template>
 <script>
-
 /**
  *  props available
- * 
+ *
  * link => {
  *    title: "",
  *    href: "",
  * }
- * 
+ *
  * submit => true / false
- * 
+ *
  */
 
 export default {
@@ -25,13 +28,13 @@ export default {
   props: {
     link: {
       type: Object,
-      required: false
+      required: false,
     },
     submit: {
       type: Boolean,
-      required: false
-    }
-  }
+      required: false,
+    },
+  },
 };
 </script>
 <style scoped>
