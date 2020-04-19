@@ -10,21 +10,20 @@
     />
     <div class="login-info">
       <div class="left">
-        <h3>O’Reilly Online Learning</h3>
+        <h3>{{ account.title }}</h3>
         <p>
-          Learn the way you learn best—through books, videos, interactive
-          tutorials, or live online classes.
+          {{ account.desc }}
         </p>
         <ButtonComponent :link="buttonSignin" />
       </div>
       <div class="right">
         <div class="info">
-          <h3>Conferences Dashboard</h3>
-          <p><a href="#">Sign in</a> to access your events.</p>
+          <h3>{{ account.eventFirst.title }}</h3>
+          <p><a href="#">{{ signin | capitalize }}</a> {{ account.access }}</p>
         </div>
         <div class="info">
-          <h3>Members Library</h3>
-          <p><a href="#">Sign in</a> to access your events.</p>
+          <h3>{{ account.eventSecond.title }}</h3>
+          <p><a href="#">{{ signin | capitalize }}</a> {{ account.access }}</p>
         </div>
       </div>
     </div>
@@ -38,7 +37,7 @@ import ButtonComponent from "../UI/ButtonSimple";
 import FooterComponent from "../UI/Footer";
 
 const signin = {
-  name: "signin"
+  name: "signin",
 };
 
 export default {
@@ -47,34 +46,48 @@ export default {
     NavbarComponent,
     HeroComponent,
     ButtonComponent,
-    FooterComponent
+    FooterComponent,
   },
   data() {
     return {
+      account: {
+        title: "O’Reilly Online Learning",
+        desc:
+          "Learn the way you learn best—through books, videos, interactive\
+          tutorials, or live online classes.",
+        access: "to access your events",
+        eventFirst: {
+          title: "Conferences Dashboard",
+        },
+        eventSecond: {
+          title: "Members Library",
+        },
+      },
+      signin: "sign in",
       buttonSignin: {
         title: "Masuk Disini",
-        href: signin
+        href: signin,
       },
       panel: {
         width: "42%",
         padding: "4rem",
-        height: "75%"
+        height: "75%",
       },
       titleHero: {
         fontSize: "2.9rem",
         lineHeight: "50px",
-        borderBottom: "0"
+        borderBottom: "0",
       },
       hero: {
         height: "40vh",
         background:
-          "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed"
+          "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed",
       },
       panelInfo: {
-        title: "Sign in to <br> your Account"
-      }
+        title: "Sign in to <br> your Account",
+      },
     };
-  }
+  },
 };
 </script>
 <style scoped>

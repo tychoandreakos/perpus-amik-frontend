@@ -15,14 +15,14 @@ Vue.use(VueMq, {
   breakpoints: {
     mobile: 580,
     tabletOrDesktop: 872,
-    desktop: 1200
-  }
+    desktop: 1200,
+  },
 });
 Vue.config.productionTip = false;
 
 const router = new VueRouter({
   routes,
-  mode: "history"
+  mode: "history",
 });
 
 // reference: https://alligator.io/vuejs/vue-router-modify-head/
@@ -34,17 +34,17 @@ router.beforeEach((to, from, next) => {
   const nearestWithTitle = to.matched
     .slice()
     .reverse()
-    .find(r => r.meta && r.meta.title);
+    .find((r) => r.meta && r.meta.title);
 
   // Find the nearest route element with meta tags.
   const nearestWithMeta = to.matched
     .slice()
     .reverse()
-    .find(r => r.meta && r.meta.metaTags);
+    .find((r) => r.meta && r.meta.metaTags);
   const previousNearestWithMeta = from.matched
     .slice()
     .reverse()
-    .find(r => r.meta && r.meta.metaTags);
+    .find((r) => r.meta && r.meta.metaTags);
 
   // If a route with a title was found, set the document (page) title to that value.
   if (nearestWithTitle) document.title = nearestWithTitle.meta.title;
@@ -52,17 +52,17 @@ router.beforeEach((to, from, next) => {
   // Remove any stale meta tags from the document using the key attribute we set below.
   Array.from(
     document.querySelectorAll("[data-vue-router-controlled]")
-  ).map(el => el.parentNode.removeChild(el));
+  ).map((el) => el.parentNode.removeChild(el));
 
   // Skip rendering meta tags if there are none.
   if (!nearestWithMeta) return next();
 
   // Turn the meta tag definitions into actual elements in the head.
   nearestWithMeta.meta.metaTags
-    .map(tagDef => {
+    .map((tagDef) => {
       const tag = document.createElement("meta");
 
-      Object.keys(tagDef).forEach(key => {
+      Object.keys(tagDef).forEach((key) => {
         tag.setAttribute(key, tagDef[key]);
       });
 
@@ -72,13 +72,19 @@ router.beforeEach((to, from, next) => {
       return tag;
     })
     // Add the meta tags to the document head.
-    .forEach(tag => document.head.appendChild(tag));
+    .forEach((tag) => document.head.appendChild(tag));
 
   next();
 });
 
+// vue filter
+Vue.filter("capitalize", (val) => {
+  if (!val) return "";
+  return val.charAt(0).toUpperCase() + val.slice(1);
+});
+
 new Vue({
-  render: h => h(App),
+  render: (h) => h(App),
   router,
-  store
+  store,
 }).$mount("#app");

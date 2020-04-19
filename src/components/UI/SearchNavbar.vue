@@ -124,7 +124,6 @@ export default {
 }
 
 #search form .input {
-  border: 1px solid #eee;
   padding: 0.2rem 0.8rem;
   border-radius: 4px;
   transition: border 0.3s ease-in;
