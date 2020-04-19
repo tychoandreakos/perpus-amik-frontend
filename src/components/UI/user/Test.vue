@@ -18,12 +18,16 @@ div
                               p.tag(v-else) {{ item.authorBook.author }}
                               div.desc(style={marginTop: '20px'})
                                 span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun....
+                              Playlist
+                            
         .card-carousel--nav__right(
         @click="moveCarousel(1)"
         :disabled="atEndOfList"
         )    
 </template>
 <script>
+import Playlist from "./Playlist";
+
 export default {
   name: "Test",
   data() {
@@ -32,6 +36,9 @@ export default {
       windowSize: this.$mq == "mobile" ? 10 : 3,
       paginationFactor: this.$mq == "mobile" ? 150 : 220,
     };
+  },
+  components: {
+    Playlist,
   },
   computed: {
     items() {
@@ -174,6 +181,7 @@ $light-gray: #f8f8f8;
 
       .desc {
         font-size: 0.9rem;
+        margin-bottom: 2rem;
 
         span {
           margin-top: 6rem;

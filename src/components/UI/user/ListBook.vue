@@ -6,7 +6,7 @@
           :href="item.imgBook.href"
           class="img"
           :style="{
-            background: 'url(' + item.imgBook.img + ')'
+            background: 'url(' + item.imgBook.img + ')',
           }"
         ></a>
         <div class="media-info">
@@ -23,7 +23,16 @@
                 Video
               </div>
             </template>
-            <div class="playlist"><Icon icon="list" /></div>
+            <div @click="playlist = !playlist" class="playlist">
+              <Icon icon="list" />
+            </div>
+
+            <Playlist v-show="playlist" />
+            <div
+              class="playlist-backdrop"
+              @click="playlist = false"
+              v-show="playlist"
+            />
           </div>
           <a :href="item.titleBook.href" class="title">{{
             item.titleBook.title
@@ -72,6 +81,8 @@
 <script>
 import Icon from "vue-themify-icons";
 
+import Playlist from "./PlaylistDrop";
+
 // you can get more info about vue-star-rating in this particular website => https://vuejsexamples.com/a-simple-and-highly-customisable-star-rating-component-for-vue/
 import Rating from "vue-star-rating";
 
@@ -79,12 +90,18 @@ export default {
   name: "ListBook",
   components: {
     Icon,
-    Rating
+    Rating,
+    Playlist,
+  },
+  data() {
+    return {
+      playlist: false,
+    };
   },
   methods: {
     isArray(val) {
       return Array.isArray(val);
-    }
+    },
   },
   filters: {
     descFilter(val) {
@@ -93,14 +110,14 @@ export default {
     },
     descMobile(val) {
       return val.substring(0, 60) + " ...";
-    }
+    },
   },
   props: {
     item: {
       required: true,
-      type: Object
-    }
-  }
+      type: Object,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -135,11 +152,27 @@ export default {
   width: 100%;
 }
 
+#list-book
+  .media-wrapper
+  .media-info-wrapper
+  .media-info
+  .media-categories
+  .playlist-backdrop {
+  position: absolute;
+  background: transparent;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 2rem;
+  height: 200px;
+}
+
 #list-book .media-wrapper .media-info-wrapper .media-info .media-categories {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  position: relative;
 }
 
 #list-book
