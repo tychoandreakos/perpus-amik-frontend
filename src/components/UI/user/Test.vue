@@ -8,17 +8,17 @@ div
         .card-carousel
             .card-carousel--overflow-container
                 .card-carousel-cards(:style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}")
-                    router-link.card-carousel--card(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" v-for="item in items")
-                        img(:src="item.imgBook.img")
-                        .card-carousel--card--footer
-                            router-link(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
-                            <template v-if="checkingObject(item.authorBook.author)">
-                              p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") {{ tag }}
-                            </template>
-                              p.tag(v-else) {{ item.authorBook.author }}
-                              div.desc(style={marginTop: '20px'})
-                                span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun....
-                              Playlist
+                   .card-carousel--card(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" v-for="item in items")
+                      img(:src="item.imgBook.img")
+                      .card-carousel--card--footer
+                          router-link(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
+                          <template v-if="checkingObject(item.authorBook.author)">
+                            p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") {{ tag }}
+                          </template>
+                            p.tag(v-else) {{ item.authorBook.author }}
+                            div.desc(style={marginTop: '20px'})
+                              span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun....
+                            Playlist
                             
         .card-carousel--nav__right(
         @click="moveCarousel(1)"

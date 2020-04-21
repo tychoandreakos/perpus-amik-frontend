@@ -1,5 +1,6 @@
 <template lang="pug">
   section#homepage
+    PanelTopWarning(v-if="topWarning" @closeHandler="closeHandler")
     NavbarComponent(placeholder="Cari buku disini ..")
     div.main-page(:style="showSearch ? '' : { paddingTop: $mq === 'mobile' ? '3.4rem' : '' }")
       SidebarComponent
@@ -9,18 +10,30 @@
 <script>
 import NavbarComponent from "../../UI/user/Navbar";
 import SidebarComponent from "../../UI/user/Sidebar";
+import PanelTopWarning from "../../UI/user/PanelTopWarning";
 
 export default {
   name: "Homepage",
   components: {
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    PanelTopWarning,
+  },
+  methods: {
+    closeHandler(e) {
+      this.topWarning = e;
+    },
+  },
+  data() {
+    return {
+      topWarning: false,
+    };
   },
   computed: {
     showSearch() {
       return this.$store.state.showSearch;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

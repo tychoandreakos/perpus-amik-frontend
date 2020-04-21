@@ -2,7 +2,8 @@
   section#navbar-user(
      :style="showSearch ? { height: $mq === 'mobile' ? '140px' : $mq === 'tabletOrDesktop' ? '155px' : '104px' } : {}"
   )
-    div.logo {{ title }}
+    div.logo 
+      router-link(:to="{ name: 'landing' }").wrapper #[Icon(icon="book" v-if="showIcon")] {{ title }}
       div.edges
         div.show-search(@click="setSearch")
           Icon(:icon="icons.search")
@@ -43,6 +44,7 @@ export default {
   name: "NavbarUser",
   data() {
     return {
+      showIcon: true,
       userButton: false,
       filterBy: ["Buku", "Pengarang", "ISBN"],
       listData: "",
@@ -99,6 +101,28 @@ export default {
     width: 18.7%;
     height: 100%;
     background: #3d3b49;
+
+    .wrapper {
+      background: #613ff4;
+      position: absolute;
+      left: 0.8rem;
+      top: 1.5rem;
+      color: #fff;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font: {
+        size: 0.96rem;
+        weight: 500;
+        family: "Poppins", sans-serif;
+      }
+      padding: 0.9rem 1.2rem;
+
+      i {
+        margin-right: 0.8rem;
+      }
+    }
 
     .show-sidebar {
       display: none;
