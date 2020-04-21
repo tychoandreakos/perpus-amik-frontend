@@ -75,7 +75,9 @@ export default {
         {
           title: "Sign out",
           icon: "arrow-circle-right",
-          href: "#"
+          href: {
+            name: 'landing'
+          }
         }
       ]
     };

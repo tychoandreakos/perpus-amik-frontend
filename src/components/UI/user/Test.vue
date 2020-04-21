@@ -8,10 +8,10 @@ div
         .card-carousel
             .card-carousel--overflow-container
                 .card-carousel-cards(:style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}")
-                    .card-carousel--card(v-for="item in items")
+                    router-link.card-carousel--card(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" v-for="item in items")
                         img(:src="item.imgBook.img")
                         .card-carousel--card--footer
-                            a(href="#" style="display: block") {{ item.titleBook.title | titleSplice}}
+                            router-link(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
                             <template v-if="checkingObject(item.authorBook.author)">
                               p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") {{ tag }}
                             </template>
@@ -61,6 +61,16 @@ export default {
     },
   },
   methods: {
+    slug(text) {
+      return text
+        .toString() // Cast to string
+        .toLowerCase() // Convert the string to lowercase letters
+        .normalize("NFD") // The normalize() method returns the Unicode Normalization Form of a given string.
+        .trim() // Remove whitespace from both sides of a string
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+        .replace(/\-\-+/g, "-"); // Replace multiple - with single -
+    },
     checkingObject(val) {
       return Array.isArray(val);
     },
@@ -155,6 +165,8 @@ $light-gray: #f8f8f8;
     align-items: center;
     padding: 1rem;
     border: 1.5px solid white;
+    text-decoration: none;
+    color: inherit;
 
     &:first-child {
       margin-left: 0;

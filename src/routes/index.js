@@ -177,7 +177,7 @@ const router = [
     ]
   },
   {
-    path: '/result',
+    path: '/library/view/:book',
     component: ResultComponent,
     name: 'result',
     meta: {

@@ -4,17 +4,17 @@
 </template>
 <script>
 export default {
-  name: 'NavbarAlternate',
+  name: "NavbarAlternate",
   data() {
     return {
-      title: 'Manisku Library'
+      title: "Manisku Library",
     };
-  }
+  },
 };
 </script>
 <style scoped>
 #navbar-alternate {
-  height: 100%;
+  height: 30px;
   background: #613ff4;
   width: 100%;
   padding: 0 0.8rem;
@@ -24,7 +24,7 @@ export default {
 
 #navbar-alternate h3 {
   font-size: 0.84rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   font-weight: 500;
   letter-spacing: 1.1px;

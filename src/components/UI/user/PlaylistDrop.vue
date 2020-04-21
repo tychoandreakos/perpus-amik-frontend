@@ -5,7 +5,7 @@
                 div.add
                     Icon(icon="plus")
                     span(v-text="add")
-            li(v-for="(list, i) in dummy" v-key="i")
+            li(v-for="(list, i) in dummy" :key="i")
                a(href="#")
                 Icon(icon="thumb-up")
                 span(v-text="list") 
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       add: "Add New Playlist",
-      dummy: ["Bokep", "Sex"],
+      dummy: ["PHP", "Javascript"],
     };
   },
 };

@@ -9,7 +9,7 @@
   <section id="result">
     <NavbarComponent class="result--navbar" />
     <SidebarComponent style="margin-top: 30px" />
-    <div class="result--main-wrapper">
+    <div class="main-wrapper">
       <ResultComponent />
     </div>
   </section>
