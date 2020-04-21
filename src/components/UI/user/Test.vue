@@ -11,13 +11,16 @@ div
                    .card-carousel--card(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" v-for="item in items")
                       img(:src="item.imgBook.img")
                       .card-carousel--card--footer
-                          router-link(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
+                          div.label #[Icon(icon="book")] Book
+                          router-link.title(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
                           <template v-if="checkingObject(item.authorBook.author)">
-                            p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") {{ tag }}
+                            p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") 
+                              router-link(:to="{ name: 'result', params: { book: slug(tag) } }") {{ tag }}.
                           </template>
-                            p.tag(v-else) {{ item.authorBook.author }}
+                            p.tag(v-else)
+                                router-link(:to="{ name: 'result', params: { book: slug(item.authorBook.author) } }") {{ item.authorBook.author }}.
                             div.desc(style={marginTop: '20px'})
-                              span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun....
+                              span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun ....
                             Playlist
                             
         .card-carousel--nav__right(
@@ -27,6 +30,7 @@ div
 </template>
 <script>
 import Playlist from "./Playlist";
+import Icon from "vue-themify-icons";
 
 export default {
   name: "Test",
@@ -39,6 +43,7 @@ export default {
   },
   components: {
     Playlist,
+    Icon,
   },
   computed: {
     items() {
@@ -201,6 +206,16 @@ $light-gray: #f8f8f8;
         }
       }
 
+      .label {
+        margin-top: 0.8rem;
+        color: #613ff4;
+        font: {
+          size: 0.9rem;
+          weight: 500;
+          family: "Nunito", sans-serif;
+        }
+      }
+
       p {
         margin-top: 0.6rem;
         &.tag {
@@ -212,6 +227,15 @@ $light-gray: #f8f8f8;
           position: relative;
           margin-left: 4px;
           color: $gray;
+
+          a {
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
 
           &:before {
             content: "";
@@ -249,7 +273,7 @@ $light-gray: #f8f8f8;
         }
       }
 
-      a {
+      .title {
         padding: 0.3rem 0;
         margin: 0;
         margin-bottom: 0.3rem;
