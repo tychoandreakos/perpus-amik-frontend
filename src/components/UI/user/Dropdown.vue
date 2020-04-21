@@ -4,7 +4,7 @@
     div.dropdown-elem(@click="dropdownHandler")
       div.title
         span Filter By: #[p {{ listSelected }}]
-      div.dropdown-list(:style="dropdown ? { height: '100px' } : { height: '0' }")
+      div.dropdown-list(:style="dropdown ? { height: '94px' } : { height: '0' }")
         ul
           li(
             @click="listHandler(listFilter)"

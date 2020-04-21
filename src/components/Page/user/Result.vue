@@ -1,3 +1,10 @@
+<template lang="pug">
+  section#result
+    NavbarComponent.navbar
+    SidebarCopmnent(style="margin-top: 30px")
+    div.main-wrapper
+      ResultComponent
+</template>
 <template>
   <section id="result">
     <NavbarComponent class="result--navbar" />
@@ -27,13 +34,13 @@ export default {
   background: #f5f5f5;
 }
 
-.result--main-wrapper {
+.main-wrapper {
   margin-left: 3.2rem;
   padding-top: 2rem;
   margin-top: 2rem;
 }
 
-#result .result--navbar {
+#result .navbar {
   position: fixed;
   top: 0;
   height: 30px;

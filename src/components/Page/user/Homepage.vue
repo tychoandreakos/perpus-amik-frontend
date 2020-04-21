@@ -1,18 +1,10 @@
-<template>
-  <section id="homepage">
-    <NavbarComponent placeholder="Cari buku disini .." />
-    <div
-      class="main-page"
-      :style="
-        showSearch ? '' : { paddingTop: $mq === 'mobile' ? '3.4rem' : '' }
-      "
-    >
-      <SidebarComponent />
-      <div class="main-wrapper">
-        <router-view />
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section#homepage
+    NavbarComponent(placeholder="Cari buku disini ..")
+    div.main-page(:style="showSearch ? '' : { paddingTop: $mq === 'mobile' ? '3.4rem' : '' }")
+      SidebarComponent
+      div.main-wrapper
+        router-view
 </template>
 <script>
 import NavbarComponent from "../../UI/user/Navbar";

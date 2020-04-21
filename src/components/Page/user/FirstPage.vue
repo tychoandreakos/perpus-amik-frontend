@@ -1,27 +1,15 @@
-<template>
-  <section id="first-wrapper">
-    <PanelComponent class="panel" />
-    <div class="slider">
-      <div class="text">
-        <h3>Recenly Added</h3>
-        <a href="#">See More</a>
-      </div>
-      <Test />
-      <div class="border"></div>
-    </div>
-
-    <div class="slider">
-      <div class="text">
-        <h3>Most Popular</h3>
-        <a href="#">See More</a>
-      </div>
-      <Test />
-      <div class="border"></div>
-    </div>
-
-    <FooterComponent />
-  </section>
+<template lang="pug">
+  section#first-wrapper
+    PanelComponent.panel
+    div.slider(v-for="(info, i) in slider" :key="i")
+      div.text
+        h3 {{ info.title }}
+        a(:href="info.href") {{ link }}
+      Test
+      div.border
+    FooterComponent
 </template>
+
 <script>
 import PanelComponent from "../../UI/user/Panel";
 import Test from "../../UI/user/Test";
@@ -33,6 +21,21 @@ export default {
     PanelComponent,
     Test,
     FooterComponent
+  },
+  data() {
+    return {
+      slider: [
+        {
+          title: 'Recenly Added',
+          href: '#'
+        },
+        {
+          title: 'Most Popular',
+          href: '#'
+        }
+      ],
+      link: 'See More'
+    }
   },
   methods: {
     sliderHandler(e) {

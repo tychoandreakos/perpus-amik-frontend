@@ -1,10 +1,8 @@
-<template>
-  <section id="in-search">
-    <template v-for="(book, i) in items">
-      <ListComponent :item="book" :key="i" />
-    </template>
-    <FooterComponent class="footer" />
-  </section>
+<template lang="pug">
+  section#in-search
+    template(v-for="(book, i) in items")
+      ListComponent(:item="book" :key="i")
+    FooterComponent.footer
 </template>
 <script>
 import ListComponent from "../../UI/user/ListBook";
