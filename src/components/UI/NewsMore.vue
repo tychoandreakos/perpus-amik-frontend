@@ -1,15 +1,12 @@
-<template>
-  <section id="another-news">
-    <h3 class="title-news">{{ titleNews }}</h3>
-    <div v-for="(post, i) in posts" :key="i" class="card">
-      <img :src="post.image" :alt="post.title" />
-      <div class="news-info">
-        <a class="news-link" :href="post.href">{{ post.title }}</a>
-        <p>{{ post.description }}</p>
-        <Button :link="buttonTitle" />
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section#another-news
+    h3.title-news {{ titleNews }}
+    div.card( v-for="(post, i) in posts" :key="i" )
+      img(:src="post.image" :alt="post.title")
+      div.news-info
+        a.news-link(:href="post.href") {{ post.title }}
+        p {{ post.description }}
+        Button(:link="buttonTitle")
 </template>
 <script>
 import Button from "./ButtonSimple";

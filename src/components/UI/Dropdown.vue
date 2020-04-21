@@ -1,37 +1,32 @@
-<template>
-  <section id="dropdown">
-    <div @click="panelHandler = !panelHandler" class="dropdown">
-      <h3>{{ info.title }}</h3>
-      <div class="arrow">
-        <div class="icon">
-          x
-        </div>
-      </div>
-    </div>
-    <div
-      :style="panelHandler ? 'height: 125px' : 'height: 0'"
-      class="panel-dropdown"
-    >
-      <div class="panel-text">
-        {{ info.description }}
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section#dropdown
+    div.dropdown(@click="panelHandler = !panelHandler")
+      h3 {{ info.title }}
+      div.arrow
+        div.icon(:style="panelHandler ? 'transform: rotate(90deg)' : ''") 
+          Icon(icon="angle-down")
+    div.panel-dropdown(:style="panelHandler ? 'height: 125px' : 'height: 0'")
+      div.panel-text {{ info.description }}
 </template>
 <script>
+import Icon from "vue-themify-icons";
+
 export default {
   name: "Dropdown",
+  components: {
+    Icon,
+  },
   data() {
     return {
-      panelHandler: false
+      panelHandler: false,
     };
   },
   props: {
     info: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -64,6 +59,7 @@ export default {
 
 #dropdown .dropdown .arrow .icon {
   align-self: center;
+  transition: 0.2s transform ease;
 }
 
 #dropdown .panel-dropdown {

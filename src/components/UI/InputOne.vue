@@ -1,9 +1,11 @@
-<template>
-  <div class="input">
-    <label v-if="showLabel" :placeholder="placeholder" :for="formName">{{
-      name
-    }}</label>
-    <input
+<template lang="pug">
+  div.input
+    label(
+      v-if="showLabel" 
+      :placeholder="placeholder" 
+      :for="formName"
+    ) {{ name }}
+    input(
       :placeholder="placeholder"
       :id="formName"
       :type="typeInput"
@@ -11,8 +13,7 @@
       @keypress.enter="submit"
       @blur="submit"
       required
-    />
-  </div>
+    )
 </template>
 <script>
 // props available

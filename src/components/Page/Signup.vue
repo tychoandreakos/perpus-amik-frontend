@@ -1,20 +1,19 @@
-<template>
-  <section id="signup">
-    <NavbarComponent />
-    <HeroComponent
+<template lang="pug">
+  section#signup
+    NavbarComponent
+    HeroComponent(
       :propsInfo="hero.propsInfo"
       :propsButtonEnabled="hero.buttonEnabled"
       :propsHero="hero.propsHero"
       :propsPanel="hero.propsPanel"
       :propsTitle="hero.propsTitle"
-    />
-    <div class="title-info">
-      <h3>{{ info.title }}</h3>
-      <span>{{ info.desc }}</span>
-    </div>
-    <form @submit.prevent="submitForm">
-      <div class="input-signup">
-        <Input
+    )
+    div.title-info
+      h3 {{ info.title }}
+      span {{ info.desc }}
+    form(@submit.prevent="submitForm")
+      div.input-signup
+        Input(
           v-for="(input, i) in inputs"
           :key="i"
           class="form-input"
@@ -22,18 +21,18 @@
           :placeholder="input.placeholder"
           :typeInput="input.typeInput"
           :formName="input.formName"
-        />
-      </div>
-      <Button
+        )
+      Button(
         :disabled="buttonChecker"
         :style="{ marginTop: '1rem' }"
         :link="link"
         :submit="true"
-      />
-    </form>
-    <FooterComponent :style="{ marginTop: '4rem' }" />
-  </section>
+      )
+    FooterComponent(
+      :style="{ marginTop: '4rem' }"
+    )
 </template>
+
 <script>
 import NavbarComponent from "../UI/Navbar";
 import HeroComponent from "../UI/Hero";

@@ -1,21 +1,18 @@
-<template>
-  <section id="menu">
-    <div class="menu-shell">
-      <div v-for="(list, title) in lists" class="menu-link" :key="title">
-        <a @click.prevent="changeHandler" :href="list.link">{{ title }}</a>
-        <div
+<template lang="pug">
+  section#menu
+    div.menu-shell
+      div.menu-link(v-for="(list, title) in lists" :key="title")
+        a(@click.prevent="changeHandler" :href="list.link") {{ title }}
+        div(
           v-if="titleFromData == title"
           :style="{ background: list.color }"
           :class="['menu-border', activeStatus ? 'active' : '']"
-        ></div>
-        <div
+        )
+        div(
           v-else
           :style="{ background: list.color }"
           class="menu-border"
-        ></div>
-      </div>
-    </div>
-  </section>
+        )
 </template>
 <script>
 export default {

@@ -1,38 +1,27 @@
-<template>
-  <section
-    :style="
-      search
-        ? { position: 'fixed', background: '#fff', width: '100%', zIndex: '99' }
-        : { position: 'relative' }
-    "
-    id="navbar"
-  >
-    <a href="/" class="logo">
-      <img :src="require('../../assets/main-logo-green.svg')" />
-      <div class="title">{{ title }}</div>
-    </a>
-    <div class="menu">
-      <a v-for="(link, i) in menuLink" :key="i" :href="link.href">
-        {{ link.title }}
-      </a>
-      <a
+<template lang="pug">
+  section#navbar(
+     :style=" search ? { position: 'fixed', background: '#fff', width: '100%', zIndex: '99' } : { position: 'relative' }"
+  )
+    a.logo(href="/")
+      img(:src="require('../../assets/main-logo-green.svg')")
+      div.title {{ title }}
+    div.menu
+      a(v-for="(link, i) in menuLink" :key="i" :href="link.href") {{ link.title }}
+      a(
         href="#"
         :style="search ? { color: '#ec4439' } : {}"
         @click.prevent="search = !search"
-        >{{ search ? "Tutup Pencarian" : "Search" }}</a
-      >
-    </div>
-
-    <SearchComponent :open="search" />
-  </section>
+      ) {{ search ? "Tutup Pencarian" : "Search" }}
+    SearchComponent( :open="search" )
 </template>
+
 <script>
 import SearchComponent from "./SearchNavbar";
 
 export default {
   name: "Navbar",
   components: {
-    SearchComponent
+    SearchComponent,
   },
   data() {
     return {
@@ -42,21 +31,21 @@ export default {
         {
           title: "Donate",
           href: "#",
-          icon: "@icon/themify-icons/icons/money.svg"
+          icon: "@icon/themify-icons/icons/money.svg",
         },
         {
           title: "Library Card",
           href: "/library-card",
-          icon: "@icon/themify-icons/icons/credit-card.svg"
+          icon: "@icon/themify-icons/icons/credit-card.svg",
         },
         {
           title: "Account",
           href: "/account",
-          icon: "@icon/themify-icons/icons/user.svg"
-        }
-      ]
+          icon: "@icon/themify-icons/icons/user.svg",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 <style scoped>

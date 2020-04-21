@@ -1,47 +1,29 @@
-<template>
-  <section :style="open ? { height: '100vh' } : { height: '0' }" id="search">
-    <div class="info">
-      <h3>Lorem ipsum dolor sit amet.</h3>
-      <span
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quam
-        eligendi in rem officia repudiandae.</span
-      >
-    </div>
-    <form @submit.prevent="submitForm">
-      <Input
+<template lang="pug">
+  section#search(:style="open ? { height: '100vh' } : { height: '0' }")
+    div.info
+      h3 {{ title }}
+      span {{ desc }}
+    form(@submit.prevent="submitForm")
+      Input(
         class="input"
         typeInput="text"
         placeholder="Ingin baca buku apa hari ini?"
         name="cari"
         formName="search"
-      />
-      <div class="btn">
-        <Button :submit="true" :link="link" />
-      </div>
-    </form>
-    <div
+      )
+      div.btn
+        Button( :submit="true" :link="link" )
+    div.backdrop(
       v-if="dropdownHandler"
       @click="dropdownHandler = !dropdownHandler"
-      class="backdrop"
-    ></div>
-    <div :style="dropdownHandler" class="dropdown">
-      <div class="dropdown-elem">
-        <div class="dropdown-text" @click="dropdownHandler = !dropdownHandler">
-          <input type="text" v-model="defaultDropdown" />
-        </div>
-        <div
-          :style="dropdownHandler ? { height: '130px' } : { height: '0' }"
-          class="dropdown-list"
-        >
-          <ul>
-            <li v-for="(list, i) in dropdown" :key="i" @click="liHandler(list)">
-              {{ list }}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    )
+    div.dropdown(:style="dropdownHandler")
+      div.dropdown-elem
+        div.dropdown-text(@click="dropdownHandler = !dropdownHandler")
+          input(type="text" v-model="defaultDropdown")
+        div.dropdown-list( :style="dropdownHandler ? { height: '130px' } : { height: '0' }" )
+          ul
+            li(v-for="(list, i) in dropdown" :key="i" @click="liHandler(list)") {{ list }}
 </template>
 <script>
 import Input from "./InputOne";
@@ -101,6 +83,10 @@ export default {
       link: {
         title: "Cari!",
       },
+      title: "Lorem ipsum dolor sit amet.",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quam\
+        eligendi in rem officia repudiandae.",
       defaultDropdown: "buku",
       dropdownHandler: false,
     };

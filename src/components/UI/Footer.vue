@@ -1,38 +1,39 @@
-<template>
-  <section id="footer">
-    <div class="booklink">
-      <div v-for="(link, i) in links" :key="i" class="links">
-        <h3>{{ link.title }}</h3>
-        <a
+<template lang="pug">
+  section#footer
+    div.booklink
+      div.links(v-for="(link, i) in links" :key="i")
+        h3 {{ link.title }}
+        a(
           v-for="(attach, i) in link.linkAttached"
           :key="i"
           :href="attach.href"
-          >{{ attach.titleMenu }}</a
-        >
-      </div>
-    </div>
-    <div class="copyright">
-      <div class="left">
-        <img :src="image.imgOne" alt="logo" />
-        <img :src="image.imgTwo" alt="logo2" />
-      </div>
-      <div class="right">
-        <p>
-          {{ copyright }}
-        </p>
-      </div>
-    </div>
-  </section>
+        ) {{ attach.titleMenu }}
+    div.copyright
+      div.left
+        img(
+          v-for="(img, i) in image" 
+          :key="i" 
+          :src="img.link" 
+          :alt="img.desc ? img.desc : 'image'"
+          )
+      div.right
+        p {{ copyright }}
 </template>
 <script>
 export default {
   name: "Footer",
   data() {
     return {
-      image: {
-        imgOne: "https://www.washoecountylibrary.us/_files/img/wcemblem.png",
-        imgTwo: "https://www.washoecountylibrary.us/_files/img/wclfriends.png"
-      },
+      image: [
+        {
+          link: "https://www.washoecountylibrary.us/_files/img/wcemblem.png",
+          desc: "logo1",
+        },
+        {
+          link: "https://www.washoecountylibrary.us/_files/img/wclfriends.png",
+          desc: "logo2",
+        },
+      ],
       copyright: "Copyright Manisku Library System ©2020",
       links: [
         {
@@ -40,129 +41,129 @@ export default {
           linkAttached: [
             {
               titleMenu: "Hours & Closures",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Downton Reno",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Duncan/Trainer",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Gerlach",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Incline Village",
-              href: "#"
-            }
-          ]
+              href: "#",
+            },
+          ],
         },
         {
           title: "Books & More",
           linkAttached: [
             {
               titleMenu: "Read Recent Reviews",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Articles Search",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "e-Books & Audibooks",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Digital Library",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Catalog Search",
-              href: "#"
-            }
-          ]
+              href: "#",
+            },
+          ],
         },
         {
           title: "Resources",
           linkAttached: [
             {
               titleMenu: "Read Recent Reviews",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Articles Search",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "e-Books & Audibooks",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Digital Library",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Catalog Search",
-              href: "#"
-            }
-          ]
+              href: "#",
+            },
+          ],
         },
         {
           title: "Services",
           linkAttached: [
             {
               titleMenu: "Read Recent Reviews",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Articles Search",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "e-Books & Audibooks",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Digital Library",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Catalog Search",
-              href: "#"
-            }
-          ]
+              href: "#",
+            },
+          ],
         },
         {
           title: "About a Library",
           linkAttached: [
             {
               titleMenu: "Read Recent Reviews",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Articles Search",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "e-Books & Audibooks",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Digital Library",
-              href: "#"
+              href: "#",
             },
             {
               titleMenu: "Catalog Search",
-              href: "#"
-            }
-          ]
-        }
-      ]
+              href: "#",
+            },
+          ],
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 <style scoped>

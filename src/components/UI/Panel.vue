@@ -1,46 +1,21 @@
-<template>
-  <section
-    id="panel"
-    :style="[this.showPanel ? { height: '96vh' } : { height: '0' }]"
-  >
-    <div class="panel-menu">
-      <ul
-        :style="
-          this.showPanel
-            ? { background: panelData[this.dataMenu].panelLeft }
-            : { background: panelData[this.oldMenu].panelLeft }
-        "
-        class="panel-left"
-      >
-        <li v-for="(link, i) in panelLink" :key="i">
-          <a :href="link.href">{{ link.name }}</a>
-        </li>
-      </ul>
-      <div
-        :style="
-          this.showPanel
-            ? { background: panelData[this.dataMenu].panelRight }
-            : { background: panelData[this.oldMenu].panelRight }
-        "
-        class="panel-right"
-      >
-        <div class="card" v-for="(panel, i) in news" :key="i">
-          <a :href="panel.href">
-            <div class="img">
-              <div
-                :style="{ background: 'url(' + panel.img + ')' }"
-                class="img-frame"
-              ></div>
-            </div>
-          </a>
-          <div class="text-card">
-            <h3>{{ panel.title }}</h3>
-            <p>{{ panel.description }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section#panel( :style="[this.showPanel ? { height: '96vh' } : { height: '0' }]" )
+    div.panel-menu
+      ul.panel-left(
+        :style="this.showPanel ? { background: panelData[this.dataMenu].panelLeft } : { background: panelData[this.oldMenu].panelLeft }"
+      )
+        li( v-for="(link, i) in panelLink" :key="i" )
+          a(:href="link.href") {{ link.name }}
+      div.panel-right(
+         :style="this.showPanel ? { background: panelData[this.dataMenu].panelRight } : { background: panelData[this.oldMenu].panelRight }"
+      )
+         div.card( v-for="(panel, i) in news" :key="i" )
+            a( :href="panel.href" )
+              div.img
+                div.img-frame(  :style="{ background: 'url(' + panel.img + ')' }" )
+            div.text-card
+              h3 {{ panel.title }}
+              p {{ panel.description }}
 </template>
 <script>
 export default {
@@ -55,39 +30,39 @@ export default {
         { name: "STEAM Learning", href: "#" },
         { name: "Book Groups", href: "#" },
         { name: "Concerts", href: "#" },
-        { name: "Friends Friday Films" }
+        { name: "Friends Friday Films" },
       ],
 
       panelData: {
         default: {},
         Visit: {
           panelLeft: "#e086a6",
-          panelRight: "#d2527f"
+          panelRight: "#d2527f",
         },
         Explore: {
           panelLeft: "#f2ba7a",
-          panelRight: "#eb9532"
+          panelRight: "#eb9532",
         },
         Learn: {
           panelLeft: "#78d5ff",
-          panelRight: "#1db9ff"
+          panelRight: "#1db9ff",
         },
         Support: {
           panelLeft: "#7c98ca",
-          panelRight: "#446cb3"
+          panelRight: "#446cb3",
         },
         ReImagine: {
           panelLeft: "#88be7f",
-          panelRight: "#009a4e"
+          panelRight: "#009a4e",
         },
         About: {
           panelLeft: "#83cdbc",
-          panelRight: "#4db79f"
+          panelRight: "#4db79f",
         },
         Help: {
           panelLeft: "#e76d69",
-          panelRight: "#d91e18"
-        }
+          panelRight: "#d91e18",
+        },
       },
 
       news: [
@@ -97,7 +72,7 @@ export default {
           title: "AuthorsLive",
           href: "#",
           description:
-            "Discover new books, talk to authors about their work, and meet other book lovers? in the community."
+            "Discover new books, talk to authors about their work, and meet other book lovers? in the community.",
         },
         {
           img:
@@ -105,7 +80,7 @@ export default {
           title: "AuthorsLive",
           href: "#",
           description:
-            "Discover new books, talk to authors about their work, and meet other book lovers? in the community."
+            "Discover new books, talk to authors about their work, and meet other book lovers? in the community.",
         },
         {
           img:
@@ -113,7 +88,7 @@ export default {
           title: "AuthorsLive",
           href: "#",
           description:
-            "Discover new books, talk to authors about their work, and meet other book lovers? in the community."
+            "Discover new books, talk to authors about their work, and meet other book lovers? in the community.",
         },
         {
           img:
@@ -121,11 +96,11 @@ export default {
           title: "AuthorsLive",
           href: "#",
           description:
-            "Discover new books, talk to authors about their work, and meet other book lovers? in the community."
-        }
-      ]
+            "Discover new books, talk to authors about their work, and meet other book lovers? in the community.",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 <style scoped>

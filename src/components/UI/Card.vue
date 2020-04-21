@@ -1,9 +1,8 @@
-<template>
-  <section id="card-box">
-    <h3 :style="fontSize">{{ title }}</h3>
-    <span>{{ description }}</span>
-    <Button :style="{ float: 'right' }" :link="button" />
-  </section>
+<template lang="pug">
+  div#card-box
+    h3(:style="fontSize") {{ title }}
+    span {{ description }}
+    Button(:style="{ float: 'right' }" :link="button")
 </template>
 <script>
 import Button from "./ButtonSimple";
@@ -13,24 +12,24 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     fontSize: {
       type: String,
-      required: false
+      required: false,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     button: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   components: {
-    Button
-  }
+    Button,
+  },
 };
 </script>
 <style scoped>

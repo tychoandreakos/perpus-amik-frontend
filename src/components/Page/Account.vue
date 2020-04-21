@@ -1,35 +1,27 @@
-<template>
-  <section id="account">
-    <NavbarComponent />
-    <HeroComponent
-      :propsInfo="panelInfo"
-      :propsButtonEnabled="false"
-      :propsHero="hero"
-      :propsPanel="panel"
-      :propsTitle="titleHero"
-    />
-    <div class="login-info">
-      <div class="left">
-        <h3>{{ account.title }}</h3>
-        <p>
-          {{ account.desc }}
-        </p>
-        <ButtonComponent :link="buttonSignin" />
-      </div>
-      <div class="right">
-        <div class="info">
-          <h3>{{ account.eventFirst.title }}</h3>
-          <p><a href="#">{{ signin | capitalize }}</a> {{ account.access }}</p>
-        </div>
-        <div class="info">
-          <h3>{{ account.eventSecond.title }}</h3>
-          <p><a href="#">{{ signin | capitalize }}</a> {{ account.access }}</p>
-        </div>
-      </div>
-    </div>
-    <FooterComponent />
-  </section>
+<template lang="pug">
+  section#account
+    NavbarComponent
+    HeroComponent(
+      :propsInfo="panelInfo" 
+      :propsButtonEnabled="false" 
+      :propsHero="hero" 
+      :propsPanel="panel" 
+      :propsTitle="titleHero")
+    div.login-info
+      div.left
+        h3 {{ account.title }}
+        p {{ account.desc }}
+        ButtonComponent(:link="buttonSignin")
+      div.right
+        div.info
+          h3 {{ account.eventFirst.title }}
+          p #[a(href="#") {{ signin | capitalize }}] {{ account.access }}
+        div.info
+          h3 {{ account.eventSecond.title }}
+          p #[a(href="#") {{ signin | capitalize }}] {{ account.access }}
+    FooterComponent
 </template>
+
 <script>
 import NavbarComponent from "../UI/Navbar";
 import HeroComponent from "../UI/Hero";

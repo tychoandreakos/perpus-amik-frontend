@@ -1,24 +1,16 @@
-<template>
-  <div class="container">
-    <div class="special">
-      <div class="special-info">
-        {{ posted }}
-      </div>
-      <div class="shadow"></div>
-    </div>
-    <section id="news">
-      <div class="news-info">
-        <a class="title" :href="post.href">{{ post.title }}</a>
-        <p>{{ post.description }}</p>
-        <div class="btn-news">
-          <Button title="Baca Selengkapnya" />
-        </div>
-      </div>
-      <div class="panel-img">
-        <div class="img" :style="{ background: 'url(' + post.img + ')' }"></div>
-      </div>
-    </section>
-  </div>
+<template lang="pug">
+  div.container
+    div.special
+      div.special-info {{ posted }}
+      div.shadow
+    section#news
+      div.news-info
+        a.title(:href="post.href") {{ post.title }}
+        p {{ post.description }}
+        div.btn-news
+          Button(:title="readMore")
+      div.panel-img
+        div.img(:style="{ background: 'url(' + post.img + ')' }")
 </template>
 <script>
 import Button from "./ButtonSimple";
@@ -31,6 +23,7 @@ export default {
   data() {
     return {
       posted: "Berita Terbaru",
+      readMore: "Baca Selengkapnya",
       post: {
         title: "Valentines For Vets",
         href: "#",

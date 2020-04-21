@@ -1,14 +1,12 @@
-<template>
-  <a
-    v-if="!submit"
-    :href="$router.resolve(link.href).href"
-    class="btn btn-attend"
-  >
-    {{ link.title }}
-  </a>
-  <button v-else type="submit" class="btn btn-attend">
-    {{ link.title }}
-  </button>
+<template lang="pug">
+  a(
+  v-if="!submit"
+  :href="$router.resolve(link.href).href"
+  class="btn btn-attend"
+  ) {{ link.title }}
+  button(
+    v-else type="submit" class="btn btn-attend"
+  ) {{ link.title }}
 </template>
 <script>
 /**

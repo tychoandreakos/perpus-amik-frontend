@@ -1,37 +1,27 @@
-<template>
-  <section id="schedule">
-    <h3 class="title">Jadwal Perpustakan</h3>
-    <div class="schedule-library">
-      <ul>
-        <li v-for="(schedule, i) in schedules" :key="i">
-          <div class="schedule-left">
-            <div class="calendar">
-              <p>{{ schedule.buka.month }}</p>
-              <h3>{{ schedule.buka.date }}</h3>
-            </div>
-          </div>
-          <div class="day-open">
-            <h2>Jam Buka</h2>
-            <p>{{ schedule.buka.schedule }}</p>
-            <p>{{ schedule.buka.day }}</p>
-          </div>
-          <div class="istirahat">
-            <h2>Istirahat</h2>
-            <p>{{ schedule.istirahat.schedule }}</p>
-            <p>{{ schedule.istirahat.status }}</p>
-          </div>
-        </li>
-        <div class="btn">
-          <Button :link="title" />
-        </div>
-      </ul>
-
-      <div class="schedule-right">
-        <div class="img"></div>
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section#schedule
+    h3.title {{ innerTitle.main }}
+    div.schedule-library
+      ul
+        li(v-for="(schedule, i) in schedules" :key="i")
+          div.schedule-left
+            div.calendar
+              p {{ schedule.buka.month }}
+              h3 {{ schedule.buka.date }}
+          div.day-open
+            h2 {{ innerTitle.day }}
+            p {{ schedule.buka.schedule }}
+            p {{ schedule.buka.day }}
+          div.istirahat
+            h2 {{ innerTitle.rest }}
+            p {{ schedule.istirahat.schedule }}
+            p {{ schedule.istirahat.status }}
+        div.btn
+          Button(:link="title")
+      div.schedule-right
+        div.img
 </template>
+
 <script>
 import Button from "./ButtonSimple";
 
@@ -42,6 +32,11 @@ export default {
   },
   data() {
     return {
+      innerTitle: {
+        main: "Jadwal Perpustakaan",
+        rest: "Istirahat",
+        day: "Jam buka"
+      },
       title: {
         href: "#",
         title: "Lihat Jadwal Selengkapnya"

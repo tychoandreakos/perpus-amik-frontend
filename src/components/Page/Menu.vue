@@ -1,13 +1,15 @@
-<template>
-  <section id="menu">
-    <MenuComponent :activeStatus="showPanel" @changeData="updateData" />
-    <div @click="disabledPanel()" class="backdrop" v-if="showPanel"></div>
-    <PanelComponent
+<template lang="pug">
+  section#menu
+    MenuComponent(
+      :activeStatus="showPanel"
+      @changeData="updateData"
+    )
+    div.backdrop(@click="disabledPanel" v-if="showPanel")
+    PanelComponent(
       :oldMenu="oldMenu ? oldMenu : 'default'"
       :dataMenu="newMenu.length >= 1 ? newMenu : oldMenu"
       :showPanel="showPanel"
-    />
-  </section>
+    )
 </template>
 <script>
 import MenuComponent from "../UI/Menu.vue";
@@ -17,13 +19,13 @@ export default {
   name: "Menu",
   components: {
     MenuComponent,
-    PanelComponent
+    PanelComponent,
   },
   data() {
     return {
       showPanel: false,
       oldMenu: "",
-      newMenu: ""
+      newMenu: "",
     };
   },
   methods: {
@@ -44,17 +46,18 @@ export default {
         this.showPanel = !this.showPanel;
       } else if (this.oldMenu != this.newMenu) {
         if (this.newMenu.length >= 1) {
-          this.oldMenu = this.newMenu
-          this.newMenu = '';
-        };
-        if (this.oldMenu != e.target.innerHTML) this.newMenu = e.target.innerHTML;
+          this.oldMenu = this.newMenu;
+          this.newMenu = "";
+        }
+        if (this.oldMenu != e.target.innerHTML)
+          this.newMenu = e.target.innerHTML;
         this.showPanel = false;
         setTimeout(() => {
           this.showPanel = !this.showPanel;
         }, 600);
       } else this.newMenu = e.target.innerHTML;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

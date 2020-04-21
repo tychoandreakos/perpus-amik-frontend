@@ -1,38 +1,36 @@
-<template>
-  <section id="signin">
-    <form @submit.prevent="submitForm">
-      <img
+<template lang="pug">
+  section#signin
+    form(@submit.prevent="submitForm")
+      img(
         style="width: 250px"
         :src="require('../../assets/main-logo-green.svg')"
         alt="logo"
-      />
-      <h3>{{ signin.title }}</h3>
-      <span>{{ signin.desc }}</span>
-      <Input
+      )
+      h3 {{ signin.title }}
+      span {{ signin.desc }}
+      Input(
         placeholder="Masukkan username atau Npm"
         name="username / NPM"
         class="input"
         typeInput="text"
         :showLabel="true"
         formName="username"
-      />
-      <Input
+      )
+      Input(
         placeholder="Masukkan password"
         typeInput="password"
         name="password"
         class="input"
         :showLabel="true"
         formName="password"
-      />
-      <Button
+      )
+      Button(
         :style="{ marginTop: '.8rem' }"
         :disabled="buttonChecker"
         :submit="true"
         :link="link"
         :showLabel="true"
-      />
-    </form>
-  </section>
+      )
 </template>
 <script>
 import Input from "../UI/InputOne";

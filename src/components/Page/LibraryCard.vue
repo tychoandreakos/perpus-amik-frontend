@@ -1,50 +1,36 @@
-<template>
-  <section id="library-card">
-    <NavbarComponent />
-    <HeroComponent
+<template lang="pug">
+  section#library-card
+    NavbarComponent
+    HeroComponent(
       :propsInfo="panelInfo"
       :propsButtonEnabled="false"
       :propsHero="hero"
       :propsPanel="panel"
       :propsTitle="titleHero"
-    />
-    <div class="library-card">
-      <div class="left">
-        <template v-for="(link, i) in linkPanel">
-          <a :href="link.href" :key="i">{{ link.title }}</a>
-        </template>
-      </div>
-      <div class="right">
-        <CardComponent
+    )
+    div.library-card
+      div.left
+        template(v-for="(link, i) in linkPanel")
+          a(:href="link.href" :key="i") {{ link.title }}
+      div.right
+        CardComponent(
           class="card-component"
           style="margin: 0 10rem"
           :title="cardInformation.title"
           :description="cardInformation.desc"
           :button="cardInformation.buttonElem"
           :fontSize="'fontSize: 2.6rem'"
-        />
-        <div class="borrow">
-          <h3 class="h3">General Borrowing FAQs</h3>
-          <DropdownComponent
-            v-for="(data, i) in dropdownData"
-            :info="data"
+        )
+        div.borrow
+          h3.h3 General Borrowing FAQs
+          DropdownComponent(
+            v-for="(data, i) in dropdownData" 
+            :info="data" 
             :key="i"
-          />
-        </div>
-
-        <div class="borrow">
-          <h3 class="h3">Renewal Card</h3>
-          <DropdownComponent
-            v-for="(data, i) in renewal"
-            :info="data"
-            :key="i"
-          />
-        </div>
-      </div>
-    </div>
-    <FooterComponent />
-  </section>
+            )
+    FooterComponent
 </template>
+
 <script>
 import CardComponent from "../UI/Card";
 import NavbarComponent from "../UI/Navbar";
@@ -53,7 +39,7 @@ import DropdownComponent from "../UI/Dropdown";
 import FooterComponent from "../UI/Footer";
 
 const regist = {
-  name: "signup"
+  name: "signup",
 };
 
 export default {
@@ -63,7 +49,7 @@ export default {
     HeroComponent,
     DropdownComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
   },
   data() {
     return {
@@ -71,97 +57,97 @@ export default {
         {
           title: "How do i renew?",
           description:
-            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library."
+            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library.",
         },
         {
           title: "Do I Need have my library card number to renew?",
           description:
-            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library."
-        }
+            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library.",
+        },
       ],
       dropdownData: [
         {
           title: "Who may get a free Manisku Library Card?",
           description:
-            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library."
+            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library.",
         },
         {
           title: "What if i do not live in Bandung",
           description:
-            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library."
+            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library.",
         },
         {
           title: "What id i do not live in Connecticut?",
           description:
-            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library."
-        }
+            "Cards do expire and each type of card has a different expiration date. An expired card cannot be used to borrow materials or use any of the online or telephone services. The expiration date is on the card, and displays below your name when you view your account online. To renew your library card, bring your card and appropriate identification to the Library.",
+        },
       ],
       panel: {
         width: "42%",
         padding: "4rem",
-        height: "78%"
+        height: "78%",
       },
       titleHero: {
         fontSize: "2.9rem",
         lineHeight: "50px",
-        borderBottom: "0"
+        borderBottom: "0",
       },
       hero: {
         height: "40vh",
         background:
-          "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed"
+          "url('https://www.greenwichlibrary.org/wp-content/uploads/2016/04/Pattern-BG-About.svg') center/cover no-repeat fixed",
       },
       panelInfo: {
-        title: "Get a Library <br> Card"
+        title: "Get a Library <br> Card",
       },
       cardInformation: {
         title: "Register for a Library Card",
         desc: "Click through the link to sign up for a Library card online.",
         buttonElem: {
           title: "Registrasi Sekarang",
-          href: regist
-        }
+          href: regist,
+        },
       },
       linkPanel: [
         {
           href: "#",
-          title: "Get a Library Card"
+          title: "Get a Library Card",
         },
         {
           href: "#",
-          title: "Borrowing FAQs"
+          title: "Borrowing FAQs",
         },
         {
           href: "#",
-          title: "Renewals"
+          title: "Renewals",
         },
         {
           href: "#",
-          title: "Get a Library Card"
+          title: "Get a Library Card",
         },
         {
           href: "#",
-          title: "Borrowing FAQs"
+          title: "Borrowing FAQs",
         },
         {
           href: "#",
-          title: "Renewals"
+          title: "Renewals",
         },
         {
           href: "#",
-          title: "Get a Library Card"
+          title: "Get a Library Card",
         },
         {
           href: "#",
-          title: "Borrowing FAQs"
+          title: "Borrowing FAQs",
         },
         {
           href: "#",
-          title: "Renewals"
-        }
-      ]
+          title: "Renewals",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 <style>
