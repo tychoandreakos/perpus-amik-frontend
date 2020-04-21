@@ -1,8 +1,7 @@
-<template>
-  <section id="panel-user">
-    <NewsPanel />
-    <HistoryComponent />
-  </section>
+<template lang="pug">
+  section#panel-user
+    NewsPanel
+    HistoryComponent
 </template>
 <script>
 import HistoryComponent from "./History";

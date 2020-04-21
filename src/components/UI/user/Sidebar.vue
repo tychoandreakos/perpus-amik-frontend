@@ -1,11 +1,8 @@
-<template>
-  <section id="sidebar-user" v-if="sidebarState">
-    <ul>
-      <template v-for="(list, i) in sidebarData">
-        <ListComponent :key="i" :list="list" />
-      </template>
-    </ul>
-  </section>
+<template lang="pug">
+  section#sidebar-user(v-if="sidebarState")
+    ul
+      template(v-for="(list, i) in sidebarData")
+        ListComponent(:key="i" :list="list")
 </template>
 <script>
 import ListComponent from "./List";

@@ -1,46 +1,31 @@
-<template>
-  <section id="list-user">
-    <li :class="list.active ? 'active' : ''" v-if="!list.child">
-      <div class="link-wrap">
-        <router-link class="link" :to="list.href">
-          <ThemifyIcon :icon="list.icon" />
-          {{ list.title }}</router-link
-        >
-      </div>
-    </li>
-    <li
+<template lang="pug">
+  section#list-user
+    li( :class="list.active ? 'active' : ''" v-if="!list.child" )
+      div.link-wrap
+        router-link.link(:to="list.href") #[ThemifyIcon(:icon="list.icon")] {{ list.title }}
+    li(
       @click="dropdownPanel = !dropdownPanel"
       :class="list.active ? 'active' : ''"
       v-else
-    >
-      <div
-        :style="
-          dropdownPanel
-            ? { background: '#27262f', borderLeft: '4px solid #613ff4' }
-            : {}
-        "
-        class="link dropdown"
-      >
-        <div>
-          <ThemifyIcon :icon="list.icon" />
-          {{ list.title }}
-        </div>
-        <ThemifyIcon
+    )
+      div.link(
+        :style=" dropdownPanel ? { background: '#27262f', borderLeft: '4px solid #613ff4' } : {}"
+        class="dropdown"
+      )
+        div #[ThemifyIcon(:icon="list.icon")] {{ list.title }}
+        ThemifyIcon(
           :class="[dropdownPanel ? 'rotate' : '', 'caret']"
           :icon="caret"
-        />
-      </div>
-      <template v-for="(listData, i) in list.child">
-        <DropdownComponent
+        )
+      template(v-for="(listData, i) in list.child")
+        DropdownComponent(
           v-if="dropdownPanel"
           :key="i"
           :list="listData"
           :status="dropdownPanel"
-        />
-      </template>
-    </li>
-  </section>
+        )
 </template>
+
 <script>
 import DropdownComponent from "./DropdownSidebar";
 import ThemifyIcon from "vue-themify-icons";

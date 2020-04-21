@@ -1,7 +1,6 @@
-<template>
-  <section id="navbar-alternate">
-    <h3>{{ title }}</h3>
-  </section>
+<template lang="pug">
+  section#navbar-alternate
+    h3 {{ title }}
 </template>
 <script>
 export default {

@@ -1,44 +1,23 @@
-<template>
-  <section
-    id="navbar-user"
-    :style="
-      showSearch
-        ? {
-            height:
-              $mq === 'mobile'
-                ? '140px'
-                : $mq === 'tabletOrDesktop'
-                ? '155px'
-                : '104px'
-          }
-        : {}
-    "
-  >
-    <div class="logo">
-      {{ title }}
-      <div class="edges">
-        <div class="show-search" @click="setSearch">
-          <Icon :icon="icons.search" />
-        </div>
-        <div class="show-sidebar" @click="setSidebar">
-          <Icon :icon="icons.menu" />
-        </div>
-      </div>
-    </div>
-    <template v-if="showSearch">
-      <div class="element">
-        <SearchComponent
+<template lang="pug">
+  section#navbar-user(
+     :style="showSearch ? { height: $mq === 'mobile' ? '140px' : $mq === 'tabletOrDesktop' ? '155px' : '104px' } : {}"
+  )
+    div.logo {{ title }}
+      div.edges
+        div.show-search(@click="setSearch")
+          Icon(:icon="icons.search")
+        div.show-sidebar(@click="setSidebar")
+          Icon(:icon="icons.menu")
+    template(v-if="showSearch")
+      div.element
+        SearchComponent(
           @valueList="listSelected"
           class="search"
           :dropdown="filterBy"
           :placeholder="placeholder"
-        />
-        <div class="btn-wrapper">
-          <Button class="btn" title="Cari" />
-        </div>
-      </div>
-    </template>
-  </section>
+        )
+        div.btn-wrapper
+          Button.btn(title="cari")
 </template>
 <script>
 import SearchComponent from "./Search";
@@ -54,34 +33,34 @@ export default {
       listData: "",
       icons: {
         menu: "menu",
-        search: "search"
+        search: "search",
       },
       title: "Manisku Library",
-      anotherHandler: true
+      anotherHandler: true,
     };
   },
   computed: {
     showSearch() {
       return this.$mq === "mobile" ? this.$store.state.showSearch : true;
-    }
+    },
   },
   methods: {
     ...mapMutations(["setSidebar", "setSearch"]),
     listSelected(val) {
       this.listData = val;
-    }
+    },
   },
   props: {
     placeholder: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   components: {
     SearchComponent,
     Button,
-    Icon
-  }
+    Icon,
+  },
 };
 </script>
 <style>

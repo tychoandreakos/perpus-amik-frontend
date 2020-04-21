@@ -1,24 +1,19 @@
-<template>
-  <div id="news-panel">
-    <h3>{{ this.title }}</h3>
-    <div class="panel-wrap">
-      <img
-        src="https://cdn.oreillystatic.com/images/on-our-radar/deep-learning-with-tensorFlow-keras-and-pytorch-448x280.jpg"
-        alt="panel"
-      />
-      <div class="side">
-        <div class="img"></div>
-        <div class="desc"></div>
-        <div class="desc-outer">
-          <a href="#">
-            <h3>{{ panel.title }}</h3>
-            <span>{{ panel.desc }}</span>
-            <span class="link">{{ panel.link }}</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div#news-panel
+    h3 {{ title }}
+    div.panel-wrap
+      img(
+        :src="panel.src"
+        :alt="panel.alt"
+      )
+      div.side
+        div.img
+        div.desc
+        div.desc-outer
+          a(href="#")
+            h3 {{ panel.title }}
+            span {{ panel.desc }}
+            span.link {{ panel.link }}
 </template>
 <script>
 export default {
@@ -27,6 +22,9 @@ export default {
     return {
       title: "On Our Radar",
       panel: {
+        src:
+          "https://cdn.oreillystatic.com/images/on-our-radar/deep-learning-with-tensorFlow-keras-and-pytorch-448x280.jpg",
+        alt: "image",
         title: "Build State of the Art Deep Learning Models",
         desc:
           "In this first scenario, we'll explore how you can start and connect to your first container using Docker. The environment has b",

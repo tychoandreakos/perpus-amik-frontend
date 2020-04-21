@@ -1,5 +1,5 @@
-<template>
-  <button class="btn-custom">{{ title }}</button>
+<template lang="pug">
+  button.btn-custom {{ title }}
 </template>
 <script>
 export default {

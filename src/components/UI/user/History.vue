@@ -1,30 +1,18 @@
-<template>
-  <section id="history-user">
-    <h3>{{ title }}</h3>
-    <ul>
-      <li v-for="(history, i) in bookHistory" :key="i">
-        <div class="card">
-          <a
+<template lang="pug">
+  section#history-user
+    h3 {{ title }}
+    ul
+      li(v-for="(history, i) in bookHistory" :key="i")
+        div.card
+          a.img(
             href="#"
-            class="img"
             :style="{ background: 'url(' + history.img + ')' }"
-          ></a>
-          <div class="desc">
-            <router-link class="link" v-if="$mq === 'mobile'" to="#">{{
-              history.title | shortTextMobile
-            }}</router-link>
-            <router-link class="link" v-else to="#">{{
-              history.title
-            }}</router-link>
-            <span
-              >By <a href="#">{{ history.author }}</a></span
-            >
-          </div>
-        </div>
-      </li>
-    </ul>
-    <a class="see">{{ more.title }}</a>
-  </section>
+          )
+          div.desc
+            router-link.link(v-if="$mq === 'mobile'" to="#") {{ history.title | shortTextMobile }}
+            router-link.link(v-else to="#") {{ history.title }}
+            span By #[a(href="#") {{ history.author }}]
+    a.see {{ more.title }}
 </template>
 <script>
 export default {

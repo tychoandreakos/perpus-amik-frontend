@@ -1,7 +1,6 @@
-<template>
-  <div class="dropdown-panel">
-    <router-link :to="list.href">{{ list.title }}</router-link>
-  </div>
+<template lang="pug">
+  div.dropdown-panel
+    router-link( :to="list.href") {{ list.title }}
 </template>
 <script>
 export default {

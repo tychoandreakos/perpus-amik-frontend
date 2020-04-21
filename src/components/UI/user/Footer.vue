@@ -1,14 +1,10 @@
-<template>
-  <section id="footer-user">
-    <ul>
-      <li v-for="(link, i) in footer" :key="i">
-        <a :href="link.href">{{ link.title }}</a>
-      </li>
-    </ul>
-    <div class="copyright">
-      <p>{{ copyright.title }}</p>
-    </div>
-  </section>
+<template lang="pug">
+  section#footer-user
+    ul
+      li(v-for="(link, i) in footer" :key="i")
+        a(:href="link.href") {{ link.title }}
+    div.copyright
+      p {{ copyright.title }}
 </template>
 <script>
 export default {

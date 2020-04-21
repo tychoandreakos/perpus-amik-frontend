@@ -1,31 +1,18 @@
-<template>
-  <section id="dropdown-user">
-    <div @click="dropdownHandler" v-if="dropdown" class="backdrop"></div>
-    <div @click="dropdownHandler" class="dropdown-elem">
-      <div class="title">
-        <span
-          >Filter by :
-          <p>{{ listSelected }}</p>
-          <p></p
-        ></span>
-      </div>
-      <div
-        :style="dropdown ? { height: '100px' } : { height: '0' }"
-        class="dropdown-list"
-      >
-        <ul>
-          <li
+<template lang="pug">
+  section#dropdown-user
+    div.backdrop( @click="dropdownHandler" v-if="dropdown")
+    div.dropdown-elem(@click="dropdownHandler")
+      div.title
+        span Filter By: #[p {{ listSelected }}]
+      div.dropdown-list(:style="dropdown ? { height: '100px' } : { height: '0' }")
+        ul
+          li(
             @click="listHandler(listFilter)"
             v-for="(listFilter, i) in list"
             :key="i"
-          >
-            {{ listFilter }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+          ) {{ listFilter }}
 </template>
+
 <script>
 export default {
   name: "DropdownUser",

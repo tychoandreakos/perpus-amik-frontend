@@ -1,82 +1,46 @@
-<template>
-  <section id="list-book">
-    <div class="media-wrapper">
-      <div class="media-info-wrapper">
-        <a
+<template lang="pug">
+  section#list-book
+    div.media-wrapper
+      div.media-info-wrapper
+        a.img(
           :href="item.imgBook.href"
-          class="img"
-          :style="{
-            background: 'url(' + item.imgBook.img + ')',
-          }"
-        ></a>
-        <div class="media-info">
-          <div class="media-categories">
-            <template v-if="true">
-              <div class="category">
-                <Icon icon="book" />
-                Book
-              </div>
-            </template>
-            <template v-else>
-              <div class="category">
-                <Icon icon="video-camera" />
-                Video
-              </div>
-            </template>
-            <div @click="playlist = !playlist" class="playlist">
-              <Icon icon="list" />
-            </div>
-
-            <Playlist v-show="playlist" />
-            <div
-              class="playlist-backdrop"
-              @click="playlist = false"
-              v-show="playlist"
-            />
-          </div>
-          <a :href="item.titleBook.href" class="title">{{
-            item.titleBook.title
-          }}</a>
-          <span
-            >By :
-            <template v-if="isArray(item.authorBook.author)">
-              <a
+          :style="{ background: 'url(' + item.imgBook.img + ')' }"
+        )
+        div.media-info
+          div.media-categories
+              div.category #[Icon(:icon="book.icon")] {{ book.title }}
+              div.playlist(@click="playlist = !playlist")
+                Icon(icon="list")  
+              Playlist(v-show="playlist")
+              div.playlist-backdrop(
+                @click="playlist = false"
+                v-show="playlist"
+              )
+          a.title(:href="item.titleBook.href") {{ item.titleBook.title }}
+          span By: 
+            template(v-if="isArray(item.authorBook.author)")
+              a( 
                 v-for="(author, i) in item.authorBook.author"
                 :key="i"
                 href="#"
-                >{{ author }}</a
-              >
-            </template>
-            <template v-else>
-              <a :href="item.authorBook.href">{{ item.authorBook.author }}</a>
-            </template></span
-          >
-        </div>
-      </div>
-      <div class="media-description">
-        <div class="info-rating">
-          <div class="rating">
-            <Rating
+              ) {{ author }}
+            template(v-else)
+              a(:href="item.authorBook.href") {{ item.authorBook.author }}
+      div.media-description
+        div.info-rating
+          div.rating
+            Rating(
               :max-rating="5"
               :increment="1"
               :rating="item.rating"
               :star-size="15"
               active-color="#613ff4"
               :show-rating="false"
-            />
-          </div>
-          <span>{{ item.rating }} Reviews</span>
-        </div>
-        <p>Pack Publishing May 2018</p>
-        <span class="description" v-if="$mq !== 'mobile'">{{
-          item.description | descFilter
-        }}</span>
-        <span class="description" v-else>{{
-          item.description | descMobile
-        }}</span>
-      </div>
-    </div>
-  </section>
+            )
+          span {{ item.rating }} Reviews
+        p Packt Publishing May 2018
+        span.description(v-if="$mq !== 'mobile'") {{ item.description | descFilter  }}
+        span.description(v-else) {{  item.description | descMobile }}
 </template>
 <script>
 import Icon from "vue-themify-icons";
@@ -96,6 +60,10 @@ export default {
   data() {
     return {
       playlist: false,
+      book: {
+        title: "Book",
+        icon: "book",
+      },
     };
   },
   methods: {

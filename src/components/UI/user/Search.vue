@@ -1,19 +1,14 @@
-<template>
-  <section
-    :style="dropdownData ? { border: '1px solid #613ff4' } : {}"
-    id="search-user"
-  >
-    <div class="icon">
-      <ThemifyIcons :icon="searchIcon" />
-    </div>
-    <input :placeholder="placeholder" type="text" />
-    <DropdownComponent
-      v-if="$mq !== 'mobile'"
+<template lang="pug">
+  section#search-user( :style="dropdownData ? { border: '1px solid #613ff4' } : {}" )
+    div.icon
+      ThemifyIcons(:icon="searchIcon")
+    input(:placeholder="placeholder" type="text")
+    DropdownComponent(
+        v-if="$mq !== 'mobile'"
       @open="dropdownHandler"
       @listValue="listHandler"
       :list="dropdown"
-    />
-  </section>
+    )
 </template>
 <script>
 import DropdownComponent from "./Dropdown";

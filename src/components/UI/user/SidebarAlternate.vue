@@ -1,12 +1,9 @@
-<template>
-  <aside id="sidebar-alternate">
-    <ul>
-      <li v-for="(sidebar, i) in sidebarProperties" :key="i">
-        <Icon :icon="sidebar.icon" />
-        <router-link :to="sidebar.href">{{ sidebar.title }}</router-link>
-      </li>
-    </ul>
-  </aside>
+<template lang="pug">
+  aside#sidebar-alternate
+    ul
+      li(v-for="(sidebar, i) in sidebarProperties" :key="i")
+        Icon(:icon="sidebar.icon")
+        router-link(:to="sidebar.href") {{ sidebar.title }}
 </template>
 <script>
 import Icon from 'vue-themify-icons';
