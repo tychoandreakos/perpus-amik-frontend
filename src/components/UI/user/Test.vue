@@ -11,7 +11,7 @@ div
                     .card-carousel--card(v-for="item in items")
                         img(:src="item.imgBook.img")
                         .card-carousel--card--footer
-                            a(href="#") {{ item.titleBook.title | titleSplice}}
+                            a(href="#" style="display: block") {{ item.titleBook.title | titleSplice}}
                             <template v-if="checkingObject(item.authorBook.author)">
                               p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") {{ tag }}
                             </template>
@@ -172,7 +172,8 @@ $light-gray: #f8f8f8;
       vertical-align: bottom;
       transition: opacity 150ms linear;
       user-select: none;
-      width: 150px;
+      width: 110px;
+      margin: 0 40px;
     }
 
     &--footer {

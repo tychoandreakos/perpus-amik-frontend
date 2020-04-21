@@ -20,68 +20,78 @@ export default {
   components: {
     PanelComponent,
     Test,
-    FooterComponent
+    FooterComponent,
   },
   data() {
     return {
       slider: [
         {
-          title: 'Recenly Added',
-          href: '#'
+          title: "Recenly Added",
+          href: "#",
         },
         {
-          title: 'Most Popular',
-          href: '#'
-        }
+          title: "Most Popular",
+          href: "#",
+        },
       ],
-      link: 'See More'
-    }
+      link: "See More",
+    };
   },
   methods: {
     sliderHandler(e) {
       this.$refs.sliderControl.scrollLeft = event.clientY + 50;
       // console.log(this.$refs.sliderControl);
-    }
-  }
+    },
+  },
 };
 </script>
-<style scoped>
+<style lang="scss">
 #first-wrapper {
+  // $font-size: 600px;
+  // @mixin weight {
+  //   font-weight: 500;
+  // }
+
   width: 100%;
-}
 
-#first-wrapper .slider {
-  margin: 2.9rem 0;
-}
+  .slider {
+    margin: 2.9rem 0;
 
-#first-wrapper .slider .border {
-  width: 90%;
-  border-bottom: 1px solid #ddd;
-  margin: 3rem auto 0 auto;
-}
+    .border {
+      width: 90%;
+      border-bottom: 1px solid #ddd;
+      margin: 3rem auto 0 auto;
+    }
 
-#first-wrapper .slider .text {
-  margin-left: 5rem;
-}
+    .text {
+      margin-left: 5rem;
 
-#first-wrapper .slider h3 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-}
+      a {
+        color: inherit;
+        font: {
+          family: "Quicksand", sans-serif;
+          weight: 500;
+        }
 
-#first-wrapper .slider .text a {
-  color: inherit;
-  font-family: "Quicksand", sans-serif;
-  font-weight: 500;
-}
+        &:hover {
+          color: #613ff4;
+        }
+      }
 
-#first-wrapper .slider .text a:hover {
-  color: #613ff4;
-}
+      h3 {
+        font: {
+          family: "Poppins", sans-serif;
+          weight: 500;
+          size: 1.4rem;
+        }
+      }
+    }
+  }
 
-@media only screen and (max-width: 580px) {
-  #first-wrapper .slider .text {
-    margin-left: 2rem;
+  @media only screen and (max-width: 580px) {
+    .slider .text {
+      margin-left: 2rem;
+    }
   }
 }
 </style>
