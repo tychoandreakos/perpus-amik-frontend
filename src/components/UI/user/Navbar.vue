@@ -18,6 +18,19 @@
         )
         div.btn-wrapper
           Button.btn(title="cari")
+    div.user-button(@click="userButton = !userButton" 
+    :class="userButton ? 'true-user-button' : 'false-user-button'")
+      div.user-wrapper
+       span Elang Indra
+       Icon(icon="angle-down")
+      ul
+        li 
+          a(href="#") Profile
+        li 
+          a(href="#") History
+        li 
+          a(href="#") Logout
+      
 </template>
 <script>
 import SearchComponent from "./Search";
@@ -29,6 +42,7 @@ export default {
   name: "NavbarUser",
   data() {
     return {
+      userButton: false,
       filterBy: ["Buku", "Pengarang", "ISBN"],
       listData: "",
       icons: {
@@ -64,9 +78,12 @@ export default {
 };
 </script>
 <style lang="scss">
+@mixin shadow {
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
 #navbar-user {
   background: #fff;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
   width: 100%;
   display: flex;
   position: relative;
@@ -75,9 +92,10 @@ export default {
   transition: all 0.7s ease;
   position: fixed;
   z-index: 8;
+  @include shadow;
 
   .logo {
-    width: 15%;
+    width: 18.7%;
     height: 100%;
     background: #3d3b49;
 
@@ -85,6 +103,77 @@ export default {
       display: none;
       cursor: pointer;
       margin-left: 1rem;
+    }
+  }
+
+  .true-user-button {
+    height: 182px;
+    @include shadow;
+  }
+
+  .false-user-button {
+    height: 50px;
+  }
+
+  .user-button {
+    margin: {
+      right: 3rem;
+      top: 1.5rem;
+    }
+    width: 18%;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: 0.2s box-shadow ease-in, 0.3s height ease-in;
+    position: relative;
+    padding: 0.9rem;
+    align-self: baseline;
+    overflow: hidden;
+    background: #fff;
+
+    .user-wrapper {
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+      display: flex;
+    }
+
+    ul {
+      margin-top: 1rem;
+      list-style: none;
+      padding: 0 0.9rem;
+
+      li {
+        padding: {
+          top: 0.8rem;
+          bottom: 0.4rem;
+        }
+        border-bottom: 1px solid #eee;
+
+        a {
+          text-decoration: none;
+          color: inherit;
+          transition: 0.3s margin-left ease-in-out;
+          display: block;
+
+          &:hover {
+            margin-left: 0.3rem;
+            color: #613ff4;
+          }
+        }
+      }
+    }
+
+    font: {
+      size: 0.9rem;
+    }
+
+    &:hover {
+      box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
+        0 2px 2px 0 rgba(40, 44, 53, 0.08);
+    }
+
+    span {
+      font-family: "Poppins", sans-serif;
     }
   }
 
@@ -107,7 +196,7 @@ export default {
     width: 100%;
 
     .search {
-      width: 67%;
+      width: 80%;
       margin-right: 1.5rem;
     }
 
