@@ -23,6 +23,7 @@
       div.user-wrapper
        span Elang Indra
        Icon(icon="angle-down")
+      div.backdrop(v-if="userButton" @click.stop="userButton = false")
       ul
         li 
           a(href="#") Profile
@@ -135,6 +136,17 @@ export default {
       justify-content: space-evenly;
       align-items: center;
       display: flex;
+      z-index: 3;
+    }
+
+    .backdrop {
+      position: fixed;
+      background: transparent;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: -1;
     }
 
     ul {

@@ -20,6 +20,7 @@ export default {
   width: 100%;
   background: #f8f8f8;
   display: grid;
+  gap: 1.5rem;
   grid-template-columns: 2fr 1fr;
 }
 
