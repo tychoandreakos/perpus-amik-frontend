@@ -16,18 +16,18 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400&display=swap")
 
 #app
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: #2c3e50
 
 *
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0
+  padding: 0
+  box-sizing: border-box
 
 html,
 body,
 #app
-  width: 100%;
-  height: 100%;
+  width: 100%
+  height: 100%
 </style>
