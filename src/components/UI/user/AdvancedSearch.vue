@@ -1,36 +1,68 @@
 <template lang="pug">
     div#advanced-search(@click="dropdownHandler" :style="handler ? dropdownTrue : dropdownFalse ")
         div.wrapper
-            span {{ label | capitalize }} 
+            span(:style="choosing ? {fontWeight: 'bold'} : {}") {{ label | capitalize }} 
             Icon(icon="angle-down")
         ul
-            li 
-                input#one(type="checkbox") 
-                label(for="one") All
-            li 
-                input#two(type="checkbox") 
-                label(for="two") Books (1209)
+          template(v-for="(item, i) in list")
+            li(:key="i") 
+                template(v-if="label == 'rating'")
+                  div.rating
+                    Rating(
+                    :max-rating="5"
+                    :increment="1"
+                    :rating="item.rating"
+                    :star-size="15"
+                    active-color="#613ff4"
+                    :show-rating="false"
+                  )
+                    span.point 5 Star
+                template(v-else)
+                  input(type="checkbox" @click="checkLabel = label" :value="i" v-model="checked" :id="i") 
+                  label(:for="i") {{ i | capitalize }} ( {{ item.total }} )
+          .btn(@click.stop="submit(label)")
+            Button.btn-click(:disabled="enabledButton" title="Find")
+                
         div.backdrop(v-if="handler" @click.stop="handler = !handler")
                 
 </template>
 
 <script>
 import Icon from "vue-themify-icons";
+import Rating from "vue-star-rating";
+import Button from "./Button";
+
 export default {
   name: "AdvancedSearch",
   components: {
     Icon,
+    Rating,
+    Button,
+  },
+  computed: {
+    enabledButton() {
+      return this.checked.length > 0 ? false : true;
+    },
   },
   methods: {
     dropdownHandler() {
       this.handler = !this.handler;
     },
+    submit(label) {
+      this.$emit("checked", {
+        label: this.checkLabel,
+        checked: this.checked,
+      });
+    },
   },
   data() {
     return {
+      checkLabel: "",
+      checked: [],
       handler: false,
+      choosing: false,
       dropdownTrue: {
-        height: "120px",
+        height: "170px",
       },
       dropdownFalse: {
         height: "40px",
@@ -40,6 +72,10 @@ export default {
   props: {
     label: {
       type: String,
+      required: true,
+    },
+    list: {
+      type: Object,
       required: true,
     },
   },
@@ -54,6 +90,9 @@ export default {
   cursor: pointer;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
+  height: 250px;
+  position: relative;
+  z-index: 5;
 
   &:hover {
     box-shadow: 0 10px 15px 0 rgba(40, 44, 53, 0.06),
@@ -77,6 +116,15 @@ export default {
     position: relative;
     z-index: 5;
     background: #fff;
+
+    .btn {
+      width: 100%;
+
+      .btn-click {
+        width: 100%;
+      }
+    }
+
     li {
       margin-bottom: 0.8rem;
       display: flex;
@@ -84,6 +132,17 @@ export default {
       font: {
         size: 0.9rem;
         family: "Poppins", sans-serif;
+      }
+
+      .rating {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        span.point {
+          margin-top: 0.3rem;
+          // font
+        }
       }
 
       label {

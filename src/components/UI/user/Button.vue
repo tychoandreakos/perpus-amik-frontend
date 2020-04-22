@@ -7,9 +7,9 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -24,10 +24,18 @@ export default {
   cursor: pointer;
   font-size: 0.9rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.4s ease-in;
+  transition: all 0.4s ease-in;
 }
 
-.btn-custom:hover {
+.btn-custom:disabled,
+.btn-custom[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: no-drop;
+}
+
+..btn-custom:not([disabled]):hover {
   box-shadow: 0 4px 15px rgb(97, 63, 244, 0.6);
 }
 </style>

@@ -3,7 +3,7 @@
     p.found #[strong 1 - 10 of 12541] search results for 
       strong php
     div.advanced
-      AdvancedSearch(v-for="(labels, i) in labelsSearch" :key="i" :label="labels")
+      AdvancedSearch(v-for="(labels, i) in listKeyword" :label="i" @checked="checkedHandler" :list="labels" :key="i")
     template(v-for="(book, i) in items")
       ListComponent(:item="book" :key="i")
     FooterComponent.footer
@@ -20,9 +20,47 @@ export default {
     FooterComponent,
     AdvancedSearch,
   },
+  methods: {
+    checkedHandler(e) {
+      this.checked = {
+        ...this.checked,
+        [e.label]: e.checked,
+      };
+    },
+  },
   data() {
     return {
+      checked: {},
       labelsSearch: ["formats", "topic", "publisher", "rating"],
+      listKeyword: {
+        formats: {
+          books: {
+            total: 400,
+          },
+          videos: {
+            total: 200,
+          },
+        },
+        topic: {
+          php: {
+            total: 500,
+          },
+          javascript: {
+            total: 600,
+          },
+        },
+        publisher: {
+          "o'reilly": {
+            total: 10,
+          },
+          packt: {
+            total: 25,
+          },
+        },
+        rating: {
+          5: 120,
+        },
+      },
     };
   },
   computed: {
