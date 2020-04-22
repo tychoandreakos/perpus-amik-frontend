@@ -11,7 +11,7 @@
               div.category #[Icon(:icon="book.icon")] {{ book.title }}
               div.playlist(@click="playlist = !playlist")
                 Icon(icon="list")  
-              Playlist(v-show="playlist")
+              Playlist(v-show="playlist" :drop="true")
               div.playlist-backdrop(
                 @click="playlist = false"
                 v-show="playlist"

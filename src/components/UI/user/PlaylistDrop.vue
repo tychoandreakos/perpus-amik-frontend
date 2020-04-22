@@ -5,7 +5,7 @@
                 div.add
                     Icon(icon="plus")
                     span(v-text="add")
-            li(v-if="false" v-for="(list, i) in dummy" :key="i")
+            li(v-if="drop" v-for="(list, i) in dummy" :key="i")
                a(href="#")
                 Icon(icon="thumb-up")
                 span(v-text="list") 
@@ -20,6 +20,12 @@ export default {
   },
   methods: {
     ...mapMutations(["setFloatPanel"]),
+  },
+  props: {
+    drop: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {

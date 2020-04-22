@@ -2,7 +2,7 @@
   div#playlist
     div.playlist(@click="playlistState = !playlistState")
         Icon(icon="list" :style="stylePlaylist")
-    PlaylistDrop(v-show="playlistState")
+    PlaylistDrop(:drop="drop" v-show="playlistState")
 </template>
 
 <script>

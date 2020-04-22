@@ -21,7 +21,7 @@ div
                                 router-link(:to="{ name: 'result', params: { book: slug(item.authorBook.author) } }") {{ item.authorBook.author }}.
                             div.desc(style={marginTop: '20px'})
                               span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun ....
-                            Playlist
+                            Playlist(:drop="false")
                             
         .card-carousel--nav__right(
         @click="moveCarousel(1)"
