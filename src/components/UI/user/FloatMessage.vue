@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      panel: false,
+      panel: true,
       show: {
         animation: "panelAnimate 0.7s ease-in-out",
       },

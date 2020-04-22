@@ -35,7 +35,7 @@ export default {
   cursor: no-drop;
 }
 
-..btn-custom:not([disabled]):hover {
+.btn-custom:not([disabled]):hover {
   box-shadow: 0 4px 15px rgb(97, 63, 244, 0.6);
 }
 </style>
