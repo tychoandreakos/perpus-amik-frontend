@@ -60,7 +60,6 @@ export default {
 
       &:hover {
         color: #613ff4;
-        border-bottom: 0.7px solid #613ff4;
       }
 
       a {
