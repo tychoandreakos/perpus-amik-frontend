@@ -1,6 +1,7 @@
 <template lang="pug">
   section#homepage
     FloatMessage(v-if="floatMessage")
+    FloatPlaylist
     PanelTopWarning(v-if="topWarning" @closeHandler="closeHandler")
     NavbarComponent(placeholder="Cari buku disini ..")
     div.main-page(:style="showSearch ? '' : { paddingTop: $mq === 'mobile' ? '3.4rem' : '' }")
@@ -13,6 +14,7 @@ import NavbarComponent from "../../UI/user/Navbar";
 import SidebarComponent from "../../UI/user/Sidebar";
 import PanelTopWarning from "../../UI/user/PanelTopWarning";
 import FloatMessage from "../../UI/user/FloatMessage";
+import FloatPlaylist from "../../UI/user/FloatPlaylist";
 
 export default {
   name: "Homepage",
@@ -21,6 +23,7 @@ export default {
     SidebarComponent,
     PanelTopWarning,
     FloatMessage,
+    FloatPlaylist,
   },
   methods: {
     closeHandler(e) {

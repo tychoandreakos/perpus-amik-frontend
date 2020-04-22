@@ -15,6 +15,7 @@ export const store = new Vuex.Store({
     Input,
   },
   state: {
+    floatPanel: false,
     getUpdate: "",
     panel: false,
     sidebarState: false,

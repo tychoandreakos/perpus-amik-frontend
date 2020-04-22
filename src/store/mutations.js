@@ -1,30 +1,33 @@
-export const setSidebar = state => {
+export const setSidebar = (state) => {
   state.sidebarState = !state.sidebarState;
 };
 export const setTableTypes = (state, payload) => {
   state.tableTypes = payload;
 };
-export const setSearch = state => {
+export const setSearch = (state) => {
   state.showSearch = !state.showSearch;
 };
 export const setCirculation = (state, payload) => {
   state.circulation = {
-    ...payload
+    ...payload,
   };
 };
-export const setPanel = state => {
+export const setFloatPanel = (state) => {
+  state.floatPanel = !state.floatPanel;
+};
+export const setPanel = (state) => {
   state.panel = !state.panel;
 };
 export const setCreateInput = (state, payload) => {
   state.createInput = [...payload];
 };
-export const setCountUpdate = state => {
+export const setCountUpdate = (state) => {
   state.countUpdate += 1;
 };
 export const setGetUpdate = (state, payload) => {
   state.getUpdate = payload;
 };
-export const setCountUpdateDefault = state => {
+export const setCountUpdateDefault = (state) => {
   state.countUpdate = 0;
 };
 export const setHeader = (state, payload) => {
@@ -32,30 +35,30 @@ export const setHeader = (state, payload) => {
 };
 export const setResetDropdown = (state, payload) => {
   state.selectedDropdown = {
-    ...payload
+    ...payload,
   };
 };
 export const setSelectedDropdown = (state, payload) => {
   state.selectedDropdown = {
     ...state.selectedDropdown,
-    ...payload
+    ...payload,
   };
 };
 export const setInputParams = (state, payload) => {
   state.inputParams.push(payload);
 };
-export const setDefaultParams = state => {
+export const setDefaultParams = (state) => {
   state.inputParams = [];
   state.selectedDropdown = {};
 };
 export const setDropdownChoice = (state, payload) => {
   state.dropdownChoice = {
-    ...payload
+    ...payload,
   };
 };
 export const setDropdownVal = (state, payload) => {
   state.selectedDropdown = {
-    ...payload
+    ...payload,
   };
 };
 export const setTable = (state, payload) => {
@@ -65,7 +68,7 @@ export const setTable = (state, payload) => {
 export const setUpdateInputState = (state, payload) => {
   const temporaryInput = [];
   for (let key in payload) {
-    if (key !== 'id') {
+    if (key !== "id") {
       temporaryInput.push(payload[key]);
     }
   }
@@ -73,20 +76,20 @@ export const setUpdateInputState = (state, payload) => {
   state.idInputState = payload.id;
   state.updateInputState = [...temporaryInput];
 };
-export const setClearupdateInputState = state => {
+export const setClearupdateInputState = (state) => {
   state.updateInputState = [];
 };
 
-export const setEditProps = state => {
+export const setEditProps = (state) => {
   state.editProps = true;
 };
 
-export const setClearEditProps = state => {
+export const setClearEditProps = (state) => {
   state.editProps = false;
 };
 
 export const updateMaster = (state, payload) => {
-  state.tableMaster[payload.key].sample.find(item => {
+  state.tableMaster[payload.key].sample.find((item) => {
     if (item.id == payload.id) {
       for (let key in payload.data) {
         item[key] = payload.data[key];
@@ -97,7 +100,7 @@ export const updateMaster = (state, payload) => {
 
 export const deleteMaster = (state, payload) => {
   let newItem = [];
-  state.tableMaster[payload.key].sample.find(item => {
+  state.tableMaster[payload.key].sample.find((item) => {
     if (item.id != payload.id) {
       newItem.push(item);
     }

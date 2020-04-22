@@ -1,21 +1,25 @@
 <template lang="pug">
     div#dropdown
         ul
-            li
+            li(@click.stop="setFloatPanel")
                 div.add
                     Icon(icon="plus")
                     span(v-text="add")
-            li(v-for="(list, i) in dummy" :key="i")
+            li(v-if="false" v-for="(list, i) in dummy" :key="i")
                a(href="#")
                 Icon(icon="thumb-up")
                 span(v-text="list") 
 </template>
 <script>
+import { mapMutations } from "vuex";
 import Icon from "vue-themify-icons";
 export default {
   name: "PlaylistDrop",
   components: {
     Icon,
+  },
+  methods: {
+    ...mapMutations(["setFloatPanel"]),
   },
   data() {
     return {
