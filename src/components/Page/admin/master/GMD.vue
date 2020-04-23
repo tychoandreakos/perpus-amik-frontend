@@ -1,7 +1,8 @@
 <template lang="pug">
   section#gmd
     HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
-    PanelActionComponent(:title="title" :breadcrumbsHeader="breadcrumbs" @count="count" :total="database.content.dataCount")
+    PanelActionComponent(:title="title" 
+    :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
     TableComponent(:tableProps="database")
 </template>
 <script>
@@ -23,6 +24,9 @@ export default {
   },
   computed: {
     ...mapState(["resultInput"]),
+    total() {
+      return this.database.content.dataCount || 0;
+    },
   },
   methods: {
     ...mapMutations([
