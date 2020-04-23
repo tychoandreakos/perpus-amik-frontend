@@ -1,17 +1,18 @@
-<template>
-  <section id="gmd">
-    <HeaderComponent :title="title" :breadcrumbsHeader="breadcrumbs" />
-    <PanelActionComponent :search="search" :button="button" />
-    <TableComponent :tableProps="table" />
-  </section>
+<template lang="pug">
+  section#gmd
+    HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
+    PanelActionComponent(:title="title" :breadcrumbsHeader="breadcrumbs" @count="count" :total="database.content.dataCount")
+    TableComponent(:tableProps="database")
 </template>
 <script>
 import HeaderComponent from "../../../UI/admin/Header";
 import PanelActionComponent from "../../../UI/admin/PanelAction";
 import TableComponent from "../../../UI/admin/TableAdmin";
-import { mapState, mapGetters, mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 import { masterGMD } from "../../../../store/types";
+
+import axios from "../../../../api/axios";
 
 export default {
   name: "GMD",
@@ -22,14 +23,6 @@ export default {
   },
   computed: {
     ...mapState(["resultInput"]),
-    ...mapGetters({
-      table: "table",
-    }),
-  },
-  watch: {
-    table(newVal) {
-      return newVal;
-    },
   },
   methods: {
     ...mapMutations([
@@ -41,6 +34,21 @@ export default {
       "setGetUpdate",
       "setClearEditProps",
     ]),
+    count(e) {
+      this.getData(e, 2);
+    },
+    getData(skip, take) {
+      axios
+        .get("gmd", {
+          params: {
+            skip,
+            take,
+          },
+        })
+        .then((res) => res.data)
+        .then((json) => (this.database.content = json.data))
+        .catch((err) => console.log(err));
+    },
   },
   created() {
     this.setCountUpdateDefault();
@@ -50,6 +58,7 @@ export default {
     this.setTableTypes(masterGMD);
     this.setGetUpdate(masterGMD);
     this.setClearEditProps();
+    this.getData(0, 2);
   },
 
   data() {
@@ -59,6 +68,17 @@ export default {
       button: {
         title: "Add New GMD",
         icon: "plus",
+      },
+      database: {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true,
+        },
+        title: ["GMD CODE", "GMD NAME", "Last Update"],
+        field: ["gmd_code", "gmd_name", "updated_at"],
+        content: {},
       },
       createProp: [
         {
@@ -81,7 +101,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss">
 #gmd {
   width: 100%;
   height: 100%;
