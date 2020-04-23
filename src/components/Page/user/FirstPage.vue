@@ -7,7 +7,7 @@
         h3 {{ info.title }}
         span {{ info.desc }}
         a(:href="info.href") {{ link }}
-      Test(:items="info.items")
+      Test(:items="info.items" :typeBook="info.type")
       div.border
     FooterComponent
 </template>
@@ -41,18 +41,21 @@ export default {
           desc: "Based on your history, we think you'll like these titles.",
           href: "#",
           items: this.$store.getters.getRecommend,
+          type: "recommended",
         },
         {
           title: "Recenly Added",
           desc: "Understand what's happening now—prepare for what's next",
           href: "#",
           items: this.$store.getters.getAllBook,
+          type: "listBook",
         },
         {
           title: "Trending",
           desc: "These titles and classes are our most popular for a reason.",
           href: "#",
           items: this.$store.getters.getAllBook,
+          type: "listBook",
         },
       ],
       link: "See More",

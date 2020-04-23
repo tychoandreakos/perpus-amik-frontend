@@ -197,7 +197,7 @@ const router = [
     ],
   },
   {
-    path: "/library/view/:book",
+    path: "/library/view/:isbn/:book",
     component: ResultComponent,
     name: "result",
     meta: {

@@ -12,10 +12,10 @@ div
                       img(:src="item.imgBook.img")
                       .card-carousel--card--footer
                           div.label #[Icon(icon="book")] Book
-                          router-link.title(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
+                          router-link.title(:to="{ name: 'result',query: { type: typeBook }, params: {isbn: item.titleBook.isbn, book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
                           <template v-if="checkingObject(item.authorBook.author)">
                             p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") 
-                              router-link(:to="{ name: 'result', params: { book: slug(tag) } }") {{ tag }}.
+                              router-link(:to="{ name: 'result', params: {  book: slug(tag) } }") {{ tag }}.
                           </template>
                             p.tag(v-else)
                                 router-link(:to="{ name: 'result', params: { book: slug(item.authorBook.author) } }") {{ item.authorBook.author }}.
@@ -48,6 +48,10 @@ export default {
   props: {
     items: {
       type: Array,
+      required: true,
+    },
+    typeBook: {
+      type: String,
       required: true,
     },
   },
