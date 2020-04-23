@@ -6,36 +6,38 @@
         div.card
           a.img(
             href="#"
-            :style="{ background: 'url(' + history.img + ')' }"
+            :style="{ background: 'url(' + history.imgBook.img + ')' }"
           )
           div.desc
-            router-link.link(v-if="$mq === 'mobile'" to="#") {{ history.title | shortTextMobile }}
-            router-link.link(v-else to="#") {{ history.title }}
-            span By #[a(href="#") {{ history.author }}]
+            router-link.link(v-if="$mq === 'mobile'" to="#") {{ history.titleBook.title | shortTextMobile | capitalize }}
+            router-link.link(v-else to="#") {{ history.titleBook.title | capitalize }}
+            span By #[a(href="#") {{ history.authorBook.author | capitalize }}]
     router-link.see(:to="{ name: 'homepage.history' }") {{ more.title }}
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "History",
   computed: {
+    ...mapGetters(["getHistoryMini"]),
     bookHistory() {
-      return this.$store.state.bookHistory;
-    }
+      return this.getHistoryMini;
+    },
   },
   filters: {
     shortTextMobile(val) {
       return val.length > 50 ? val.substring(0, 50) + " ..." : val;
-    }
+    },
   },
   data() {
     return {
       title: "Your History",
       more: {
         title: "See All",
-        href: "#"
-      }
+        href: "#",
+      },
     };
-  }
+  },
 };
 </script>
 <style scoped>

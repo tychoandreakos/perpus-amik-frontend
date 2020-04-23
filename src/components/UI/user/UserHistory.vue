@@ -1,11 +1,11 @@
 <template lang="pug">
   ul#user-history
     li
-      img(:src="history.img.src" :alt="history.img.alt")
+      img(:src="history.imgBook.img" :alt="history.imgBook.img.alt")
       div.desc
           div.tag #[Tag(icon="book" :tag="history.tag")]
-          Link(href="#" :title="history.title")
-          span.author By {{ history.author | capitalize }}
+          Link(href="#" :title="history.titleBook.title")
+          span.author By {{ history.authorBook.author | capitalize }}
           div.progress
             span {{ widthPercentage.width }} Progress
             div.progress-bar

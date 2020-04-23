@@ -7,7 +7,7 @@
         h3 {{ info.title }}
         span {{ info.desc }}
         a(:href="info.href") {{ link }}
-      Test
+      Test(:items="info.items")
       div.border
     FooterComponent
 </template>
@@ -30,8 +30,9 @@ export default {
     return {
       messagePanel: {
         title: "Waspada Korona",
-        icon: 'alert',
-        desc: "Penyakit coronavirus (COVID-19) adalah penyakit menular yang disebabkan oleh virus jenis baru yang belum pernah teridentifikasi pada manusia."
+        icon: "alert",
+        desc:
+          "Penyakit coronavirus (COVID-19) adalah penyakit menular yang disebabkan oleh virus jenis baru yang belum pernah teridentifikasi pada manusia.",
       },
       activePanel: true,
       slider: [
@@ -39,16 +40,19 @@ export default {
           title: "Recommended for You",
           desc: "Based on your history, we think you'll like these titles.",
           href: "#",
+          items: this.$store.getters.getRecommend,
         },
         {
           title: "Recenly Added",
           desc: "Understand what's happening now—prepare for what's next",
           href: "#",
+          items: this.$store.getters.getAllBook,
         },
         {
           title: "Trending",
           desc: "These titles and classes are our most popular for a reason.",
           href: "#",
+          items: this.$store.getters.getAllBook,
         },
       ],
       link: "See More",

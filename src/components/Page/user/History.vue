@@ -2,42 +2,20 @@
   section#history-wrapper
     h3 Your History
     div.user-history-wrapper
-        UserHistory(v-for="(history, i ) in histories" :key="i" :history="history")
+        UserHistory(v-for="(history, i ) in getHistory" :key="i" :history="history")
 </template>
 
 <script>
 import UserHistory from "../../UI/user/UserHistory";
+import { mapGetters } from "vuex";
+
 export default {
   name: "History",
   components: {
     UserHistory,
   },
-  data() {
-    return {
-      histories: [
-        {
-          img: {
-            src: "https://learning.oreilly.com/library/cover/9781491990070/",
-            alt: "image",
-          },
-          title: "WordPress Academy: Learn WordPress step by step",
-          tag: "Book",
-          author: "Chris Dixon",
-          progress: 5,
-        },
-
-        {
-          img: {
-            src: "https://learning.oreilly.com/library/cover/9781789532012/",
-            alt: "image",
-          },
-          title: "WordPress 5 Complete - Seventh Edition",
-          tag: "Book",
-          author: "Chris Dixon",
-          progress: 20,
-        },
-      ],
-    };
+  computed: {
+    ...mapGetters(["getHistory"]),
   },
 };
 </script>
