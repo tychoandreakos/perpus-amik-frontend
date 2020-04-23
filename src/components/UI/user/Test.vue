@@ -16,10 +16,10 @@ div
                           router-link.title(:to="{ name: 'result',query: { type: typeBook }, params: {isbn: item.titleBook.isbn, book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
                           <template v-if="checkingObject(item.authorBook.author)">
                             p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") 
-                              router-link(:to="{ name: 'result', params: {  book: slug(tag) } }") {{ tag }}.
+                              router-link(:to="{ name: 'homepage.search', query: { author: slug(tag) } }") {{ tag }}.
                           </template>
                             p.tag(v-else)
-                                router-link(:to="{ name: 'result', params: { book: slug(item.authorBook.author) } }") {{ item.authorBook.author }}.
+                                router-link(:to="{ name: 'homepage.search', query: { author: slug(item.authorBook.author) } }") {{ item.authorBook.author }}.
                             div.desc(style={marginTop: '20px'})
                               span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun ....
                             Playlist(:drop="false")

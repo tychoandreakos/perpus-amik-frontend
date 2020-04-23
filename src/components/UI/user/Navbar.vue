@@ -11,14 +11,16 @@
           Icon(:icon="icons.menu")
     template(v-if="showSearch")
       div.element
-        SearchComponent(
+        form.search(@submit.prevent="find")
+          SearchComponent(
           @valueList="listSelected"
-          class="search"
           :dropdown="filterBy"
           :placeholder="placeholder"
+          v-model="search"
         )
         div.btn-wrapper
-          Button.btn(title="cari")
+          .btn(@click="find")
+            Button(title="cari")
     div.user-button(@click="userButton = !userButton" 
     :class="userButton ? 'true-user-button' : 'false-user-button'")
       div.user-wrapper
@@ -26,12 +28,8 @@
        Icon(icon="angle-down")
       div.backdrop(v-if="userButton" @click.stop="userButton = false")
       ul
-        li 
-          a(href="#") Profile
-        li 
-          a(href="#") History
-        li 
-          a(href="#") Logout
+        li(v-for="(link,i) in links" :key="i")
+          router-link(:to="{ name: link.name }") {{ link.title | capitalize }}
       
 </template>
 <script>
@@ -44,6 +42,21 @@ export default {
   name: "NavbarUser",
   data() {
     return {
+      search: "",
+      links: [
+        {
+          title: "history",
+          name: "homepage.history",
+        },
+        {
+          title: "profile",
+          name: "homepage",
+        },
+        {
+          title: "logout",
+          name: "homepage",
+        },
+      ],
       showIcon: true,
       userButton: false,
       filterBy: ["Buku", "Pengarang", "ISBN"],
@@ -63,6 +76,17 @@ export default {
   },
   methods: {
     ...mapMutations(["setSidebar", "setSearch"]),
+    find() {
+      const filter =
+        this.listData.length < 1 ? this.filterBy[0] : this.listData;
+      this.$router.push({
+        name: "homepage.search",
+        query: {
+          keyword: this.search.toLowerCase(),
+          filter: filter.toLowerCase(),
+        },
+      });
+    },
     listSelected(val) {
       this.listData = val;
     },

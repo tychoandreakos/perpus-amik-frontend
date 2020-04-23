@@ -1,10 +1,10 @@
 <template lang="pug">
   section#in-search
-    p.found #[strong 1 - 10 of 12541] search results for 
-      strong php
+    p.found(v-if="keyword") #[strong 1 - 10 of 12541] search results for 
+      strong {{ keyword }}.
     div.advanced
       AdvancedSearch(v-for="(labels, i) in listKeyword" :label="i" @checked="checkedHandler" :list="labels" :key="i")
-    template(v-for="(book, i) in items")
+    template(v-for="(book, i) in getAllBook")
       ListComponent(:item="book" :key="i")
     FooterComponent.footer
 </template>
@@ -12,6 +12,7 @@
 import ListComponent from "../../UI/user/ListBook";
 import FooterComponent from "../../UI/user/Footer";
 import AdvancedSearch from "../../UI/user/AdvancedSearch";
+import { mapGetters } from "vuex";
 
 export default {
   name: "InSearch",
@@ -27,6 +28,9 @@ export default {
         [e.label]: e.checked,
       };
     },
+  },
+  created() {
+    window.scrollTo(0, 0);
   },
   data() {
     return {
@@ -64,8 +68,9 @@ export default {
     };
   },
   computed: {
-    items() {
-      return this.$store.state.book;
+    ...mapGetters(["getAllBook"]),
+    keyword() {
+      return this.$route.query.keyword;
     },
   },
 };

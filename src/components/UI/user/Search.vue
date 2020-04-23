@@ -2,7 +2,7 @@
   section#search-user( :style="dropdownData ? { border: '1px solid #613ff4' } : {}" )
     div.icon
       ThemifyIcons(:icon="searchIcon")
-    input(:placeholder="placeholder" type="text")
+    input(:placeholder="placeholder" @input="$emit('input', $event.target.value)" type="text")
     DropdownComponent(
         v-if="$mq !== 'mobile'"
       @open="dropdownHandler"
@@ -17,12 +17,12 @@ export default {
   name: "SearchUser",
   components: {
     DropdownComponent,
-    ThemifyIcons
+    ThemifyIcons,
   },
   data() {
     return {
       dropdownData: false,
-      searchIcon: "search"
+      searchIcon: "search",
     };
   },
   methods: {
@@ -31,18 +31,18 @@ export default {
     },
     dropdownHandler(val) {
       this.dropdownData = val;
-    }
+    },
   },
   props: {
     placeholder: {
       required: true,
-      type: String
+      type: String,
     },
     dropdown: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 <style scoped>
