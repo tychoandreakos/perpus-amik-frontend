@@ -9,7 +9,8 @@ div
             .card-carousel--overflow-container
                 .card-carousel-cards(:style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}")
                   .card-carousel--card(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" v-for="item in items")
-                      img(:src="item.imgBook.img")
+                      router-link(:to="{ name: 'result',query: { type: typeBook }, params: {isbn: item.titleBook.isbn, book: slug(item.titleBook.title) } }")
+                        img(:src="item.imgBook.img")
                       .card-carousel--card--footer
                           div.label #[Icon(icon="book")] Book
                           router-link.title(:to="{ name: 'result',query: { type: typeBook }, params: {isbn: item.titleBook.isbn, book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}

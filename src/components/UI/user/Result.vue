@@ -50,6 +50,9 @@ export default {
     Rating,
     Button,
   },
+  created() {
+    window.scrollTo(0, 0);
+  },
   computed: {
     ...mapGetters(["getBook"]),
     bookResult() {
