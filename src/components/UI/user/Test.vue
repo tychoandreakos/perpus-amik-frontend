@@ -1,36 +1,38 @@
 <template lang="pug">
-div
-    .card-carousel-wrapper
-        .card-carousel--nav__left(
-        @click="moveCarousel(-1)"
-        :disabled="atHeadOfList"
-        )
-        .card-carousel
-            .card-carousel--overflow-container
-                .card-carousel-cards(:style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}")
-                   .card-carousel--card(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" v-for="item in items")
-                      img(:src="item.imgBook.img")
-                      .card-carousel--card--footer
-                          div.label #[Icon(icon="book")] Book
-                          router-link.title(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
-                          <template v-if="checkingObject(item.authorBook.author)">
-                            p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") 
-                              router-link(:to="{ name: 'result', params: { book: slug(tag) } }") {{ tag }}.
-                          </template>
-                            p.tag(v-else)
-                                router-link(:to="{ name: 'result', params: { book: slug(item.authorBook.author) } }") {{ item.authorBook.author }}.
-                            div.desc(style={marginTop: '20px'})
-                              span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun ....
-                            Playlist(:drop="false")
-                            
-        .card-carousel--nav__right(
-        @click="moveCarousel(1)"
-        :disabled="atEndOfList"
-        )    
+Intersect
+  div
+      .card-carousel-wrapper
+          .card-carousel--nav__left(
+          @click="moveCarousel(-1)"
+          :disabled="atHeadOfList"
+          )
+          .card-carousel
+              .card-carousel--overflow-container
+                  .card-carousel-cards(:style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}")
+                    .card-carousel--card(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" v-for="item in items")
+                        img(:src="item.imgBook.img")
+                        .card-carousel--card--footer
+                            div.label #[Icon(icon="book")] Book
+                            router-link.title(:to="{ name: 'result', params: { book: slug(item.titleBook.title) } }" style="display: block") {{ item.titleBook.title | titleSplice}}
+                            <template v-if="checkingObject(item.authorBook.author)">
+                              p.tag(v-for="(tag,index) in item.authorBook.author" :class="index > 0 ? 'secondary' : ''") 
+                                router-link(:to="{ name: 'result', params: { book: slug(tag) } }") {{ tag }}.
+                            </template>
+                              p.tag(v-else)
+                                  router-link(:to="{ name: 'result', params: { book: slug(item.authorBook.author) } }") {{ item.authorBook.author }}.
+                              div.desc(style={marginTop: '20px'})
+                                span Ubuntu Server has taken the data centers by storm. Whether you're deploying Ubun ....
+                              Playlist(:drop="false")
+                              
+          .card-carousel--nav__right(
+          @click="moveCarousel(1)"
+          :disabled="atEndOfList"
+          )    
 </template>
 <script>
 import Playlist from "./Playlist";
 import Icon from "vue-themify-icons";
+import Intersect from "vue-intersect";
 
 export default {
   name: "Test",
@@ -39,11 +41,13 @@ export default {
       currentOffset: 0,
       windowSize: this.$mq == "mobile" ? 10 : 3,
       paginationFactor: this.$mq == "mobile" ? 150 : 220,
+      msg: "I will change",
     };
   },
   components: {
     Playlist,
     Icon,
+    Intersect,
   },
   computed: {
     items() {

@@ -20,16 +20,17 @@
           v-for="(author, i) in bookResult.author"
           :key="i"
         ) {{ author }}
-        span.info(v-for="(title, i) in label" :key="i" style="margin-top: .5rem") {{ title | capitalize }}: {{ bookResult[title] }}
+        span.info(v-for="(title, key) in label" :key="key" style="margin-top: .5rem") {{ title | capitalize }}: {{ bookResult[title] }}
         span.info Topic: 
           router-link.topic(
           to="#"
-          v-for="(topic, i) in bookResult.topic"
-          :key="i"
+          v-for="(topic, index) in bookResult.topic"
+          :key="index"
         ) {{ topic.toUpperCase() }}
       div.button-info
-        Button.btn(:title="title")
-        router-link(v-for="(info, i) in buttonInfo" :key="i" :to="info.href") {{ info.title }}
+        .btn(@click="goToReading")
+          Button(:title="title")
+        router-link(v-for="(info, indexKey) in buttonInfo" :key="indexKey" :to="info.href") {{ info.title }}
     
     section.description-book
       h3 {{ desc }}
@@ -44,6 +45,13 @@ export default {
   components: {
     Rating,
     Button,
+  },
+  methods: {
+    goToReading() {
+      this.$router.push({
+        name: "bookView",
+      });
+    },
   },
   data() {
     return {
