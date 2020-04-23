@@ -18,6 +18,12 @@ export default {
       };
     },
   },
+  props: {
+    drop: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       playlistState: false,

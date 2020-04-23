@@ -1,5 +1,5 @@
 <template lang="pug">
-  button.btn-custom {{ title }}
+  button.btn-custom {{ title | capitalize }}
 </template>
 <script>
 export default {

@@ -1,541 +1,561 @@
-import LandingComponent from '../components/Page/Landing';
-import AccountComponent from '../components/Page/Account';
-import SigninComponent from '../components/Page/Signin';
-import LibraryCardComponent from '../components/Page/LibraryCard';
-import SignupComponent from '../components/Page/Signup';
-import UserComponent from '../components/Page/user/Homepage';
-import ResultComponent from '../components/Page/user/Result';
-import ReadBookComponent from '../components/Page/user/ReadBook';
+// User Component
+import LandingComponent from "../components/Page/Landing";
+import AccountComponent from "../components/Page/Account";
+import SigninComponent from "../components/Page/Signin";
+import LibraryCardComponent from "../components/Page/LibraryCard";
+import SignupComponent from "../components/Page/Signup";
+import UserComponent from "../components/Page/user/Homepage";
+import ResultComponent from "../components/Page/user/Result";
+import ReadBookComponent from "../components/Page/user/ReadBook";
+import HistoryUserComponent from "../components/Page/user/History";
 
 // admin component
-import AdminComponent from '../components/Page/admin/HomepageAdmin';
+import AdminComponent from "../components/Page/admin/HomepageAdmin";
 
 // children
-import FirstPage from '../components/Page/user/FirstPage';
-import InSearchComponent from '../components/Page/user/InSearch';
-import DashboardAdmin from '../components/Page/admin/Dashboard';
-import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi';
-import MembershipComponent from '../components/Page/admin/Membership';
-import CirculationComponent from '../components/Page/admin/Circulation';
-import MasterComponent from '../components/Page/admin/Master';
-import GMDComponent from '../components/Page/admin/master/GMD';
-import PublisherComponent from '../components/Page/admin/master/Publisher';
-import AuthorComponent from '../components/Page/admin/master/Author';
-import SubjectComponent from '../components/Page/admin/master/Subject';
-import LocationComponent from '../components/Page/admin/master/Location';
-import PlaceComponent from '../components/Page/admin/master/Place';
-import ItemStatusComponent from '../components/Page/admin/master/ItemStatus';
-import CollectionTypeComponent from '../components/Page/admin/master/CollectionType';
-import LanguageComponent from '../components/Page/admin/master/Language';
-import CirculationSearchComponent from '../components/Page/admin/CirculationSearch';
-import CirculationTransactionComponent from '../components/Page/admin/CirculationTransaction';
-import LoansComponent from '../components/Page/admin/Member/Loans';
-import FinesComponent from '../components/Page/admin/Member/Fines';
-import CurrentComponent from '../components/Page/admin/Member/Current';
-import ReserveComponent from '../components/Page/admin/Member/Reserve';
-import HistoryComponent from '../components/Page/admin/Member/History';
+import FirstPage from "../components/Page/user/FirstPage";
+import InSearchComponent from "../components/Page/user/InSearch";
+import DashboardAdmin from "../components/Page/admin/Dashboard";
+import BibliobigrafiComponent from "../components/Page/admin/Bibliobigrafi";
+import MembershipComponent from "../components/Page/admin/Membership";
+import CirculationComponent from "../components/Page/admin/Circulation";
+import MasterComponent from "../components/Page/admin/Master";
+import GMDComponent from "../components/Page/admin/master/GMD";
+import PublisherComponent from "../components/Page/admin/master/Publisher";
+import AuthorComponent from "../components/Page/admin/master/Author";
+import SubjectComponent from "../components/Page/admin/master/Subject";
+import LocationComponent from "../components/Page/admin/master/Location";
+import PlaceComponent from "../components/Page/admin/master/Place";
+import ItemStatusComponent from "../components/Page/admin/master/ItemStatus";
+import CollectionTypeComponent from "../components/Page/admin/master/CollectionType";
+import LanguageComponent from "../components/Page/admin/master/Language";
+import CirculationSearchComponent from "../components/Page/admin/CirculationSearch";
+import CirculationTransactionComponent from "../components/Page/admin/CirculationTransaction";
+import LoansComponent from "../components/Page/admin/Member/Loans";
+import FinesComponent from "../components/Page/admin/Member/Fines";
+import CurrentComponent from "../components/Page/admin/Member/Current";
+import ReserveComponent from "../components/Page/admin/Member/Reserve";
+import HistoryComponent from "../components/Page/admin/Member/History";
 
-const title = 'Diglib STMIK AMIK BANDUNG';
+const title = "Diglib STMIK AMIK BANDUNG";
 
-const putTitle = pageTitle => {
+const putTitle = (pageTitle) => {
   return `${pageTitle} - ${title}`;
 };
 
 const router = [
   {
-    path: '/',
-    name: 'landing',
+    path: "/",
+    name: "landing",
     component: LandingComponent,
     meta: {
       title,
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
   },
   {
-    path: '/account',
-    name: 'account',
+    path: "/account",
+    name: "account",
     component: AccountComponent,
     meta: {
-      title: putTitle('Account'),
+      title: putTitle("Account"),
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
   },
   {
-    path: '/signin',
-    name: 'signin',
+    path: "/signin",
+    name: "signin",
     component: SigninComponent,
     meta: {
-      title: putTitle('Sign in'),
+      title: putTitle("Sign in"),
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
   },
   {
-    path: '/library-card',
+    path: "/library-card",
     component: LibraryCardComponent,
-    name: 'libraryCard',
+    name: "libraryCard",
     meta: {
-      title: putTitle('Library Card'),
+      title: putTitle("Library Card"),
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
   },
   {
-    path: '/registrasi',
+    path: "/registrasi",
     component: SignupComponent,
-    name: 'signup',
+    name: "signup",
     meta: {
-      title: putTitle('Registrasi'),
+      title: putTitle("Registrasi"),
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
   },
   {
-    path: '/home',
+    path: "/home",
     component: UserComponent,
-    name: 'homepage',
-    redirect: '/home',
+    name: "homepage",
+    redirect: "/home",
     children: [
       {
-        path: '/',
+        path: "/",
         component: FirstPage,
-        name: 'firstPage',
+        name: "homepage.firstPage",
         meta: {
-          title: putTitle('Home'),
+          title: putTitle("Home"),
           metaTags: [
             {
-              name: 'description',
-              content: 'The about page of our example app.'
+              name: "description",
+              content: "The about page of our example app.",
             },
             {
-              property: 'og:description',
-              content: 'The about page of our example app.'
-            }
-          ]
-        }
+              property: "og:description",
+              content: "The about page of our example app.",
+            },
+          ],
+        },
       },
       {
-        path: 'search',
-        component: InSearchComponent,
-        name: 'search',
+        path: "history",
+        component: HistoryUserComponent,
+        name: "homepage.history",
         meta: {
-          title: putTitle('Search'),
+          title: putTitle("History"),
           metaTags: [
             {
-              name: 'description',
-              content: 'The about page of our example app.'
+              name: "description",
+              content: "The about page of our example app.",
             },
             {
-              property: 'og:description',
-              content: 'The about page of our example app.'
-            }
-          ]
-        }
-      }
-    ]
+              property: "og:description",
+              content: "The about page of our example app.",
+            },
+          ],
+        },
+      },
+      {
+        path: "search",
+        component: InSearchComponent,
+        name: "homepage.search",
+        meta: {
+          title: putTitle("Search"),
+          metaTags: [
+            {
+              name: "description",
+              content: "The about page of our example app.",
+            },
+            {
+              property: "og:description",
+              content: "The about page of our example app.",
+            },
+          ],
+        },
+      },
+    ],
   },
   {
-    path: '/library/view/:book',
+    path: "/library/view/:book",
     component: ResultComponent,
-    name: 'result',
+    name: "result",
     meta: {
-      title: putTitle('Result'),
+      title: putTitle("Result"),
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
   },
   {
-    path: '/book',
+    path: "/book",
     component: ReadBookComponent,
-    name: 'bookView',
+    name: "bookView",
     meta: {
-      title: putTitle('Read'),
+      title: putTitle("Read"),
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
   },
   {
-    path: '/admin',
+    path: "/admin",
     component: AdminComponent,
-    name: 'admin',
+    name: "admin",
     children: [
       {
-        path: '/',
+        path: "/",
         component: DashboardAdmin,
-        name: 'dashboard',
+        name: "dashboard",
         meta: {
-          title: putTitle('Dashboard Admin'),
+          title: putTitle("Dashboard Admin"),
           metaTags: [
             {
-              name: 'description',
-              content: 'The about page of our example app.'
+              name: "description",
+              content: "The about page of our example app.",
             },
             {
-              property: 'og:description',
-              content: 'The about page of our example app.'
-            }
-          ]
-        }
+              property: "og:description",
+              content: "The about page of our example app.",
+            },
+          ],
+        },
       },
       {
-        path: 'bibliobigrafi',
+        path: "bibliobigrafi",
         component: BibliobigrafiComponent,
-        name: 'bibliobigrafi',
+        name: "bibliobigrafi",
         meta: {
-          title: putTitle('Bibliobigrafi'),
+          title: putTitle("Bibliobigrafi"),
           metaTags: [
             {
-              name: 'description',
-              content: 'The about page of our example app.'
+              name: "description",
+              content: "The about page of our example app.",
             },
             {
-              property: 'og:description',
-              content: 'The about page of our example app.'
-            }
-          ]
-        }
+              property: "og:description",
+              content: "The about page of our example app.",
+            },
+          ],
+        },
       },
       {
-        path: 'membership',
+        path: "membership",
         component: MembershipComponent,
-        name: 'membership',
+        name: "membership",
         meta: {
-          title: putTitle('Membership'),
+          title: putTitle("Membership"),
           metaTags: [
             {
-              name: 'description',
-              content: 'The about page of our example app.'
+              name: "description",
+              content: "The about page of our example app.",
             },
             {
-              property: 'og:description',
-              content: 'The about page of our example app.'
-            }
-          ]
-        }
+              property: "og:description",
+              content: "The about page of our example app.",
+            },
+          ],
+        },
       },
       {
-        path: 'circulation',
+        path: "circulation",
         component: CirculationComponent,
-        name: 'circulation',
-        redirect: { name: 'circulationPrime' },
+        name: "circulation",
+        redirect: { name: "circulationPrime" },
         children: [
           {
-            path: '/',
+            path: "/",
             component: CirculationSearchComponent,
-            name: 'circulationPrime',
+            name: "circulationPrime",
             meta: {
-              title: putTitle('Circulation'),
+              title: putTitle("Circulation"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'user',
+            path: "user",
             component: CirculationTransactionComponent,
-            name: 'circulationTransaction',
+            name: "circulationTransaction",
             meta: {
-              title: putTitle('Circulation Transaction'),
+              title: putTitle("Circulation Transaction"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
             },
             children: [
               {
-                path: '/',
+                path: "/",
                 component: LoansComponent,
-                name: 'loans',
-                meta: { transitionName: 'slide' }
+                name: "loans",
+                meta: { transitionName: "slide" },
               },
               {
-                path: 'fines',
+                path: "fines",
                 component: FinesComponent,
-                name: 'fines',
-                meta: { transitionName: 'slide' }
+                name: "fines",
+                meta: { transitionName: "slide" },
               },
               {
-                path: 'history',
+                path: "history",
                 component: HistoryComponent,
-                name: 'history',
-                meta: { transitionName: 'slide' }
+                name: "history",
+                meta: { transitionName: "slide" },
               },
               {
-                path: 'reserve',
+                path: "reserve",
                 component: ReserveComponent,
-                name: 'reserve',
-                meta: { transitionName: 'slide' }
+                name: "reserve",
+                meta: { transitionName: "slide" },
               },
               {
-                path: 'current',
+                path: "current",
                 component: CurrentComponent,
-                name: 'current',
-                meta: { transitionName: 'slide' }
-              }
-            ]
-          }
-        ]
+                name: "current",
+                meta: { transitionName: "slide" },
+              },
+            ],
+          },
+        ],
       },
       {
-        path: 'master',
+        path: "master",
         component: MasterComponent,
-        name: 'master',
-        redirect: { name: 'dashboard' },
+        name: "master",
+        redirect: { name: "dashboard" },
         children: [
           {
-            path: 'gmd',
+            path: "gmd",
             component: GMDComponent,
-            name: 'gmd',
+            name: "gmd",
             meta: {
-              title: putTitle('GMD'),
+              title: putTitle("GMD"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'publisher',
+            path: "publisher",
             component: PublisherComponent,
-            name: 'publisher',
+            name: "publisher",
             meta: {
-              title: putTitle('Publisher'),
+              title: putTitle("Publisher"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'author',
+            path: "author",
             component: AuthorComponent,
-            name: 'author',
+            name: "author",
             meta: {
-              title: putTitle('Author'),
+              title: putTitle("Author"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'subject',
+            path: "subject",
             component: SubjectComponent,
-            name: 'subject',
+            name: "subject",
             meta: {
-              title: putTitle('Subject'),
+              title: putTitle("Subject"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'location',
+            path: "location",
             component: LocationComponent,
-            name: 'location',
+            name: "location",
             meta: {
-              title: putTitle('Location'),
+              title: putTitle("Location"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'place',
+            path: "place",
             component: PlaceComponent,
-            name: 'place',
+            name: "place",
             meta: {
-              title: putTitle('Place'),
+              title: putTitle("Place"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'item-status',
+            path: "item-status",
             component: ItemStatusComponent,
-            name: 'itemStatus',
+            name: "itemStatus",
             meta: {
-              title: putTitle('Item Status'),
+              title: putTitle("Item Status"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'collection',
+            path: "collection",
             component: CollectionTypeComponent,
-            name: 'collection',
+            name: "collection",
             meta: {
-              title: putTitle('Collection Type'),
+              title: putTitle("Collection Type"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
           },
           {
-            path: 'language',
+            path: "language",
             component: LanguageComponent,
-            name: 'language',
+            name: "language",
             meta: {
-              title: putTitle('Language'),
+              title: putTitle("Language"),
               metaTags: [
                 {
-                  name: 'description',
-                  content: 'The about page of our example app.'
+                  name: "description",
+                  content: "The about page of our example app.",
                 },
                 {
-                  property: 'og:description',
-                  content: 'The about page of our example app.'
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                  property: "og:description",
+                  content: "The about page of our example app.",
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
   },
   {
-    path: '*',
-    name: 'notFound',
+    path: "*",
+    name: "notFound",
     meta: {
-      title: putTitle('Not Found'),
+      title: putTitle("Not Found"),
       metaTags: [
         {
-          name: 'description',
-          content: 'The about page of our example app.'
+          name: "description",
+          content: "The about page of our example app.",
         },
         {
-          property: 'og:description',
-          content: 'The about page of our example app.'
-        }
-      ]
-    }
-  }
+          property: "og:description",
+          content: "The about page of our example app.",
+        },
+      ],
+    },
+  },
 ];
 
 export default router;

@@ -12,7 +12,7 @@
             router-link.link(v-if="$mq === 'mobile'" to="#") {{ history.title | shortTextMobile }}
             router-link.link(v-else to="#") {{ history.title }}
             span By #[a(href="#") {{ history.author }}]
-    a.see {{ more.title }}
+    router-link.see(:to="{ name: 'homepage.history' }") {{ more.title }}
 </template>
 <script>
 export default {
