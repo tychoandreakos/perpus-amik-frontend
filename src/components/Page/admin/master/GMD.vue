@@ -7,28 +7,25 @@
     
 </template>
 <script>
-import HeaderComponent from "../../../UI/admin/Header";
-import PanelActionComponent from "../../../UI/admin/PanelAction";
-import TableComponent from "../../../UI/admin/TableAdmin";
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import HeaderComponent from '../../../UI/admin/Header';
+import PanelActionComponent from '../../../UI/admin/PanelAction';
+import TableComponent from '../../../UI/admin/TableAdmin';
 
-import { masterGMD } from "../../../../store/types";
-
-import axios from "../../../../api/axios";
-
-import * as types from "../../../../store/module/API/type";
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
+import { masterGMD } from '../../../../store/types';
+import { getGMD, getType, postGMD } from '../../../../store/module/API/type';
 
 export default {
-  name: "GMD",
+  name: 'GMD',
   components: {
     HeaderComponent,
     PanelActionComponent,
     TableComponent,
   },
   computed: {
-    ...mapState(["resultInput"]),
+    ...mapState(['resultInput']),
     ...mapGetters({
-      view: types.getGMD,
+      view: getGMD,
     }),
     database() {
       return {
@@ -38,8 +35,8 @@ export default {
           remove: true,
           action: true,
         },
-        title: ["GMD CODE", "GMD NAME", "Last Update"],
-        field: ["gmd_code", "gmd_name", "updated_at"],
+        title: ['GMD CODE', 'GMD NAME', 'Last Update'],
+        field: ['gmd_code', 'gmd_name', 'updated_at'],
         content: this.view.result,
       };
     },
@@ -49,17 +46,18 @@ export default {
   },
   methods: {
     ...mapMutations([
-      "setCountUpdateDefault",
-      "setHeader",
-      "setCreateInput",
-      "setDefaultParams",
-      "setTableTypes",
-      "setGetUpdate",
-      "setClearEditProps",
+      'setCountUpdateDefault',
+      'setHeader',
+      'setCreateInput',
+      'setDefaultParams',
+      'setTableTypes',
+      'setGetUpdate',
+      'setClearEditProps',
+      getType,
     ]),
-    ...mapActions(["getGmd", types.getGMD]),
+    ...mapActions(['getGmd', getGMD]),
     count(e) {
-      this[types.getGMD]({
+      this[getGMD]({
         skip: e,
         take: 2,
       });
@@ -70,12 +68,13 @@ export default {
     this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
     this.setDefaultParams();
-    this.setTableTypes(masterGMD);
-    this.setGetUpdate(masterGMD);
+    // this.setGetUpdate(masterGMD);
+    // this.setTableTypes(masterGMD);
+    this[getType](postGMD); // setting the title or type to GMD
     this.setClearEditProps();
 
     //get data from API
-    this[types.getGMD]({
+    this[getGMD]({
       skip: 0,
       take: 2,
     });
@@ -83,28 +82,28 @@ export default {
 
   data() {
     return {
-      breadcrumbs: ["Data List"],
-      title: "GMD ( General Material Designation )",
+      breadcrumbs: ['Data List'],
+      title: 'GMD ( General Material Designation )',
       button: {
-        title: "Add New GMD",
-        icon: "plus",
+        title: 'Add New GMD',
+        icon: 'plus',
       },
       createProp: [
         {
-          label: "GMD Code",
-          id: "code",
-          placeholder: "Please type a GMD Code",
-          type: "text",
+          label: 'GMD Code',
+          id: 'code',
+          placeholder: 'Please type a GMD Code',
+          type: 'text',
         },
         {
-          label: "GMD Name",
-          id: "name",
-          placeholder: "Please type a GMD Name",
-          type: "text",
+          label: 'GMD Name',
+          id: 'name',
+          placeholder: 'Please type a GMD Name',
+          type: 'text',
         },
       ],
       search: {
-        placeholder: "Search GMD",
+        placeholder: 'Search GMD',
       },
     };
   },

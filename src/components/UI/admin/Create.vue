@@ -12,7 +12,7 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
 import CreateInput from './input/CreateInput';
 import SmallButton from './button/MiniButton';
 import moment from 'moment';
-import { postGMD } from '../../../store/module/API/type';
+import { getType } from '../../../store/module/API/type';
 
 export default {
   name: 'create',
@@ -56,10 +56,9 @@ export default {
     },
     submitWithAlert(dataSubmit, message) {
       const confirmSubmit = this.alertMessage(message);
-
       if (confirmSubmit) {
-        this.$store.dispatch(postGMD, {
-          title: postGMD,
+        this.$store.dispatch(this.getType, {
+          title: this.getType,
           data: {
             id: Math.floor(Math.random() * 1),
             ...dataSubmit,
@@ -105,6 +104,7 @@ export default {
       selectedDropdown: 'selectedDropdown',
       editPropsUpdate: 'editPropsUpdate',
       table: 'tableTypes',
+      getType,
     }),
   },
   data() {

@@ -6,11 +6,16 @@ export default {
     [types.getGMD]: {
       result: [],
       error: [],
+      title: '',
     },
+    [types.getType]: '',
   },
   getters: {
     [types.getGMD]: (state) => {
       return state[types.getGMD];
+    },
+    [types.getType]: (state) => {
+      return state[types.getType];
     },
   },
   actions: {
@@ -22,6 +27,9 @@ export default {
     },
   },
   mutations: {
+    [types.getType]: (state, payload) => {
+      state[types.getType] = payload;
+    },
     [types.getGMD]: (state, { skip, take }) => {
       axios
         .get('gmd', {
@@ -35,7 +43,6 @@ export default {
         .catch((err) => (state[types.getGMD].error = err));
     },
     [types.postGMD]: (state, payload) => {
-     
       console.log('this is data from payload', payload);
     },
   },
