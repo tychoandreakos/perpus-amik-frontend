@@ -63,6 +63,7 @@ export const setDropdownVal = (state, payload) => {
 };
 export const setTable = (state, payload) => {
   const { title, data } = payload;
+  console.log('this from setTable', payload);
   state.tableMaster[title].sample.unshift(data);
 };
 export const setUpdateInputState = (state, payload) => {

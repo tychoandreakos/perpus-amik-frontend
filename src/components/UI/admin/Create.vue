@@ -1,37 +1,33 @@
-<template>
-  <section class="none" ref="cr" id="create">
-    <div v-show="panel" @click="setPanel" class="backdrop-create"></div>
-    <div :style="panel ? { width: '30%' } : { width: '0%' }" class="panel">
-      <form @submit.prevent="submitHandler">
-        <CreateInput :header="header" :createInput="createInput" />
-        <div class="footer">
-          <SmallButton :btn="button" />
-        </div>
-      </form>
-    </div>
-  </section>
+<template lang="pug">
+  section.none(ref="cr" id="create")
+    div.backdrop-create(@click="setPanel" v-show="panel")
+    div.panel(:style="panel ? {width: '30%'} : { width: '0%' }")
+      form(@submit.prevent="submitHandler")
+        CreateInput(:header="header" :createInput="createInput")
+        div.footer
+          SmallButton(:btn="button")
 </template>
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex';
 import CreateInput from './input/CreateInput';
 import SmallButton from './button/MiniButton';
 import moment from 'moment';
+import { postGMD } from '../../../store/module/API/type';
 
 export default {
   name: 'create',
   components: {
     CreateInput,
-    SmallButton
+    SmallButton,
   },
   methods: {
     ...mapMutations([
       'setPanel',
-      'setTable',
       'setDefaultParams',
       'setCountUpdate',
       'setDropdownVal',
       'setClearEditProps',
-      'updateMaster'
+      'updateMaster',
     ]),
     checkDropdown() {
       let dropdownData;
@@ -39,14 +35,14 @@ export default {
         if (this.selectedDropdown.hasOwnProperty(key)) {
           dropdownData = {
             ...this.inputParams[this.inputParams.length - 1],
-            ...this.selectedDropdown
+            ...this.selectedDropdown,
           };
         }
       }
 
       if (!dropdownData) {
         dropdownData = {
-          ...this.inputParams[this.inputParams.length - 1]
+          ...this.inputParams[this.inputParams.length - 1],
         };
       }
 
@@ -62,13 +58,13 @@ export default {
       const confirmSubmit = this.alertMessage(message);
 
       if (confirmSubmit) {
-        this.setTable({
-          title: this.getTitle,
+        this.$store.dispatch(postGMD, {
+          title: postGMD,
           data: {
             id: Math.floor(Math.random() * 1),
             ...dataSubmit,
-            updated: moment().calendar()
-          }
+            updated: moment().calendar(),
+          },
         });
       }
     },
@@ -79,8 +75,8 @@ export default {
         id: this.$store.state.idInputState,
         data: {
           ...updateVal,
-          updated: moment().calendar()
-        }
+          updated: moment().calendar(),
+        },
       });
     },
     submitHandler() {
@@ -93,7 +89,7 @@ export default {
       this.setPanel();
       this.setClearEditProps();
       this.setDefaultParams();
-    }
+    },
   },
   computed: {
     ...mapState([
@@ -102,15 +98,14 @@ export default {
       'header',
       'inputParams',
       'countUpdate',
-      'dropdownChoice'
+      'dropdownChoice',
     ]),
     ...mapGetters({
-      getTitle: 'tableTypes',
       dropdownChoice: 'dropdownChoice',
       selectedDropdown: 'selectedDropdown',
       editPropsUpdate: 'editPropsUpdate',
-      table: 'tableTypes'
-    })
+      table: 'tableTypes',
+    }),
   },
   data() {
     return {
@@ -118,9 +113,9 @@ export default {
         title: 'Submit',
         style: {
           background: '#7367f0',
-          padding: '.7rem 2.5rem'
-        }
-      }
+          padding: '.7rem 2.5rem',
+        },
+      },
     };
   },
   updated() {
@@ -163,10 +158,10 @@ export default {
     if (this.countUpdate === 2) {
       panelControl();
     }
-  }
+  },
 };
 </script>
-<style scoped>
+<style lang="scss">
 #create {
   position: fixed;
   top: 0;
@@ -175,6 +170,39 @@ export default {
   bottom: 0;
   z-index: 99;
   overflow: hidden;
+
+  .backdrop-create {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    box-shadow: 5px 0 10px #c8c8c8;
+    max-width: 90vw;
+    transition: width 0.3s ease;
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid #ddd;
+      height: 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+  }
 }
 
 .none {
@@ -183,38 +211,5 @@ export default {
 
 .block {
   width: 100% !important;
-}
-
-#create .backdrop-create {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-#create .panel {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: #fff;
-  box-shadow: 5px 0 10px #c8c8c8;
-  max-width: 90vw;
-  transition: width 0.3s ease;
-}
-
-#create .panel .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-top: 1px solid #ddd;
-  height: 10%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
 }
 </style>

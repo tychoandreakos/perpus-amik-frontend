@@ -8,6 +8,7 @@ import * as getters from "./getters";
 // modules
 import Input from "./module/input";
 import Book from "./module/book";
+import Api from "./module/API/index";
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ export const store = new Vuex.Store({
   modules: {
     Input,
     Book,
+    Api,
   },
   state: {
     floatPanel: false,

@@ -4,16 +4,19 @@
     PanelActionComponent(:title="title" 
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
     TableComponent(:tableProps="database")
+    
 </template>
 <script>
 import HeaderComponent from "../../../UI/admin/Header";
 import PanelActionComponent from "../../../UI/admin/PanelAction";
 import TableComponent from "../../../UI/admin/TableAdmin";
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 
 import { masterGMD } from "../../../../store/types";
 
 import axios from "../../../../api/axios";
+
+import * as types from "../../../../store/module/API/type";
 
 export default {
   name: "GMD",
@@ -24,6 +27,22 @@ export default {
   },
   computed: {
     ...mapState(["resultInput"]),
+    ...mapGetters({
+      view: types.getGMD,
+    }),
+    database() {
+      return {
+        enabled: {
+          checkbox: true,
+          edit: true,
+          remove: true,
+          action: true,
+        },
+        title: ["GMD CODE", "GMD NAME", "Last Update"],
+        field: ["gmd_code", "gmd_name", "updated_at"],
+        content: this.view.result,
+      };
+    },
     total() {
       return this.database.content.dataCount || 0;
     },
@@ -38,20 +57,12 @@ export default {
       "setGetUpdate",
       "setClearEditProps",
     ]),
+    ...mapActions(["getGmd", types.getGMD]),
     count(e) {
-      this.getData(e, 2);
-    },
-    getData(skip, take) {
-      axios
-        .get("gmd", {
-          params: {
-            skip,
-            take,
-          },
-        })
-        .then((res) => res.data)
-        .then((json) => (this.database.content = json.data))
-        .catch((err) => console.log(err));
+      this[types.getGMD]({
+        skip: e,
+        take: 2,
+      });
     },
   },
   created() {
@@ -62,7 +73,12 @@ export default {
     this.setTableTypes(masterGMD);
     this.setGetUpdate(masterGMD);
     this.setClearEditProps();
-    this.getData(0, 2);
+
+    //get data from API
+    this[types.getGMD]({
+      skip: 0,
+      take: 2,
+    });
   },
 
   data() {
@@ -72,17 +88,6 @@ export default {
       button: {
         title: "Add New GMD",
         icon: "plus",
-      },
-      database: {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true,
-        },
-        title: ["GMD CODE", "GMD NAME", "Last Update"],
-        field: ["gmd_code", "gmd_name", "updated_at"],
-        content: {},
       },
       createProp: [
         {
