@@ -4,7 +4,8 @@
     PanelActionComponent(:title="title" 
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
     TableComponent(:tableProps="database")
-    
+    span(style="visibility: hidden") {{ update }}
+  
 </template>
 <script>
 import HeaderComponent from '../../../UI/admin/Header';
@@ -13,7 +14,12 @@ import TableComponent from '../../../UI/admin/TableAdmin';
 
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
 import { masterGMD } from '../../../../store/types';
-import { getGMD, getType, postGMD } from '../../../../store/module/API/type';
+import {
+  getGMD,
+  getType,
+  postGMD,
+  messageGMD,
+} from '../../../../store/module/API/type';
 
 export default {
   name: 'GMD',
@@ -26,7 +32,17 @@ export default {
     ...mapState(['resultInput']),
     ...mapGetters({
       view: getGMD,
+      message: messageGMD,
     }),
+    update() {
+      if (this.message.message) {
+        this[getGMD]({
+          skip: 0,
+          take: 5,
+        });
+      }
+      return this.message;
+    },
     database() {
       return {
         enabled: {
@@ -59,7 +75,7 @@ export default {
     count(e) {
       this[getGMD]({
         skip: e,
-        take: 2,
+        take: 5,
       });
     },
   },
@@ -76,10 +92,9 @@ export default {
     //get data from API
     this[getGMD]({
       skip: 0,
-      take: 2,
+      take: 5,
     });
   },
-
   data() {
     return {
       breadcrumbs: ['Data List'],
@@ -91,13 +106,13 @@ export default {
       createProp: [
         {
           label: 'GMD Code',
-          id: 'code',
+          id: 'gmd_code',
           placeholder: 'Please type a GMD Code',
           type: 'text',
         },
         {
           label: 'GMD Name',
-          id: 'name',
+          id: 'gmd_name',
           placeholder: 'Please type a GMD Name',
           type: 'text',
         },

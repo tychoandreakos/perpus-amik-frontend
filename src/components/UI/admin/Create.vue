@@ -11,7 +11,6 @@
 import { mapState, mapMutations, mapGetters } from 'vuex';
 import CreateInput from './input/CreateInput';
 import SmallButton from './button/MiniButton';
-import moment from 'moment';
 import { getType } from '../../../store/module/API/type';
 
 export default {
@@ -60,9 +59,7 @@ export default {
         this.$store.dispatch(this.getType, {
           title: this.getType,
           data: {
-            id: Math.floor(Math.random() * 1),
             ...dataSubmit,
-            updated: moment().calendar(),
           },
         });
       }

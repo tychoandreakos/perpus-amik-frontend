@@ -8,6 +8,11 @@ export default {
       error: [],
       title: '',
     },
+    [types.messageGMD]: {
+      message: '',
+      warning: '',
+      error: '',
+    },
     [types.getType]: '',
   },
   getters: {
@@ -16,6 +21,12 @@ export default {
     },
     [types.getType]: (state) => {
       return state[types.getType];
+    },
+    [types.getGMD]: (state) => {
+      return state[types.getGMD];
+    },
+    [types.messageGMD]: (state) => {
+      return state[types.messageGMD];
     },
   },
   actions: {
@@ -32,7 +43,7 @@ export default {
     },
     [types.getGMD]: (state, { skip, take }) => {
       axios
-        .get('gmd', {
+        .get(types.urlGMD, {
           params: {
             skip,
             take,
@@ -42,8 +53,14 @@ export default {
         .then((json) => (state[types.getGMD].result = json.data))
         .catch((err) => (state[types.getGMD].error = err));
     },
-    [types.postGMD]: (state, payload) => {
-      console.log('this is data from payload', payload);
+    [types.postGMD]: (state, { gmd_code, gmd_name }) => {
+      axios
+        .post(types.urlGMD, {
+          gmd_code: gmd_code.toLowerCase(),
+          gmd_name: gmd_name.toLowerCase(),
+        })
+        .then((res) => (state[types.messageGMD].message = res.data))
+        .catch((err) => (state[types.messageGMD].error = err.data));
     },
   },
 };

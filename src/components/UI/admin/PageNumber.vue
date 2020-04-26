@@ -14,15 +14,15 @@
     div.backdrop(@click="dropdown = !dropdown" v-if="dropdown")
 </template>
 <script>
-import Icon from "vue-themify-icons";
+import Icon from 'vue-themify-icons';
 export default {
-  name: "PageNumber",
+  name: 'PageNumber',
   components: {
     Icon,
   },
   methods: {
     actionHandler(val, index) {
-      this.$emit("count", index * 2);
+      this.$emit('count', index * 5);
       this.action.title = val;
     },
   },
@@ -36,21 +36,24 @@ export default {
     action() {
       return {
         title: this.count[0],
-        icon: "angle-down",
+        icon: 'angle-down',
       };
     },
     count() {
-      const skip = 2;
+      const skip = 5;
       let x = this.total;
       const arr = [];
       if (x) {
-        while (x / skip != 0) {
-          arr.push(`${Math.round(x / 1.5)} - ${x}`);
+        while (x / skip > 0) {
+          arr.push(`${Math.floor(x / 2)} - ${x}`);
+
           x = x - skip;
         }
       }
 
-      return arr.reverse();
+      arr.reverse()[0] = `1 - ${skip}`;
+
+      return arr;
     },
   },
   data() {
@@ -92,7 +95,7 @@ export default {
     }
 
     span {
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.85rem;
     }
 
@@ -109,7 +112,7 @@ export default {
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 
       &::before {
-        content: "";
+        content: '';
         width: 20px;
         height: 20px;
         background: #fff;
@@ -131,7 +134,7 @@ export default {
 
         span {
           font-size: 0.84rem;
-          font-family: "Poppins", sans-serif;
+          font-family: 'Poppins', sans-serif;
           margin-left: 0.7rem;
           font-weight: 400;
         }
