@@ -36,6 +36,9 @@ export default {
     [types.postGMD]: ({ commit }, { title, data }) => {
       commit(title, data);
     },
+    [types.deleteGMD]: ({ commit }, payload) => {
+      commit(types.deleteGMD, payload);
+    },
   },
   mutations: {
     [types.getType]: (state, payload) => {
@@ -59,6 +62,12 @@ export default {
           gmd_code: gmd_code.toLowerCase(),
           gmd_name: gmd_name.toLowerCase(),
         })
+        .then((res) => (state[types.messageGMD].message = res.data))
+        .catch((err) => (state[types.messageGMD].error = err.data));
+    },
+    [types.deleteGMD]: (state, { id }) => {
+      axios
+        .delete(types.methodEventGmd`${id} ${types.deleteMethodGMD}`)
         .then((res) => (state[types.messageGMD].message = res.data))
         .catch((err) => (state[types.messageGMD].error = err.data));
     },

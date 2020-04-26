@@ -63,23 +63,25 @@
   </section>
 </template>
 <script>
-import Icon from "vue-themify-icons";
-import CheckBox from "../../UI/admin/Checkbox";
-import { mapMutations, mapGetters } from "vuex";
+import Icon from 'vue-themify-icons';
+import CheckBox from '../../UI/admin/Checkbox';
+import { mapMutations, mapGetters, mapActions } from 'vuex';
+
+import { deleteGMD } from '../../../store/module/API/type';
 
 export default {
-  name: "tableAdmin",
+  name: 'tableAdmin',
   components: {
     Icon,
     CheckBox,
   },
   computed: {
-    ...mapGetters(["getUpdate", "tableTypes"]),
+    ...mapGetters(['getUpdate']),
   },
   data() {
     return {
       checkboxControl: false,
-      headerEdit: "Update ",
+      headerEdit: 'Update ',
     };
   },
   props: {
@@ -90,28 +92,27 @@ export default {
   },
   methods: {
     ...mapMutations([
-      "setPanel",
-      "setHeader",
-      "setUpdateInputState",
-      "setEditProps",
-      "deleteMaster",
+      'setPanel',
+      'setHeader',
+      'setUpdateInputState',
+      'setEditProps',
     ]),
+    ...mapActions([deleteGMD]),
     splitUpdate() {
-      return this.getUpdate.split("/")[1];
+      return this.getUpdate.split('/')[1];
     },
     deleteHandler(id, e) {
       const parent = e.originalTarget.offsetParent.parentElement;
-      const confirmSubmit = confirm("Are you sure want to delete it?");
+      const confirmSubmit = confirm('Are you sure want to delete it?');
       alert(confirmSubmit);
       if (confirmSubmit) {
-        parent.classList.add("remove");
+        parent.classList.add('remove');
         setTimeout(() => {
-          parent.classList.add("none");
+          parent.classList.add('none');
         }, 450);
       }
       setTimeout(() => {
-        this.deleteMaster({
-          key: this.tableTypes,
+        this[deleteGMD]({
           id,
         });
       }, 500);
@@ -125,7 +126,7 @@ export default {
       this.setPanel();
     },
     checkList(val) {
-      return !val.hasOwnProperty("title");
+      return !val.hasOwnProperty('title');
     },
     selectAllHandler() {
       this.checkboxControl = !this.checkboxControl;
@@ -145,7 +146,7 @@ export default {
     cursor: pointer;
 
     thead {
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
   }
 
@@ -180,11 +181,11 @@ export default {
       .book-info .title {
         display: block;
         font-weight: bold;
-        font-family: "Quicksand", sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
 
       .book-info .author + .author:before {
-        content: ", ";
+        content: ', ';
       }
 
       button {
