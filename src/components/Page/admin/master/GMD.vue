@@ -1,5 +1,5 @@
 <template lang="pug">
-  section#gmd
+  section#gmd(:class="loading ? 'blur' : ''")
     HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
     PanelActionComponent(:title="title" 
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
@@ -19,6 +19,7 @@ import {
   getType,
   postGMD,
   messageGMD,
+  loadingBackdrop,
 } from '../../../../store/module/API/type';
 
 export default {
@@ -33,6 +34,7 @@ export default {
     ...mapGetters({
       view: getGMD,
       message: messageGMD,
+      loading: loadingBackdrop,
     }),
     update() {
       if (this.message.message) {
@@ -128,5 +130,9 @@ export default {
 #gmd {
   width: 100%;
   height: 100%;
+
+  &.blur {
+    filter: blur(3px);
+  }
 }
 </style>

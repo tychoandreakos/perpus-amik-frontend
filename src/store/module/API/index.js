@@ -9,6 +9,7 @@ export default {
       title: '',
     },
     [types.loadingState]: true,
+    [types.loadingBackdrop]: false,
     [types.searchPOST]: '',
     [types.messageGMD]: {
       message: '',
@@ -21,6 +22,9 @@ export default {
   getters: {
     [types.loadingState]: (state) => {
       return state[types.loadingState];
+    },
+    [types.loadingBackdrop]: (state) => {
+      return state[types.loadingBackdrop];
     },
     [types.getGMD]: (state) => {
       return state[types.getGMD];
@@ -73,6 +77,7 @@ export default {
       state[types.getType] = payload;
     },
     [types.getGMD]: (state, { skip, take }) => {
+      state[types.loadingBackdrop] = true;
       axios
         .get(types.urlGMD, {
           params: {
@@ -86,6 +91,9 @@ export default {
             state[types.searchPOST] = '';
           }
           state[types.getGMD].result = json.data;
+          setTimeout(() => {
+            state[types.loadingBackdrop] = false;
+          }, 1000);
         })
         .catch((err) => (state[types.getGMD].error = err));
     },

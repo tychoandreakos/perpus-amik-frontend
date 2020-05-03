@@ -12,6 +12,7 @@ export const updatePOST = 'master/GMD/UPDATE';
 export const IDPOST = 'master/IDPOST';
 export const searchPOST = 'master/SEARCHPOST';
 export const loadingState = 'master/LOADINGSTATE';
+export const loadingBackdrop = 'master/LOADINGBACKDROP';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';

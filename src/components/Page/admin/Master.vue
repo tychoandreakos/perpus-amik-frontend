@@ -1,11 +1,20 @@
-<template>
-  <section id="master-file">
-    <router-view></router-view>
-  </section>
+<template lang="pug">
+  section#master-file
+    Loading(v-if="loading")
+    router-view
 </template>
 <script>
+import Loading from '../../UI/admin/Loading';
+import { mapGetters } from 'vuex';
+import { loadingBackdrop } from '../../../store/module/API/type';
 export default {
-  name: 'master'
+  name: 'master',
+  components: {
+    Loading,
+  },
+  computed: {
+    ...mapGetters({ loading: loadingBackdrop }),
+  },
 };
 </script>
 <style scoped>
