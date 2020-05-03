@@ -1,22 +1,43 @@
-<template>
-  <button :style="buttonProp.style" class="btn">
-    <Icon :icon="buttonProp.icon" />
-    <span>{{ buttonProp.title }}</span>
-  </button>
+<template lang="pug">
+  button.btn(:style="buttonProp.style" :disabled="!loadingState")
+    template(v-if="loadingState")
+      Icon(:icon="buttonProp.icon")
+      span {{ buttonProp.title }}
+    template(v-else)
+      Loader(:color="loading.color" :size="loading.size")    
 </template>
 <script>
 import Icon from 'vue-themify-icons';
+import Loader from 'vue-spinner/src/ClipLoader';
+import { loadingState } from '../../../store/module/API/type';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Button',
   components: {
-    Icon
+    Icon,
+    Loader,
+  },
+  computed: {
+    ...mapGetters([loadingState]),
+    loadingState() {
+      return this[loadingState];
+    },
+  },
+  data() {
+    return {
+      loading: {
+        color: '#5143eb',
+        size: '1rem',
+      },
+    };
   },
   props: {
     buttonProp: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -37,7 +58,14 @@ export default {
   transition: background 0.4s ease;
 }
 
-.btn:hover {
+.btn:disabled,
+.btn[disabled] {
+  color: #666666;
+  cursor: no-drop;
+  padding-top: 1rem;
+}
+
+.btn:not([disabled]):hover {
   background: #7367f0;
   color: #fff;
 }

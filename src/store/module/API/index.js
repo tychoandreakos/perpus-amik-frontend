@@ -8,6 +8,7 @@ export default {
       error: [],
       title: '',
     },
+    [types.loadingState]: true,
     [types.searchPOST]: '',
     [types.messageGMD]: {
       message: '',
@@ -18,6 +19,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.loadingState]: (state) => {
+      return state[types.loadingState];
+    },
     [types.getGMD]: (state) => {
       return state[types.getGMD];
     },
@@ -89,6 +93,7 @@ export default {
       state,
       { method, id = undefined, gmd_code, gmd_name }
     ) => {
+      state[types.loadingState] = !state[types.loadingState];
       let data;
       if (method == types.createPost) {
         data = axios.post(types.urlGMD, {
@@ -102,7 +107,10 @@ export default {
         });
       }
       data
-        .then((res) => (state[types.messageGMD].message = res.data))
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.loadingState] = !state[types.loadingState];
+        })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
     [types.deleteGMD]: (state, { id }) => {

@@ -1,6 +1,6 @@
 <template lang="pug">
   section#table
-    p.find(v-if="search") Found {{ tableProps.content.length || 0 }} with keyword of #[b {{ search }}].
+    p.find(v-if="search") {{ found }} #[b {{ search }}].
     table
       thead
         th(v-if="tableProps.enabled.checkbox")
@@ -46,6 +46,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getUpdate', searchPOST]),
+    found() {
+      return `Found ${this.tableProps.content.length || 0} of keyword`;
+    },
     search() {
       const text = this[searchPOST];
       if (text.length > 1) {
@@ -153,6 +156,22 @@ export default {
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease-in;
     font-size: 0.9rem;
+    animation: {
+      name: loading;
+      duration: 0.4s;
+      timing-function: linear;
+    }
+
+    @keyframes loading {
+      from {
+        opacity: 0;
+        transform: translateX(70rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
     &:hover {
       transform: translateY(-4px);
