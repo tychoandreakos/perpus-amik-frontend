@@ -11,7 +11,12 @@
 import { mapState, mapMutations, mapGetters } from 'vuex';
 import CreateInput from './input/CreateInput';
 import SmallButton from './button/MiniButton';
-import { getType } from '../../../store/module/API/type';
+import {
+  getType,
+  createPost,
+  updatePOST,
+  IDPOST,
+} from '../../../store/module/API/type';
 
 export default {
   name: 'create',
@@ -59,21 +64,24 @@ export default {
         this.$store.dispatch(this.getType, {
           title: this.getType,
           data: {
+            method: createPost,
             ...dataSubmit,
           },
         });
       }
     },
-    updateHandler(updateVal, message) {
+    updateHandler(dataSubmit, message) {
       const confirmSubmit = this.alertMessage(message);
-      this.updateMaster({
-        key: this.table,
-        id: this.$store.state.idInputState,
-        data: {
-          ...updateVal,
-          updated: moment().calendar(),
-        },
-      });
+      if (confirmSubmit) {
+        this.$store.dispatch(this.getType, {
+          title: this.getType,
+          data: {
+            method: updatePOST,
+            id: this.IDPOST,
+            ...dataSubmit,
+          },
+        });
+      }
     },
     submitHandler() {
       const dropdownVal = this.checkDropdown();
@@ -102,6 +110,7 @@ export default {
       editPropsUpdate: 'editPropsUpdate',
       table: 'tableTypes',
       getType,
+      IDPOST,
     }),
   },
   data() {

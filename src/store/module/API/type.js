@@ -7,8 +7,13 @@ export const messageGMD = 'master/GMD/messageAPI';
 export const postMasterAPI = 'master/GMD/postMaster';
 export const getType = 'master/GMD/getType';
 
+export const createPost = 'master/GMD/CREATE';
+export const updatePOST = 'master/GMD/UPDATE';
+export const IDPOST = 'master/IDPOST';
+
 export const urlGMD = 'gmd';
-export const deleteMethodGMD = `delete`;
+export const deleteMethodGMD = 'delete';
+export const editMethodGMD = 'edit';
 
 export const methodEventGmd = (undefined, id, method) => {
   return urlGMD + '/' + id + '/' + method;

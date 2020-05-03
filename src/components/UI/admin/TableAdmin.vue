@@ -67,7 +67,7 @@ import Icon from 'vue-themify-icons';
 import CheckBox from '../../UI/admin/Checkbox';
 import { mapMutations, mapGetters, mapActions } from 'vuex';
 
-import { deleteGMD } from '../../../store/module/API/type';
+import { deleteGMD, IDPOST } from '../../../store/module/API/type';
 
 export default {
   name: 'tableAdmin',
@@ -96,6 +96,7 @@ export default {
       'setHeader',
       'setUpdateInputState',
       'setEditProps',
+      IDPOST,
     ]),
     ...mapActions([deleteGMD]),
     splitUpdate() {
@@ -117,7 +118,8 @@ export default {
         });
       }, 500);
     },
-    editHandler(val) {
+    editHandler(val, id) {
+      this[IDPOST](id);
       this.setUpdateInputState({
         ...val,
       });

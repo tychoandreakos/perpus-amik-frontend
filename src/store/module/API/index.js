@@ -14,6 +14,7 @@ export default {
       error: '',
     },
     [types.getType]: '',
+    [types.IDPOST]: '',
   },
   getters: {
     [types.getGMD]: (state) => {
@@ -28,6 +29,9 @@ export default {
     [types.messageGMD]: (state) => {
       return state[types.messageGMD];
     },
+    [types.IDPOST]: (state) => {
+      return state[types.IDPOST];
+    },
   },
   actions: {
     [types.getGMD]: ({ commit }, payload) => {
@@ -41,6 +45,9 @@ export default {
     },
   },
   mutations: {
+    [types.IDPOST]: (state, payload) => {
+      state[types.IDPOST] = payload;
+    },
     [types.getType]: (state, payload) => {
       state[types.getType] = payload;
     },
@@ -56,12 +63,23 @@ export default {
         .then((json) => (state[types.getGMD].result = json.data))
         .catch((err) => (state[types.getGMD].error = err));
     },
-    [types.postGMD]: (state, { gmd_code, gmd_name }) => {
-      axios
-        .post(types.urlGMD, {
+    [types.postGMD]: (
+      state,
+      { method, id = undefined, gmd_code, gmd_name }
+    ) => {
+      let data;
+      if (method == types.createPost) {
+        data = axios.post(types.urlGMD, {
           gmd_code: gmd_code.toLowerCase(),
           gmd_name: gmd_name.toLowerCase(),
-        })
+        });
+      } else if (method == types.updatePOST) {
+        data = axios.put(types.methodEventGmd`${id} ${types.editMethodGMD}`, {
+          gmd_code: gmd_code.toLowerCase(),
+          gmd_name: gmd_name.toLowerCase(),
+        });
+      }
+      data
         .then((res) => (state[types.messageGMD].message = res.data))
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
