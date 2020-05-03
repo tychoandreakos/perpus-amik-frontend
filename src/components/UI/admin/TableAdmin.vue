@@ -1,73 +1,42 @@
-<template>
-  <section id="table">
-    <table>
-      <thead>
-        <th v-if="tableProps.enabled.checkbox">
-          <div @click="selectAllHandler">
-            <CheckBox :checkbox="checkboxControl" />
-          </div>
-        </th>
-        <th v-for="(header, i) in tableProps.title" :key="i">{{ header }}</th>
-        <th v-if="tableProps.enabled.action">Action</th>
-      </thead>
-      <tbody>
-        <tr v-for="body in tableProps.content.result" :key="body.id">
-          <td v-if="tableProps.enabled.checkbox">
-            <CheckBox :checkbox="checkboxControl" />
-          </td>
-          <slot v-if="tableProps.enabled.slot"></slot>
-          <td></td>
-          <td v-for="(field, i) in tableProps.field" :key="i">
-            {{ body[field] }}
-          </td>
-          <!-- <template v-for="(list, i) in body">
-            <td
-              :class="tableProps.enabled.normal ? 'normal' : ''"
-              v-if="checkList(list)"
-              :key="i"
-            >
-              <span>{{ list }}</span>
-            </td>
-            <td :key="i">
-              <div class="book-info" :key="i">
-                <span
-                  :class="tableProps.normal ? ['title', 'normal'] : ['active']"
-                  >{{ body.book.title }}</span
-                >
-                <span
-                  class="author"
-                  v-for="(author, i) in body.book.author"
-                  :key="i"
-                  >{{ author }}</span
-                >
-              </div>
-            </td>
-          </template> -->
-          <td class="action" v-if="tableProps.enabled.action">
-            <button
+<template lang="pug">
+  section#table
+    p.find(v-if="search") Found {{ tableProps.content.length || 0 }} with keyword of #[b {{ search }}].
+    table
+      thead
+        th(v-if="tableProps.enabled.checkbox")
+          div(@click="selectAllHandler")
+            CheckBox(:checkbox="checkboxControl")
+        th(v-for="(header, i) in tableProps.title" :key="i") 
+          span {{ header }}
+        th(v-if="tableProps.enabled.action") Action
+      tbody
+        tr(
+          v-for="body in tableProps.content.result" :key="body.id")
+          td(v-if="tableProps.enabled.checkbox")
+            CheckBox(:checkbox="checkboxControl")
+          slot(v-if="tableProps.enabled.slot")
+          td
+          td(v-for="(field, i) in tableProps.field" :key="i")
+            template(v-if="body[field].toLowerCase().includes(search)") 
+              span.action {{ body[field] }}
+            template(v-else)
+              span {{ body[field] }}
+          td.action(v-if="tableProps.enabled.action")
+            button(
               @click="editHandler(body, body.id)"
               v-if="tableProps.enabled.edit"
-            >
-              <Icon icon="pencil" />
-            </button>
-            <button
+            ) #[Icon(icon="pencil")]
+            button(
               @click="deleteHandler(body.id, $event)"
               v-if="tableProps.enabled.remove"
-            >
-              <Icon icon="trash" />
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+            ) #[Icon(icon="trash")]
 </template>
 <script>
 import Icon from 'vue-themify-icons';
 import CheckBox from '../../UI/admin/Checkbox';
 import { mapMutations, mapGetters, mapActions } from 'vuex';
 
-import { deleteGMD, IDPOST } from '../../../store/module/API/type';
+import { deleteGMD, IDPOST, searchPOST } from '../../../store/module/API/type';
 
 export default {
   name: 'tableAdmin',
@@ -76,7 +45,15 @@ export default {
     CheckBox,
   },
   computed: {
-    ...mapGetters(['getUpdate']),
+    ...mapGetters(['getUpdate', searchPOST]),
+    search() {
+      const text = this[searchPOST];
+      if (text.length > 1) {
+        return text.toLowerCase();
+      } else {
+        return false;
+      }
+    },
   },
   data() {
     return {
@@ -141,6 +118,17 @@ export default {
   margin-top: 1rem;
   width: 100%;
 
+  .find {
+    float: right;
+    font: {
+      size: 0.9rem;
+    }
+  }
+
+  b {
+    text-transform: capitalize;
+  }
+
   table {
     width: 100%;
     border-collapse: separate;
@@ -175,6 +163,11 @@ export default {
       padding: 1rem;
       background: #fff;
       text-align: center;
+
+      .action {
+        background: #7c71f13f;
+        padding: 0.5rem 1.5rem;
+      }
 
       &:nth-child(2) {
         display: none;

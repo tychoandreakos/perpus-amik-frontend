@@ -8,6 +8,7 @@ export default {
       error: [],
       title: '',
     },
+    [types.searchPOST]: '',
     [types.messageGMD]: {
       message: '',
       warning: '',
@@ -25,6 +26,9 @@ export default {
     },
     [types.getGMD]: (state) => {
       return state[types.getGMD];
+    },
+    [types.searchPOST]: (state) => {
+      return state[types.searchPOST];
     },
     [types.messageGMD]: (state) => {
       return state[types.messageGMD];
@@ -49,6 +53,7 @@ export default {
   },
   mutations: {
     [types.searchPOST]: (state, payload) => {
+      state[types.searchPOST] = payload;
       axios
         .post(types.searchGMD, {
           search: payload,
@@ -72,7 +77,12 @@ export default {
           },
         })
         .then((res) => res.data)
-        .then((json) => (state[types.getGMD].result = json.data))
+        .then((json) => {
+          if (state[types.searchPOST].length > 1) {
+            state[types.searchPOST] = '';
+          }
+          state[types.getGMD].result = json.data;
+        })
         .catch((err) => (state[types.getGMD].error = err));
     },
     [types.postGMD]: (

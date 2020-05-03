@@ -11,7 +11,7 @@
 <script>
 import Icon from 'vue-themify-icons';
 import { searchPOST, getGMD } from '../../../store/module/API/type';
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'Search',
