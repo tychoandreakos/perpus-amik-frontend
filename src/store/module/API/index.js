@@ -62,12 +62,18 @@ export default {
   mutations: {
     [types.searchPOST]: (state, payload) => {
       state[types.searchPOST] = payload;
+      state[types.loadingBackdrop] = true;
       axios
         .post(types.searchGMD, {
           search: payload,
         })
         .then((res) => res.data)
-        .then((json) => (state[types.getGMD].result = json.data))
+        .then((json) => {
+          state[types.getGMD].result = json.data;
+          setTimeout(() => {
+            state[types.loadingBackdrop] = false;
+          }, 1000);
+        })
         .catch((err) => (state[types.getGMD].error = err));
     },
     [types.IDPOST]: (state, payload) => {
