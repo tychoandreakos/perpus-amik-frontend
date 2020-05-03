@@ -1,6 +1,6 @@
 <template lang="pug">
     div.loading
-        LoadingBar(:color="color")
+        LoadingBar.loading-bar(:color="color")
 </template>
 <script>
 import LoadingBar from 'vue-spinner/src/ScaleLoader';
@@ -33,6 +33,20 @@ export default {
   opacity: 1;
   animation: opacity 0.4s;
   animation-timing-function: linear;
+
+  .loading-bar {
+    animation: shake 0.2s;
+    animation-timing-function: linear;
+  }
+
+  @keyframes shake {
+    from {
+      transform: translateX(-50px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
 }
 
 @keyframes opacity {
