@@ -1,23 +1,51 @@
-<template>
-  <section id="search">
-    <Icon icon="search" />
-    <input type="search" :placeholder="search.placeholder" />
-  </section>
+<template lang="pug">
+  section#search
+    Icon(icon="search")
+    Form(@submit.prevent="submit")
+      input(
+      type="search" 
+      v-model="searchText" 
+      :placeholder="search.placeholder"
+    )
 </template>
 <script>
 import Icon from 'vue-themify-icons';
+import { searchPOST, getGMD } from '../../../store/module/API/type';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Search',
   components: {
-    Icon
+    Icon,
+  },
+  methods: {
+    ...mapActions([searchPOST, getGMD]),
+    submit() {
+      this[searchPOST](this.searchText);
+    },
+  },
+  data() {
+    return {
+      searchText: '',
+    };
+  },
+  watch: {
+    searchText(val) {
+      if (val < 1) {
+        this[getGMD]({
+          skip: 0,
+          take: 5,
+        });
+      }
+      this.searchText = val;
+    },
   },
   props: {
     search: {
       required: true,
-      type: Object
-    }
-  }
+      type: Object,
+    },
+  },
 };
 </script>
 <style scoped>

@@ -43,8 +43,20 @@ export default {
     [types.deleteGMD]: ({ commit }, payload) => {
       commit(types.deleteGMD, payload);
     },
+    [types.searchPOST]: ({ commit }, payload) => {
+      commit(types.searchPOST, payload);
+    },
   },
   mutations: {
+    [types.searchPOST]: (state, payload) => {
+      axios
+        .post(types.searchGMD, {
+          search: payload,
+        })
+        .then((res) => res.data)
+        .then((json) => (state[types.getGMD].result = json.data))
+        .catch((err) => (state[types.getGMD].error = err));
+    },
     [types.IDPOST]: (state, payload) => {
       state[types.IDPOST] = payload;
     },

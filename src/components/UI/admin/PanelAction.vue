@@ -12,14 +12,14 @@
       SearchComponent(:search="search")
 </template>
 <script>
-import DropdownComponent from "./Dropdown";
-import ButtonComponent from "./Button";
-import PageNumberComponent from "./PageNumber";
-import SearchComponent from "./Search";
-import { mapMutations } from "vuex";
+import DropdownComponent from './Dropdown';
+import ButtonComponent from './Button';
+import PageNumberComponent from './PageNumber';
+import SearchComponent from './Search';
+import { mapMutations } from 'vuex';
 
 export default {
-  name: "PanelAction",
+  name: 'PanelAction',
   components: {
     DropdownComponent,
     ButtonComponent,
@@ -27,9 +27,9 @@ export default {
     SearchComponent,
   },
   methods: {
-    ...mapMutations(["setPanel"]),
+    ...mapMutations(['setPanel']),
     count(e) {
-      this.$emit("count", e);
+      this.$emit('count', e);
     },
   },
   props: {
