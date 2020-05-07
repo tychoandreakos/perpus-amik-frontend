@@ -8,6 +8,7 @@ export default {
       error: [],
       title: '',
     },
+    [types.tableId]: [],
     [types.memo]: '',
     [types.dialogValue]: '',
     [types.dialog]: false,
@@ -68,8 +69,17 @@ export default {
     [types.searchPOST]: ({ commit }, payload) => {
       commit(types.searchPOST, payload);
     },
+    [types.DeleteSome]: ({ commit }, payload) => {
+      commit(types.DeleteSome, payload);
+    },
   },
   mutations: {
+    [types.tableId]: (state, payload) => {
+      state[types.tableId] = [...state[types.tableId], payload];
+    },
+    [types.cleanTableId]: (state) => {
+      state[types.cleanTableId] = [];
+    },
     [types.decision]: (state, payload) => {
       state[types.decision] = payload;
     },
@@ -125,6 +135,14 @@ export default {
           }, 1000);
         })
         .catch((err) => (state[types.getGMD].error = err));
+    },
+    [types.DeleteSome]: (state, payload) => {
+      axios
+        .post(types.methodEventGmd`${types.urlGMD} ${types.deleteMethodGMD}`, {
+          delete: payload,
+        })
+        .then((res) => (state[types.messageGMD].message = res.data))
+        .catch((err) => (state[types.messageGMD].error = err.data));
     },
     [types.postGMD]: (
       state,

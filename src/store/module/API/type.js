@@ -9,6 +9,10 @@ export const getType = 'master/GMD/getType';
 
 export const createPost = 'master/GMD/CREATE';
 export const updatePOST = 'master/GMD/UPDATE';
+export const DeleteSome = 'master/DELETESOME';
+export const UpdateSome = 'master/UPDATESOME';
+export const tableId = 'master/TABLEID';
+export const cleanTableId = 'master/CLEANTABLEID';
 export const IDPOST = 'master/IDPOST';
 export const searchPOST = 'master/SEARCHPOST';
 export const loadingState = 'master/LOADINGSTATE';

@@ -46,6 +46,8 @@ import {
   searchPOST,
   dialog,
   decision,
+  tableId,
+  cleanTableId,
 } from '../../../store/module/API/type';
 
 export default {
@@ -94,6 +96,10 @@ export default {
       IDPOST,
       dialog,
     ]),
+    ...mapMutations({
+      tableId: tableId,
+      cleanTableId: cleanTableId,
+    }),
     ...mapActions([deleteGMD]),
     splitUpdate() {
       return this.getUpdate.split('/')[1];
@@ -133,11 +139,17 @@ export default {
     },
     selectAllHandler() {
       this.checkboxControl = !this.checkboxControl;
-      for (let i = 0; i < 5; i++) {
-        this.checkbox = {
-          ...this.checkbox,
-          [i]: this.checkboxControl,
-        };
+      if (this.checkboxControl) {
+        for (let i = 0; i < 4; i++) {
+          this.checkbox = {
+            ...this.checkbox,
+            [i]: this.checkboxControl ? true : false,
+          };
+          this.tableId(this.tableProps.content.result[i].id);
+        }
+      } else {
+        this.checkbox = {};
+        this.cleanTableId();
       }
     },
   },
