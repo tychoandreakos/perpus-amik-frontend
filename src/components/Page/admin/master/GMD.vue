@@ -3,7 +3,7 @@
     HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
     PanelActionComponent(:title="title" 
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
-    TableComponent(:tableProps="database")
+    TableComponent(:tableProps="database" delete="we dont")
     span(style="visibility: hidden") {{ update }}
   
 </template>

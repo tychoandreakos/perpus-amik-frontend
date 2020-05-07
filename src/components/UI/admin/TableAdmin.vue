@@ -36,7 +36,13 @@ import Icon from 'vue-themify-icons';
 import CheckBox from '../../UI/admin/Checkbox';
 import { mapMutations, mapGetters, mapActions } from 'vuex';
 
-import { deleteGMD, IDPOST, searchPOST } from '../../../store/module/API/type';
+import {
+  deleteGMD,
+  IDPOST,
+  searchPOST,
+  dialog,
+  decision,
+} from '../../../store/module/API/type';
 
 export default {
   name: 'tableAdmin',
@@ -46,6 +52,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getUpdate', searchPOST]),
+    ...mapGetters({
+      decision: decision,
+    }),
     found() {
       return `Found ${this.tableProps.content.length || 0} of keyword`;
     },
@@ -56,6 +65,14 @@ export default {
       } else {
         return false;
       }
+    },
+    decisionCheck: {
+      get: function() {
+        return this.check || false;
+      },
+      set: function(newValue) {
+        this.check = newValue;
+      },
     },
   },
   data() {
@@ -70,6 +87,11 @@ export default {
       type: Object,
     },
   },
+  watch: {
+    decision(val) {
+      this.decisionCheck = val;
+    },
+  },
   methods: {
     ...mapMutations([
       'setPanel',
@@ -77,6 +99,7 @@ export default {
       'setUpdateInputState',
       'setEditProps',
       IDPOST,
+      dialog,
     ]),
     ...mapActions([deleteGMD]),
     splitUpdate() {
@@ -84,19 +107,18 @@ export default {
     },
     deleteHandler(id, e) {
       const parent = e.originalTarget.offsetParent.parentElement;
-      const confirmSubmit = confirm('Are you sure want to delete it?');
-      alert(confirmSubmit);
-      if (confirmSubmit) {
+      this[dialog](() => {
         parent.classList.add('remove');
         setTimeout(() => {
           parent.classList.add('none');
-        }, 450);
-      }
-      setTimeout(() => {
-        this[deleteGMD]({
-          id,
-        });
-      }, 500);
+        }, 200);
+
+        setTimeout(() => {
+          this[deleteGMD]({
+            id,
+          });
+        }, 500);
+      });
     },
     editHandler(val, id) {
       this[IDPOST](id);

@@ -8,8 +8,12 @@ export default {
       error: [],
       title: '',
     },
+    [types.memo]: '',
+    [types.dialogValue]: '',
+    [types.dialog]: false,
     [types.loadingState]: true,
     [types.loadingBackdrop]: false,
+    [types.decision]: false,
     [types.searchPOST]: '',
     [types.messageGMD]: {
       message: '',
@@ -20,6 +24,12 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.dialog]: (state) => {
+      return state[types.dialog];
+    },
+    [types.decision]: (state) => {
+      return state[types.decision];
+    },
     [types.loadingState]: (state) => {
       return state[types.loadingState];
     },
@@ -60,6 +70,18 @@ export default {
     },
   },
   mutations: {
+    [types.decision]: (state, payload) => {
+      state[types.decision] = payload;
+    },
+    [types.dialog]: (state, payload) => {
+      state[types.dialog] = !state[types.dialog];
+      if (payload) {
+        state[types.memo] = payload;
+      }
+      if (state[types.decision]) {
+        state[types.memo]();
+      }
+    },
     [types.searchPOST]: (state, payload) => {
       state[types.searchPOST] = payload;
       state[types.loadingBackdrop] = true;
@@ -99,6 +121,7 @@ export default {
           state[types.getGMD].result = json.data;
           setTimeout(() => {
             state[types.loadingBackdrop] = false;
+            state[types.decision] = false;
           }, 1000);
         })
         .catch((err) => (state[types.getGMD].error = err));

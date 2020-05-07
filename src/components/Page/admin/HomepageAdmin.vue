@@ -1,35 +1,6 @@
-<template>
-  <section id="homepage-admin">
-    <CreateComponent />
-    <div
-      :class="
-        metaSidebar
-          ? ['sidebar', 'sidebar-active']
-          : ['sidebar', 'sidebar-inactive']
-      "
-      :style="metaSidebar ? { width: '19%' } : { width: '5.3%' }"
-    >
-      <SidebarComponent @sidebarMetaChild="childHandler" />
-    </div>
-    <div class="backdrop"></div>
-    <HeaderComponent
-      :style="metaSidebar ? { width: '76.6%' } : { width: '91%' }"
-    />
-    <div
-      class="main-wrapper"
-      :style="
-        metaSidebar
-          ? { width: '80.8%', transform: 'scale(0.98)' }
-          : { width: '100%', paddingLeft: '7.4%', transform: 'scale(1)' }
-      "
-    >
-      <div class="clearfix"></div>
-      <router-view></router-view>
-    </div>
-  </section>
-</template>
 <template lang="pug">
   section#homepage-admin
+    Dialog(v-if="dialog")
     CreateComponent
     div(
     :class="metaSidebar ? ['sidebar', 'sidebar-active']: ['sidebar', 'sidebar-inactive']"
@@ -49,6 +20,9 @@
 import SidebarComponent from '../../UI/admin/SidebarAdmin';
 import HeaderComponent from '../../UI/admin/Navbar';
 import CreateComponent from '../../UI/admin/Create';
+import Dialog from '../../UI/admin/Dialog';
+import { dialog } from '../../../store/module/API/type';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'HomepageAdmin',
@@ -56,6 +30,11 @@ export default {
     return {
       metaSidebar: true,
     };
+  },
+  computed: {
+    ...mapGetters({
+      dialog: dialog,
+    }),
   },
   methods: {
     childHandler(val) {
@@ -66,6 +45,7 @@ export default {
     SidebarComponent,
     HeaderComponent,
     CreateComponent,
+    Dialog,
   },
 };
 </script>

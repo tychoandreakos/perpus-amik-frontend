@@ -13,6 +13,10 @@ export const IDPOST = 'master/IDPOST';
 export const searchPOST = 'master/SEARCHPOST';
 export const loadingState = 'master/LOADINGSTATE';
 export const loadingBackdrop = 'master/LOADINGBACKDROP';
+export const dialog = 'master/dialog';
+export const decision = 'master/decision';
+export const dialogValue = 'master/VALUE';
+export const memo = 'master/MEMO';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';
