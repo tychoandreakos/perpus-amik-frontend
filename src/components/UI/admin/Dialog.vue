@@ -1,5 +1,5 @@
 <template lang="pug">
-    div.dialog(@click.self="anim()")
+    div.dialog(@click.self="anim" ref="dialog") 
         div.dialog-box(:class="scaleAnim ? 'anim' : ''")
           h3.head {{ title | capitalize }}
           p.body {{ content }}
@@ -20,6 +20,11 @@ export default {
     Button,
   },
   mounted() {
+    this.$refs.dialog.addEventListener('keydown', (e) => {
+      if (e.keyCode == 27) {
+        this.cancelButton();
+      }
+    });
     this.$refs.hiddenInput.focus();
   },
   methods: {
@@ -34,6 +39,9 @@ export default {
     cancelButton() {
       this.dialog();
       this.decision(false);
+    },
+    check() {
+      console.log('hs');
     },
     anim() {
       setTimeout(() => (this.scaleAnim = false), 500);
