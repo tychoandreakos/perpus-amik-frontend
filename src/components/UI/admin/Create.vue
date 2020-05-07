@@ -16,6 +16,7 @@ import {
   createPost,
   updatePOST,
   IDPOST,
+  dialog,
 } from '../../../store/module/API/type';
 
 export default {
@@ -33,6 +34,9 @@ export default {
       'setClearEditProps',
       'updateMaster',
     ]),
+    ...mapMutations({
+      dialog: dialog,
+    }),
     checkDropdown() {
       let dropdownData;
       for (let key in this.selectedDropdown) {
@@ -59,8 +63,9 @@ export default {
       return confirmSubmit;
     },
     submitWithAlert(dataSubmit, message) {
-      const confirmSubmit = this.alertMessage(message);
-      if (confirmSubmit) {
+      // const confirmSubmit = this.alertMessage(message);
+      // if (confirmSubmit) {
+      this.dialog(() => {
         this.$store.dispatch(this.getType, {
           title: this.getType,
           data: {
@@ -68,11 +73,15 @@ export default {
             ...dataSubmit,
           },
         });
-      }
+      });
+
+      // }
     },
     updateHandler(dataSubmit, message) {
-      const confirmSubmit = this.alertMessage(message);
-      if (confirmSubmit) {
+      // const confirmSubmit = this.alertMessage(message);
+      // if (confirmSubmit) {
+
+      this.dialog(() => {
         this.$store.dispatch(this.getType, {
           title: this.getType,
           data: {
@@ -81,7 +90,8 @@ export default {
             ...dataSubmit,
           },
         });
-      }
+      });
+      // }
     },
     submitHandler() {
       const dropdownVal = this.checkDropdown();

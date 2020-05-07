@@ -4,8 +4,9 @@
           h3.head {{ title | capitalize }}
           p.body {{ content }}
           div.footer
-            div.btn(@click="submit")
-              Button(:btn="button" )
+            form.btn(@submit.prevent="submit")
+              input.hidden-input(ref="hiddenInput")
+              Button(:btn="button")
             div.cancel(@click="cancelButton") {{ cancel | capitalize }}
 </template>
 <script>
@@ -17,6 +18,9 @@ export default {
   name: 'Dialog',
   components: {
     Button,
+  },
+  mounted() {
+    this.$refs.hiddenInput.focus();
   },
   methods: {
     ...mapMutations({
@@ -117,6 +121,14 @@ export default {
       display: flex;
       align-items: center;
       float: right;
+
+      .btn {
+        .hidden-input {
+          z-index: -9;
+          width: 0px;
+          position: absolute;
+        }
+      }
 
       .cancel {
         margin-left: 0.9rem;
