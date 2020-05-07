@@ -5,15 +5,19 @@
       thead
         th(v-if="tableProps.enabled.checkbox")
           div(@click="selectAllHandler")
-            CheckBox(:checkbox="checkboxControl")
+            CheckBox(:check="checkboxControl")
         th(v-for="(header, i) in tableProps.title" :key="i") 
           span {{ header }}
         th(v-if="tableProps.enabled.action") Action
       tbody
         tr(
-          v-for="body in tableProps.content.result" :key="body.id")
+          v-for="(body, key) in tableProps.content.result" 
+          :key="body.id"
+          @click="checkboxHandler(key)"
+          :class="{'select': checkbox[key]}"
+          )
           td(v-if="tableProps.enabled.checkbox")
-            CheckBox(:checkbox="checkboxControl")
+            CheckBox(:check="checkbox[key] || false" @click="checkboxHandler(key)")
           slot(v-if="tableProps.enabled.slot")
           td
           td(v-for="(field, i) in tableProps.field" :key="i")
@@ -23,11 +27,11 @@
               span {{ body[field] }}
           td.action(v-if="tableProps.enabled.action")
             button(
-              @click="editHandler(body, body.id)"
+              @click.stop="editHandler(body, body.id)"
               v-if="tableProps.enabled.edit"
             ) #[Icon(icon="pencil")]
             button(
-              @click="deleteHandler(body.id, $event)"
+              @click.stop="deleteHandler(body.id, $event)"
               v-if="tableProps.enabled.remove"
             ) #[Icon(icon="trash")]
 </template>
@@ -67,8 +71,10 @@ export default {
       }
     },
   },
+
   data() {
     return {
+      checkbox: {},
       checkboxControl: false,
       headerEdit: 'Update ',
     };
@@ -91,6 +97,12 @@ export default {
     ...mapActions([deleteGMD]),
     splitUpdate() {
       return this.getUpdate.split('/')[1];
+    },
+    checkboxHandler(key) {
+      this.checkbox = {
+        ...this.checkbox,
+        [key]: this.checkbox[key] ? !this.checkbox[key] : true,
+      };
     },
     deleteHandler(id, e) {
       const parent = e.originalTarget.offsetParent.parentElement;
@@ -121,6 +133,12 @@ export default {
     },
     selectAllHandler() {
       this.checkboxControl = !this.checkboxControl;
+      for (let i = 0; i < 5; i++) {
+        this.checkbox = {
+          ...this.checkbox,
+          [i]: this.checkboxControl,
+        };
+      }
     },
   },
 };
@@ -129,6 +147,17 @@ export default {
 #table {
   margin-top: 1rem;
   width: 100%;
+
+  .select {
+    background: #f1f0f8;
+    box-shadow: none;
+    color: #5148f1;
+
+    &:hover {
+      box-shadow: none;
+      transform: none;
+    }
+  }
 
   .find {
     float: right;
@@ -164,6 +193,7 @@ export default {
     line-height: 30px;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease-in;
+    background: #fff;
     font-size: 0.9rem;
     animation: {
       name: loading;
@@ -189,7 +219,6 @@ export default {
 
     td {
       padding: 1rem;
-      background: #fff;
       text-align: center;
 
       .action {
