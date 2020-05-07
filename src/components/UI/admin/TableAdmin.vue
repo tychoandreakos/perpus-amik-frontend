@@ -66,14 +66,6 @@ export default {
         return false;
       }
     },
-    decisionCheck: {
-      get: function() {
-        return this.check || false;
-      },
-      set: function(newValue) {
-        this.check = newValue;
-      },
-    },
   },
   data() {
     return {
@@ -85,11 +77,6 @@ export default {
     tableProps: {
       required: true,
       type: Object,
-    },
-  },
-  watch: {
-    decision(val) {
-      this.decisionCheck = val;
     },
   },
   methods: {
