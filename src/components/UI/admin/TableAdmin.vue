@@ -140,7 +140,7 @@ export default {
     selectAllHandler() {
       this.checkboxControl = !this.checkboxControl;
       if (this.checkboxControl) {
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 5; i++) {
           this.checkbox = {
             ...this.checkbox,
             [i]: this.checkboxControl ? true : false,
