@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let instance = axios.create({
-  baseURL: "https://desolate-anchorage-69638.herokuapp.com",
+  baseURL: "http://localhost",
   timeout: 120000,
 });
 

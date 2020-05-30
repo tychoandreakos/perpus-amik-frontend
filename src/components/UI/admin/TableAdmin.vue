@@ -138,9 +138,10 @@ export default {
       return !val.hasOwnProperty('title');
     },
     selectAllHandler() {
+      const limit = this.tableProps.content.dataCount;
       this.checkboxControl = !this.checkboxControl;
       if (this.checkboxControl) {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < limit; i++) {
           this.checkbox = {
             ...this.checkbox,
             [i]: this.checkboxControl ? true : false,
