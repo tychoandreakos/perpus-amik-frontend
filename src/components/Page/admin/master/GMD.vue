@@ -1,7 +1,7 @@
 <template lang="pug">
   section#gmd(:class="loading ? 'blur' : ''")
     HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
-    PanelActionComponent(:title="title" 
+    PanelActionComponent(:title="title" :disabledDetail="true"
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
     TableComponent(:tableProps="database" delete="we dont")
     span(style="visibility: hidden") {{ update }}

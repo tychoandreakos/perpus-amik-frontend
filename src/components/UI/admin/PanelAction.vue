@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-action
     div.panel-wrap
-      DropdownComponent
+      DropdownComponent(:disabledDetail="disabledDetail")
       div.panel-wrap(@click="setPanel")
         ButtonComponent( 
         :style="{ marginLeft: '1.2rem' }"
@@ -35,6 +35,10 @@ export default {
   props: {
     button: {
       type: Object,
+      required: true,
+    },
+    disabledDetail: {
+      type: Boolean,
       required: true,
     },
     total: {

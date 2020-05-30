@@ -5,14 +5,17 @@
       <Icon :icon="action.icon" />
       <transition name="fade">
         <ul v-if="dropdown" class="dropdown-list">
-          <li
-            @click="dropdownHandler(meta.id)"
-            v-for="meta in action.dropdownMeta"
-            :key="meta.id"
-          >
-            <Icon :icon="meta.icon" />
-            <span>{{ meta.title }}</span>
-          </li>
+          <template v-for="meta in action.dropdownMeta">
+            <li
+              :class="meta.disabled ? 'disabled' : ''"
+              @click="dropdownHandler(meta.id, meta.disabled)"
+              :key="meta.id"
+              v-if="meta"
+            >
+              <Icon :icon="meta.icon" />
+              <span>{{ meta.title }}</span>
+            </li>
+          </template>
         </ul>
       </transition>
     </div>
@@ -21,13 +24,59 @@
 </template>
 <script>
 import Icon from 'vue-themify-icons';
-import { deleteSomeGMD, dialog } from '../../../store/module/API/type';
-import { mapActions, mapMutations } from 'vuex';
+import {
+  deleteSomeGMD,
+  dialog,
+  checkbox,
+} from '../../../store/module/API/type';
+import { mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'DropdownAdmin',
   components: {
     Icon,
+  },
+  props: {
+    disabledDetail: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  computed: {
+    ...mapGetters({
+      checkbox: checkbox,
+    }),
+    action() {
+      return {
+        title: 'Actions',
+        icon: 'angle-down',
+        dropdownMeta: [
+          this.disabledDetail
+            ? undefined
+            : {
+                id: 1,
+                title: 'See Detail',
+                icon: 'eye',
+              },
+          {
+            id: 2,
+            title: 'Edit / Update',
+            icon: 'pencil',
+          },
+          {
+            id: 3,
+            title: 'Delete',
+            icon: 'trash',
+            disabled: true,
+          },
+          {
+            id: 4,
+            title: 'Delete All',
+            icon: 'close',
+          },
+        ],
+      };
+    },
   },
   methods: {
     ...mapActions({
@@ -48,19 +97,19 @@ export default {
     deleteAll() {
       console.log('this deleteAll');
     },
-    dropdownHandler(key) {
+    dropdownHandler(key, active) {
       switch (key) {
         case 1:
-          this.detail();
+          active ? false : this.detail();
           break;
         case 2:
-          this.edit();
+          active ? false : this.edit();
           break;
         case 3:
-          this.delete();
+          active ? false : this.delete();
           break;
         case 4:
-          this.deleteAll();
+          active ? false : this.deleteAll();
           break;
         default:
           console.log('error!');
@@ -71,37 +120,11 @@ export default {
   data() {
     return {
       dropdown: false,
-      action: {
-        title: 'Actions',
-        icon: 'angle-down',
-        dropdownMeta: [
-          {
-            id: 1,
-            title: 'See Detail',
-            icon: 'eye',
-          },
-          {
-            id: 2,
-            title: 'Edit / Update',
-            icon: 'pencil',
-          },
-          {
-            id: 3,
-            title: 'Delete',
-            icon: 'trash',
-          },
-          {
-            id: 4,
-            title: 'Delete All',
-            icon: 'close',
-          },
-        ],
-      },
     };
   },
 };
 </script>
-<style scoped>
+<style lang="scss">
 #dropdown .dropdown-action {
   background: #fff;
   border-radius: 10px;
@@ -115,82 +138,90 @@ export default {
   transition: box-shadow 0.3s ease;
   position: relative;
   z-index: 8;
-
   user-select: none;
-}
 
-#dropdown .dropdown-action:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
 
-#dropdown .dropdown-action i {
-  font-size: 0.8rem;
-}
+  i {
+    font-size: 0.8rem;
+  }
 
-#dropdown .dropdown-action span {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.85rem;
-}
+  span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+  }
 
-#dropdown .dropdown-action .dropdown-list {
-  background: #fff;
-  position: absolute;
-  list-style: none;
-  width: 150px;
-  top: 60px;
-  right: 0;
-  border-radius: 4px;
-  border: 1px solid #eee;
-  z-index: 2;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
+  .dropdown-list {
+    background: #fff;
+    position: absolute;
+    list-style: none;
+    width: 150px;
+    top: 60px;
+    right: 0;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    z-index: 2;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 
-#dropdown .dropdown-action .dropdown-list::before {
-  content: '';
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  position: absolute;
-  right: 5px;
-  top: -5px;
-  transform: rotate(45deg);
-  z-index: -1;
-}
+    &::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      position: absolute;
+      right: 5px;
+      top: -5px;
+      transform: rotate(45deg);
+      z-index: -1;
+    }
 
-#dropdown .dropdown-action .dropdown-list li {
-  padding: 0.5rem 1rem;
-  z-index: 2;
-}
+    .disabled {
+      color: #999;
+      cursor: not-allowed;
 
-#dropdown .dropdown-action .dropdown-list li:hover {
-  color: #7367f0;
-  background: linear-gradient(to-right, #7367f0, #fff);
-}
+      &:hover {
+        color: #999;
+      }
+    }
 
-#dropdown .dropdown-action .dropdown-list li span {
-  font-size: 0.84rem;
-  font-family: 'Poppins', sans-serif;
-  margin-left: 0.7rem;
-  font-weight: 400;
-}
+    li {
+      padding: 0.5rem 1rem;
+      z-index: 2;
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
+      &:hover {
+        color: #7367f0;
+        background: linear-gradient(to-right, #7367f0, #fff);
+      }
 
-#dropdown .backdrop {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  background: transparent;
-  z-index: 1;
-  overflow: hidden;
+      span {
+        font-size: 0.84rem;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 0.7rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .backdrop {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background: transparent;
+    z-index: 1;
+    overflow: hidden;
+  }
 }
 </style>
