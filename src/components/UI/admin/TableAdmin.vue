@@ -4,7 +4,7 @@
     table
       thead
         th(v-if="tableProps.enabled.checkbox")
-          div(@click="selectAllHandler")
+          div(style="margin-left: .5rem" @click="selectAllHandler")
             CheckBox(:check="checkboxControl")
         th(v-for="(header, i) in tableProps.title" :key="i") 
           span {{ header }}
@@ -48,6 +48,7 @@ import {
   decision,
   tableId,
   cleanTableId,
+  removeTableId,
 } from '../../../store/module/API/type';
 
 export default {
@@ -99,6 +100,8 @@ export default {
     ...mapMutations({
       tableId: tableId,
       cleanTableId: cleanTableId,
+      removeTableId,
+      removeTableId,
     }),
     ...mapActions([deleteGMD]),
     splitUpdate() {
@@ -109,6 +112,8 @@ export default {
         ...this.checkbox,
         [key]: this.checkbox[key] ? !this.checkbox[key] : true,
       };
+      const id = this.tableProps.content.result[key].id;
+      this.checkbox[key] ? this.tableId(id) : this.removeTableId(id);
     },
     deleteHandler(id, e) {
       const parent = e.originalTarget.offsetParent.parentElement;

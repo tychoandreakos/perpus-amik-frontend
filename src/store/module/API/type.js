@@ -21,6 +21,7 @@ export const dialog = 'master/dialog';
 export const decision = 'master/decision';
 export const dialogValue = 'master/VALUE';
 export const memo = 'master/MEMO';
+export const removeTableId = 'master/removeTableId';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';

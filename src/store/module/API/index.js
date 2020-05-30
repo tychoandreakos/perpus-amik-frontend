@@ -74,6 +74,12 @@ export default {
     },
   },
   mutations: {
+    [types.removeTableId]: (state, payload) => {
+      const index = state[types.tableId].indexOf(payload);
+      if (index > -1) {
+        state[types.tableId].splice(index, 1);
+      }
+    },
     [types.tableId]: (state, payload) => {
       state[types.tableId] = [...state[types.tableId], payload];
     },
