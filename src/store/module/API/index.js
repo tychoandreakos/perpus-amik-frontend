@@ -3,6 +3,7 @@ import * as types from './type';
 
 export default {
   state: {
+    [types.checkbox]: {},
     [types.getGMD]: {
       result: [],
       error: [],
@@ -25,6 +26,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.checkbox]: (state) => {
+      return state[types.checkbox];
+    },
     [types.dialog]: (state) => {
       return state[types.dialog];
     },
@@ -72,8 +76,31 @@ export default {
     [types.DeleteSome]: ({ commit }, payload) => {
       commit(types.DeleteSome, payload);
     },
+    [types.deleteSomeGMD]: ({ commit }) => {
+      commit(types.deleteSomeGMD);
+    },
   },
   mutations: {
+    [types.checkbox]: (state, payload) => {
+      state[types.checkbox] = {
+        ...state[types.checkbox],
+        [payload]: state[types.checkbox][payload]
+          ? !state[types.checkbox][payload]
+          : true,
+      };
+    },
+    [types.deleteSomeGMD]: (state) => {
+      axios
+        .post(`${types.urlGMD}/${types.deleteMethodGMD}`, {
+          delete: state[types.tableId],
+        })
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
+    },
     [types.removeTableId]: (state, payload) => {
       const index = state[types.tableId].indexOf(payload);
       if (index > -1) {
@@ -84,7 +111,7 @@ export default {
       state[types.tableId] = [...state[types.tableId], payload];
     },
     [types.cleanTableId]: (state) => {
-      state[types.cleanTableId] = [];
+      state[types.tableId] = [];
     },
     [types.decision]: (state, payload) => {
       state[types.decision] = payload;

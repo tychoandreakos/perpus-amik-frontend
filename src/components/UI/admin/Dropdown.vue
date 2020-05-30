@@ -5,7 +5,11 @@
       <Icon :icon="action.icon" />
       <transition name="fade">
         <ul v-if="dropdown" class="dropdown-list">
-          <li v-for="(meta, i) in action.dropdownMeta" :key="i">
+          <li
+            @click="dropdownHandler(meta.id)"
+            v-for="meta in action.dropdownMeta"
+            :key="meta.id"
+          >
             <Icon :icon="meta.icon" />
             <span>{{ meta.title }}</span>
           </li>
@@ -17,10 +21,52 @@
 </template>
 <script>
 import Icon from 'vue-themify-icons';
+import { deleteSomeGMD, dialog } from '../../../store/module/API/type';
+import { mapActions, mapMutations } from 'vuex';
+
 export default {
   name: 'DropdownAdmin',
   components: {
-    Icon
+    Icon,
+  },
+  methods: {
+    ...mapActions({
+      deleteSome: deleteSomeGMD,
+    }),
+    ...mapMutations({
+      dialog: dialog,
+    }),
+    detail() {
+      console.log('this detail');
+    },
+    edit() {
+      console.log('this edit');
+    },
+    delete() {
+      this.dialog(() => this.deleteSome());
+    },
+    deleteAll() {
+      console.log('this deleteAll');
+    },
+    dropdownHandler(key) {
+      switch (key) {
+        case 1:
+          this.detail();
+          break;
+        case 2:
+          this.edit();
+          break;
+        case 3:
+          this.delete();
+          break;
+        case 4:
+          this.deleteAll();
+          break;
+        default:
+          console.log('error!');
+          break;
+      }
+    },
   },
   data() {
     return {
@@ -30,25 +76,29 @@ export default {
         icon: 'angle-down',
         dropdownMeta: [
           {
+            id: 1,
             title: 'See Detail',
-            icon: 'eye'
+            icon: 'eye',
           },
           {
+            id: 2,
             title: 'Edit / Update',
-            icon: 'pencil'
+            icon: 'pencil',
           },
           {
+            id: 3,
             title: 'Delete',
-            icon: 'trash'
+            icon: 'trash',
           },
           {
+            id: 4,
             title: 'Delete All',
-            icon: 'close'
-          }
-        ]
-      }
+            icon: 'close',
+          },
+        ],
+      },
     };
-  }
+  },
 };
 </script>
 <style scoped>

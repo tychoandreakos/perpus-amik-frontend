@@ -6,6 +6,7 @@ export const updateGMD = 'master/GMD/updateAPI';
 export const messageGMD = 'master/GMD/messageAPI';
 export const postMasterAPI = 'master/GMD/postMaster';
 export const getType = 'master/GMD/getType';
+export const deleteSomeGMD = 'master/GMD/deleteSomeGMD';
 
 export const createPost = 'master/GMD/CREATE';
 export const updatePOST = 'master/GMD/UPDATE';
@@ -22,6 +23,7 @@ export const decision = 'master/decision';
 export const dialogValue = 'master/VALUE';
 export const memo = 'master/MEMO';
 export const removeTableId = 'master/removeTableId';
+export const checkbox = 'master/checkbox';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';

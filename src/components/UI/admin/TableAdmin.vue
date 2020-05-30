@@ -49,6 +49,8 @@ import {
   tableId,
   cleanTableId,
   removeTableId,
+  checkbox,
+  cleanCheckBox,
 } from '../../../store/module/API/type';
 
 export default {
@@ -61,6 +63,7 @@ export default {
     ...mapGetters(['getUpdate', searchPOST]),
     ...mapGetters({
       decision: decision,
+      checkbox: checkbox,
     }),
     found() {
       return `Found ${this.tableProps.content.length || 0} of keyword`;
@@ -77,7 +80,6 @@ export default {
 
   data() {
     return {
-      checkbox: {},
       checkboxControl: false,
       headerEdit: 'Update ',
     };
@@ -96,22 +98,20 @@ export default {
       'setEditProps',
       IDPOST,
       dialog,
+      checkbox,
     ]),
     ...mapMutations({
       tableId: tableId,
       cleanTableId: cleanTableId,
       removeTableId,
-      removeTableId,
+      cleanCheckBox: cleanCheckBox,
     }),
     ...mapActions([deleteGMD]),
     splitUpdate() {
       return this.getUpdate.split('/')[1];
     },
     checkboxHandler(key) {
-      this.checkbox = {
-        ...this.checkbox,
-        [key]: this.checkbox[key] ? !this.checkbox[key] : true,
-      };
+      this[checkbox](key);
       const id = this.tableProps.content.result[key].id;
       this.checkbox[key] ? this.tableId(id) : this.removeTableId(id);
     },
