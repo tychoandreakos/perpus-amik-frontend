@@ -16,7 +16,7 @@
           @click="checkboxHandler(key)"
           :class="{'select': checkbox[key]}"
           )
-          td(v-if="tableProps.enabled.checkbox")
+          td(v-show="tableProps.enabled.checkbox")
             CheckBox(:check="checkbox[key] || false" @click="checkboxHandler(key)")
           slot(v-if="tableProps.enabled.slot")
           td
@@ -26,6 +26,10 @@
             template(v-else)
               span {{ body[field] }}
           td.action(v-if="tableProps.enabled.action")
+            button(
+                @click.stop="editHandler(body, body.id)"
+                v-if="tableProps.enabled.retrieve"
+              ) #[Icon(icon="reload")]
             button(
               @click.stop="editHandler(body, body.id)"
               v-if="tableProps.enabled.edit"

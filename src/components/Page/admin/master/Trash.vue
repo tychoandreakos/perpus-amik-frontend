@@ -2,13 +2,16 @@
   section#recycle-bin
     HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
     h3.info {{ info }}
-    TableComponent(:tableProps="database" delete="we dont")
+    PanelActionComponent(:title="title" :settings="panelAction"
+    :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
+    TableComponent(:tableProps="database" :disabledCheck="true" delete="we dont")
     //- span(style="visibility: hidden") {{ update }}
 </template>
 
 <script>
 import HeaderComponent from '../../../UI/admin/Header';
 import TableComponent from '../../../UI/admin/TableAdmin';
+import PanelActionComponent from '../../../UI/admin/PanelAction';
 
 import { mapGetters, mapActions } from 'vuex';
 
@@ -19,6 +22,7 @@ export default {
   components: {
     HeaderComponent,
     TableComponent,
+    PanelActionComponent,
   },
   computed: {
     ...mapGetters({
@@ -29,9 +33,10 @@ export default {
       return {
         enabled: {
           checkbox: true,
-          edit: true,
+          edit: false,
           remove: true,
           action: true,
+          retrieve: true,
         },
         title: ['GMD CODE', 'GMD NAME', 'Last Update'],
         field: ['gmd_code', 'gmd_name', 'updated_at'],
@@ -46,6 +51,12 @@ export default {
     ...mapActions({
       getDestroy: getDestroy,
     }),
+    count(e) {
+      this.getDestroy({
+        skip: e,
+        take: 5,
+      });
+    },
   },
   created() {
     this.getDestroy({
@@ -55,8 +66,25 @@ export default {
   },
   data() {
     return {
+      panelAction: {
+        detail: false,
+        edit: false,
+        delete: true,
+        recycle: false,
+        setting: true,
+        restore: true,
+        restoreAll: true,
+      },
       breadcrumbs: ['Data List'],
       title: 'Recycle Bin',
+      button: {
+        title: 'Clean / Delete All Data',
+        icon: 'trash',
+        delete: true,
+      },
+      search: {
+        placeholder: 'Search GMD',
+      },
       info:
         'Themify Icons is a complete set of icons for use in web design and apps, consisting of 320+ pixel-perfect, hand-crafted icons that draw inspiration from Apple iOS 7 - available to the public.',
     };
@@ -67,6 +95,7 @@ export default {
 <style lang="scss">
 #recycle-bin {
   .info {
+    margin-bottom: 1rem;
     font: {
       weight: 400;
       size: 0.9rem;

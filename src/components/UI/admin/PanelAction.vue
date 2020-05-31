@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-action
     div.panel-wrap
-      DropdownComponent(:disabledDetail="disabledDetail")
+      DropdownComponent(v-if="!settings.action" :settings="settings")
       div.panel-wrap(@click="setPanel")
         ButtonComponent( 
         :style="{ marginLeft: '1.2rem' }"
@@ -37,15 +37,15 @@ export default {
       type: Object,
       required: true,
     },
-    disabledDetail: {
-      type: Boolean,
-      required: true,
-    },
     total: {
       type: Number,
       required: true,
     },
     search: {
+      type: Object,
+      required: true,
+    },
+    settings: {
       type: Object,
       required: true,
     },

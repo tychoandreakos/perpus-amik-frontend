@@ -1,7 +1,7 @@
 <template lang="pug">
   section#gmd(:class="loading ? 'blur' : ''")
     HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
-    PanelActionComponent(:title="title" :disabledDetail="true"
+    PanelActionComponent(:title="title" :settings="panelAction"
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
     TableComponent(:tableProps="database" delete="we dont")
     span(style="visibility: hidden") {{ update }}
@@ -52,6 +52,7 @@ export default {
           edit: true,
           remove: true,
           action: true,
+          retrieve: false,
         },
         title: ['GMD CODE', 'GMD NAME', 'Last Update'],
         field: ['gmd_code', 'gmd_name', 'updated_at'],
@@ -99,6 +100,15 @@ export default {
   },
   data() {
     return {
+      panelAction: {
+        detail: false,
+        edit: true,
+        delete: true,
+        recycle: true,
+        setting: true,
+        restore: false,
+        restoreAll: false,
+      },
       breadcrumbs: ['Data List'],
       title: 'GMD ( General Material Designation )',
       button: {

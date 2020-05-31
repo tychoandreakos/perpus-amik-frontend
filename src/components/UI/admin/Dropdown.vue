@@ -26,8 +26,8 @@ export default {
     Icon,
   },
   props: {
-    disabledDetail: {
-      type: Boolean,
+    settings: {
+      type: Object,
       required: true,
     },
   },
@@ -40,34 +40,57 @@ export default {
         title: 'Actions',
         icon: 'angle-down',
         dropdownMeta: [
-          this.disabledDetail
+          !this.settings.detail
             ? undefined
             : {
                 id: 1,
                 title: 'See Detail',
                 icon: 'eye',
               },
-          {
-            id: 2,
-            title: 'Edit / Update',
-            icon: 'pencil',
-          },
-          {
-            id: 3,
-            title: 'Delete',
-            icon: 'trash',
-            disabled: true,
-          },
-          {
-            id: 4,
-            title: 'Setting',
-            icon: 'settings',
-          },
-          {
-            id: 5,
-            title: 'Recycle Bin',
-            icon: 'trash',
-          },
+          !this.settings.edit
+            ? undefined
+            : {
+                id: 2,
+                title: 'Edit / Update',
+                icon: 'pencil',
+              },
+          !this.settings.delete
+            ? undefined
+            : {
+                id: 3,
+                title: 'Delete',
+                icon: 'trash',
+                disabled: true,
+              },
+
+          !this.settings.recycle
+            ? undefined
+            : {
+                id: 4,
+                title: 'Recycle Bin',
+                icon: 'trash',
+              },
+          !this.settings.restore
+            ? undefined
+            : {
+                id: 5,
+                title: 'Restore Data',
+                icon: 'reload',
+              },
+          !this.settings.restoreAll
+            ? undefined
+            : {
+                id: 6,
+                title: 'Restore All',
+                icon: 'check',
+              },
+          !this.settings.setting
+            ? undefined
+            : {
+                id: 7,
+                title: 'Setting',
+                icon: 'settings',
+              },
         ],
       };
     },
@@ -79,6 +102,12 @@ export default {
     ...mapMutations({
       dialog: dialog,
     }),
+    restoreAll() {
+      console.log('this restoreAll');
+    },
+    restore() {
+      console.log('this restore');
+    },
     detail() {
       console.log('this detail');
     },
@@ -108,10 +137,16 @@ export default {
           active ? false : this.delete();
           break;
         case 4:
-          active ? false : this.setting();
+          active ? false : this.trash();
           break;
         case 5:
-          active ? false : this.trash();
+          active ? false : this.restore();
+          break;
+        case 6:
+          active ? false : this.restoreAll();
+          break;
+        case 7:
+          active ? false : this.setting();
           break;
         default:
           console.log('error!');
