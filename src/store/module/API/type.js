@@ -8,6 +8,7 @@ export const postMasterAPI = 'master/GMD/postMaster';
 export const getType = 'master/GMD/getType';
 export const deleteSomeGMD = 'master/GMD/deleteSomeGMD';
 export const getDestroy = 'master/GMD/getDestroy';
+export const restoreSome = 'master/gmd/restoreSome';
 
 export const createPost = 'master/GMD/CREATE';
 export const updatePOST = 'master/GMD/UPDATE';
@@ -32,6 +33,7 @@ export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';
 export const editMethodGMD = 'edit';
 export const searchGMD = `${urlGMD}/search`;
+export const restoreGmd = 'restore';
 
 export const methodEventGmd = (undefined, id, method) => {
   return urlGMD + '/' + id + '/' + method;

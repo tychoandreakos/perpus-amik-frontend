@@ -27,7 +27,7 @@
               span {{ body[field] }}
           td.action(v-if="tableProps.enabled.action")
             button(
-                @click.stop="editHandler(body, body.id)"
+                @click.stop="reloadHandler(body.id, $event)"
                 v-if="tableProps.enabled.retrieve"
               ) #[Icon(icon="reload")]
             button(
@@ -56,6 +56,7 @@ import {
   checkbox,
   cleanCheckBox,
   selectCheckBoxAll,
+  restoreSome,
 } from '../../../store/module/API/type';
 
 export default {
@@ -113,6 +114,9 @@ export default {
       selectCheckBoxAll: selectCheckBoxAll,
     }),
     ...mapActions([deleteGMD]),
+    ...mapActions({
+      restoreSome: restoreSome,
+    }),
     splitUpdate() {
       return this.getUpdate.split('/')[1];
     },
@@ -130,7 +134,26 @@ export default {
         }, 200);
 
         setTimeout(() => {
-          this[deleteGMD]({
+          if (this.tableProps.enabled.destroy) {
+            console.log('afterlife');
+          } else {
+            this[deleteGMD]({
+              id,
+            });
+          }
+        }, 500);
+      });
+    },
+    reloadHandler(id, e) {
+      const parent = e.originalTarget.offsetParent.parentElement;
+      this[dialog](() => {
+        parent.classList.add('remove');
+        setTimeout(() => {
+          parent.classList.add('none');
+        }, 200);
+
+        setTimeout(() => {
+          this.restoreSome({
             id,
           });
         }, 500);

@@ -90,8 +90,21 @@ export default {
     [types.deleteSomeGMD]: ({ commit }) => {
       commit(types.deleteSomeGMD);
     },
+    [types.restoreSome]: ({ commit }, payload) => {
+      commit(types.restoreSome, payload);
+    },
   },
   mutations: {
+    [types.restoreSome]: (state, { id }) => {
+      axios
+        .put(`${types.urlGMD}/${id}/${types.restoreGmd}`)
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
+    },
     [types.cleanCheckBox]: (state) => {
       state[types.checkbox] = {};
     },

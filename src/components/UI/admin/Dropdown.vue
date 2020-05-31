@@ -46,6 +46,7 @@ export default {
                 id: 1,
                 title: 'See Detail',
                 icon: 'eye',
+                disabled: false,
               },
           !this.settings.edit
             ? undefined
@@ -53,14 +54,15 @@ export default {
                 id: 2,
                 title: 'Edit / Update',
                 icon: 'pencil',
+                disabled: false,
               },
           !this.settings.delete
             ? undefined
             : {
                 id: 3,
                 title: 'Delete',
-                icon: 'trash',
-                disabled: true,
+                icon: 'cut',
+                disabled: false,
               },
 
           !this.settings.recycle
@@ -69,6 +71,7 @@ export default {
                 id: 4,
                 title: 'Recycle Bin',
                 icon: 'trash',
+                disabled: false,
               },
           !this.settings.restore
             ? undefined
@@ -76,6 +79,7 @@ export default {
                 id: 5,
                 title: 'Restore Data',
                 icon: 'reload',
+                disabled: false,
               },
           !this.settings.restoreAll
             ? undefined
@@ -83,13 +87,23 @@ export default {
                 id: 6,
                 title: 'Restore All',
                 icon: 'check',
+                disabled: false,
+              },
+          !this.settings.destroy
+            ? undefined
+            : {
+                id: 7,
+                title: 'Delete',
+                icon: 'trash',
+                disabled: false,
               },
           !this.settings.setting
             ? undefined
             : {
-                id: 7,
+                id: 8,
                 title: 'Setting',
                 icon: 'settings',
+                disabled: false,
               },
         ],
       };
@@ -146,6 +160,9 @@ export default {
           active ? false : this.restoreAll();
           break;
         case 7:
+          active ? false : this.destroy();
+          break;
+        case 8:
           active ? false : this.setting();
           break;
         default:
