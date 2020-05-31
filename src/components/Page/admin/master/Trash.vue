@@ -96,7 +96,7 @@ export default {
       button: {
         title: 'Clean / Delete All Data',
         icon: 'trash',
-        delete: true,
+        type: 'delete',
       },
       search: {
         placeholder: 'Search GMD',

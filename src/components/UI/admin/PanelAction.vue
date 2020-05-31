@@ -2,7 +2,12 @@
   div.panel-action
     div.panel-wrap
       DropdownComponent(v-if="!settings.action" :settings="settings")
-      div.panel-wrap(@click="setPanel")
+      div.panel-wrap(v-if="button.type == 'add'" @click="setPanel")
+        ButtonComponent( 
+        :style="{ marginLeft: '1.2rem' }"
+        :buttonProp="button"
+        )
+      div.panel-wrap(v-if="button.type == 'delete'" @click="deleteHandler")
         ButtonComponent( 
         :style="{ marginLeft: '1.2rem' }"
         :buttonProp="button"
@@ -16,7 +21,9 @@ import DropdownComponent from './Dropdown';
 import ButtonComponent from './Button';
 import PageNumberComponent from './PageNumber';
 import SearchComponent from './Search';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
+
+import { dialog, destroyAll } from '../../../store/module/API/type';
 
 export default {
   name: 'PanelAction',
@@ -28,6 +35,17 @@ export default {
   },
   methods: {
     ...mapMutations(['setPanel']),
+    ...mapMutations({
+      dialog: dialog,
+    }),
+    ...mapActions({
+      destroyAll: destroyAll,
+    }),
+    deleteHandler() {
+      this.dialog(() => {
+        this.destroyAll();
+      });
+    },
     count(e) {
       this.$emit('count', e);
     },

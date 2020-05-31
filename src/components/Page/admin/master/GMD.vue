@@ -116,6 +116,7 @@ export default {
       button: {
         title: 'Add New GMD',
         icon: 'plus',
+        type: 'add',
       },
       createProp: [
         {

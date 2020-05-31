@@ -18,6 +18,8 @@ import {
   dialog,
   checkbox,
   destroyCollection,
+  restoreAll,
+  restoreCollection,
 } from '../../../store/module/API/type';
 import { mapActions, mapMutations, mapGetters } from 'vuex';
 
@@ -78,7 +80,7 @@ export default {
             ? undefined
             : {
                 id: 5,
-                title: 'Restore Data',
+                title: 'Restore',
                 icon: 'reload',
                 disabled: false,
               },
@@ -114,15 +116,17 @@ export default {
     ...mapActions({
       deleteSome: deleteSomeGMD,
       destroyCollection: destroyCollection,
+      restoreAllData: restoreAll,
+      restoreCollection: restoreCollection,
     }),
     ...mapMutations({
       dialog: dialog,
     }),
     restoreAll() {
-      console.log('this restoreAll');
+      this.dialog(() => this.restoreAllData());
     },
     restore() {
-      console.log('this restore');
+      this.dialog(() => this.restoreCollection());
     },
     detail() {
       console.log('this detail');

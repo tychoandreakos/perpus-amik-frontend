@@ -99,8 +99,53 @@ export default {
     [types.destroyCollection]: ({ commit }) => {
       commit(types.destroyCollection);
     },
+    [types.destroyAll]: ({ commit }) => {
+      commit(types.destroyAll);
+    },
+    [types.restoreAll]: ({ commit }) => {
+      commit(types.restoreAll);
+    },
+    [types.restoreCollection]: ({ commit }) => {
+      commit(types.restoreCollection);
+    },
   },
   mutations: {
+    [types.restoreCollection]: (state) => {
+      axios
+        .post(`${types.urlGMD}/${types.restoreGmd}`, {
+          restore: state[types.tableId],
+        })
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
+    },
+    [types.restoreAll]: (state) => {
+      // axios
+      //   .put(`${types.urlGMD}/${types.restoreGmd}`)
+      //   .then((res) => {
+      //     state[types.messageGMD].message = res.data;
+      //     state[types.tableId] = [];
+      //     state[types.checkbox] = {};
+      //   })
+      //   .catch((err) => (state[types.messageGMD].error = err.data));
+      console.log('thats why yo go');
+    },
+    [types.destroyAll]: (state) => {
+      // state[types.loadingState] = !state[types.loadingState];
+      // axios
+      //   .delete(`${types.urlGMD}/${types.destroyMethodGmd}`)
+      //   .then((res) => {
+      //     state[types.messageGMD].message = res.data;
+      //     state[types.tableId] = [];
+      //     state[types.checkbox] = {};
+      //     state[types.loadingState] = !state[types.loadingState];
+      //   })
+      //   .catch((err) => (state[types.messageGMD].error = err.data));
+      console.log('thats why yo go');
+    },
     [types.destroyCollection]: (state) => {
       axios
         .post(`${types.urlGMD}/${types.destroyMethodCollection}`, {
