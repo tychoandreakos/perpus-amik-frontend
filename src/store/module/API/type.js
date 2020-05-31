@@ -33,6 +33,7 @@ export const destroyCollection = 'master/gmd/destroyCollection';
 export const destroyAll = 'master/gmd/destroyAllCollection';
 export const restoreCollection = 'master/gmd/restoreCollection';
 export const checkBoxControl = 'master/gmd/checkBoxControl';
+export const restoreAll = 'master/gmd/restoreAll';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';

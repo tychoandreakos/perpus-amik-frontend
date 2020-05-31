@@ -131,15 +131,15 @@ export default {
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
     [types.restoreAll]: (state) => {
-      // axios
-      //   .put(`${types.urlGMD}/${types.restoreGmd}`)
-      //   .then((res) => {
-      //     state[types.messageGMD].message = res.data;
-      //     state[types.tableId] = [];
-      //     state[types.checkbox] = {};
-      //   })
-      //   .catch((err) => (state[types.messageGMD].error = err.data));
-      console.log('thats why yo go');
+      axios
+        .put(`${types.urlGMD}/${types.restoreGmd}`)
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
     },
     [types.destroyAll]: (state) => {
       state[types.loadingState] = !state[types.loadingState];
