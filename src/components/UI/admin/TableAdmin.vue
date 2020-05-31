@@ -5,7 +5,7 @@
       thead
         th(v-if="tableProps.enabled.checkbox")
           div(style="margin-left: .5rem" @click="selectAllHandler")
-            CheckBox(:check="checkboxControl")
+            CheckBox(:check="checkBoxControl")
         th(v-for="(header, i) in tableProps.title" :key="i") 
           span {{ header }}
         th(v-if="tableProps.enabled.action") Action
@@ -58,6 +58,7 @@ import {
   selectCheckBoxAll,
   restoreSome,
   destroyData,
+  checkBoxControl,
 } from '../../../store/module/API/type';
 
 export default {
@@ -71,6 +72,7 @@ export default {
     ...mapGetters({
       decision: decision,
       checkbox: checkbox,
+      checkBoxControl: checkBoxControl,
     }),
     found() {
       return `Found ${this.tableProps.content.length || 0} of keyword`;
@@ -87,7 +89,6 @@ export default {
 
   data() {
     return {
-      checkboxControl: false,
       headerEdit: 'Update ',
     };
   },
@@ -113,6 +114,7 @@ export default {
       removeTableId,
       cleanCheckBox: cleanCheckBox,
       selectCheckBoxAll: selectCheckBoxAll,
+      setCheckboxAll: checkBoxControl,
     }),
     ...mapActions([deleteGMD]),
     ...mapActions({
@@ -177,15 +179,19 @@ export default {
     },
     selectAllHandler() {
       const limit = this.tableProps.content.dataCount;
-      this.checkboxControl = !this.checkboxControl;
-      if (this.checkboxControl) {
+      this.setCheckboxAll();
+      if (this.checkBoxControl) {
         for (let i = 0; i < limit; i++) {
-          let control = this.checkboxControl;
+          let control = this.checkBoxControl;
           this.selectCheckBoxAll({
             key: i,
             control,
           });
-          this.tableId(this.tableProps.content.result[i].id);
+          try {
+            this.tableId(this.tableProps.content.result[i].id);
+          } catch (err) {
+            // console.log()
+          }
         }
       } else {
         this.cleanCheckBox();

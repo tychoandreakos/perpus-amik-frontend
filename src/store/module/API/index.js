@@ -9,6 +9,7 @@ export default {
       error: [],
       title: '',
     },
+    [types.checkBoxControl]: false,
     [types.getDestroy]: {
       result: [],
       error: [],
@@ -31,6 +32,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.checkBoxControl]: (state) => {
+      return state[types.checkBoxControl];
+    },
     [types.getDestroy]: (state) => {
       return state[types.getDestroy];
     },
@@ -110,6 +114,9 @@ export default {
     },
   },
   mutations: {
+    [types.checkBoxControl]: (state) => {
+      state[types.checkBoxControl] = !state[types.checkBoxControl];
+    },
     [types.restoreCollection]: (state) => {
       axios
         .post(`${types.urlGMD}/${types.restoreGmd}`, {
@@ -119,6 +126,7 @@ export default {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
           state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
@@ -141,6 +149,7 @@ export default {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
           state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
           state[types.loadingState] = !state[types.loadingState];
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
@@ -154,6 +163,7 @@ export default {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
           state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
@@ -164,6 +174,7 @@ export default {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
           state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
@@ -174,6 +185,7 @@ export default {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
           state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
@@ -302,7 +314,10 @@ export default {
         .post(types.methodEventGmd`${types.urlGMD} ${types.deleteMethodGMD}`, {
           delete: payload,
         })
-        .then((res) => (state[types.messageGMD].message = res.data))
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.checkBoxControl] = false;
+        })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
     [types.postGMD]: (
@@ -327,6 +342,7 @@ export default {
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.loadingState] = !state[types.loadingState];
+          state[types.checkBoxControl] = false;
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
@@ -336,6 +352,7 @@ export default {
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },

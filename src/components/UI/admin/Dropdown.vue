@@ -98,7 +98,7 @@ export default {
                 id: 7,
                 title: 'Delete',
                 icon: 'trash',
-                disabled: true,
+                disabled: false,
               },
           !this.settings.setting
             ? undefined
