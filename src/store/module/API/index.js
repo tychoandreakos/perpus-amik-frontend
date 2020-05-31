@@ -182,6 +182,7 @@ export default {
       { method, id = undefined, gmd_code, gmd_name }
     ) => {
       state[types.loadingState] = !state[types.loadingState];
+      state[types.checkbox] = {};
       let data;
       if (method == types.createPost) {
         data = axios.post(types.urlGMD, {
@@ -204,7 +205,10 @@ export default {
     [types.deleteGMD]: (state, { id }) => {
       axios
         .delete(types.methodEventGmd`${id} ${types.deleteMethodGMD}`)
-        .then((res) => (state[types.messageGMD].message = res.data))
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.checkbox] = {};
+        })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
   },

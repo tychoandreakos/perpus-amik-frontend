@@ -24,6 +24,7 @@ export const dialogValue = 'master/VALUE';
 export const memo = 'master/MEMO';
 export const removeTableId = 'master/removeTableId';
 export const checkbox = 'master/checkbox';
+export const cleanCheckBox = 'master/cleanCheckBox';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';
