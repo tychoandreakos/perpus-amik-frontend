@@ -134,17 +134,16 @@ export default {
       console.log('thats why yo go');
     },
     [types.destroyAll]: (state) => {
-      // state[types.loadingState] = !state[types.loadingState];
-      // axios
-      //   .delete(`${types.urlGMD}/${types.destroyMethodGmd}`)
-      //   .then((res) => {
-      //     state[types.messageGMD].message = res.data;
-      //     state[types.tableId] = [];
-      //     state[types.checkbox] = {};
-      //     state[types.loadingState] = !state[types.loadingState];
-      //   })
-      //   .catch((err) => (state[types.messageGMD].error = err.data));
-      console.log('thats why yo go');
+      state[types.loadingState] = !state[types.loadingState];
+      axios
+        .delete(`${types.urlGMD}/${types.destroyMethodGmd}`)
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+          state[types.loadingState] = !state[types.loadingState];
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
     },
     [types.destroyCollection]: (state) => {
       axios

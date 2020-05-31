@@ -82,7 +82,7 @@ export default {
                 id: 5,
                 title: 'Restore',
                 icon: 'reload',
-                disabled: false,
+                disabled: true,
               },
           !this.settings.restoreAll
             ? undefined
@@ -98,7 +98,7 @@ export default {
                 id: 7,
                 title: 'Delete',
                 icon: 'trash',
-                disabled: false,
+                disabled: true,
               },
           !this.settings.setting
             ? undefined
