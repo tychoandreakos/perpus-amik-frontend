@@ -2,16 +2,22 @@
   section.card-default
     form
       div.form-wrapper
-        h3.title Data #1
+        h3.title Update #1
         div.input
-          div(@click="why(elem)" :key="i" v-for="(elem, i) in fake")
-            Input(:property="{title: elem, id: elem}"  @input="inputPlaceholder" )
+          div(@click="why(elem.id)" :key="i" v-for="(elem, i) in createInput")
+            Input(:property="elem"  @input="inputPlaceholder")
+      div.form-wrapper
+        h3.title Update #2
+        div.input
+          div(@click="why(elem.id)" :key="i" v-for="(elem, i) in createInput")
+            Input(:property="elem"  @input="inputPlaceholder")
       Button.btn(:buttonProp="button")
   </template>
 
 <script>
 import Input from './Input/Default';
 import Button from '../Button';
+import { mapState } from 'vuex';
 
 export default {
   name: 'CardDefault',
@@ -19,6 +25,10 @@ export default {
     Input,
     Button,
   },
+  computed: {
+    ...mapState(['createInput']),
+  },
+
   methods: {
     why(elem) {
       this.tempData = elem;
@@ -34,7 +44,6 @@ export default {
     return {
       form: {},
       tempData: '',
-      fake: ['username', 'password', 'email', 'address'],
       button: {
         style: {},
         icon: 'check',

@@ -1,10 +1,10 @@
 <template lang="pug">
     div.input-card
-        label.label-card(:class="active ? 'active' : undefined" :for="property.id") {{ property.title }}
+        label.label-card(:class="active ? 'active' : undefined" :for="property.id") {{ property.label }}
         div.input-wrapper
           transition(name="fade")
-            label.placeholder(:style="active ? { marginLeft: '.4rem' } : undefined" :for="property.id" v-if="!checkPlaceholder") Your Name
-          input(:id="property.id" v-model="placeholder" @input="$emit('input', $event.target.value)" @blur="active = false" @focus="active = true")
+            label.placeholder(:style="active ? { marginLeft: '.4rem' } : undefined" :for="property.id" v-if="!checkPlaceholder") Your {{ property.placeholder }}
+          input(:id="property.id" :type="property.type" v-model="placeholder" @input="$emit('input', $event.target.value)" @blur="active = false" @focus="active = true")
 </template>
 
 <script>
