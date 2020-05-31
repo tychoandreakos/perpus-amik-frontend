@@ -37,6 +37,7 @@ import CurrentComponent from '../components/Page/admin/Member/Current';
 import ReserveComponent from '../components/Page/admin/Member/Reserve';
 import HistoryComponent from '../components/Page/admin/Member/History';
 import TrashComponent from '../components/Page/admin/master/Trash';
+import UpdateComponent from '../components/Page/admin/master/Update';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -539,9 +540,27 @@ const router = [
           {
             path: 'recycle',
             component: TrashComponent,
-            name: 'recycle',
+            name: 'gmd.recycle',
             meta: {
               title: putTitle('Recycle Bin'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
+            },
+          },
+          {
+            path: 'update',
+            component: UpdateComponent,
+            name: 'gmd.update',
+            meta: {
+              title: putTitle('Update GMD'),
               metaTags: [
                 {
                   name: 'description',

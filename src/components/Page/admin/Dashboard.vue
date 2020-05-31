@@ -76,13 +76,13 @@ export default {
     CardComponent,
     Icon,
     ChartOne,
-    TableComponent
+    TableComponent,
   },
   data() {
     return {
       welcome: {
         background: 'linear-gradient(to bottom,#8075f1, #948bf3)',
-        color: '#fff'
+        color: '#fff',
       },
       table: {
         title: 'Checkout Items',
@@ -94,7 +94,7 @@ export default {
             title:
               'PostgreSQL : a comprehensive guide to building, programming, and administering PostgreSQL databases',
             loan: '2020-02-22',
-            due: '2020-02-29'
+            due: '2020-02-29',
           },
           {
             code: 'B0002',
@@ -102,9 +102,9 @@ export default {
             title:
               'PostgreSQL : a comprehensive guide to building, programming, and administering PostgreSQL databases',
             loan: '2020-02-22',
-            due: '2020-02-29'
-          }
-        ]
+            due: '2020-02-29',
+          },
+        ],
       },
       cardData: [
         {
@@ -113,7 +113,7 @@ export default {
           softBg: '#eae8fd',
           title: '6.6K',
           desc: 'Costumer Today',
-          icon: 'stats-up'
+          icon: 'stats-up',
         },
         {
           data: [20, 0, 20, 60, 9, 4, 40, 2, 9, 90, 25, 23],
@@ -121,14 +121,14 @@ export default {
           softBg: '#fff1e3',
           title: '1.1K',
           desc: 'Book Loans',
-          icon: 'book'
-        }
+          icon: 'book',
+        },
       ],
       cardProperties: {
-        background: '#fff'
-      }
+        background: '#fff',
+      },
     };
-  }
+  },
 };
 </script>
 <style scoped>

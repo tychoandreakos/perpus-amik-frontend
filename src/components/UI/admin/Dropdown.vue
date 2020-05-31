@@ -132,7 +132,9 @@ export default {
       console.log('this detail');
     },
     edit() {
-      console.log('this edit');
+      this.$router.push({
+        name: 'gmd.update',
+      });
     },
     delete() {
       this.dialog(() => this.deleteSome());
@@ -145,7 +147,7 @@ export default {
     },
     trash() {
       this.$router.push({
-        name: 'recycle',
+        name: 'gmd.recycle',
       });
     },
     dropdownHandler(key, active) {
