@@ -71,8 +71,13 @@ export default {
           },
           {
             id: 4,
-            title: 'Delete All',
-            icon: 'close',
+            title: 'Setting',
+            icon: 'settings',
+          },
+          {
+            id: 5,
+            title: 'Recycle Bin',
+            icon: 'trash',
           },
         ],
       };
