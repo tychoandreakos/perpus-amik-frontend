@@ -1,7 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
+
+const remote = 'https://desolate-anchorage-69638.herokuapp.com';
+const local = 'http://localhost';
 
 let instance = axios.create({
-  baseURL: "http://localhost",
+  baseURL: remote,
   timeout: 120000,
 });
 
