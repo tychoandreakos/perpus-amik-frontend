@@ -137,15 +137,13 @@ export default {
 
         setTimeout(() => {
           if (this.tableProps.enabled.destroy) {
-            // this.destroyData({
-            //   id,
-            // });
-            console.log('hail')
+            this.destroyData({
+              id,
+            });
           } else {
-            // this[deleteGMD]({
-            //   id,
-            // });
-            console.log('hail to the king')
+            this[deleteGMD]({
+              id,
+            });
           }
         }, 500);
       });

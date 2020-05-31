@@ -5,7 +5,7 @@
     PanelActionComponent(:title="title" :settings="panelAction"
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
     TableComponent(:tableProps="database" :disabledCheck="true" delete="we dont")
-    //- span(style="visibility: hidden") {{ update }}
+    span(style="visibility: hidden") {{ update }}
 </template>
 
 <script>
@@ -15,7 +15,11 @@ import PanelActionComponent from '../../../UI/admin/PanelAction';
 
 import { mapGetters, mapActions } from 'vuex';
 
-import { loadingBackdrop, getDestroy } from '../../../../store/module/API/type';
+import {
+  loadingBackdrop,
+  getDestroy,
+  messageGMD,
+} from '../../../../store/module/API/type';
 
 export default {
   name: 'RecyleBin',
@@ -28,7 +32,17 @@ export default {
     ...mapGetters({
       view: getDestroy,
       loading: loadingBackdrop,
+      message: messageGMD,
     }),
+    update() {
+      if (this.message.message) {
+        this.getDestroy({
+          skip: 0,
+          take: 5,
+        });
+      }
+      return this.message;
+    },
     database() {
       return {
         enabled: {
