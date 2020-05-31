@@ -28,12 +28,14 @@ export const removeTableId = 'master/removeTableId';
 export const checkbox = 'master/checkbox';
 export const cleanCheckBox = 'master/cleanCheckBox';
 export const selectCheckBoxAll = 'master/selectCheckBoxAll';
+export const destroyData = 'master/gmd/destroy';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';
 export const editMethodGMD = 'edit';
 export const searchGMD = `${urlGMD}/search`;
 export const restoreGmd = 'restore';
+export const destroyMethodGmd = 'destroy';
 
 export const methodEventGmd = (undefined, id, method) => {
   return urlGMD + '/' + id + '/' + method;

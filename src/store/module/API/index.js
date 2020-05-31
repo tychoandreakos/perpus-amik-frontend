@@ -93,8 +93,21 @@ export default {
     [types.restoreSome]: ({ commit }, payload) => {
       commit(types.restoreSome, payload);
     },
+    [types.destroyData]: ({ commit }, payload) => {
+      commit(types.destroyData, payload);
+    },
   },
   mutations: {
+    [types.destroyData]: (state, { id }) => {
+      axios
+        .delete(`${types.urlGMD}/${id}/${types.destroyMethodGmd}`)
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
+    },
     [types.restoreSome]: (state, { id }) => {
       axios
         .put(`${types.urlGMD}/${id}/${types.restoreGmd}`)
@@ -178,6 +191,7 @@ export default {
       }
       if (state[types.decision]) {
         state[types.memo]();
+        state[types.decision] = false;
       }
     },
     [types.searchPOST]: (state, payload) => {

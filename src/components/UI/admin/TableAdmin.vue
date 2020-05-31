@@ -57,6 +57,7 @@ import {
   cleanCheckBox,
   selectCheckBoxAll,
   restoreSome,
+  destroyData,
 } from '../../../store/module/API/type';
 
 export default {
@@ -116,6 +117,7 @@ export default {
     ...mapActions([deleteGMD]),
     ...mapActions({
       restoreSome: restoreSome,
+      destroyData: destroyData,
     }),
     splitUpdate() {
       return this.getUpdate.split('/')[1];
@@ -135,11 +137,15 @@ export default {
 
         setTimeout(() => {
           if (this.tableProps.enabled.destroy) {
-            console.log('afterlife');
+            // this.destroyData({
+            //   id,
+            // });
+            console.log('hail')
           } else {
-            this[deleteGMD]({
-              id,
-            });
+            // this[deleteGMD]({
+            //   id,
+            // });
+            console.log('hail to the king')
           }
         }, 500);
       });
