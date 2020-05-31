@@ -9,6 +9,11 @@ export default {
       error: [],
       title: '',
     },
+    [types.getDestroy]: {
+      result: [],
+      error: [],
+      title: '',
+    },
     [types.tableId]: [],
     [types.memo]: '',
     [types.dialogValue]: '',
@@ -26,6 +31,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.getDestroy]: (state) => {
+      return state[types.getDestroy];
+    },
     [types.checkbox]: (state) => {
       return state[types.checkbox];
     },
@@ -61,6 +69,9 @@ export default {
     },
   },
   actions: {
+    [types.getDestroy]: ({ commit }, payload) => {
+      commit(types.getDestroy, payload);
+    },
     [types.getGMD]: ({ commit }, payload) => {
       commit(types.getGMD, payload);
     },
@@ -81,6 +92,37 @@ export default {
     },
   },
   mutations: {
+    [types.cleanCheckBox]: (state) => {
+      state[types.checkbox] = {};
+    },
+    [types.selectCheckBoxAll]: (state, { key, control }) => {
+      state[types.checkbox] = {
+        ...state[types.checkbox],
+        [key]: control ? true : false,
+      };
+    },
+    [types.getDestroy]: (state, { skip, take }) => {
+      state[types.loadingBackdrop] = true;
+      axios
+        .get(`${types.urlGMD}/${types.deleteMethodGMD}`, {
+          params: {
+            skip,
+            take,
+          },
+        })
+        .then((res) => res.data)
+        .then((json) => {
+          if (state[types.searchPOST].length > 1) {
+            state[types.searchPOST] = '';
+          }
+          state[types.getDestroy].result = json.data;
+          setTimeout(() => {
+            state[types.loadingBackdrop] = false;
+            state[types.decision] = false;
+          }, 1000);
+        })
+        .catch((err) => (state[types.getDestroy].error = err));
+    },
     [types.checkbox]: (state, payload) => {
       state[types.checkbox] = {
         ...state[types.checkbox],

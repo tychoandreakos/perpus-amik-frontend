@@ -1,26 +1,15 @@
-<template>
-  <section id="dropdown">
-    <div class="dropdown-action" @click="dropdown = !dropdown">
-      <span>{{ action.title }}</span>
-      <Icon :icon="action.icon" />
-      <transition name="fade">
-        <ul v-if="dropdown" class="dropdown-list">
-          <template v-for="meta in action.dropdownMeta">
-            <li
-              :class="meta.disabled ? 'disabled' : ''"
-              @click="dropdownHandler(meta.id, meta.disabled)"
-              :key="meta.id"
-              v-if="meta"
-            >
-              <Icon :icon="meta.icon" />
-              <span>{{ meta.title }}</span>
-            </li>
-          </template>
-        </ul>
-      </transition>
-    </div>
-    <div class="backdrop" @click="dropdown = !dropdown" v-if="dropdown"></div>
-  </section>
+<template lang="pug">
+  section#dropdown
+    div.dropdown-action(@click="dropdown = !dropdown")
+      span {{ action.title }}
+      Icon(:icon="action.icon")
+      transition(name="fade")
+        ul.dropdown-list(v-if="dropdown")
+          template(v-for="meta in action.dropdownMeta")
+            li(:class="meta.disabled ? 'disabled' : ''" @click="dropdownHandler(meta.id, meta.disabled)" :key="meta.id" v-if="meta")
+              Icon(:icon="meta.icon")
+              span {{ meta.title }}
+    div.backdrop(@click="dropdown = !dropdown")
 </template>
 <script>
 import Icon from 'vue-themify-icons';
@@ -99,8 +88,13 @@ export default {
     delete() {
       this.dialog(() => this.deleteSome());
     },
-    deleteAll() {
-      console.log('this deleteAll');
+    setting() {
+      console.log('this setting');
+    },
+    trash() {
+      this.$router.push({
+        name: 'recycle',
+      });
     },
     dropdownHandler(key, active) {
       switch (key) {
@@ -114,7 +108,10 @@ export default {
           active ? false : this.delete();
           break;
         case 4:
-          active ? false : this.deleteAll();
+          active ? false : this.setting();
+          break;
+        case 5:
+          active ? false : this.trash();
           break;
         default:
           console.log('error!');

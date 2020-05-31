@@ -51,6 +51,7 @@ import {
   removeTableId,
   checkbox,
   cleanCheckBox,
+  selectCheckBoxAll,
 } from '../../../store/module/API/type';
 
 export default {
@@ -105,6 +106,7 @@ export default {
       cleanTableId: cleanTableId,
       removeTableId,
       cleanCheckBox: cleanCheckBox,
+      selectCheckBoxAll: selectCheckBoxAll,
     }),
     ...mapActions([deleteGMD]),
     splitUpdate() {
@@ -147,14 +149,15 @@ export default {
       this.checkboxControl = !this.checkboxControl;
       if (this.checkboxControl) {
         for (let i = 0; i < limit; i++) {
-          this.checkbox = {
-            ...this.checkbox,
-            [i]: this.checkboxControl ? true : false,
-          };
+          let control = this.checkboxControl;
+          this.selectCheckBoxAll({
+            key: i,
+            control,
+          });
           this.tableId(this.tableProps.content.result[i].id);
         }
       } else {
-        this.checkbox = {};
+        this.cleanCheckBox();
         this.cleanTableId();
       }
     },
