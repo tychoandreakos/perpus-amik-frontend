@@ -17,6 +17,7 @@ import {
   deleteSomeGMD,
   dialog,
   checkbox,
+  destroyCollection,
 } from '../../../store/module/API/type';
 import { mapActions, mapMutations, mapGetters } from 'vuex';
 
@@ -112,6 +113,7 @@ export default {
   methods: {
     ...mapActions({
       deleteSome: deleteSomeGMD,
+      destroyCollection: destroyCollection,
     }),
     ...mapMutations({
       dialog: dialog,
@@ -133,6 +135,9 @@ export default {
     },
     setting() {
       console.log('this setting');
+    },
+    destroy() {
+      this.dialog(() => this.destroyCollection());
     },
     trash() {
       this.$router.push({

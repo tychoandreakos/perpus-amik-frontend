@@ -96,8 +96,23 @@ export default {
     [types.destroyData]: ({ commit }, payload) => {
       commit(types.destroyData, payload);
     },
+    [types.destroyCollection]: ({ commit }) => {
+      commit(types.destroyCollection);
+    },
   },
   mutations: {
+    [types.destroyCollection]: (state) => {
+      axios
+        .post(`${types.urlGMD}/${types.destroyMethodCollection}`, {
+          delete: state[types.tableId],
+        })
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
+    },
     [types.destroyData]: (state, { id }) => {
       axios
         .delete(`${types.urlGMD}/${id}/${types.destroyMethodGmd}`)
