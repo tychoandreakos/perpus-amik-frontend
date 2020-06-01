@@ -129,8 +129,24 @@ export default {
     [types.getDetailsGmd]: ({ commit }) => {
       commit(types.getDetailsGmd);
     },
+    [types.updateSomeGmd]: ({ commit }, payload) => {
+      commit(types.updateSomeGmd, payload);
+    },
   },
   mutations: {
+    [types.updateSomeGmd]: (state, payload) => {
+      axios
+        .post(`${types.urlGMD}/${types.updateMethod}`, {
+          updates: payload,
+        })
+        .then((res) => {
+          state[types.messageGMD].message = res.data;
+          state[types.tableId] = [];
+          state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
+        })
+        .catch((err) => (state[types.messageGMD].error = err.data));
+    },
     [types.getDetailsGmd]: (state) => {
       axios
         .post(`${types.urlGMD}/${types.detailsMethod}`, {

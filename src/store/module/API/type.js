@@ -11,6 +11,7 @@ export const getDestroy = 'master/GMD/getDestroy';
 export const restoreSome = 'master/gmd/restoreSome';
 export const updateOrEditGmd = 'master/gmd/updateOrEditGMD';
 export const getDetailsGmd = 'master/gmd/getDetailsGmd';
+export const updateSomeGmd = 'master/gmd/updateSomeGMD';
 
 export const createPost = 'master/GMD/CREATE';
 export const updatePOST = 'master/GMD/UPDATE';
@@ -46,6 +47,7 @@ export const destroyMethodGmd = 'destroy';
 export const destroyMethodCollection = 'destroy-collections';
 export const destroyAllMethod = 'delete-all';
 export const detailsMethod = 'details';
+export const updateMethod = 'update';
 
 export const methodEventGmd = (undefined, id, method) => {
   return urlGMD + '/' + id + '/' + method;

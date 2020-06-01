@@ -1,6 +1,6 @@
 <template lang="pug">
   section.card-default
-    form
+    form(@submit.prevent="submitForm")
       div.form-wrapper(v-for="update in getDetails.result.data" :key="update.id")
         h3.title Update GMD dengan CODE: {{ update.gmd_code }}
         div.input
@@ -17,6 +17,7 @@ import {
   updateOrEditGmd,
   tableId,
   getDetailsGmd,
+  updateSomeGmd,
 } from '../../../../store/module/API/type';
 
 export default {
@@ -43,7 +44,33 @@ export default {
   methods: {
     ...mapActions({
       getDetailsGmd: getDetailsGmd,
+      updateSomeGmd: updateSomeGmd,
     }),
+    checkForm() {
+      const forms = Object.keys(this.form);
+      const details = this.getDetails.result.data;
+      let x;
+      if (forms.length > 0) {
+        for (let form of forms) {
+          for (let i = 0; i < details.length; i++) {
+            for (let k = 0; k < this.createInput.length; k++) {
+              if (!(this.createInput[k].id in this.form[details[i].id])) {
+                this.form[details[i].id] = {
+                  ...this.form[details[i].id],
+                  [this.createInput[k].id]: details[i][this.createInput[k].id],
+                };
+              }
+            }
+          }
+        }
+      } else {
+        console.log('wow you dont insert anything');
+      }
+    },
+    submitForm() {
+      this.checkForm();
+      this.updateSomeGmd(this.form);
+    },
     why(elem, id) {
       this.tempData = elem;
       this.tempId = id;
