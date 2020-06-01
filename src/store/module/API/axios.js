@@ -4,7 +4,7 @@ const remote = 'https://desolate-anchorage-69638.herokuapp.com';
 const local = 'http://localhost';
 
 let instance = axios.create({
-  baseURL: local,
+  baseURL: remote,
   timeout: 120000,
 });
 
