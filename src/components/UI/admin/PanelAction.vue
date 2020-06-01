@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-action
     div.panel-wrap
-      DropdownComponent(v-if="!settings.action" :settings="settings")
+      DropdownComponent(v-if="!settings.action" :restoreState="restore" :settings="settings")
       div.panel-wrap(v-if="button.type == 'add'" @click="setPanel")
         ButtonComponent( 
         :style="{ marginLeft: '1.2rem' }"
@@ -51,6 +51,10 @@ export default {
     },
   },
   props: {
+    restore: {
+      types: Boolean,
+      required: false,
+    },
     button: {
       type: Object,
       required: true,

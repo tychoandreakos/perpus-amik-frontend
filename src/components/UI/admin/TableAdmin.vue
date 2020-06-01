@@ -226,6 +226,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    cursor: default;
 
     img {
       width: 35%;

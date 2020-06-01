@@ -32,6 +32,10 @@ export default {
     Icon,
   },
   props: {
+    restoreState: {
+      type: Boolean,
+      required: false,
+    },
     settings: {
       type: Object,
       required: true,
@@ -95,7 +99,7 @@ export default {
                 id: 6,
                 title: 'Restore All',
                 icon: 'check',
-                disabled: false,
+                disabled: !this.restoreState,
               },
           !this.settings.destroy
             ? undefined

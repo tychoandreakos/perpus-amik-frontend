@@ -2,7 +2,7 @@
   section#recycle-bin
     HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
     h3.info {{ info }}
-    PanelActionComponent(:title="title" :settings="panelAction"
+    PanelActionComponent(:title="title" :restore="database.content.dataCount > 0" :settings="panelAction"
     :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
     TableComponent(:tableProps="database" :disabledCheck="true" delete="we dont")
     span(style="visibility: hidden") {{ update }}
