@@ -285,6 +285,7 @@ export default {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
           state[types.checkbox] = {};
+          state[types.checkBoxControl] = false;
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
