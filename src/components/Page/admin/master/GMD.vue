@@ -1,8 +1,8 @@
 <template lang="pug">
   section#gmd(:class="loading ? 'blur' : ''")
-    HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
-    PanelActionComponent(:title="title" :settings="panelAction"
-    :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
+    HeaderComponent(:title="dataComponent.title" :breadcrumbsHeader="dataComponent.breadcrumbs")
+    PanelActionComponent(:title="dataComponent.title" :settings="dataComponent.panelAction"
+    :search="dataComponent.search" :breadcrumbsHeader="dataComponent.breadcrumbs" @count="count" :total="total" :button="dataComponent.button")
     TableComponent(:tableProps="database" delete="we dont")
     span(style="visibility: hidden") {{ update }}
   
@@ -13,6 +13,7 @@ import PanelActionComponent from '../../../UI/admin/PanelAction';
 import TableComponent from '../../../UI/admin/TableAdmin';
 
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
+import { gmdState } from './dataComponent';
 import { masterGMD } from '../../../../store/types';
 import {
   getGMD,
@@ -23,6 +24,7 @@ import {
   updateOrEditGmd,
   cleanCheckBox,
   titleComponent,
+  dataComponent,
 } from '../../../../store/module/API/type';
 
 export default {
@@ -33,10 +35,27 @@ export default {
     TableComponent,
   },
   beforeRouteEnter: (to, from, next) => {
-    // console.log('from', from);
     next((vm) => {
       if (from.name != 'gmd.update') {
         vm.cleanCheckBox();
+      }
+
+      switch (vm.$route.name) {
+        case 'gmd':
+          vm.titleComponent('GMD');
+          break;
+
+        case 'author':
+          vm.titleComponent('Author');
+          break;
+
+        case 'publisher':
+          vm.titleComponent('Publisher');
+          break;
+
+        default:
+          console.log('not set');
+          break;
       }
     });
   },
@@ -46,6 +65,7 @@ export default {
       view: getGMD,
       message: messageGMD,
       loading: loadingBackdrop,
+      dataComponent: dataComponent,
     }),
     update() {
       if (this.message.message) {
@@ -101,59 +121,19 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.button.title);
-    this.setCreateInput(this.createProp);
-    this.updateOrEditGmd(this.createProp);
+    this.setHeader(this.dataComponent.button.title);
+    this.setCreateInput(this.dataComponent.createProp);
+    this.updateOrEditGmd(this.dataComponent.createProp);
     this.setDefaultParams();
-    this.titleComponent('GMD');
     // this.setGetUpdate(masterGMD);
     // this.setTableTypes(masterGMD);
     this[getType](postGMD); // setting the title or type to GMD
     this.setClearEditProps();
-
     //get data from API
     this[getGMD]({
       skip: 0,
       take: 5,
     });
-  },
-  data() {
-    return {
-      panelAction: {
-        detail: false,
-        edit: true,
-        delete: true,
-        recycle: true,
-        setting: true,
-        destroy: false,
-        restore: false,
-        restoreAll: false,
-      },
-      breadcrumbs: ['Data List'],
-      title: 'GMD ( General Material Designation )',
-      button: {
-        title: 'Add New GMD',
-        icon: 'plus',
-        type: 'add',
-      },
-      createProp: [
-        {
-          label: 'GMD Code',
-          id: 'gmd_code',
-          placeholder: 'Please type a GMD Code',
-          type: 'text',
-        },
-        {
-          label: 'GMD Name',
-          id: 'gmd_name',
-          placeholder: 'Please type a GMD Name',
-          type: 'text',
-        },
-      ],
-      search: {
-        placeholder: 'Search GMD',
-      },
-    };
   },
 };
 </script>

@@ -3,6 +3,42 @@ import * as types from './type';
 
 export default {
   state: {
+    [types.dataComponent]: {
+      panelAction: {
+        detail: false,
+        edit: true,
+        delete: true,
+        recycle: true,
+        setting: true,
+        destroy: false,
+        restore: false,
+        restoreAll: false,
+      },
+      breadcrumbs: ['Data List'],
+      title: 'GMD ( General Material Designation )',
+      button: {
+        title: 'Add New GMD',
+        icon: 'plus',
+        type: 'add',
+      },
+      createProp: [
+        {
+          label: 'GMD Code',
+          id: 'gmd_code',
+          placeholder: 'Please type a GMD Code',
+          type: 'text',
+        },
+        {
+          label: 'GMD Name',
+          id: 'gmd_name',
+          placeholder: 'Please type a GMD Name',
+          type: 'text',
+        },
+      ],
+      search: {
+        placeholder: 'Search GMD',
+      },
+    },
     [types.msgPrompt]: {
       delete:
         'are you sure want to delete? anyway when your delete that data the data still in the recyle bin',
@@ -53,6 +89,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.dataComponent]: (state) => {
+      return state[types.dataComponent];
+    },
     [types.titleComponent]: (state) => {
       return state[types.titleComponent];
     },
@@ -159,7 +198,10 @@ export default {
     },
   },
   mutations: {
-  [types.titleComponent]: (state, payload) => {
+    [types.dataComponent]: (state, payload) => {
+      state[types.dataComponent] = payload;
+    },
+    [types.titleComponent]: (state, payload) => {
       state[types.titleComponent] = payload;
     },
     [types.messagePrompt]: (state, payload) => {

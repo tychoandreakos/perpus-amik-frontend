@@ -40,6 +40,7 @@ export const restoreAll = 'master/gmd/restoreAll';
 export const messagePrompt = 'master/messagePrompt';
 export const msgPrompt = 'master/msgPrompt';
 export const titleComponent = 'master/title';
+export const dataComponent = 'master/dataComponent';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';
