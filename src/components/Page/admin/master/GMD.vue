@@ -22,6 +22,7 @@ import {
   loadingBackdrop,
   updateOrEditGmd,
   cleanCheckBox,
+  titleComponent,
 } from '../../../../store/module/API/type';
 
 export default {
@@ -88,6 +89,7 @@ export default {
     ...mapMutations({
       updateOrEditGmd: updateOrEditGmd,
       cleanCheckBox: cleanCheckBox,
+      titleComponent: titleComponent,
     }),
     ...mapActions(['getGmd', getGMD]),
     count(e) {
@@ -103,6 +105,7 @@ export default {
     this.setCreateInput(this.createProp);
     this.updateOrEditGmd(this.createProp);
     this.setDefaultParams();
+    this.titleComponent('GMD');
     // this.setGetUpdate(masterGMD);
     // this.setTableTypes(masterGMD);
     this[getType](postGMD); // setting the title or type to GMD

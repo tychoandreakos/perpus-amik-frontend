@@ -67,6 +67,7 @@ import {
   checkBoxControl,
   messagePrompt,
   msgPrompt,
+  titleComponent,
 } from '../../../store/module/API/type';
 
 export default {
@@ -82,6 +83,7 @@ export default {
       checkbox: checkbox,
       checkBoxControl: checkBoxControl,
       msg: msgPrompt,
+      titleComponent: titleComponent,
     }),
     found() {
       return `Found ${this.tableProps.content.length || 0} of keyword`;
@@ -132,9 +134,6 @@ export default {
       restoreSome: restoreSome,
       destroyData: destroyData,
     }),
-    splitUpdate() {
-      return this.getUpdate.split('/')[1];
-    },
     checkboxHandler(key) {
       this[checkbox](key);
       const id = this.tableProps.content.result[key].id;
@@ -183,7 +182,7 @@ export default {
       this.setUpdateInputState({
         ...val,
       });
-      this.setHeader(this.headerEdit + this.splitUpdate());
+      this.setHeader(this.headerEdit + this.titleComponent);
       this.setEditProps();
       this.setPanel();
     },

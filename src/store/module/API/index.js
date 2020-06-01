@@ -17,6 +17,7 @@ export default {
       destroyAll:
         'are you sure want to delete all? The data cannot be restored.',
     },
+    [types.titleComponent]: '',
     [types.messagePrompt]: '',
     [types.getDetailsGmd]: {
       result: [],
@@ -52,6 +53,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.titleComponent]: (state) => {
+      return state[types.titleComponent];
+    },
     [types.msgPrompt]: (state) => {
       return state[types.msgPrompt];
     },
@@ -155,6 +159,9 @@ export default {
     },
   },
   mutations: {
+  [types.titleComponent]: (state, payload) => {
+      state[types.titleComponent] = payload;
+    },
     [types.messagePrompt]: (state, payload) => {
       state[types.messagePrompt] = payload;
     },
