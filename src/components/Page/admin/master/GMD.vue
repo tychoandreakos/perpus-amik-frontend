@@ -1,8 +1,8 @@
 <template lang="pug">
   section#gmd(:class="loading ? 'blur' : ''")
-    HeaderComponent(:title="dataComponent.title" :breadcrumbsHeader="dataComponent.breadcrumbs")
-    PanelActionComponent(:title="dataComponent.title" :settings="dataComponent.panelAction"
-    :search="dataComponent.search" :breadcrumbsHeader="dataComponent.breadcrumbs" @count="count" :total="total" :button="dataComponent.button")
+    HeaderComponent(:title="dataState.title" :breadcrumbsHeader="dataState.breadcrumbs")
+    PanelActionComponent(:title="dataState.title" :settings="dataState.panelAction"
+    :search="dataState.search" :breadcrumbsHeader="dataState.breadcrumbs" @count="count" :total="total" :button="dataState.button")
     TableComponent(:tableProps="database" delete="we dont")
     span(style="visibility: hidden") {{ update }}
   
@@ -66,7 +66,11 @@ export default {
       message: messageGMD,
       loading: loadingBackdrop,
       dataComponent: dataComponent,
+      titleState: titleComponent,
     }),
+    dataState() {
+      return this.dataComponent[this.$route.path.split('/')[3]][0];
+    },
     update() {
       if (this.message.message) {
         this[getGMD]({
@@ -78,16 +82,7 @@ export default {
     },
     database() {
       return {
-        enabled: {
-          checkbox: true,
-          edit: true,
-          remove: true,
-          action: true,
-          retrieve: false,
-          destroy: false,
-        },
-        title: ['GMD CODE', 'GMD NAME', 'Last Update'],
-        field: ['gmd_code', 'gmd_name', 'updated_at'],
+        ...this.dataComponent[this.$route.path.split('/')[3]][1],
         content: this.view.result,
       };
     },
@@ -121,9 +116,9 @@ export default {
   },
   created() {
     this.setCountUpdateDefault();
-    this.setHeader(this.dataComponent.button.title);
-    this.setCreateInput(this.dataComponent.createProp);
-    this.updateOrEditGmd(this.dataComponent.createProp);
+    this.setHeader(this.dataState.button.title);
+    this.setCreateInput(this.dataState.createProp);
+    this.updateOrEditGmd(this.dataState.createProp);
     this.setDefaultParams();
     // this.setGetUpdate(masterGMD);
     // this.setTableTypes(masterGMD);

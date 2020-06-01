@@ -4,40 +4,56 @@ import * as types from './type';
 export default {
   state: {
     [types.dataComponent]: {
-      panelAction: {
-        detail: false,
-        edit: true,
-        delete: true,
-        recycle: true,
-        setting: true,
-        destroy: false,
-        restore: false,
-        restoreAll: false,
-      },
-      breadcrumbs: ['Data List'],
-      title: 'GMD ( General Material Designation )',
-      button: {
-        title: 'Add New GMD',
-        icon: 'plus',
-        type: 'add',
-      },
-      createProp: [
+      gmd: [
         {
-          label: 'GMD Code',
-          id: 'gmd_code',
-          placeholder: 'Please type a GMD Code',
-          type: 'text',
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'GMD ( General Material Designation )',
+          button: {
+            title: 'Add New GMD',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'GMD Code',
+              id: 'gmd_code',
+              placeholder: 'Please type a GMD Code',
+              type: 'text',
+            },
+            {
+              label: 'GMD Name',
+              id: 'gmd_name',
+              placeholder: 'Please type a GMD Name',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search GMD',
+          },
         },
         {
-          label: 'GMD Name',
-          id: 'gmd_name',
-          placeholder: 'Please type a GMD Name',
-          type: 'text',
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['GMD CODE', 'GMD NAME', 'Last Update'],
+          field: ['gmd_code', 'gmd_name', 'updated_at'],
         },
       ],
-      search: {
-        placeholder: 'Search GMD',
-      },
     },
     [types.msgPrompt]: {
       delete:

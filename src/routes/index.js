@@ -1,5 +1,3 @@
-import { titleComponent } from '../store/module/API/type';
-
 // User Component
 import LandingComponent from '../components/Page/Landing';
 import AccountComponent from '../components/Page/Account';
