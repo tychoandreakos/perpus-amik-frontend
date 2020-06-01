@@ -37,6 +37,8 @@ export const destroyAll = 'master/gmd/destroyAllCollection';
 export const restoreCollection = 'master/gmd/restoreCollection';
 export const checkBoxControl = 'master/gmd/checkBoxControl';
 export const restoreAll = 'master/gmd/restoreAll';
+export const messagePrompt = 'master/gmd/messagePrompt';
+export const msgPrompt = 'master/gmd/msgPrompt';
 
 export const urlGMD = 'gmd';
 export const deleteMethodGMD = 'delete';

@@ -3,6 +3,21 @@ import * as types from './type';
 
 export default {
   state: {
+    [types.msgPrompt]: {
+      delete:
+        'are you sure want to delete? anyway when your delete that data the data still in the recyle bin',
+      deleteAll:
+        'are you sure want delete all the data? anyway when your delete that data the data still in the recyle bin',
+      update: '',
+      updateAll: '',
+      save: '',
+      restore: 'are you sure want to restore data?',
+      restoreAll: 'are you sure want to restore all data?',
+      destroy: 'are you sure want to delete? The data cannot be restored.',
+      destroyAll:
+        'are you sure want to delete all? The data cannot be restored.',
+    },
+    [types.messagePrompt]: '',
     [types.getDetailsGmd]: {
       result: [],
       error: [],
@@ -37,6 +52,12 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.msgPrompt]: (state) => {
+      return state[types.msgPrompt];
+    },
+    [types.messagePrompt]: (state) => {
+      return state[types.messagePrompt];
+    },
     [types.getDetailsGmd]: (state) => {
       return state[types.getDetailsGmd];
     },
@@ -134,6 +155,9 @@ export default {
     },
   },
   mutations: {
+    [types.messagePrompt]: (state, payload) => {
+      state[types.messagePrompt] = payload;
+    },
     [types.updateSomeGmd]: (state, payload) => {
       axios
         .post(`${types.urlGMD}/${types.updateMethod}`, {

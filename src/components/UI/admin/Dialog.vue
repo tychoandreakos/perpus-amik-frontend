@@ -2,7 +2,7 @@
     div.dialog(@click.self="anim" ref="dialog") 
         div.dialog-box(:class="scaleAnim ? 'anim' : ''")
           h3.head {{ title | capitalize }}
-          p.body {{ content }}
+          p.body {{ content | capitalize }}.
           div.footer
             form.btn(@submit.prevent="submit")
               input.hidden-input(ref="hiddenInput")
@@ -11,13 +11,22 @@
 </template>
 <script>
 import Button from './button/MiniButton';
-import { dialog, decision } from '../../../store/module/API/type';
-import { mapMutations } from 'vuex';
+import {
+  dialog,
+  decision,
+  messagePrompt,
+} from '../../../store/module/API/type';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'Dialog',
   components: {
     Button,
+  },
+  computed: {
+    ...mapGetters({
+      content: messagePrompt,
+    }),
   },
   mounted() {
     this.$refs.dialog.addEventListener('keydown', (e) => {
@@ -51,8 +60,8 @@ export default {
   data() {
     return {
       scaleAnim: false,
-      content:
-        'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups. ',
+      // content:
+      //   'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups. ',
       title: 'confirm',
       cancel: 'cancel',
       button: {

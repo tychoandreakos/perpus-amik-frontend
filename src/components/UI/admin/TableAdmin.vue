@@ -9,7 +9,7 @@
         th(v-for="(header, i) in tableProps.title" :key="i") 
           span {{ header }}
         th(v-if="tableProps.enabled.action") Action
-      template(v-if="tableProps.content.result.length > 0")
+      template(v-if="tableProps.content.dataCount > 0")
         tbody
             tr(
               v-for="(body, key) in tableProps.content.result" 
@@ -65,6 +65,8 @@ import {
   restoreSome,
   destroyData,
   checkBoxControl,
+  messagePrompt,
+  msgPrompt,
 } from '../../../store/module/API/type';
 
 export default {
@@ -79,6 +81,7 @@ export default {
       decision: decision,
       checkbox: checkbox,
       checkBoxControl: checkBoxControl,
+      msg: msgPrompt,
     }),
     found() {
       return `Found ${this.tableProps.content.length || 0} of keyword`;
@@ -116,6 +119,7 @@ export default {
       checkbox,
     ]),
     ...mapMutations({
+      messagePrompt: messagePrompt,
       tableId: tableId,
       cleanTableId: cleanTableId,
       removeTableId,
@@ -137,6 +141,7 @@ export default {
       this.checkbox[key] ? this.tableId(id) : this.removeTableId(id);
     },
     deleteHandler(id, e) {
+      this.messagePrompt(this.msg.delete);
       const parent = e.originalTarget.offsetParent.parentElement;
       this[dialog](() => {
         parent.classList.add('remove');
@@ -155,9 +160,10 @@ export default {
             });
           }
         }, 500);
-      });
+      }, 'are you sure want delete the data?');
     },
     reloadHandler(id, e) {
+      this.messagePrompt(this.msg.restore);
       const parent = e.originalTarget.offsetParent.parentElement;
       this[dialog](() => {
         parent.classList.add('remove');

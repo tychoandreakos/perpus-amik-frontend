@@ -33,6 +33,7 @@ export default {
   opacity: 1;
   animation: opacity 0.4s;
   animation-timing-function: linear;
+  height: 100vh;
 
   .loading-bar {
     animation: shake 0.2s;

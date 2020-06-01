@@ -21,6 +21,8 @@ import {
   restoreAll,
   restoreCollection,
   tableId,
+  messagePrompt,
+  msgPrompt,
 } from '../../../store/module/API/type';
 import { mapActions, mapMutations, mapGetters } from 'vuex';
 
@@ -39,6 +41,7 @@ export default {
     ...mapGetters({
       checkbox: checkbox,
       tableId: tableId,
+      msg: msgPrompt,
     }),
     action() {
       return {
@@ -123,11 +126,14 @@ export default {
     }),
     ...mapMutations({
       dialog: dialog,
+      messagePrompt: messagePrompt,
     }),
     restoreAll() {
+      this.messagePrompt(this.msg.restoreAll);
       this.dialog(() => this.restoreAllData());
     },
     restore() {
+      this.messagePrompt(this.msg.restore);
       this.dialog(() => this.restoreCollection());
     },
     detail() {
@@ -139,12 +145,14 @@ export default {
       });
     },
     delete() {
+      this.messagePrompt(this.msg.delete);
       this.dialog(() => this.deleteSome());
     },
     setting() {
       console.log('this setting');
     },
     destroy() {
+      this.messagePrompt(this.msg.destroyAll);
       this.dialog(() => this.destroyCollection());
     },
     trash() {
