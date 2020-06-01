@@ -9,35 +9,41 @@
         th(v-for="(header, i) in tableProps.title" :key="i") 
           span {{ header }}
         th(v-if="tableProps.enabled.action") Action
-      tbody
-        tr(
-          v-for="(body, key) in tableProps.content.result" 
-          :key="body.id"
-          @click="checkboxHandler(key)"
-          :class="{'select': checkbox[key]}"
-          )
-          td(v-show="tableProps.enabled.checkbox")
-            CheckBox(:check="checkbox[key] || false" @click="checkboxHandler(key)")
-          slot(v-if="tableProps.enabled.slot")
-          td
-          td(v-for="(field, i) in tableProps.field" :key="i")
-            template(v-if="body[field].toLowerCase().includes(search)") 
-              span.action {{ body[field] }}
-            template(v-else)
-              span {{ body[field] }}
-          td.action(v-if="tableProps.enabled.action")
-            button(
-                @click.stop="reloadHandler(body.id, $event)"
-                v-if="tableProps.enabled.retrieve"
-              ) #[Icon(icon="reload")]
-            button(
-              @click.stop="editHandler(body, body.id)"
-              v-if="tableProps.enabled.edit"
-            ) #[Icon(icon="pencil")]
-            button(
-              @click.stop="deleteHandler(body.id, $event)"
-              v-if="tableProps.enabled.remove"
-            ) #[Icon(icon="trash")]
+      template(v-if="tableProps.content.result.length > 0")
+        tbody
+            tr(
+              v-for="(body, key) in tableProps.content.result" 
+              :key="body.id"
+              @click="checkboxHandler(key)"
+              :class="{'select': checkbox[key]}"
+              )
+              td(v-show="tableProps.enabled.checkbox")
+                CheckBox(:check="checkbox[key] || false" @click="checkboxHandler(key)")
+              slot(v-if="tableProps.enabled.slot")
+              td
+              td(v-for="(field, i) in tableProps.field" :key="i")
+                template(v-if="body[field].toLowerCase().includes(search)") 
+                  span.action {{ body[field] }}
+                template(v-else)
+                  span {{ body[field] }}
+              td.action(v-if="tableProps.enabled.action")
+                button(
+                    @click.stop="reloadHandler(body.id, $event)"
+                    v-if="tableProps.enabled.retrieve"
+                  ) #[Icon(icon="reload")]
+                button(
+                  @click.stop="editHandler(body, body.id)"
+                  v-if="tableProps.enabled.edit"
+                ) #[Icon(icon="pencil")]
+                button(
+                  @click.stop="deleteHandler(body.id, $event)"
+                  v-if="tableProps.enabled.remove"
+                ) #[Icon(icon="trash")]
+      template(v-else)
+        div.empty 
+          img(src="https://cdn.dribbble.com/users/1537480/screenshots/5299696/artboard_copy_21.jpg" alt="not found")
+          h3 {{ notFound }}
+    template
 </template>
 <script>
 import Icon from 'vue-themify-icons';
@@ -90,6 +96,7 @@ export default {
   data() {
     return {
       headerEdit: 'Update ',
+      notFound: 'Stop baby!! Your data seems empty.',
     };
   },
   props: {
@@ -205,6 +212,27 @@ export default {
 #table {
   margin-top: 1rem;
   width: 100%;
+
+  .empty {
+    position: absolute;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      width: 35%;
+    }
+
+    h3 {
+      margin-top: 0.8rem;
+      font: {
+        family: 'Poppins', sans-serif;
+        weight: 600;
+      }
+    }
+  }
 
   .select {
     background: #f1f0f8;
