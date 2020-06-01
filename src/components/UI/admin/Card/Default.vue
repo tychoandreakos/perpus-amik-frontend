@@ -4,7 +4,7 @@
       div.form-wrapper(v-for="update in getDetails.result.data" :key="update.id")
         h3.title Update GMD dengan CODE: {{ update.gmd_code }}
         div.input
-          div(@click="why(elem.id)" :key="i" v-for="(elem, i) in createInput")
+          div(@click="why(elem.id, update.id)" :key="i" v-for="(elem, i) in createInput")
             Input(:property="elem" :value="update[elem.id]"  @input="inputPlaceholder")
       Button.btn(:buttonProp="button")
   </template>
@@ -38,20 +38,23 @@ export default {
         name: 'gmd',
       });
     }
-    console.log(this.createInput);
     this.getDetailsGmd();
   },
   methods: {
     ...mapActions({
       getDetailsGmd: getDetailsGmd,
     }),
-    why(elem) {
+    why(elem, id) {
       this.tempData = elem;
+      this.tempId = id;
     },
     inputPlaceholder(val) {
       this.form = {
         ...this.form,
-        [this.tempData]: val,
+        [this.tempId]: {
+          ...this.form[this.tempId],
+          [this.tempData]: val,
+        },
       };
     },
   },
@@ -59,6 +62,7 @@ export default {
     return {
       form: {},
       tempData: '',
+      tempId: '',
       button: {
         style: {},
         icon: 'check',
