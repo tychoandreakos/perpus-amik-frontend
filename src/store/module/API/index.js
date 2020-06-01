@@ -4,6 +4,94 @@ import * as types from './type';
 export default {
   state: {
     [types.dataComponent]: {
+      author: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Author',
+          button: {
+            title: 'Add New Author',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'Author Name',
+              id: 'name',
+              placeholder: 'Please type a Author Name',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search Author',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Name Author', 'Last Update'],
+          field: ['name', 'updated_at'],
+        },
+      ],
+      publisher: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Publisher',
+          button: {
+            title: 'Add New Publisher',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'Publisher Name',
+              id: 'name',
+              placeholder: 'Please type a Publisher Name',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search Publisher',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Name Publisher', 'Last Update'],
+          field: ['name', 'updated_at'],
+        },
+      ],
       gmd: [
         {
           panelAction: {
@@ -433,6 +521,7 @@ export default {
     },
     [types.getGMD]: (state, { skip, take }) => {
       state[types.loadingBackdrop] = true;
+      setTimeout(console.log(state[types.titleComponent]), 5000);
       axios
         .get(types.urlGMD, {
           params: {
@@ -442,6 +531,7 @@ export default {
         })
         .then((res) => res.data)
         .then((json) => {
+          console.log(json.data);
           if (state[types.searchPOST].length > 1) {
             state[types.searchPOST] = '';
           }
@@ -464,22 +554,28 @@ export default {
         })
         .catch((err) => (state[types.messageGMD].error = err.data));
     },
-    [types.postGMD]: (
-      state,
-      { method, id = undefined, gmd_code, gmd_name }
-    ) => {
+    [types.postGMD]: (state, payload) => {
+      const id = payload.id ? payload.id : undefined;
       state[types.loadingState] = !state[types.loadingState];
       state[types.checkbox] = {};
       let data;
-      if (method == types.createPost) {
+      const key = Object.keys(payload);
+      let tempData = {};
+      for (let i = 0; i < key.length; i++) {
+        if (key[i] != 'method' && key[i] != 'id') {
+          tempData = {
+            ...tempData,
+            [key[i]]: payload[key[i]],
+          };
+        }
+      }
+      if (payload.method == types.createPost) {
         data = axios.post(types.urlGMD, {
-          gmd_code: gmd_code.toLowerCase(),
-          gmd_name: gmd_name.toLowerCase(),
+          ...tempData,
         });
-      } else if (method == types.updatePOST) {
+      } else if (payload.method == types.updatePOST) {
         data = axios.put(types.methodEventGmd`${id} ${types.editMethodGMD}`, {
-          gmd_code: gmd_code.toLowerCase(),
-          gmd_name: gmd_name.toLowerCase(),
+          ...tempData,
         });
       }
       data

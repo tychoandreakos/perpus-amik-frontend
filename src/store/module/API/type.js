@@ -42,7 +42,12 @@ export const msgPrompt = 'master/msgPrompt';
 export const titleComponent = 'master/title';
 export const dataComponent = 'master/dataComponent';
 
-export const urlGMD = 'gmd';
+export const resourceURL = 'master/resourceURL';
+export const resourceUrlGMD = 'master/resource/GMD';
+export const resourceUrlAuthor = 'master/resource/Author';
+export const resourceUrlPublisher = 'master/resource/Publisher';
+
+export const urlGMD = 'author';
 export const deleteMethodGMD = 'delete';
 export const editMethodGMD = 'edit';
 export const searchGMD = `${urlGMD}/search`;

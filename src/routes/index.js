@@ -395,7 +395,7 @@ const router = [
           },
           {
             path: 'publisher',
-            component: PublisherComponent,
+            component: GMDComponent,
             name: 'publisher',
             meta: {
               title: putTitle('Publisher'),
@@ -413,7 +413,7 @@ const router = [
           },
           {
             path: 'author',
-            component: AuthorComponent,
+            component: GMDComponent,
             name: 'author',
             meta: {
               title: putTitle('Author'),
