@@ -83,7 +83,7 @@ export default {
 .dialog {
   background: rgba(0, 0, 0, 0.4);
   position: fixed;
-  z-index: 99;
+  z-index: 100;
   top: 0;
   left: 0;
   right: 0;

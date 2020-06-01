@@ -17,6 +17,8 @@ import {
   updatePOST,
   IDPOST,
   dialog,
+  messagePrompt,
+  msgPrompt,
 } from '../../../store/module/API/type';
 
 export default {
@@ -36,6 +38,7 @@ export default {
     ]),
     ...mapMutations({
       dialog: dialog,
+      messagePrompt: messagePrompt,
     }),
     checkDropdown() {
       let dropdownData;
@@ -56,15 +59,13 @@ export default {
 
       return dropdownData;
     },
-    alertMessage(message) {
-      let confirmSubmit = confirm(message);
-      alert(confirmSubmit);
-
-      return confirmSubmit;
+    cleanState() {
+      this.setPanel();
+      this.setClearEditProps();
+      this.setDefaultParams();
     },
-    submitWithAlert(dataSubmit, message) {
-      // const confirmSubmit = this.alertMessage(message);
-      // if (confirmSubmit) {
+    submitWithAlert(dataSubmit) {
+      this.messagePrompt(this.msgPrompt.save);
       this.dialog(() => {
         this.$store.dispatch(this.getType, {
           title: this.getType,
@@ -73,14 +74,12 @@ export default {
             ...dataSubmit,
           },
         });
+
+        this.cleanState();
       });
-
-      // }
     },
-    updateHandler(dataSubmit, message) {
-      // const confirmSubmit = this.alertMessage(message);
-      // if (confirmSubmit) {
-
+    updateHandler(dataSubmit) {
+      this.messagePrompt(this.msgPrompt.update);
       this.dialog(() => {
         this.$store.dispatch(this.getType, {
           title: this.getType,
@@ -90,19 +89,17 @@ export default {
             ...dataSubmit,
           },
         });
+
+        this.cleanState();
       });
-      // }
     },
     submitHandler() {
       const dropdownVal = this.checkDropdown();
       if (this.editPropsUpdate) {
-        this.updateHandler(dropdownVal, 'Apakah anda ingin mengubahnya?');
+        this.updateHandler(dropdownVal);
       } else {
-        this.submitWithAlert(dropdownVal, 'Apakah anda ingin menyimpannya?');
+        this.submitWithAlert(dropdownVal);
       }
-      this.setPanel();
-      this.setClearEditProps();
-      this.setDefaultParams();
     },
   },
   computed: {
@@ -121,6 +118,7 @@ export default {
       table: 'tableTypes',
       getType,
       IDPOST,
+      msgPrompt: msgPrompt,
     }),
   },
   data() {

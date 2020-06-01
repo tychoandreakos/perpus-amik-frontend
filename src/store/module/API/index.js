@@ -8,9 +8,9 @@ export default {
         'are you sure want to delete? anyway when your delete that data the data still in the recyle bin',
       deleteAll:
         'are you sure want delete all the data? anyway when your delete that data the data still in the recyle bin',
-      update: '',
-      updateAll: '',
-      save: '',
+      update: 'are you sure want to update data?',
+      updateAll: 'are you sure want to update all the data?',
+      save: 'are you sure want to save data?',
       restore: 'are you sure want to restore data?',
       restoreAll: 'are you sure want to restore all data?',
       destroy: 'are you sure want to delete? The data cannot be restored.',
