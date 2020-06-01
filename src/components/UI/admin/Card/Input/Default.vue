@@ -15,15 +15,27 @@ export default {
       type: Object,
       required: true,
     },
+    value: {
+      types: String,
+      required: true,
+    },
   },
   computed: {
+    placeholder: {
+      get() {
+        return this.val ? this.val : '';
+      },
+      set(newVal) {
+        this.val = newVal;
+      },
+    },
     checkPlaceholder() {
       return this.placeholder.length > 0;
     },
   },
   data() {
     return {
-      placeholder: '',
+      val: this.value,
       active: false,
     };
   },

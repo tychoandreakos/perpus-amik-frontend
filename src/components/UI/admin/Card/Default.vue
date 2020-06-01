@@ -1,23 +1,23 @@
 <template lang="pug">
   section.card-default
     form
-      div.form-wrapper
-        h3.title Update #1
+      div.form-wrapper(v-for="update in getDetails.result.data" :key="update.id")
+        h3.title Update GMD dengan CODE: {{ update.gmd_code }}
         div.input
           div(@click="why(elem.id)" :key="i" v-for="(elem, i) in createInput")
-            Input(:property="elem"  @input="inputPlaceholder")
-      div.form-wrapper
-        h3.title Update #2
-        div.input
-          div(@click="why(elem.id)" :key="i" v-for="(elem, i) in createInput")
-            Input(:property="elem"  @input="inputPlaceholder")
+            Input(:property="elem" :value="update[elem.id]"  @input="inputPlaceholder")
       Button.btn(:buttonProp="button")
   </template>
 
 <script>
 import Input from './Input/Default';
 import Button from '../Button';
-import { mapState } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import {
+  updateOrEditGmd,
+  tableId,
+  getDetailsGmd,
+} from '../../../../store/module/API/type';
 
 export default {
   name: 'CardDefault',
@@ -26,10 +26,25 @@ export default {
     Button,
   },
   computed: {
-    ...mapState(['createInput']),
+    ...mapGetters({
+      createInput: updateOrEditGmd,
+      tableId: tableId,
+      getDetails: getDetailsGmd,
+    }),
   },
-
+  created() {
+    if (this.createInput.length < 1) {
+      this.$router.push({
+        name: 'gmd',
+      });
+    }
+    console.log(this.createInput);
+    this.getDetailsGmd();
+  },
   methods: {
+    ...mapActions({
+      getDetailsGmd: getDetailsGmd,
+    }),
     why(elem) {
       this.tempData = elem;
     },

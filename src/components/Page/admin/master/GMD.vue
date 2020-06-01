@@ -20,6 +20,7 @@ import {
   postGMD,
   messageGMD,
   loadingBackdrop,
+  updateOrEditGmd,
 } from '../../../../store/module/API/type';
 
 export default {
@@ -75,6 +76,9 @@ export default {
       'setClearEditProps',
       getType,
     ]),
+    ...mapMutations({
+      updateOrEditGmd: updateOrEditGmd,
+    }),
     ...mapActions(['getGmd', getGMD]),
     count(e) {
       this[getGMD]({
@@ -87,6 +91,7 @@ export default {
     this.setCountUpdateDefault();
     this.setHeader(this.button.title);
     this.setCreateInput(this.createProp);
+    this.updateOrEditGmd(this.createProp);
     this.setDefaultParams();
     // this.setGetUpdate(masterGMD);
     // this.setTableTypes(masterGMD);

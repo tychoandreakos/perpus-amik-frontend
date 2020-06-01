@@ -3,6 +3,10 @@ import * as types from './type';
 
 export default {
   state: {
+    [types.getDetailsGmd]: {
+      result: [],
+      error: [],
+    },
     [types.checkbox]: {},
     [types.getGMD]: {
       result: [],
@@ -15,6 +19,7 @@ export default {
       error: [],
       title: '',
     },
+    [types.updateOrEditGmd]: [],
     [types.tableId]: [],
     [types.memo]: '',
     [types.dialogValue]: '',
@@ -32,8 +37,17 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.getDetailsGmd]: (state) => {
+      return state[types.getDetailsGmd];
+    },
+    [types.tableId]: (state) => {
+      return state[types.tableId];
+    },
     [types.checkBoxControl]: (state) => {
       return state[types.checkBoxControl];
+    },
+    [types.updateOrEditGmd]: (state) => {
+      return state[types.updateOrEditGmd];
     },
     [types.getDestroy]: (state) => {
       return state[types.getDestroy];
@@ -112,8 +126,26 @@ export default {
     [types.restoreCollection]: ({ commit }) => {
       commit(types.restoreCollection);
     },
+    [types.getDetailsGmd]: ({ commit }) => {
+      commit(types.getDetailsGmd);
+    },
   },
   mutations: {
+    [types.getDetailsGmd]: (state) => {
+      axios
+        .post(`${types.urlGMD}/${types.detailsMethod}`, {
+          detail: state[types.tableId],
+        })
+        .then((res) => {
+          state[types.getDetailsGmd].result = res.data;
+        })
+        .catch((err) => (state[types.getDetailsGmd].error = err.data));
+    },
+    [types.updateOrEditGmd]: (state, payload) => {
+      if (state[types.updateOrEditGmd].length < 1) {
+        state[types.updateOrEditGmd] = [...payload];
+      }
+    },
     [types.checkBoxControl]: (state) => {
       state[types.checkBoxControl] = !state[types.checkBoxControl];
     },
