@@ -20,6 +20,7 @@ import {
   destroyCollection,
   restoreAll,
   restoreCollection,
+  tableId,
 } from '../../../store/module/API/type';
 import { mapActions, mapMutations, mapGetters } from 'vuex';
 
@@ -37,6 +38,7 @@ export default {
   computed: {
     ...mapGetters({
       checkbox: checkbox,
+      tableId: tableId,
     }),
     action() {
       return {
@@ -49,7 +51,7 @@ export default {
                 id: 1,
                 title: 'See Detail',
                 icon: 'eye',
-                disabled: false,
+                disabled: this.tableId.length > 0 ? true : false,
               },
           !this.settings.edit
             ? undefined
@@ -57,7 +59,7 @@ export default {
                 id: 2,
                 title: 'Edit / Update',
                 icon: 'pencil',
-                disabled: false,
+                disabled: this.tableId.length > 0 ? false : true,
               },
           !this.settings.delete
             ? undefined
@@ -65,7 +67,7 @@ export default {
                 id: 3,
                 title: 'Delete',
                 icon: 'cut',
-                disabled: false,
+                disabled: this.tableId.length > 0 ? false : true,
               },
 
           !this.settings.recycle
@@ -82,7 +84,7 @@ export default {
                 id: 5,
                 title: 'Restore',
                 icon: 'reload',
-                disabled: true,
+                disabled: this.tableId.length > 0 ? false : true,
               },
           !this.settings.restoreAll
             ? undefined
@@ -98,7 +100,7 @@ export default {
                 id: 7,
                 title: 'Delete',
                 icon: 'trash',
-                disabled: false,
+                disabled: this.tableId.length > 0 ? false : true,
               },
           !this.settings.setting
             ? undefined
