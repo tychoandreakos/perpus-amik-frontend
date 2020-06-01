@@ -239,6 +239,12 @@ export default {
     },
     [types.cleanCheckBox]: (state) => {
       state[types.checkbox] = {};
+      state[types.tableId] = [];
+      state[types.checkBoxControl] = false;
+      state[types.getDetailsGmd] = {
+        result: [],
+        error: [],
+      };
     },
     [types.selectCheckBoxAll]: (state, { key, control }) => {
       state[types.checkbox] = {

@@ -21,6 +21,7 @@ import {
   messageGMD,
   loadingBackdrop,
   updateOrEditGmd,
+  cleanCheckBox,
 } from '../../../../store/module/API/type';
 
 export default {
@@ -29,6 +30,14 @@ export default {
     HeaderComponent,
     PanelActionComponent,
     TableComponent,
+  },
+  beforeRouteEnter: (to, from, next) => {
+    // console.log('from', from);
+    next((vm) => {
+      if (from.name != 'gmd.update') {
+        vm.cleanCheckBox();
+      }
+    });
   },
   computed: {
     ...mapState(['resultInput']),
@@ -78,6 +87,7 @@ export default {
     ]),
     ...mapMutations({
       updateOrEditGmd: updateOrEditGmd,
+      cleanCheckBox: cleanCheckBox,
     }),
     ...mapActions(['getGmd', getGMD]),
     count(e) {
