@@ -4,7 +4,7 @@
     PanelActionComponent(:title="dataState.title" :settings="dataState.panelAction"
     :search="dataState.search" :breadcrumbsHeader="dataState.breadcrumbs" @count="count" :total="total" :button="dataState.button")
     TableComponent(:tableProps="database" delete="we dont")
-    span(style="visibility: hidden") {{ update }}
+    //- span(style="visibility: hidden") {{ update }}
   
 </template>
 <script>
@@ -45,6 +45,12 @@ export default {
     stateTitle() {
       this.lifeComponent();
     },
+    searchState() {
+      this[getGMD]({
+        skip: 0,
+        take: 5,
+      });
+    },
   },
   computed: {
     ...mapState(['resultInput']),
@@ -61,14 +67,8 @@ export default {
     dataState() {
       return this.dataComponent[this.$route.path.split('/')[3]][0];
     },
-    update() {
-      if (this.message.message) {
-        this[getGMD]({
-          skip: 0,
-          take: 5,
-        });
-      }
-      return this.message;
+    searchState() {
+      return this.message.message;
     },
     database() {
       return {

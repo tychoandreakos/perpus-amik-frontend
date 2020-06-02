@@ -9,7 +9,7 @@
         th(v-for="(header, i) in tableProps.title" :key="i") 
           span {{ header }}
         th(v-if="tableProps.enabled.action") Action
-      template(v-if="tableProps.content.dataCount > 0")
+      template(v-if="tableProps.content.dataCount > 0 || tableProps.content.length > 0")
         tbody
             tr(
               v-for="(body, key) in tableProps.content.result" 
@@ -44,7 +44,7 @@
         div.empty 
           img(src="https://cdn.dribbble.com/users/1537480/screenshots/5299696/artboard_copy_21.jpg" alt="not found")
           h3 {{ notFound }}
-    template
+    //- template
 </template>
 <script>
 import Icon from 'vue-themify-icons';

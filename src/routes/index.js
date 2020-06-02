@@ -40,18 +40,7 @@ import TrashComponent from '../components/Page/admin/master/Trash';
 import UpdateComponent from '../components/Page/admin/master/Update';
 
 import { store } from '../store';
-import {
-  titleComponent,
-  getGMD,
-  updateOrEditGmd,
-} from '../store/module/API/type';
-import {
-  setCountUpdateDefault,
-  setHeader,
-  setCreateInput,
-  setDefaultParams,
-  setClearEditProps,
-} from '../store/mutations';
+import { titleComponent } from '../store/module/API/type';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 

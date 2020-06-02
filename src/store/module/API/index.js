@@ -539,7 +539,7 @@ export default {
       state[types.searchPOST] = payload;
       state[types.loadingBackdrop] = true;
       axios
-        .post(types.searchGMD, {
+        .post(`${state[types.titleComponent].toLowerCase()}/search`, {
           search: payload,
         })
         .then((res) => res.data)
@@ -584,7 +584,10 @@ export default {
         .post(
           `${state[types.titleComponent].toLowerCase()}/${id}/${
             types.deleteMethodGMD
-          }`
+          }`,
+          {
+            delete: payload,
+          }
         )
         // .post(
         //   types.methodEventGmd`${state[types.titleComponent].toLowerCase()} ${types.deleteMethodGMD}`,
