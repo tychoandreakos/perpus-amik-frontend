@@ -34,9 +34,6 @@ export default {
     PanelActionComponent,
     TableComponent,
   },
-  mounted() {
-    this.$forceUpdate();
-  },
   beforeRouteEnter: (to, from, next) => {
     next((vm) => {
       if (from.name != 'gmd.update') {

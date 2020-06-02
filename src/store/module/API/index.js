@@ -315,9 +315,12 @@ export default {
     },
     [types.updateSomeGmd]: (state, payload) => {
       axios
-        .post(`${types.urlGMD}/${types.updateMethod}`, {
-          updates: payload,
-        })
+        .post(
+          `${state[types.titleComponent].toLowerCase()}/${types.updateMethod}`,
+          {
+            updates: payload,
+          }
+        )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -328,9 +331,12 @@ export default {
     },
     [types.getDetailsGmd]: (state) => {
       axios
-        .post(`${types.urlGMD}/${types.detailsMethod}`, {
-          detail: state[types.tableId],
-        })
+        .post(
+          `${state[types.titleComponent].toLowerCase()}/${types.detailsMethod}`,
+          {
+            detail: state[types.tableId],
+          }
+        )
         .then((res) => {
           state[types.getDetailsGmd].result = res.data;
         })
@@ -346,9 +352,12 @@ export default {
     },
     [types.restoreCollection]: (state) => {
       axios
-        .post(`${types.urlGMD}/${types.restoreGmd}`, {
-          restore: state[types.tableId],
-        })
+        .post(
+          `${state[types.titleComponent].toLowerCase()}/${types.restoreGmd}`,
+          {
+            restore: state[types.tableId],
+          }
+        )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -359,7 +368,7 @@ export default {
     },
     [types.restoreAll]: (state) => {
       axios
-        .put(`${types.urlGMD}/${types.restoreGmd}`)
+        .put(`${state[types.titleComponent].toLowerCase()}/${types.restoreGmd}`)
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -371,7 +380,11 @@ export default {
     [types.destroyAll]: (state) => {
       state[types.loadingState] = !state[types.loadingState];
       axios
-        .delete(`${types.urlGMD}/${types.destroyMethodGmd}`)
+        .delete(
+          `${state[types.titleComponent].toLowerCase()}/${
+            types.destroyMethodGmd
+          }`
+        )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -383,9 +396,14 @@ export default {
     },
     [types.destroyCollection]: (state) => {
       axios
-        .post(`${types.urlGMD}/${types.destroyMethodCollection}`, {
-          delete: state[types.tableId],
-        })
+        .post(
+          `${state[types.titleComponent].toLowerCase()}/${
+            types.destroyMethodCollection
+          }`,
+          {
+            delete: state[types.tableId],
+          }
+        )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -396,7 +414,11 @@ export default {
     },
     [types.destroyData]: (state, { id }) => {
       axios
-        .delete(`${types.urlGMD}/${id}/${types.destroyMethodGmd}`)
+        .delete(
+          `${state[types.titleComponent].toLowerCase()}/${id}/${
+            types.destroyMethodGmd
+          }`
+        )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -407,7 +429,11 @@ export default {
     },
     [types.restoreSome]: (state, { id }) => {
       axios
-        .put(`${types.urlGMD}/${id}/${types.restoreGmd}`)
+        .put(
+          `${state[types.titleComponent].toLowerCase()}/${id}/${
+            types.restoreGmd
+          }`
+        )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -434,12 +460,17 @@ export default {
     [types.getDestroy]: (state, { skip, take }) => {
       state[types.loadingBackdrop] = true;
       axios
-        .get(`${types.urlGMD}/${types.deleteMethodGMD}`, {
-          params: {
-            skip,
-            take,
-          },
-        })
+        .get(
+          `${state[types.titleComponent].toLowerCase()}/${
+            types.deleteMethodGMD
+          }`,
+          {
+            params: {
+              skip,
+              take,
+            },
+          }
+        )
         .then((res) => res.data)
         .then((json) => {
           if (state[types.searchPOST].length > 1) {
@@ -463,9 +494,14 @@ export default {
     },
     [types.deleteSomeGMD]: (state) => {
       axios
-        .post(`${types.urlGMD}/${types.deleteMethodGMD}`, {
-          delete: state[types.tableId],
-        })
+        .post(
+          `${state[types.titleComponent].toLowerCase()}/${
+            types.deleteMethodGMD
+          }`,
+          {
+            delete: state[types.tableId],
+          }
+        )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.tableId] = [];
@@ -524,7 +560,7 @@ export default {
     [types.getGMD]: (state, { skip, take }) => {
       state[types.loadingBackdrop] = true;
       axios
-        .get(state[types.titleComponent].toLowerCase(), {
+        .get(state[types.titleComponent].toLowerCase().toLowerCase(), {
           params: {
             skip,
             take,
@@ -545,9 +581,17 @@ export default {
     },
     [types.DeleteSome]: (state, payload) => {
       axios
-        .post(types.methodEventGmd`${types.urlGMD} ${types.deleteMethodGMD}`, {
-          delete: payload,
-        })
+        .post(
+          `${state[types.titleComponent].toLowerCase()}/${id}/${
+            types.deleteMethodGMD
+          }`
+        )
+        // .post(
+        //   types.methodEventGmd`${state[types.titleComponent].toLowerCase()} ${types.deleteMethodGMD}`,
+        //   {
+        //     delete: payload,
+        //   }
+        // )
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.checkBoxControl] = false;
@@ -570,13 +614,21 @@ export default {
         }
       }
       if (payload.method == types.createPost) {
-        data = axios.post(types.urlGMD, {
+        data = axios.post(state[types.titleComponent].toLowerCase(), {
           ...tempData,
         });
       } else if (payload.method == types.updatePOST) {
-        data = axios.put(types.methodEventGmd`${id} ${types.editMethodGMD}`, {
-          ...tempData,
-        });
+        data = axios.put(
+          `${state[types.titleComponent].toLowerCase()}/${id}/${
+            types.editMethodGMD
+          }`,
+          {
+            ...tempData,
+          }
+        );
+        // .put(types.methodEventGmd`${id} ${types.editMethodGMD}`, {
+        //   ...tempData,
+        // });
       }
       data
         .then((res) => {
@@ -588,7 +640,12 @@ export default {
     },
     [types.deleteGMD]: (state, { id }) => {
       axios
-        .delete(types.methodEventGmd`${id} ${types.deleteMethodGMD}`)
+        .delete(
+          `${state[types.titleComponent].toLowerCase()}/${id}/${
+            types.deleteMethodGMD
+          }`
+        )
+        // .delete(types.methodEventGmd`${id} ${types.deleteMethodGMD}`)
         .then((res) => {
           state[types.messageGMD].message = res.data;
           state[types.checkbox] = {};

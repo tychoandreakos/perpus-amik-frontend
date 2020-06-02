@@ -1,9 +1,9 @@
 <template lang="pug">
   section#recycle-bin
-    HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
+    HeaderComponent(:title="dataState.title" :breadcrumbsHeader="dataState.breadcrumbs")
     h3.info {{ info }}
-    PanelActionComponent(:title="title" :restore="database.content.dataCount > 0" :settings="panelAction"
-    :search="search" :breadcrumbsHeader="breadcrumbs" @count="count" :total="total" :button="button")
+    PanelActionComponent(:title="dataState.title" :restore="database.content.dataCount > 0" :settings="dataState.panelAction"
+    :search="dataState.search" :breadcrumbsHeader="dataState.breadcrumbs" @count="count" :total="total" :button="dataState.button")
     TableComponent(:tableProps="database" :disabledCheck="true" delete="we dont")
     span(style="visibility: hidden") {{ update }}
 </template>
@@ -19,6 +19,8 @@ import {
   loadingBackdrop,
   getDestroy,
   messageGMD,
+  dataComponent,
+  titleComponent,
 } from '../../../../store/module/API/type';
 
 export default {
@@ -28,12 +30,28 @@ export default {
     TableComponent,
     PanelActionComponent,
   },
+  watch: {
+    stateTitle() {
+      this.getDestroy({
+        skip: 0,
+        take: 5,
+      });
+    },
+  },
   computed: {
     ...mapGetters({
       view: getDestroy,
       loading: loadingBackdrop,
       message: messageGMD,
+      dataComponent: dataComponent,
+      titleState: titleComponent,
     }),
+    stateTitle() {
+      return this.titleState;
+    },
+    dataState() {
+      return this.dataComponent[this.titleState.toLowerCase()][0];
+    },
     update() {
       if (this.message.message) {
         this.getDestroy({
@@ -44,17 +62,9 @@ export default {
       return this.message;
     },
     database() {
+      console.log(this.view);
       return {
-        enabled: {
-          checkbox: true,
-          edit: false,
-          remove: true,
-          action: true,
-          retrieve: true,
-          destroy: true,
-        },
-        title: ['GMD CODE', 'GMD NAME', 'Last Update'],
-        field: ['gmd_code', 'gmd_name', 'updated_at'],
+        ...this.dataComponent[this.titleState.toLowerCase()][1],
         content: this.view.result,
       };
     },
@@ -81,26 +91,6 @@ export default {
   },
   data() {
     return {
-      panelAction: {
-        detail: false,
-        edit: false,
-        delete: false,
-        recycle: false,
-        setting: true,
-        destroy: true,
-        restore: true,
-        restoreAll: true,
-      },
-      breadcrumbs: ['Data List'],
-      title: 'Recycle Bin',
-      button: {
-        title: 'Clean / Delete All Data',
-        icon: 'trash',
-        type: 'delete',
-      },
-      search: {
-        placeholder: 'Search GMD',
-      },
       info:
         'Themify Icons is a complete set of icons for use in web design and apps, consisting of 320+ pixel-perfect, hand-crafted icons that draw inspiration from Apple iOS 7 - available to the public.',
     };

@@ -22,10 +22,11 @@
               slot(v-if="tableProps.enabled.slot")
               td
               td(v-for="(field, i) in tableProps.field" :key="i")
-                template(v-if="body[field].toLowerCase().includes(search)") 
-                  span.action {{ body[field] }}
-                template(v-else)
-                  span {{ body[field] }}
+                template(v-if="body[field]")
+                  template(v-if="body[field].toLowerCase().includes(search)") 
+                    span.action {{ body[field] }}
+                  template(v-else)
+                    span {{ body[field] }}
               td.action(v-if="tableProps.enabled.action")
                 button(
                     @click.stop="reloadHandler(body.id, $event)"
