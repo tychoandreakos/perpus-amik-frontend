@@ -11,13 +11,13 @@ import HistoryUserComponent from '../components/Page/user/History';
 
 // admin component
 import AdminComponent from '../components/Page/admin/HomepageAdmin';
+import MembershipComponent from '../components/Page/admin/Membership/Default';
 
 // children
 import FirstPage from '../components/Page/user/FirstPage';
 import InSearchComponent from '../components/Page/user/InSearch';
 import DashboardAdmin from '../components/Page/admin/Dashboard';
 import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi';
-import MembershipComponent from '../components/Page/admin/Membership';
 import CirculationComponent from '../components/Page/admin/Circulation';
 import MasterComponent from '../components/Page/admin/Master';
 import GMDComponent from '../components/Page/admin/master/GMD';
