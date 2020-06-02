@@ -3,15 +3,17 @@
         table
             thead
                 th #[Checkbox(:check="false")]
-                th(v-for="(item, i) in head" :key="i") {{ item }}
+                template(v-for="(item, i) in head")
+                    template(v-if="enabledImage ? enabledImage : item != 'image'")
+                        th(:key="i") {{ item }}
             tbody
                 template(v-for="(body, keyBodies) in bodies")
                     tr(:key="keyBodies")
                         td #[Checkbox(:check="false")]
                         template(v-for="(item, keyItem) in body")
-                            td.membership(v-if="item.img" :key="keyItem")
+                            td(v-if="item.img && enabledImage" :key="keyItem")
                                 img(:src="item.url" :alt="item.title")
-                            td.membership(v-else :key="keyItem") {{ item }}
+                            td(v-else-if="!item.img" :key="keyItem") {{ item }}
                         td.action
                             button #[Icon(icon="pencil")]
                             button #[Icon(icon="trash")]
@@ -39,6 +41,7 @@ export default {
         'price',
         'action',
       ],
+      enabledImage: true,
       bodies: [
         {
           image: {
@@ -76,9 +79,6 @@ export default {
 #table {
   img {
     width: 45%;
-  }
-
-  .membership {
   }
 }
 </style>
