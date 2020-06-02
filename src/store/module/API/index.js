@@ -6,6 +6,297 @@ import { name } from '../../../routes/index';
 export default {
   state: {
     [types.dataComponent]: {
+      subject: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Subject',
+          button: {
+            title: 'Add New Subject',
+            icon: 'plus',
+            type: 'add',
+          },
+          // selected: 'Topic',
+          createProp: [
+            {
+              label: 'Subject',
+              id: 'name',
+              placeholder: 'Please type a Subject',
+              type: 'text',
+            },
+            {
+              label: 'Subject Type',
+              id: 'type',
+              dropdown: true,
+              dropdownList: [
+                'Topic',
+                'Geographic',
+                'Name',
+                'Temporal',
+                'Genre',
+                'Ocuppation',
+              ],
+            },
+          ],
+          search: {
+            placeholder: 'Search Subject',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Subject Name', 'Subject Type', 'Last Update'],
+          field: ['name', 'type', 'updated_at'],
+        },
+      ],
+      place: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Place',
+          button: {
+            title: 'Add New Place',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'Place Name',
+              id: 'name',
+              placeholder: 'Please type a Place Name of Item',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search Place',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Place Name', 'Last Update'],
+          field: ['name', 'updated_at'],
+        },
+      ],
+      location: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Location',
+          button: {
+            title: 'Add New Location',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'Location Code',
+              id: 'code',
+              placeholder: 'Please type a Location Code of Item',
+              type: 'text',
+            },
+            {
+              label: 'Location Name',
+              id: 'name',
+              placeholder: 'Please type a Location Name of Item',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search Location',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Location Code', 'Location Name', 'Last Update'],
+          field: ['code', 'name', 'updated_at'],
+        },
+      ],
+      bahasa: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Language',
+          button: {
+            title: 'Add New Language',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'Language Name',
+              id: 'name',
+              placeholder: 'Please type a Language Name',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search Language',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Language Name', 'Last Update'],
+          field: ['name', 'updated_at'],
+        },
+      ],
+      item: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Item Status',
+          button: {
+            title: 'Add New Item Status',
+            icon: 'plus',
+            type: 'add',
+          },
+          selected: 'Missing',
+          createProp: [
+            {
+              label: 'Item Status Code',
+              id: 'code',
+              placeholder: 'Please type a Status Code of Item',
+              type: 'text',
+            },
+            {
+              label: 'Item Status Name',
+              id: 'name',
+              dropdown: true,
+              dropdownList: ['Missing', 'No Loan', 'Repair'],
+            },
+          ],
+          search: {
+            placeholder: 'Search Item Status',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Item Status Code', 'Item Status Name', 'Last Update'],
+          field: ['code', 'name', 'updated_at'],
+        },
+      ],
+      koleksi: [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Collection',
+          button: {
+            title: 'Add New Collection',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'Collection Type',
+              id: 'tipe',
+              placeholder: 'Please type a Collection Type',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search Collection',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: ['Collection Type', 'Last Update'],
+          field: ['tipe', 'updated_at'],
+        },
+      ],
       author: [
         {
           panelAction: {

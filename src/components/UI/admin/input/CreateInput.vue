@@ -1,64 +1,3 @@
-<template>
-  <section class="create-input" v-if="panel">
-    <div class="header">
-      <h3>{{ header }}</h3>
-      <div @click="setPanel">
-        <Icon class="icon" icon="close" />
-      </div>
-    </div>
-    <div class="border"></div>
-    <div class="input" v-for="(inputElem, i) in createInput" :key="i">
-      <label :for="inputElem.id">{{ inputElem.label }}</label>
-      <DropdownComponent v-if="inputElem.dropdown">
-        <template v-slot:inputText>
-          <div
-            style="cursor: pointer"
-            @click="dropdownOpen = !dropdownOpen"
-            class="input-text"
-          >
-            <div class="input-group">
-              <input
-                type="text"
-                readonly
-                :value="dropdownWatch[inputElem.id]"
-                ref="inputElem"
-                :id="inputElem.id"
-              />
-              <Icon icon="angle-down" />
-            </div>
-          </div>
-        </template>
-        <template v-slot:dropdownList>
-          <ul v-if="dropdownOpen" class="dropdown-list">
-            <li
-              @click="dropdownHandler(listElm, inputElem.id)"
-              v-for="(listElm, i) in inputElem.dropdownList"
-              :key="i"
-            >
-              {{ listElm }}
-            </li>
-          </ul>
-
-          <div
-            @click="dropdownOpen = !dropdownOpen"
-            v-if="dropdownOpen"
-            class="dropdown-backdrop"
-          ></div>
-        </template>
-      </DropdownComponent>
-      <input
-        class="input-text"
-        v-else
-        type="text"
-        :placeholder="inputElem.placeholder"
-        :id="inputElem.id"
-        v-model.lazy="inputParams[i]"
-        ref="inputElem"
-      />
-    </div>
-  </section>
-</template>
-
 <template lang="pug">
   section.create-input(v-if="panel")
     div.header
@@ -174,7 +113,6 @@ export default {
       this.$store.commit('setDropdownChoice', {
         [key]: val,
       });
-      this.dropdownOpen = false;
     },
   },
   props: {

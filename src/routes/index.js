@@ -447,8 +447,13 @@ const router = [
           },
           {
             path: 'subject',
-            component: SubjectComponent,
+            component: GMDComponent,
             name: 'subject',
+            beforeEnter(to, from, next) {
+              const title = 'Subject';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Subject'),
               metaTags: [
@@ -465,8 +470,13 @@ const router = [
           },
           {
             path: 'location',
-            component: LocationComponent,
+            component: GMDComponent,
             name: 'location',
+            beforeEnter(to, from, next) {
+              const title = 'Location';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Location'),
               metaTags: [
@@ -483,8 +493,13 @@ const router = [
           },
           {
             path: 'place',
-            component: PlaceComponent,
+            component: GMDComponent,
             name: 'place',
+            beforeEnter(to, from, next) {
+              const title = 'Place';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Place'),
               metaTags: [
@@ -501,8 +516,13 @@ const router = [
           },
           {
             path: 'item-status',
-            component: ItemStatusComponent,
+            component: GMDComponent,
             name: 'itemStatus',
+            beforeEnter(to, from, next) {
+              const title = 'Item';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Item Status'),
               metaTags: [
@@ -519,8 +539,13 @@ const router = [
           },
           {
             path: 'collection',
-            component: CollectionTypeComponent,
+            component: GMDComponent,
             name: 'collection',
+            beforeEnter(to, from, next) {
+              const title = 'Koleksi';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Collection Type'),
               metaTags: [
@@ -537,8 +562,13 @@ const router = [
           },
           {
             path: 'language',
-            component: LanguageComponent,
+            component: GMDComponent,
             name: 'language',
+            beforeEnter(to, from, next) {
+              const title = 'Bahasa';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Language'),
               metaTags: [

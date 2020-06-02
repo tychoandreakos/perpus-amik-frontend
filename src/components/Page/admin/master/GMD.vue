@@ -65,14 +65,14 @@ export default {
       return this.titleState;
     },
     dataState() {
-      return this.dataComponent[this.$route.path.split('/')[3]][0];
+      return this.dataComponent[this.titleState.toLowerCase()][0];
     },
     searchState() {
       return this.message.message;
     },
     database() {
       return {
-        ...this.dataComponent[this.$route.path.split('/')[3]][1],
+        ...this.dataComponent[this.titleState.toLowerCase()][1],
         content: this.view.result,
       };
     },
@@ -89,6 +89,8 @@ export default {
       'setTableTypes',
       'setGetUpdate',
       'setClearEditProps',
+      'setSelectedDropdown',
+      'setDropdownChoice',
       getType,
     ]),
     ...mapMutations({
@@ -118,6 +120,15 @@ export default {
         skip: 0,
         take: 5,
       });
+
+      if (this.dataComponent[this.titleState.toLowerCase()][0].selected) {
+        this.setDropdownChoice({
+          name: this.dataComponent[this.titleState.toLowerCase()][0].selected,
+        });
+        this.setSelectedDropdown({
+          name: this.dataComponent[this.titleState.toLowerCase()][0].selected,
+        });
+      }
     },
   },
   created() {
