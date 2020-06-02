@@ -20,7 +20,6 @@
               td(v-show="tableProps.enabled.checkbox")
                 CheckBox(:check="checkbox[key] || false" @click="checkboxHandler(key)")
               slot(v-if="tableProps.enabled.slot")
-              td
               td(v-for="(field, i) in tableProps.field" :key="i")
                 template(v-if="body[field]")
                   template(v-if="body[field].toLowerCase().includes(search)") 
@@ -315,11 +314,7 @@ export default {
 
       .action {
         background: #7c71f13f;
-        padding: 0.5rem 1.5rem;
-      }
-
-      &:nth-child(2) {
-        display: none;
+        padding: 0.5rem 1rem;
       }
 
       .book-info .title {
@@ -340,7 +335,7 @@ export default {
         cursor: pointer;
 
         &:last-child {
-          margin: 0 1rem;
+          margin: 0 0.7rem;
         }
 
         &:first-child:hover {
