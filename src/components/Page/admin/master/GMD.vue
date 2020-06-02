@@ -123,10 +123,12 @@ export default {
 
       if (this.dataComponent[this.titleState.toLowerCase()][0].selected) {
         this.setDropdownChoice({
-          name: this.dataComponent[this.titleState.toLowerCase()][0].selected,
+          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1].id]: this
+            .dataComponent[this.titleState.toLowerCase()][0].selected,
         });
         this.setSelectedDropdown({
-          name: this.dataComponent[this.titleState.toLowerCase()][0].selected,
+          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1].id]: this
+            .dataComponent[this.titleState.toLowerCase()][0].selected,
         });
       }
     },

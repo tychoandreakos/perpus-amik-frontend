@@ -64,7 +64,6 @@ export default {
     },
     inputParams(newVal) {
       let modifiedVal = {};
-
       for (let key = 0; key < newVal.length; key++) {
         if (
           this.$refs.inputElem !== undefined &&

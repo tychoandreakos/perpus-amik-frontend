@@ -25,7 +25,7 @@ export default {
             icon: 'plus',
             type: 'add',
           },
-          // selected: 'Topic',
+          selected: 'Topic',
           createProp: [
             {
               label: 'Subject',

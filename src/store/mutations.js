@@ -39,6 +39,7 @@ export const setResetDropdown = (state, payload) => {
   };
 };
 export const setSelectedDropdown = (state, payload) => {
+  console.log(payload);
   state.selectedDropdown = {
     ...state.selectedDropdown,
     ...payload,
@@ -69,7 +70,7 @@ export const setTable = (state, payload) => {
 export const setUpdateInputState = (state, payload) => {
   const temporaryInput = [];
   for (let key in payload) {
-    if (key !== "id") {
+    if (key !== 'id') {
       temporaryInput.push(payload[key]);
     }
   }
