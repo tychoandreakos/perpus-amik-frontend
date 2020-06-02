@@ -39,6 +39,20 @@ import HistoryComponent from '../components/Page/admin/Member/History';
 import TrashComponent from '../components/Page/admin/master/Trash';
 import UpdateComponent from '../components/Page/admin/master/Update';
 
+import { store } from '../store';
+import {
+  titleComponent,
+  getGMD,
+  updateOrEditGmd,
+} from '../store/module/API/type';
+import {
+  setCountUpdateDefault,
+  setHeader,
+  setCreateInput,
+  setDefaultParams,
+  setClearEditProps,
+} from '../store/mutations';
+
 const title = 'Diglib STMIK AMIK BANDUNG';
 
 const putTitle = (pageTitle) => {
@@ -379,6 +393,11 @@ const router = [
             path: 'gmd',
             component: GMDComponent,
             name: 'gmd',
+            beforeEnter(to, from, next) {
+              const title = 'GMD';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('GMD'),
               metaTags: [
@@ -397,6 +416,10 @@ const router = [
             path: 'publisher',
             component: GMDComponent,
             name: 'publisher',
+            beforeEnter(to, from, next) {
+              store.commit(titleComponent, 'Publisher');
+              next();
+            },
             meta: {
               title: putTitle('Publisher'),
               metaTags: [
@@ -415,6 +438,10 @@ const router = [
             path: 'author',
             component: GMDComponent,
             name: 'author',
+            beforeEnter(to, from, next) {
+              store.commit(titleComponent, 'Author');
+              next();
+            },
             meta: {
               title: putTitle('Author'),
               metaTags: [
@@ -595,5 +622,4 @@ const router = [
     },
   },
 ];
-
 export default router;

@@ -1,6 +1,8 @@
 import axios from './axios';
 import * as types from './type';
 
+import { name } from '../../../routes/index';
+
 export default {
   state: {
     [types.dataComponent]: {
@@ -521,9 +523,8 @@ export default {
     },
     [types.getGMD]: (state, { skip, take }) => {
       state[types.loadingBackdrop] = true;
-      setTimeout(console.log(state[types.titleComponent]), 5000);
       axios
-        .get(types.urlGMD, {
+        .get(state[types.titleComponent].toLowerCase(), {
           params: {
             skip,
             take,
@@ -531,7 +532,6 @@ export default {
         })
         .then((res) => res.data)
         .then((json) => {
-          console.log(json.data);
           if (state[types.searchPOST].length > 1) {
             state[types.searchPOST] = '';
           }

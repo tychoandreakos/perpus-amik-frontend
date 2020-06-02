@@ -34,30 +34,20 @@ export default {
     PanelActionComponent,
     TableComponent,
   },
+  mounted() {
+    this.$forceUpdate();
+  },
   beforeRouteEnter: (to, from, next) => {
     next((vm) => {
       if (from.name != 'gmd.update') {
         vm.cleanCheckBox();
       }
-
-      switch (vm.$route.name) {
-        case 'gmd':
-          vm.titleComponent('GMD');
-          break;
-
-        case 'author':
-          vm.titleComponent('Author');
-          break;
-
-        case 'publisher':
-          vm.titleComponent('Publisher');
-          break;
-
-        default:
-          console.log('not set');
-          break;
-      }
     });
+  },
+  watch: {
+    stateTitle() {
+      this.lifeComponent();
+    },
   },
   computed: {
     ...mapState(['resultInput']),
@@ -68,6 +58,9 @@ export default {
       dataComponent: dataComponent,
       titleState: titleComponent,
     }),
+    stateTitle() {
+      return this.titleState;
+    },
     dataState() {
       return this.dataComponent[this.$route.path.split('/')[3]][0];
     },
@@ -113,22 +106,25 @@ export default {
         take: 5,
       });
     },
+    lifeComponent() {
+      this.setCountUpdateDefault();
+      this.setHeader(this.dataState.button.title);
+      this.setCreateInput(this.dataState.createProp);
+      this.updateOrEditGmd(this.dataState.createProp);
+      this.setDefaultParams();
+      this.setGetUpdate(masterGMD);
+      this.setTableTypes(masterGMD);
+      this[getType](postGMD); // setting the title or type to GMD
+      this.setClearEditProps();
+      // get data from API
+      this[getGMD]({
+        skip: 0,
+        take: 5,
+      });
+    },
   },
   created() {
-    this.setCountUpdateDefault();
-    this.setHeader(this.dataState.button.title);
-    this.setCreateInput(this.dataState.createProp);
-    this.updateOrEditGmd(this.dataState.createProp);
-    this.setDefaultParams();
-    // this.setGetUpdate(masterGMD);
-    // this.setTableTypes(masterGMD);
-    this[getType](postGMD); // setting the title or type to GMD
-    this.setClearEditProps();
-    //get data from API
-    this[getGMD]({
-      skip: 0,
-      take: 5,
-    });
+    this.lifeComponent();
   },
 };
 </script>
