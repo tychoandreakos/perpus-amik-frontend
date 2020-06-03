@@ -1,6 +1,6 @@
 <template lang="pug">
     div.circle-choice
-        .circle-wrapper(v-for="(item, i) in state" :key="i") 
+        .circle-wrapper(v-for="(item, i) in state" :key="i" @click="choiceHandler(i)") 
             div.circle(:class="item.selected ? 'active' : null")
                 Icon.icon(:icon="item.selected ? 'check' : item.icon")
             span(:class="item.selected ? 'active-span' : null") {{ item.title }}
@@ -13,6 +13,11 @@ export default {
   name: 'CircleChoiceMembership',
   components: {
     Icon,
+  },
+  methods: {
+    choiceHandler(key) {
+      this.$emit('choice', key);
+    },
   },
   props: {
     state: {

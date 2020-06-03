@@ -7,22 +7,33 @@
                 Input(:property="property" value="" :disabledLabel="true" @input="input")
             div.form-wrapper
                 label Sex
-                Choice(:state="choiceData")
+                Choice(:state="choiceData" @choice="choiceHandler")
+            div.form-wrapper
+                label Member Type
+                Dropdown
 </template>
 
 <script>
 import Input from '../Card/Input/Default';
 import Choice from './CircleChoice';
+import Dropdown from './Dropdown';
 
 export default {
   name: 'InsertFormMembership',
   components: {
     Input,
     Choice,
+    Dropdown,
   },
   methods: {
     input(e) {
       console.log(e);
+    },
+    choiceHandler(key) {
+      key == 0
+        ? (this.choiceData[1].selected = false)
+        : (this.choiceData[0].selected = false);
+      this.choiceData[key].selected = !this.choiceData[key].selected;
     },
   },
   data() {
@@ -31,7 +42,7 @@ export default {
         {
           selected: true,
           title: 'female',
-          icon: 'wand',
+          icon: 'crown',
         },
         {
           selected: false,
@@ -78,8 +89,8 @@ export default {
 
       label {
         font: {
-          family: 'Nunito', sans-serif;
-          size: 0.98rem;
+          family: 'Poppins', sans-serif;
+          size: 0.95rem;
         }
         color: #626262;
       }
