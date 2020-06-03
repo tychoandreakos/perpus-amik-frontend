@@ -100,11 +100,14 @@ export default {
     input {
       width: 100%;
       border: none;
-      text-transform: capitalize;
       background: transparent;
       padding: 0.3rem;
       font: {
         size: 0.97rem;
+      }
+
+      &:not([type='password']) {
+        text-transform: capitalize;
       }
     }
 

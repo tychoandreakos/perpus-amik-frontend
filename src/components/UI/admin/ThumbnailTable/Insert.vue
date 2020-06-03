@@ -15,6 +15,8 @@
                     TextArea
                   template(v-if="item.type == typeForm[4]")
                     Upload
+                  template(v-if="item.type == typeForm[5]")
+                    Date.date(v-model="item.date")
             Button(:buttonProp="button")
 </template>
 
@@ -25,6 +27,8 @@ import Dropdown from './Dropdown';
 import TextArea from './Textarea';
 import Upload from './Upload';
 import Button from '../Button';
+import Date from 'vue-date-pick';
+import 'vue-date-pick/dist/vueDatePick.css';
 
 export default {
   name: 'InsertFormMembership',
@@ -35,6 +39,7 @@ export default {
     TextArea,
     Upload,
     Button,
+    Date,
   },
   methods: {
     input(e) {
@@ -44,7 +49,7 @@ export default {
       console.log(val);
     },
     choiceHandler(key) {
-      const choices = this.stateData[3];
+      const choices = this.stateData[2];
       key == 0
         ? (choices.choiceData[1].selected = false)
         : (choices.choiceData[0].selected = false);
@@ -84,11 +89,6 @@ export default {
           },
         },
         {
-          title: 'membersip type',
-          type: 'dropdown',
-          typeMember: ['mahasiswa', 'dosen', 'satpam'],
-        },
-        {
           title: 'sex',
           type: 'choice',
           choiceData: [
@@ -104,6 +104,22 @@ export default {
             },
           ],
         },
+        {
+          title: 'birth date',
+          type: 'date',
+          date: '2020-01-01',
+        },
+        {
+          title: 'register date',
+          type: 'date',
+          date: '2019-01-01',
+        },
+        {
+          title: 'membersip type',
+          type: 'dropdown',
+          typeMember: ['mahasiswa', 'dosen', 'satpam'],
+        },
+
         {
           title: 'address',
           type: 'textarea',
@@ -149,7 +165,7 @@ export default {
           },
         },
       ],
-      typeForm: ['text', 'choice', 'dropdown', 'textarea', 'upload'],
+      typeForm: ['text', 'choice', 'dropdown', 'textarea', 'upload', 'date'],
     };
   },
 };
@@ -181,6 +197,19 @@ export default {
       grid-template-columns: 15% auto;
       align-items: center;
       margin-bottom: 1.5rem;
+
+      .date {
+        width: 100%;
+
+        input {
+          width: 100%;
+          padding: 0.5rem;
+          background: #fcfcfc;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-radius: 7px;
+          cursor: pointer;
+        }
+      }
 
       label {
         text-transform: capitalize;
