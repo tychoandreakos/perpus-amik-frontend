@@ -1,6 +1,6 @@
 <template lang="pug">
     div.input-card
-        label.label-card(:class="active ? 'active' : undefined" :for="property.id") {{ property.label }}
+        label.label-card(v-if="disabledLabel ? false : true " :class="active ? 'active' : undefined" :for="property.id") {{ property.label }}
         div.input-wrapper
           transition(name="fade")
             label.placeholder(:style="active ? { marginLeft: '.4rem' } : undefined" :for="property.id" v-if="!checkPlaceholder") Your {{ property.placeholder }}
@@ -11,6 +11,10 @@
 export default {
   name: 'DefaultInputCard',
   props: {
+    disabledLabel: {
+      type: Boolean,
+      required: false,
+    },
     property: {
       type: Object,
       required: true,

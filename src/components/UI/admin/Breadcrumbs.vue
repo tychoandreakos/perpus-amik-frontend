@@ -25,14 +25,14 @@ import Icon from 'vue-themify-icons';
 export default {
   name: 'Breadcrumbs',
   components: {
-    Icon
+    Icon,
   },
   props: {
     breadcrumbs: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -44,6 +44,7 @@ export default {
 
 .breadcrumbs .simple {
   align-self: center;
+  text-transform: capitalize;
 }
 
 .breadcrumbs .simple i {

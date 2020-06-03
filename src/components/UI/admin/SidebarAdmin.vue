@@ -77,7 +77,7 @@ export default {
         {
           title: 'Membership',
           icon: 'id-badge',
-          href: 'membership'
+          href: 'membership.index'
         },
         {
           title: 'Master File',
