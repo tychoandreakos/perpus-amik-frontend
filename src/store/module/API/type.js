@@ -41,6 +41,7 @@ export const messagePrompt = 'master/messagePrompt';
 export const msgPrompt = 'master/msgPrompt';
 export const titleComponent = 'master/title';
 export const dataComponent = 'master/dataComponent';
+export const newPostData = 'POST/newPostData';
 
 export const resourceURL = 'master/resourceURL';
 export const resourceUrlGMD = 'master/resource/GMD';

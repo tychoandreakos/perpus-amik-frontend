@@ -31,6 +31,9 @@ import Button from '../Button';
 import Date from 'vue-date-pick';
 import 'vue-date-pick/dist/vueDatePick.css';
 
+import { newPostData } from '../../../../store/module/API/type';
+import { mapActions } from 'vuex';
+
 export default {
   name: 'InsertFormMembership',
   components: {
@@ -43,8 +46,11 @@ export default {
     Date,
   },
   methods: {
+    ...mapActions({
+      submit: newPostData,
+    }),
     submitHandler() {
-      console.log(this.form);
+      this.submit(this.form);
     },
     input(e, key) {
       this.form[key] = e;

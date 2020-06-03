@@ -1,8 +1,6 @@
 import axios from './axios';
 import * as types from './type';
 
-import { name } from '../../../routes/index';
-
 export default {
   state: {
     [types.dataComponent]: {
@@ -593,8 +591,16 @@ export default {
     [types.updateSomeGmd]: ({ commit }, payload) => {
       commit(types.updateSomeGmd, payload);
     },
+    [types.newPostData]: ({ commit }, payload) => {
+      commit(types.newPostData, payload);
+    },
   },
   mutations: {
+    [types.newPostData]: (state, payload) => {
+      axios.post(state[types.titleComponent].toLowerCase(), {
+        payload,
+      });
+    },
     [types.dataComponent]: (state, payload) => {
       state[types.dataComponent] = payload;
     },

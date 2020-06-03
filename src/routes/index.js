@@ -301,6 +301,11 @@ const router = [
             path: 'add',
             name: 'membership.add',
             component: InsertMembership,
+            beforeEnter(to, from, next) {
+              const title = 'member';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Add New Membership'),
               metaTags: [
