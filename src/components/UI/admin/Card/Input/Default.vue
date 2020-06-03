@@ -4,7 +4,7 @@
         div.input-wrapper
           transition(name="fade")
             label.placeholder(:style="active ? { marginLeft: '.4rem' } : undefined" :for="property.id" v-if="!checkPlaceholder") Your {{ property.placeholder }}
-          input(:id="property.id" :type="property.type" v-model="placeholder" @input="$emit('input', $event.target.value)" @blur="active = false" @focus="active = true")
+          input(:id="property.id" autocomplete="off" :type="property.type" v-model="placeholder" @input="$emit('input', $event.target.value)" @blur="active = false" @focus="active = true")
 </template>
 
 <script>
@@ -79,7 +79,8 @@ export default {
       padding: 0.5rem 0.6rem;
       text-transform: capitalize;
       font: {
-        size: 0.97rem;
+        family: 'Poppins', sans-serif;
+        size: 0.83rem;
       }
     }
 
@@ -89,7 +90,7 @@ export default {
       cursor: text;
       font: {
         family: 'Poppins', sans-serif;
-        size: 0.8rem;
+        size: 0.83rem;
       }
       position: absolute;
       top: 28%;

@@ -1,7 +1,7 @@
 <template lang="pug">
     div.input-card
         div.input-wrapper
-            textarea.area
+            textarea.area(placeholder="Your insert address")
 </template>
 
 <script>

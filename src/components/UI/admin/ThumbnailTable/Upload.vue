@@ -1,12 +1,12 @@
 <template lang="pug">
     div.upload-form
         input(ref="upload" type="file" hidden="hidden" accept="image/png,image/jpeg"  @change="choiceHandler")
-        div.img
+        div.img(v-if="urlImg")
             div.img-actual(:style="img")
         div.upload(@click.prevent="uploadHandler")
             div.info
                 Icon.icon(icon="upload")
-                h3 Upload Here
+                h3 {{ uploadText }}
 </template>
 
 <script>
@@ -26,17 +26,19 @@ export default {
   },
   data() {
     return {
-      urlImg:
-        'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/user-13.005c80e1.jpg',
+      uploadText: 'Upload Here',
+      urlImg: '',
     };
   },
   methods: {
     readData(file) {},
     choiceHandler(e) {
       const file = e.target.files[0];
+      console.log(file);
       const reader = new FileReader();
       let data = reader.readAsDataURL(file);
       reader.onload = (e) => {
+        this.uploadText = file.name;
         this.urlImg = e.target.result;
       };
     },
@@ -107,8 +109,9 @@ export default {
 
       h3 {
         color: rgb(98, 98, 98);
+        text-align: center;
         font: {
-          size: 1rem;
+          size: 0.9rem;
           weight: 500;
           family: 'Poppins', sans-serif;
         }
