@@ -31,15 +31,18 @@ export default {
     };
   },
   methods: {
+    setUpload() {
+      this.$emit('upload', this.urlImg);
+    },
     readData(file) {},
     choiceHandler(e) {
       const file = e.target.files[0];
-      console.log(file);
       const reader = new FileReader();
       let data = reader.readAsDataURL(file);
       reader.onload = (e) => {
         this.uploadText = file.name;
         this.urlImg = e.target.result;
+        this.setUpload();
       };
     },
     uploadHandler() {

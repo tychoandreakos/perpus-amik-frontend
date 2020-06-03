@@ -1,23 +1,24 @@
 <template lang="pug">
     div.insert-form
-        h3.title Please Insert Data.
+        h3.title Please {{ title }} Data.
         form
             template(v-for="(item, i) in stateData")
               div.form-wrapper
                   label {{ item.title }}
                   template(v-if="item.type == typeForm[0]")
-                    Input(:property="item.property" value="" :disabledLabel="true" @input="input")
+                    Input(:property="item.property" value="" :disabledLabel="true" @input="input($event, item.property.id)")
                   template(v-if="item.type == typeForm[1]")
-                    Choice(:state="item.choiceData" @choice="choiceHandler")
+                    Choice(:state="item.choiceData" @choice="choiceHandler($event, item.id)")
                   template(v-if="item.type == typeForm[2]")
-                    Dropdown(:typeMember="item.typeMember" @choice="typeMemberHandler")
+                    Dropdown(:typeMember="item.typeMember" @choice="input($event, item.id)")
                   template(v-if="item.type == typeForm[3]")
-                    TextArea
+                    TextArea(@input="input($event, item.id)")
                   template(v-if="item.type == typeForm[4]")
-                    Upload
+                    Upload(@upload="input($event, item.id)")
                   template(v-if="item.type == typeForm[5]")
-                    Date.date(v-model="item.date")
-            Button(:buttonProp="button")
+                    Date.date(v-model="item.date" @input="input($event, item.id)")
+            div.btn(@click.prevent="submitHandler")
+              Button(:buttonProp="button")
 </template>
 
 <script>
@@ -42,22 +43,41 @@ export default {
     Date,
   },
   methods: {
-    input(e) {
-      console.log(e);
+    submitHandler() {
+      console.log(this.form);
     },
-    typeMemberHandler(val) {
-      console.log(val);
+    input(e, key) {
+      this.form[key] = e;
     },
-    choiceHandler(key) {
+    setForm(key) {
+      this.form[key] = e;
+    },
+    choiceHandler(key, id) {
       const choices = this.stateData[2];
       key == 0
         ? (choices.choiceData[1].selected = false)
         : (choices.choiceData[0].selected = false);
       choices.choiceData[key].selected = !choices.choiceData[key].selected;
+      this.form[id] = key;
     },
   },
   data() {
     return {
+      title: 'insert',
+      form: {
+        membertype_id: '',
+        name: '',
+        birthdate: '',
+        member_since: '',
+        alamat: '',
+        username: '',
+        email: '',
+        password: '',
+        phone: '',
+        image: '',
+        pending: false,
+        sex: '',
+      },
       button: {
         title: 'Submit Data',
         icon: 'check',
@@ -74,7 +94,7 @@ export default {
           title: 'member id',
           type: 'text',
           property: {
-            id: 'member',
+            id: 'membertype_id',
             placeholder: 'Insert your member id',
             type: 'text',
           },
@@ -90,6 +110,7 @@ export default {
         },
         {
           title: 'sex',
+          id: 'sex',
           type: 'choice',
           choiceData: [
             {
@@ -106,26 +127,31 @@ export default {
         },
         {
           title: 'birth date',
+          id: 'birthdate',
           type: 'date',
           date: '2020-01-01',
         },
         {
           title: 'register date',
+          id: 'member_since',
           type: 'date',
           date: '2019-01-01',
         },
         {
-          title: 'membersip type',
+          title: 'membership type',
+          id: 'membership_type',
           type: 'dropdown',
           typeMember: ['mahasiswa', 'dosen', 'satpam'],
         },
 
         {
           title: 'address',
+          id: 'alamat',
           type: 'textarea',
         },
         {
           title: 'phone number',
+          id: 'phone',
           type: 'text',
           property: {
             id: 'phone',
@@ -135,6 +161,7 @@ export default {
         },
         {
           title: 'Photo Member',
+          id: 'image',
           type: 'upload',
         },
         {
