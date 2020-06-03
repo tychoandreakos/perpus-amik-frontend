@@ -1,6 +1,6 @@
 <template lang="pug">
     div.upload-form
-        input(ref="upload" type="file" hidden="hidden")
+        input(ref="upload" type="file" hidden="hidden" accept="image/png,image/jpeg"  @change="choiceHandler")
         div.img
             div.img-actual(:style="img")
         div.upload(@click.prevent="uploadHandler")
@@ -21,11 +21,6 @@ export default {
     img() {
       return {
         background: "url('" + this.urlImg + "')",
-        width: '100%',
-        height: '100%',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderRadius: '50%',
       };
     },
   },
@@ -36,6 +31,15 @@ export default {
     };
   },
   methods: {
+    readData(file) {},
+    choiceHandler(e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      let data = reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        this.urlImg = e.target.result;
+      };
+    },
     uploadHandler() {
       this.$refs.upload.click();
     },
@@ -64,10 +68,18 @@ export default {
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
     // background-size: cover;
     // background-position: ce;
+
+    .img-actual {
+      width: 100%;
+      height: 100%;
+      background-size: cover !important;
+      background-position: center !important;
+      border-radius: 50%;
+    }
   }
 
   &:hover {
-    border: 5px dotted #eae8fd;
+    border: 5px dotted #8379f0;
   }
 
   .upload {
