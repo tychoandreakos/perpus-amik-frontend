@@ -10,7 +10,7 @@
                 Choice(:state="choiceData" @choice="choiceHandler")
             div.form-wrapper
                 label Member Type
-                Dropdown
+                Dropdown(:typeMember="typeMember" @choice="typeMemberHandler")
 </template>
 
 <script>
@@ -29,6 +29,9 @@ export default {
     input(e) {
       console.log(e);
     },
+    typeMemberHandler(val) {
+      console.log(val);
+    },
     choiceHandler(key) {
       key == 0
         ? (this.choiceData[1].selected = false)
@@ -38,6 +41,7 @@ export default {
   },
   data() {
     return {
+      typeMember: ['mahasiswa', 'dosen', 'satpam'],
       choiceData: [
         {
           selected: true,

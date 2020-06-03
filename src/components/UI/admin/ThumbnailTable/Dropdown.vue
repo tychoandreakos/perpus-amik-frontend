@@ -1,11 +1,10 @@
 <template lang="pug">
   div.dropdown-membership(@click="dropdown = !dropdown")
     div.input
-        span standard
+        span {{ placeholder }}
         Icon(icon="angle-down")
     ul.dropdown-list(v-if="dropdown")
-        li Dosen
-        li Special
+        li(v-for="(item, i) in typeMember" :key="i" @click="listHandler(item)") {{ item }}
     div.backdrop-dropdown(v-if="dropdown")
 </template>
 
@@ -17,8 +16,21 @@ export default {
   components: {
     Icon,
   },
+  props: {
+    typeMember: {
+      type: Array,
+      required: true,
+    },
+  },
+  methods: {
+    listHandler(val) {
+      this.placeholder = val;
+      this.$emit('choice', val);
+    },
+  },
   data() {
     return {
+      placeholder: this.typeMember[0],
       dropdown: false,
     };
   },
@@ -60,13 +72,14 @@ export default {
     z-index: 5;
     font: {
       family: 'Poppins', sans-serif;
-      size: 0.88rem;
+      size: 0.86rem;
     }
 
     li {
       width: 100%;
       padding: 0.5rem 0.4rem;
       color: #626262;
+      text-transform: capitalize;
 
       &:hover {
         background: rgba(204, 204, 204, 0.151);
