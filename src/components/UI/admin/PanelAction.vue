@@ -12,6 +12,11 @@
         :style="{ marginLeft: '1.2rem' }"
         :buttonProp="button"
         )
+      div.panel-wrap(v-if="button.type == 'membership'" @click="membershipHandler")
+        ButtonComponent( 
+        :style="{ marginLeft: '1.2rem' }"
+        :buttonProp="button"
+        )
     div.panel-wrap
       PageNumberComponent(:total="total" @count="count")
       SearchComponent(:search="search")
@@ -44,6 +49,11 @@ export default {
     deleteHandler() {
       this.dialog(() => {
         this.destroyAll();
+      });
+    },
+    membershipHandler() {
+      this.$router.push({
+        name: 'membership.add',
       });
     },
     count(e) {

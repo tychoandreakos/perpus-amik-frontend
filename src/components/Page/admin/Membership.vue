@@ -15,7 +15,7 @@ export default {
   components: {
     HeaderComponent,
     PanelActionComponent,
-    TableComponent
+    TableComponent,
   },
   data() {
     return {
@@ -23,24 +23,24 @@ export default {
       title: 'Membership',
       button: {
         title: 'Add New Member',
-        icon: 'plus'
+        icon: 'plus',
       },
       search: {
-        placeholder: 'Search Member'
+        placeholder: 'Search Member',
       },
       table: {
         enabled: {
           checkbox: true,
           edit: true,
           remove: true,
-          action: true
+          action: true,
         },
         title: [
           'MEMBER ID',
           'MEMBER NAME',
           'MEMBER TYPE',
           'EMAIL',
-          'Last Update'
+          'Last Update',
         ],
         sample: [
           {
@@ -48,33 +48,33 @@ export default {
             name: 'Elang Indra',
             type: 'Mahasiswa',
             email: 'elangindra15@gmail.com',
-            updated: '2020-02-19'
+            updated: '2020-02-19',
           },
           {
             id: 1702014,
             name: 'Rani Mulyani',
             type: 'Mahasiswa',
             email: 'elangindra15@gmail.com',
-            updated: '2020-02-19'
+            updated: '2020-02-19',
           },
           {
             id: 1702015,
             name: 'Suhendri',
             type: 'Dosen',
             email: 'elangindra15@gmail.com',
-            updated: '2020-02-19'
+            updated: '2020-02-19',
           },
           {
             id: 1702017,
             name: 'Ridwan Ganteng',
             type: 'Mahasiswa',
             email: 'elangindra15@gmail.com',
-            updated: '2020-02-19'
-          }
-        ]
-      }
+            updated: '2020-02-19',
+          },
+        ],
+      },
     };
-  }
+  },
 };
 </script>
 <style scoped>

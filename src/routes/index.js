@@ -11,7 +11,11 @@ import HistoryUserComponent from '../components/Page/user/History';
 
 // admin component
 import AdminComponent from '../components/Page/admin/HomepageAdmin';
+
+// membership
 import MembershipComponent from '../components/Page/admin/Membership/Default';
+import MembershipIndex from '../components/Page/admin/Membership/Index';
+import InsertMembership from '../components/Page/admin/Membership/Insert';
 
 // children
 import FirstPage from '../components/Page/user/FirstPage';
@@ -272,21 +276,46 @@ const router = [
       },
       {
         path: 'membership',
-        component: MembershipComponent,
+        component: MembershipIndex,
         name: 'membership',
-        meta: {
-          title: putTitle('Membership'),
-          metaTags: [
-            {
-              name: 'description',
-              content: 'The about page of our example app.',
+        children: [
+          {
+            path: '/',
+            component: MembershipComponent,
+            name: 'membership.index',
+            meta: {
+              title: putTitle('Membership'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
             },
-            {
-              property: 'og:description',
-              content: 'The about page of our example app.',
+          },
+          {
+            path: 'add',
+            name: 'membership.add',
+            component: InsertMembership,
+            meta: {
+              title: putTitle('Add New Membership'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
             },
-          ],
-        },
+          },
+        ],
       },
       {
         path: 'circulation',

@@ -44,10 +44,9 @@ export default {
           placeholder: 'Search Member',
         },
         button: {
-          purpose: 'member',
           title: 'Add New Membership',
           icon: 'plus',
-          type: 'add',
+          type: 'membership',
         },
       },
     };
