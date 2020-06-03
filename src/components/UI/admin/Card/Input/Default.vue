@@ -73,6 +73,16 @@ export default {
     transition: border 0.4s ease-in-out;
     position: relative;
 
+    .area {
+      width: 100%;
+      border: none;
+      padding: 0.5rem 0.6rem;
+      text-transform: capitalize;
+      font: {
+        size: 0.97rem;
+      }
+    }
+
     .placeholder {
       color: rgba(98, 98, 98, 0.705);
       transition: margin-left 0.2s ease-in;
@@ -89,8 +99,12 @@ export default {
     input {
       width: 100%;
       border: none;
+      text-transform: capitalize;
       background: transparent;
       padding: 0.3rem;
+      font: {
+        size: 0.97rem;
+      }
     }
 
     &:focus-within {
@@ -107,7 +121,7 @@ export default {
     font: {
       family: 'Quicksand', sans-serif;
       weight: 500;
-      size: 0.9rem;
+      size: 0.97rem;
     }
   }
 }

@@ -11,12 +11,20 @@
             div.form-wrapper
                 label Member Type
                 Dropdown(:typeMember="typeMember" @choice="typeMemberHandler")
+            div.form-wrapper
+                label Address
+                TextArea
+            div.form-wrapper
+                label Upload Photo
+                Upload
 </template>
 
 <script>
 import Input from '../Card/Input/Default';
 import Choice from './CircleChoice';
 import Dropdown from './Dropdown';
+import TextArea from './Textarea';
+import Upload from './Upload';
 
 export default {
   name: 'InsertFormMembership',
@@ -24,6 +32,8 @@ export default {
     Input,
     Choice,
     Dropdown,
+    TextArea,
+    Upload,
   },
   methods: {
     input(e) {
