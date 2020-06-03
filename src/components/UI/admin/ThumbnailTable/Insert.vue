@@ -44,20 +44,24 @@ export default {
       console.log(val);
     },
     choiceHandler(key) {
+      const choices = this.stateData[3];
       key == 0
-        ? (this.choiceData[1].selected = false)
-        : (this.choiceData[0].selected = false);
-      this.choiceData[key].selected = !this.choiceData[key].selected;
+        ? (choices.choiceData[1].selected = false)
+        : (choices.choiceData[0].selected = false);
+      choices.choiceData[key].selected = !choices.choiceData[key].selected;
     },
   },
   data() {
     return {
       button: {
         title: 'Submit Data',
-        icon: 'plus',
+        icon: 'check',
         type: 'add',
         style: {
           margin: 'auto',
+          borderRadius: '4px',
+          padding: '.8rem 2rem',
+          fontSize: '.9rem',
         },
       },
       stateData: [
