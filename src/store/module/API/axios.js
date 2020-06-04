@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const remote = 'https://desolate-anchorage-69638.herokuapp.com';
-const local = 'http://localhost:8000';
+const local = 'http://localhost';
 
 let instance = axios.create({
   baseURL: local,
