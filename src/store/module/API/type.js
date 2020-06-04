@@ -43,6 +43,10 @@ export const titleComponent = 'master/title';
 export const dataComponent = 'master/dataComponent';
 export const newPostData = 'POST/newPostData';
 
+export const getMemberType = 'membership/getMemberType';
+export const getMemberMethod = 'collections';
+export const clearMemberType = 'membership/clearMemberType';
+
 export const resourceURL = 'master/resourceURL';
 export const resourceUrlGMD = 'master/resource/GMD';
 export const resourceUrlAuthor = 'master/resource/Author';

@@ -31,8 +31,12 @@ import Button from '../Button';
 import Date from 'vue-date-pick';
 import 'vue-date-pick/dist/vueDatePick.css';
 
-import { newPostData } from '../../../../store/module/API/type';
-import { mapActions } from 'vuex';
+import {
+  newPostData,
+  getMemberType,
+  clearMemberType,
+} from '../../../../store/module/API/type';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'InsertFormMembership',
@@ -45,9 +49,28 @@ export default {
     Button,
     Date,
   },
+  created() {
+    // this.clearTypeMember();
+    this.memberTypeHandler();
+    this.stateData[5].typeMember = this.getMemberType;
+  },
+  watch: {
+    getMemberType() {
+      return this.getMemberType;
+    },
+  },
+  computed: {
+    ...mapGetters({
+      getMemberType: getMemberType,
+    }),
+  },
   methods: {
+    ...mapMutations({
+      clearTypeMember: clearMemberType,
+    }),
     ...mapActions({
       submit: newPostData,
+      memberTypeHandler: getMemberType,
     }),
     submitHandler() {
       this.submit(this.form);
@@ -147,7 +170,7 @@ export default {
           title: 'membership type',
           id: 'membership_type',
           type: 'dropdown',
-          typeMember: ['mahasiswa', 'dosen', 'satpam'],
+          typeMember: [],
         },
 
         {

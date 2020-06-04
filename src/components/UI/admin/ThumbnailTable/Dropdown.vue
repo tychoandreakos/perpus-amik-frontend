@@ -4,7 +4,7 @@
         span {{ placeholder }}
         Icon(icon="angle-down")
     ul.dropdown-list(v-if="dropdown")
-        li(v-for="(item, i) in typeMember" :key="i" @click="listHandler(item)") {{ item }}
+        li(v-for="(item, i) in memberData" :key="i" @click="listHandler(item)") {{ item }}
     div.backdrop-dropdown(v-if="dropdown")
 </template>
 
@@ -16,9 +16,14 @@ export default {
   components: {
     Icon,
   },
+  computed: {
+    memberData() {
+      return this.typeMember;
+    },
+  },
   props: {
     typeMember: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
@@ -30,7 +35,7 @@ export default {
   },
   data() {
     return {
-      placeholder: this.typeMember[0],
+      placeholder: this.typeMember[1],
       dropdown: false,
     };
   },
