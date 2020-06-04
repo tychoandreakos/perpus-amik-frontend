@@ -71,13 +71,17 @@ export default {
       return this.message.message;
     },
     database() {
-      return {
-        ...this.dataComponent[this.titleState.toLowerCase()][1],
-        content: this.view.result,
-      };
+      if (!Array.isArray(this.view.result)) {
+        return {
+          ...this.dataComponent[this.titleState.toLowerCase()][1],
+          content: this.view.result,
+        };
+      }
+
+      return false;
     },
     total() {
-      return this.database.content.dataCount || 0;
+      return this.database.content ? this.database.content.dataCount : 0;
     },
   },
   methods: {
@@ -123,12 +127,12 @@ export default {
 
       if (this.dataComponent[this.titleState.toLowerCase()][0].selected) {
         this.setDropdownChoice({
-          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1].id]: this
-            .dataComponent[this.titleState.toLowerCase()][0].selected,
+          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1]
+            .id]: this.dataComponent[this.titleState.toLowerCase()][0].selected,
         });
         this.setSelectedDropdown({
-          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1].id]: this
-            .dataComponent[this.titleState.toLowerCase()][0].selected,
+          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1]
+            .id]: this.dataComponent[this.titleState.toLowerCase()][0].selected,
         });
       }
     },

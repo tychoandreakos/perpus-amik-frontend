@@ -298,6 +298,29 @@ const router = [
             },
           },
           {
+            path: 'member-type',
+            name: 'memberType',
+            component: GMDComponent,
+            beforeEnter(to, from, next) {
+              const title = 'Member-Type';
+              store.commit(titleComponent, title);
+              next();
+            },
+            meta: {
+              title: putTitle('Membership Type'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
+            },
+          },
+          {
             path: 'add',
             name: 'membership.add',
             component: InsertMembership,

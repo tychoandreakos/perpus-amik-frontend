@@ -1,6 +1,10 @@
 <template>
   <section id="membership">
-    <HeaderComponent :title="title" :breadcrumbsHeader="breadcrumbs" />
+    <HeaderComponent
+      :envState="envState"
+      :title="title"
+      :breadcrumbsHeader="breadcrumbs"
+    />
     <PanelActionComponent :search="search" :button="button" />
     <TableComponent :tableProps="table" />
   </section>
@@ -19,6 +23,7 @@ export default {
   },
   data() {
     return {
+      envState: true,
       breadcrumbs: ['Data List'],
       title: 'Membership',
       button: {

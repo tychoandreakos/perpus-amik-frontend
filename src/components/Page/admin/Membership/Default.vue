@@ -1,6 +1,6 @@
 <template lang="pug">
     div#membership
-        Header(:title="dataState.title" :breadcrumbsHeader="dataState.breadcrumbs")
+        Header(:envState="true" :title="dataState.title" :breadcrumbsHeader="dataState.breadcrumbs")
         PanelAction(:title="dataState.title" :settings="dataState.PanelAction" :search="dataState.search" :breadcrumbsHeader="dataState.breadcrumbs" @count="count" :total="total" :button="dataState.button")
         ThumbnailTable
 </template>

@@ -1,48 +1,52 @@
 <template lang="pug">
   section#table
-    p.find(v-if="search") {{ found }} #[b {{ search }}].
-    table
-      thead
-        th(v-if="tableProps.enabled.checkbox")
-          div(style="margin-left: .5rem" @click="selectAllHandler")
-            CheckBox(:check="checkBoxControl")
-        th(v-for="(header, i) in tableProps.title" :key="i") 
-          span {{ header }}
-        th(v-if="tableProps.enabled.action") Action
-      template(v-if="tableProps.content.dataCount > 0 || tableProps.content.length > 0")
-        tbody
-            tr(
-              v-for="(body, key) in tableProps.content.result" 
-              :key="body.id"
-              @click="checkboxHandler(key)"
-              :class="{'select': checkbox[key]}"
-              )
-              td(v-show="tableProps.enabled.checkbox")
-                CheckBox(:check="checkbox[key] || false" @click="checkboxHandler(key)")
-              slot(v-if="tableProps.enabled.slot")
-              td(v-for="(field, i) in tableProps.field" :key="i")
-                template(v-if="body[field]")
-                  template(v-if="body[field].toLowerCase().includes(search)") 
-                    span.action {{ body[field] }}
-                  template(v-else)
-                    span {{ body[field] }}
-              td.action(v-if="tableProps.enabled.action")
-                button(
-                    @click.stop="reloadHandler(body.id, $event)"
-                    v-if="tableProps.enabled.retrieve"
-                  ) #[Icon(icon="reload")]
-                button(
-                  @click.stop="editHandler(body, body.id)"
-                  v-if="tableProps.enabled.edit"
-                ) #[Icon(icon="pencil")]
-                button(
-                  @click.stop="deleteHandler(body.id, $event)"
-                  v-if="tableProps.enabled.remove"
-                ) #[Icon(icon="trash")]
-      template(v-else)
-        div.empty 
-          img(src="https://cdn.dribbble.com/users/1537480/screenshots/5299696/artboard_copy_21.jpg" alt="not found")
-          h3 {{ notFound }}
+    template(v-if="tableProps")
+      p.find(v-if="search") {{ found }} #[b {{ search }}].
+      table
+        thead
+          th(v-if="tableProps.enabled.checkbox")
+            div(style="margin-left: .5rem" @click="selectAllHandler")
+              CheckBox(:check="checkBoxControl")
+          th(v-for="(header, i) in tableProps.title" :key="i") 
+            span {{ header }}
+          th(v-if="tableProps.enabled.action") Action
+          h3 {{ tableProps.content.length }}
+        template(v-if="tableProps.content.dataCount > 0 || tableProps.content.length > 0")
+          tbody
+              tr(
+                v-for="(body, key) in tableProps.content.result" 
+                :key="body.id"
+                @click="checkboxHandler(key)"
+                :class="{'select': checkbox[key]}"
+                )
+                td(v-show="tableProps.enabled.checkbox")
+                  CheckBox(:check="checkbox[key] || false" @click="checkboxHandler(key)")
+                slot(v-if="tableProps.enabled.slot")
+                td(v-for="(field, i) in tableProps.field" :key="i")
+                  template(v-if="body[field]")
+                    template(v-if="typeof body[field] == 'number'") 
+                      span {{ body[field] }}
+                    template(v-else-if="body[field].toLowerCase().includes(search)")
+                      span.action {{ body[field] }}
+                    template(v-else)
+                       span {{ body[field] }}
+                td.action(v-if="tableProps.enabled.action")
+                  button(
+                      @click.stop="reloadHandler(body.id, $event)"
+                      v-if="tableProps.enabled.retrieve"
+                    ) #[Icon(icon="reload")]
+                  button(
+                    @click.stop="editHandler(body, body.id)"
+                    v-if="tableProps.enabled.edit"
+                  ) #[Icon(icon="pencil")]
+                  button(
+                    @click.stop="deleteHandler(body.id, $event)"
+                    v-if="tableProps.enabled.remove"
+                  ) #[Icon(icon="trash")]
+        template(v-else)
+          div.empty 
+            img(src="https://cdn.dribbble.com/users/1537480/screenshots/5299696/artboard_copy_21.jpg" alt="not found")
+            h3 {{ notFound }}
     //- template
 </template>
 <script>
@@ -106,7 +110,6 @@ export default {
   props: {
     tableProps: {
       required: true,
-      type: Object,
     },
   },
   methods: {

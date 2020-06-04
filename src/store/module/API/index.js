@@ -4,6 +4,88 @@ import * as types from './type';
 export default {
   state: {
     [types.dataComponent]: {
+      'member-type': [
+        {
+          panelAction: {
+            detail: false,
+            edit: true,
+            delete: true,
+            recycle: true,
+            setting: true,
+            destroy: false,
+            restore: false,
+            restoreAll: false,
+          },
+          breadcrumbs: ['Data List'],
+          title: 'Member Type',
+          button: {
+            title: 'Add New Member Type',
+            icon: 'plus',
+            type: 'add',
+          },
+          createProp: [
+            {
+              label: 'Member Type Name',
+              id: 'name',
+              placeholder: 'Please type a Member Type Name',
+              type: 'text',
+            },
+            {
+              label: 'Loan Limit',
+              id: 'limit_loan',
+              placeholder: 'Please type a Loan Limir',
+              type: 'text',
+            },
+            {
+              label: 'Loan Periode (In Days)',
+              id: 'loan_periode',
+              placeholder: 'Please type a Loan Periode',
+              type: 'text',
+            },
+            {
+              label: 'Membership Periode (In Years)',
+              id: 'membership_periode',
+              placeholder: 'Please type a Membership Periode',
+              type: 'text',
+            },
+            {
+              label: 'Fines (Rp.)',
+              id: 'fines',
+              placeholder: 'Please type a Fines',
+              type: 'text',
+            },
+          ],
+          search: {
+            placeholder: 'Search Member Type',
+          },
+        },
+        {
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
+          title: [
+            'Membertype Name',
+            'Loan Limit',
+            'Loan Periode',
+            'Membership Periode',
+            'Fines',
+            'Last Update',
+          ],
+          field: [
+            'name',
+            'limit_loan',
+            'loan_periode',
+            'membership_periode',
+            'fines',
+            'updated_at',
+          ],
+        },
+      ],
       subject: [
         {
           panelAction: {
@@ -598,7 +680,7 @@ export default {
   mutations: {
     [types.newPostData]: (state, payload) => {
       axios.post(state[types.titleComponent].toLowerCase(), {
-        payload,
+        ...payload,
       });
     },
     [types.dataComponent]: (state, payload) => {
