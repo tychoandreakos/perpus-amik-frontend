@@ -4,7 +4,7 @@
         span {{ placeholder }}
         Icon(icon="angle-down")
     ul.dropdown-list(v-if="dropdown")
-        li(v-for="(item, i) in memberData" :key="i" @click="listHandler(item)") {{ item }}
+        li(v-for="(item, i) in memberData" :key="i" @click="listHandler(i)") {{ item }}
     div.backdrop-dropdown(v-if="dropdown")
 </template>
 
@@ -28,9 +28,9 @@ export default {
     },
   },
   methods: {
-    listHandler(val) {
-      this.placeholder = val;
-      this.$emit('choice', val);
+    listHandler(key) {
+      this.placeholder = this.typeMember[key];
+      this.$emit('choice', key);
     },
   },
   data() {

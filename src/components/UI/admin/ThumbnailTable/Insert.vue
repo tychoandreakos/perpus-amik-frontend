@@ -94,8 +94,10 @@ export default {
     return {
       title: 'insert',
       form: {
+        id: '',
         membertype_id: '',
         name: '',
+        sex: '',
         birthdate: '',
         member_since: '',
         alamat: '',
@@ -103,9 +105,8 @@ export default {
         email: '',
         password: '',
         phone: '',
-        image: '',
         pending: false,
-        sex: '',
+        image: '',
       },
       button: {
         title: 'Submit Data',
@@ -123,7 +124,7 @@ export default {
           title: 'member id',
           type: 'text',
           property: {
-            id: 'membertype_id',
+            id: 'id',
             placeholder: 'Insert your member id',
             type: 'text',
           },
@@ -143,7 +144,7 @@ export default {
           type: 'choice',
           choiceData: [
             {
-              selected: true,
+              selected: false,
               title: 'female',
               icon: 'crown',
             },
@@ -168,11 +169,10 @@ export default {
         },
         {
           title: 'membership type',
-          id: 'membership_type',
+          id: 'membertype_id',
           type: 'dropdown',
           typeMember: [],
         },
-
         {
           title: 'address',
           id: 'alamat',
