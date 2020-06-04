@@ -2,13 +2,16 @@
     div#membership
         Header(:envState="true" :title="dataState.title" :breadcrumbsHeader="dataState.breadcrumbs")
         PanelAction(:title="dataState.title" :settings="dataState.PanelAction" :search="dataState.search" :breadcrumbsHeader="dataState.breadcrumbs" @count="count" :total="total" :button="dataState.button")
-        ThumbnailTable
+        ThumbnailTable(:tableProps="database")
 </template>
 
 <script>
 import ThumbnailTable from '../../../UI/admin/ThumbnailTable/Default';
 import Header from '../../../UI/admin/Header';
 import PanelAction from '../../../UI/admin/PanelAction';
+
+import { getGMD } from '../../../../store/module/API/type';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'Membership',
@@ -17,12 +20,34 @@ export default {
     Header,
     PanelAction,
   },
+  created() {
+    this.getData({
+      skip: 0,
+      take: 5,
+    });
+  },
   computed: {
+    ...mapGetters({
+      getMember: getGMD,
+    }),
+    database() {
+      if (!Array.isArray(this.getMember.result)) {
+        return {
+          // ...this.dataComponent[this.titleState.toLowerCase()][1],
+          content: this.getMember.result,
+        };
+      }
+
+      return false;
+    },
     total() {
       return 5;
     },
   },
   methods: {
+    ...mapActions({
+      getData: getGMD,
+    }),
     count(e) {},
   },
   data() {

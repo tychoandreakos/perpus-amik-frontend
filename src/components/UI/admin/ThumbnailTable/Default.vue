@@ -7,12 +7,13 @@
                     template(v-if="enabledImage ? enabledImage : item != 'image'")
                         th(:key="i") {{ item }}
             tbody
-                template(v-for="(body, keyBodies) in bodies")
+                template(v-for="(body, keyBodies) in tableProps.content.result")
                     tr(:key="keyBodies")
                         td #[Checkbox(:check="false")]
                         template(v-for="(item, keyItem) in body")
                             td(v-if="item.img && enabledImage" :key="keyItem")
-                                img(:src="item.url" :alt="item.title")
+                                div.img(:style="{background: 'url('+ item.img_name +')'}")
+                                //- img(:src="`${item.img_name}`" :alt="item.title")
                             td(v-else-if="!item.img" :key="keyItem") {{ item }}
                         td.action
                             button #[Icon(icon="pencil")]
@@ -30,15 +31,21 @@ export default {
     Icon,
     Checkbox,
   },
+  props: {
+    tableProps: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       head: [
-        'image',
+        'member image',
+        'ID',
         'name',
-        'category',
-        'popularity',
-        'order status',
-        'price',
+        'membership type',
+        'email',
+        'last updated',
         'action',
       ],
       enabledImage: true,
@@ -54,7 +61,6 @@ export default {
           category: 'fitness',
           popularity: '80',
           orderStatus: 'delivered',
-          price: '$99.99',
         },
         {
           image: {
@@ -67,7 +73,6 @@ export default {
           category: 'fitness',
           popularity: '50',
           orderStatus: 'pending',
-          price: '$99.99',
         },
       ],
     };
@@ -79,6 +84,21 @@ export default {
 #table {
   img {
     width: 45%;
+  }
+
+  tbody {
+    tr {
+      td {
+        .img {
+          border-radius: 50%;
+          width: 75px;
+          height: 75px;
+          background-position: center !important;
+          background-size: cover !important;
+          margin: auto;
+        }
+      }
+    }
   }
 }
 </style>

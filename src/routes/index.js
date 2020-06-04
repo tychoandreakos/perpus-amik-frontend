@@ -283,6 +283,11 @@ const router = [
             path: '/',
             component: MembershipComponent,
             name: 'membership.index',
+            beforeEnter(to, from, next) {
+              const title = 'member';
+              store.commit(titleComponent, title);
+              next();
+            },
             meta: {
               title: putTitle('Membership'),
               metaTags: [

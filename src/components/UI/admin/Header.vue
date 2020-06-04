@@ -56,7 +56,7 @@ export default {
 
   .right-menu {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 
     .env {
       background: #ff9f43;
