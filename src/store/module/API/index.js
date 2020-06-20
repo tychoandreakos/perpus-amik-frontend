@@ -697,8 +697,21 @@ export default {
     [types.updateMemberData]: ({ commit }, payload) => {
       commit(types.updateMemberData, payload);
     },
+    [types.editedMemberData]: ({ commit }, payload) => {
+      commit(types.editedMemberData, payload);
+    },
   },
   mutations: {
+    [types.editedMemberData]: (state, { id, form }) => {
+      axios.put(
+        `${state[types.titleComponent].toLowerCase()}/${id}/${
+          types.editMethodGMD
+        }`,
+        {
+          ...form,
+        }
+      );
+    },
     [types.checkIfDataAvailable]: (state) => {
       if (!Array.isArray(state[types.updateMemberData].result)) {
         state[types.checkIfDataAvailable] = true;

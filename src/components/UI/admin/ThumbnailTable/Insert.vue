@@ -36,6 +36,7 @@ import {
   newPostData,
   getMemberType,
   clearMemberType,
+  editedMemberData,
 } from '../../../../store/module/API/type';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 
@@ -134,11 +135,15 @@ export default {
     ...mapActions({
       submit: newPostData,
       memberTypeHandler: getMemberType,
+      updateNewData: editedMemberData,
     }),
     submitHandler() {
       if (this.dataEdit) {
         this.editHandler();
-        console.log(this.form);
+        this.updateNewData({
+          id: this.form.id,
+          form: this.form,
+        });
       } else {
         this.submit(this.form);
       }
@@ -167,19 +172,26 @@ export default {
         alamat,
         username,
         email,
-        password: '',
+        password: 'elangindra12',
         phone,
         pending: false,
         image,
       };
       let dataUpdated;
       for (let key in this.form) {
-        if (this.form[key].length > 0) {
+        if (this.form[key].length > 0 && key == 'sex') {
           dataUpdated = {
             ...dataUpdated,
             [key]: this.form[key],
           };
         }
+      }
+
+      if (this.form['sex'] >= 0) {
+        dataUpdated = {
+          ...dataUpdated,
+          sex: typeof this.form['sex'] == 'string' ? sex : this.form['sex'],
+        };
       }
 
       this.form = {
