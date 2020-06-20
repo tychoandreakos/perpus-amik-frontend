@@ -42,7 +42,6 @@ export default {
     },
     checkPlaceholder: {
       get() {
-        console.log(this.placeholder);
         return this.placeholder.length > 0;
       },
       set(val) {

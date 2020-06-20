@@ -48,6 +48,7 @@ export const getMemberMethod = 'collections';
 export const clearMemberType = 'membership/clearMemberType';
 export const updateMemberData = 'membership/getEditedData';
 export const cleanEditedData = 'membership/cleanEditedData';
+export const checkIfDataAvailable = 'membership/checkIfDataAvailable';
 
 export const resourceURL = 'master/resourceURL';
 export const resourceUrlGMD = 'master/resource/GMD';

@@ -3,6 +3,7 @@ import * as types from './type';
 
 export default {
   state: {
+    [types.checkIfDataAvailable]: false,
     [types.updateMemberData]: {
       result: [],
       error: [],
@@ -571,6 +572,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.checkIfDataAvailable]: (state) => {
+      return state[types.checkIfDataAvailable];
+    },
     [types.updateMemberData]: (state) => {
       return state[types.updateMemberData];
     },
@@ -695,11 +699,17 @@ export default {
     },
   },
   mutations: {
+    [types.checkIfDataAvailable]: (state) => {
+      if (!Array.isArray(state[types.updateMemberData].result)) {
+        state[types.checkIfDataAvailable] = true;
+      }
+    },
     [types.cleanEditedData]: (state) => {
       state[types.updateMemberData] = {
         error: [],
         result: [],
       };
+      state[types.checkIfDataAvailable] = false;
     },
     [types.updateMemberData]: (state, id) => {
       axios

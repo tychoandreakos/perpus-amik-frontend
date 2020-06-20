@@ -8,7 +8,10 @@
 import Header from '../../../UI/admin/Header';
 import Form from '../../../UI/admin/ThumbnailTable/Insert';
 
-import { updateMemberData } from '../../../../store/module/API/type';
+import {
+  updateMemberData,
+  checkIfDataAvailable,
+} from '../../../../store/module/API/type';
 import { mapGetters } from 'vuex';
 
 export default {
