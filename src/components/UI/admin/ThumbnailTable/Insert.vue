@@ -66,12 +66,13 @@ export default {
     },
   },
   updated() {
-    if (this.dataEdit) {
+    if (this.limit < 1 && this.dataEdit) {
       this.stateData[2].choiceData[this.sex].selected = true;
       this.stateData[3].date = this.birthDate;
       this.stateData[4].date = this.registerDate;
       this.stateData[6].value = this.address;
       this.memberType = this.typeMember;
+      this.limit += 1;
     }
   },
   computed: {
@@ -179,7 +180,7 @@ export default {
       };
       let dataUpdated;
       for (let key in this.form) {
-        if (this.form[key].length > 0 && key == 'sex') {
+        if (this.form[key].length > 0 && key != 'sex') {
           dataUpdated = {
             ...dataUpdated,
             [key]: this.form[key],
@@ -187,10 +188,10 @@ export default {
         }
       }
 
-      if (this.form['sex'] >= 0) {
+      if (typeof this.form['sex'] != 'string' && this.form['sex'] >= 0) {
         dataUpdated = {
           ...dataUpdated,
-          sex: typeof this.form['sex'] == 'string' ? sex : this.form['sex'],
+          sex: this.form['sex'],
         };
       }
 
@@ -217,6 +218,7 @@ export default {
   },
   data() {
     return {
+      limit: 0,
       memberType: 1,
       title: 'insert',
       form: {
