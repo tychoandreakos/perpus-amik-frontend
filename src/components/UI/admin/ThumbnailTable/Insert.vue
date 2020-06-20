@@ -2,23 +2,24 @@
     div.insert-form
         h3.title Please {{ title }} Data.
         form
-            template(v-for="(item, i) in stateData")
-              div.form-wrapper
-                  label {{ item.title }}
-                  template(v-if="item.type == typeForm[0]")
-                    Input(:property="item.property" :value="item.value" :disabledLabel="true" @input="input($event, item.property.id)")
-                  template(v-if="item.type == typeForm[1]")
-                    Choice(:state="item.choiceData" @choice="choiceHandler($event, item.id)")
-                  template(v-if="item.type == typeForm[2]")
-                    Dropdown(:typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember" @choice="input($event, item.id)")
-                  template(v-if="item.type == typeForm[3]")
-                    TextArea(@input="input($event, item.id)")
-                  template(v-if="item.type == typeForm[4]")
-                    Upload(@upload="input($event, item.id)")
-                  template(v-if="item.type == typeForm[5]")
-                    Date.date(v-model="item.date" @input="input($event, item.id)")
-            div.btn(@click.prevent="submitHandler")
-              Button(:buttonProp="button")
+            template(v-if="stateData")
+              template(v-for="(item, i) in stateData")
+                div.form-wrapper
+                    label {{ item.title }}
+                    template(v-if="item.type == typeForm[0]")
+                      Input(:property="item.property" :value="valState[i].value" :disabledLabel="true" @input="input($event, item.property.id)")
+                    template(v-if="item.type == typeForm[1]")
+                      Choice(:state="item.choiceData" @choice="choiceHandler($event, item.id)")
+                    template(v-if="item.type == typeForm[2]")
+                      Dropdown(:typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember" @choice="input($event, item.id)")
+                    template(v-if="item.type == typeForm[3]")
+                      TextArea(@input="input($event, item.id)")
+                    template(v-if="item.type == typeForm[4]")
+                      Upload(@upload="input($event, item.id)")
+                    template(v-if="item.type == typeForm[5]")
+                      Date.date(v-model="item.date" @input="input($event, item.id)")
+              div.btn(@click.prevent="submitHandler")
+                Button(:buttonProp="button")
 </template>
 
 <script>
@@ -67,12 +68,78 @@ export default {
     ...mapGetters({
       getMemberType: getMemberType,
     }),
-    stateData() {
-      return [
+    valState() {
+      return {
+        0: {
+          value: this.dataEdit ? String(this.dataEdit.data.id) : '',
+        },
+        1: {
+          value: this.dataEdit ? this.dataEdit.data.name : '',
+        },
+        7: {
+          value: this.dataEdit ? this.dataEdit.data.phone : '',
+        },
+        9: {
+          value: this.dataEdit ? this.dataEdit.data.email : '',
+        },
+        10: {
+          value: '',
+        },
+        11: {
+          value: '',
+        },
+      };
+    },
+  },
+  methods: {
+    ...mapMutations({
+      clearTypeMember: clearMemberType,
+    }),
+    ...mapActions({
+      submit: newPostData,
+      memberTypeHandler: getMemberType,
+    }),
+    submitHandler() {
+      this.submit(this.form);
+    },
+    input(e, key) {
+      this.form[key] = e;
+    },
+    setForm(key) {
+      this.form[key] = e;
+    },
+    choiceHandler(key, id) {
+      const choices = this.stateData[2];
+      key == 0
+        ? (choices.choiceData[1].selected = false)
+        : (choices.choiceData[0].selected = false);
+      choices.choiceData[key].selected = !choices.choiceData[key].selected;
+      this.form[id] = key;
+    },
+  },
+  data() {
+    return {
+      title: 'insert',
+      form: {
+        id: '',
+        membertype_id: '',
+        name: '',
+        sex: '',
+        birthdate: '',
+        member_since: '',
+        alamat: '',
+        username: '',
+        email: '',
+        password: '',
+        phone: '',
+        pending: false,
+        image: '',
+      },
+
+      stateData: [
         {
           title: 'member id',
           type: 'text',
-          value: this.dataEdit ? String(this.dataEdit.data.id) : '',
           property: {
             id: 'id',
             placeholder: 'Insert your member id',
@@ -82,7 +149,6 @@ export default {
         {
           title: 'member name',
           type: 'text',
-          value: this.dataEdit ? this.dataEdit.data.name : '',
           property: {
             id: 'name',
             placeholder: 'Insert Your Name',
@@ -132,7 +198,6 @@ export default {
         {
           title: 'phone number',
           id: 'phone',
-          value: this.dataEdit ? this.dataEdit.data.phone : '',
           type: 'text',
           property: {
             id: 'phone',
@@ -148,7 +213,7 @@ export default {
         {
           title: 'email',
           type: 'text',
-          value: this.dataEdit ? this.dataEdit.data.email : '',
+
           property: {
             id: 'email',
             placeholder: 'Insert Email',
@@ -158,7 +223,6 @@ export default {
         {
           title: 'password',
           type: 'text',
-          value: '',
           property: {
             id: 'password',
             placeholder: 'Insert Password',
@@ -168,60 +232,13 @@ export default {
         {
           title: 'confirm password',
           type: 'text',
-          value: '',
           property: {
             id: 'confirm',
             placeholder: 'Re enter password',
             type: 'password',
           },
         },
-      ];
-    },
-  },
-  methods: {
-    ...mapMutations({
-      clearTypeMember: clearMemberType,
-    }),
-    ...mapActions({
-      submit: newPostData,
-      memberTypeHandler: getMemberType,
-    }),
-    submitHandler() {
-      this.submit(this.form);
-    },
-    input(e, key) {
-      this.form[key] = e;
-    },
-    setForm(key) {
-      this.form[key] = e;
-    },
-    choiceHandler(key, id) {
-      const choices = this.stateData[2];
-      key == 0
-        ? (choices.choiceData[1].selected = false)
-        : (choices.choiceData[0].selected = false);
-      choices.choiceData[key].selected = !choices.choiceData[key].selected;
-      this.form[id] = key;
-    },
-  },
-  data() {
-    return {
-      title: 'insert',
-      form: {
-        id: '',
-        membertype_id: '',
-        name: '',
-        sex: '',
-        birthdate: '',
-        member_since: '',
-        alamat: '',
-        username: '',
-        email: '',
-        password: '',
-        phone: '',
-        pending: false,
-        image: '',
-      },
+      ],
       button: {
         title: 'Submit Data',
         icon: 'check',
