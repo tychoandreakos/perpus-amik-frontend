@@ -1,7 +1,7 @@
 <template lang="pug">
     div.upload-form
         input(ref="upload" type="file" hidden="hidden" accept="image/png,image/jpeg"  @change="choiceHandler")
-        div.img(v-if="urlImg")
+        div.img(v-if="urlImg.length > 0 || imgProps.length > 0")
             div.img-actual(:style="img")
         div.upload(@click.prevent="uploadHandler")
             div.info
@@ -17,10 +17,16 @@ export default {
   components: {
     Icon,
   },
+  props: {
+    imgProps: {
+      type: String,
+      required: false,
+    },
+  },
   computed: {
     img() {
       return {
-        background: "url('" + this.urlImg + "')",
+        background: "url('" + this.imgProps || this.urlImg + "')",
       };
     },
   },

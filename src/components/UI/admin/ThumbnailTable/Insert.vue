@@ -15,7 +15,7 @@
                     template(v-if="item.type == typeForm[3]")
                       TextArea(@input="input($event, item.id)" :value="item.value")
                     template(v-if="item.type == typeForm[4]")
-                      Upload(@upload="input($event, item.id)")
+                      Upload(@upload="input($event, item.id)" :imgProps="img")
                     template(v-if="item.type == typeForm[5]")
                       Date.date(v-model="item.date" @input="input($event, item.id)")
               div.btn(@click.prevent="submitHandler")
@@ -90,8 +90,13 @@ export default {
       if (this.dataEdit) return this.dataEdit.data.alamat;
       return false;
     },
+    img() {
+      if (this.dataEdit)
+        return `http://localhost/storage/${this.dataEdit.data.image}`;
+      return false;
+    },
     memberType() {
-      if (this.dataEdit) return this.dataEdit.data.member_type.id;
+      if (this.dataEdit) return this.dataEdit.data.member_type_id;
       return false;
     },
     valState() {
