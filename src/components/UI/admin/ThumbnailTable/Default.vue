@@ -2,7 +2,9 @@
     section#table
         table
             thead
-                th #[Checkbox(:check="false")]
+                th 
+                  div(style="margin-left: .5rem" @click="selectAllHandler")
+                    Checkbox(:check="checkBoxControl")
                 template(v-for="(item, i) in head")
                     template(v-if="enabledImage ? enabledImage : item != 'image'")
                         th(:key="i") {{ item }}
@@ -30,6 +32,9 @@ import {
   checkbox,
   tableId,
   removeTableId,
+  cleanTableId,
+  cleanCheckBox,
+  selectCheckBoxAll,
 } from '../../../../store/module/API/type';
 import { mapGetters, mapMutations } from 'vuex';
 
@@ -52,11 +57,36 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setCheckboxALl: checkBoxControl,
+      setCheckboxAll: checkBoxControl,
       setCheckbox: checkbox,
       tableId: tableId,
       removeTableId: removeTableId,
+      cleanTableId: cleanTableId,
+      cleanCheckBox: cleanCheckBox,
+      selectCheckboxAll: selectCheckBoxAll,
     }),
+    selectAllHandler() {
+      const limit = this.tableProps.content.dataCount;
+      this.setCheckboxAll();
+      if (this.checkBoxControl) {
+        for (let i = 0; i < limit; i++) {
+          let control = this.checkBoxControl;
+          this.selectCheckboxAll({
+            key: i,
+            control,
+          });
+
+          try {
+            this.tableId(this.tableProps.content.result[i].id);
+          } catch (err) {
+            // error
+          }
+        }
+      } else {
+        this.cleanCheckBox();
+        this.cleanTableId();
+      }
+    },
     checkBoxHandler(key) {
       this.setCheckbox(key);
       const id = this.tableProps.content.result[key].id;
