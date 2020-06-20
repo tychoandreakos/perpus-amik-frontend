@@ -46,12 +46,15 @@ export const newPostData = 'POST/newPostData';
 export const getMemberType = 'membership/getMemberType';
 export const getMemberMethod = 'collections';
 export const clearMemberType = 'membership/clearMemberType';
+export const updateMemberData = 'membership/getEditedData';
+export const cleanEditedData = 'membership/cleanEditedData';
 
 export const resourceURL = 'master/resourceURL';
 export const resourceUrlGMD = 'master/resource/GMD';
 export const resourceUrlAuthor = 'master/resource/Author';
 export const resourceUrlPublisher = 'master/resource/Publisher';
 
+export const detailMethod = 'detail';
 export const urlGMD = 'author';
 export const deleteMethodGMD = 'delete';
 export const editMethodGMD = 'edit';

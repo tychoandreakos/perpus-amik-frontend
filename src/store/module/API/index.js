@@ -3,6 +3,10 @@ import * as types from './type';
 
 export default {
   state: {
+    [types.updateMemberData]: {
+      result: [],
+      error: [],
+    },
     [types.getMemberType]: {},
     [types.dataComponent]: {
       'member-type': [
@@ -567,6 +571,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.updateMemberData]: (state) => {
+      return state[types.updateMemberData];
+    },
     [types.getMemberType]: (state) => {
       return state[types.getMemberType];
     },
@@ -683,8 +690,29 @@ export default {
     [types.getMemberType]: ({ commit }) => {
       commit(types.getMemberType);
     },
+    [types.updateMemberData]: ({ commit }, payload) => {
+      commit(types.updateMemberData, payload);
+    },
   },
   mutations: {
+    [types.cleanEditedData]: (state) => {
+      state[types.updateMemberData] = {
+        error: [],
+        result: [],
+      };
+    },
+    [types.updateMemberData]: (state, id) => {
+      axios
+        .get(
+          `${state[types.titleComponent].toLowerCase()}/${id}/${
+            types.detailMethod
+          }`
+        )
+        .then((res) => {
+          state[types.updateMemberData].result = res.data;
+        })
+        .catch((err) => (state[types.updateMemberData].error = err.data));
+    },
     [types.clearMemberType]: (state) => {
       state[types.getMemberType] = {};
     },

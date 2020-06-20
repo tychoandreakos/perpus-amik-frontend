@@ -326,6 +326,29 @@ const router = [
             },
           },
           {
+            path: 'update',
+            name: 'membership.update',
+            component: InsertMembership,
+            beforeEnter(to, from, next) {
+              const title = 'member';
+              store.commit(titleComponent, title);
+              next();
+            },
+            meta: {
+              title: putTitle('Update Membership'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
+            },
+          },
+          {
             path: 'add',
             name: 'membership.add',
             component: InsertMembership,

@@ -6,11 +6,11 @@
               div.form-wrapper
                   label {{ item.title }}
                   template(v-if="item.type == typeForm[0]")
-                    Input(:property="item.property" value="" :disabledLabel="true" @input="input($event, item.property.id)")
+                    Input(:property="item.property" :value="item.value" :disabledLabel="true" @input="input($event, item.property.id)")
                   template(v-if="item.type == typeForm[1]")
                     Choice(:state="item.choiceData" @choice="choiceHandler($event, item.id)")
                   template(v-if="item.type == typeForm[2]")
-                    Dropdown(:typeMember="item.typeMember" @choice="input($event, item.id)")
+                    Dropdown(:typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember" @choice="input($event, item.id)")
                   template(v-if="item.type == typeForm[3]")
                     TextArea(@input="input($event, item.id)")
                   template(v-if="item.type == typeForm[4]")
@@ -49,8 +49,12 @@ export default {
     Button,
     Date,
   },
+  props: {
+    dataEdit: {
+      required: true,
+    },
+  },
   created() {
-    // this.clearTypeMember();
     this.memberTypeHandler();
     this.stateData[5].typeMember = this.getMemberType;
   },
@@ -63,6 +67,116 @@ export default {
     ...mapGetters({
       getMemberType: getMemberType,
     }),
+    stateData() {
+      return [
+        {
+          title: 'member id',
+          type: 'text',
+          value: this.dataEdit ? String(this.dataEdit.data.id) : '',
+          property: {
+            id: 'id',
+            placeholder: 'Insert your member id',
+            type: 'text',
+          },
+        },
+        {
+          title: 'member name',
+          type: 'text',
+          value: this.dataEdit ? this.dataEdit.data.name : '',
+          property: {
+            id: 'name',
+            placeholder: 'Insert Your Name',
+            type: 'text',
+          },
+        },
+        {
+          title: 'sex',
+          id: 'sex',
+          type: 'choice',
+          choiceData: [
+            {
+              selected: false,
+              title: 'female',
+              icon: 'crown',
+            },
+            {
+              selected: false,
+              title: 'male',
+              icon: 'user',
+            },
+          ],
+        },
+        {
+          title: 'birth date',
+          id: 'birthdate',
+          type: 'date',
+          date: '2020-01-01',
+        },
+        {
+          title: 'register date',
+          id: 'member_since',
+          type: 'date',
+          date: '2019-01-01',
+        },
+        {
+          title: 'membership type',
+          id: 'membertype_id',
+          type: 'dropdown',
+          typeMember: [],
+        },
+        {
+          title: 'address',
+          id: 'alamat',
+          type: 'textarea',
+        },
+        {
+          title: 'phone number',
+          id: 'phone',
+          value: this.dataEdit ? this.dataEdit.data.phone : '',
+          type: 'text',
+          property: {
+            id: 'phone',
+            placeholder: 'Insert Your Phone',
+            type: 'text',
+          },
+        },
+        {
+          title: 'Photo Member',
+          id: 'image',
+          type: 'upload',
+        },
+        {
+          title: 'email',
+          type: 'text',
+          value: this.dataEdit ? this.dataEdit.data.email : '',
+          property: {
+            id: 'email',
+            placeholder: 'Insert Email',
+            type: 'email',
+          },
+        },
+        {
+          title: 'password',
+          type: 'text',
+          value: '',
+          property: {
+            id: 'password',
+            placeholder: 'Insert Password',
+            type: 'password',
+          },
+        },
+        {
+          title: 'confirm password',
+          type: 'text',
+          value: '',
+          property: {
+            id: 'confirm',
+            placeholder: 'Re enter password',
+            type: 'password',
+          },
+        },
+      ];
+    },
   },
   methods: {
     ...mapMutations({
@@ -119,108 +233,7 @@ export default {
           fontSize: '.9rem',
         },
       },
-      stateData: [
-        {
-          title: 'member id',
-          type: 'text',
-          property: {
-            id: 'id',
-            placeholder: 'Insert your member id',
-            type: 'text',
-          },
-        },
-        {
-          title: 'member name',
-          type: 'text',
-          property: {
-            id: 'name',
-            placeholder: 'Insert Your Name',
-            type: 'text',
-          },
-        },
-        {
-          title: 'sex',
-          id: 'sex',
-          type: 'choice',
-          choiceData: [
-            {
-              selected: false,
-              title: 'female',
-              icon: 'crown',
-            },
-            {
-              selected: false,
-              title: 'male',
-              icon: 'user',
-            },
-          ],
-        },
-        {
-          title: 'birth date',
-          id: 'birthdate',
-          type: 'date',
-          date: '2020-01-01',
-        },
-        {
-          title: 'register date',
-          id: 'member_since',
-          type: 'date',
-          date: '2019-01-01',
-        },
-        {
-          title: 'membership type',
-          id: 'membertype_id',
-          type: 'dropdown',
-          typeMember: [],
-        },
-        {
-          title: 'address',
-          id: 'alamat',
-          type: 'textarea',
-        },
-        {
-          title: 'phone number',
-          id: 'phone',
-          type: 'text',
-          property: {
-            id: 'phone',
-            placeholder: 'Insert Your Phone',
-            type: 'text',
-          },
-        },
-        {
-          title: 'Photo Member',
-          id: 'image',
-          type: 'upload',
-        },
-        {
-          title: 'email',
-          type: 'text',
-          property: {
-            id: 'email',
-            placeholder: 'Insert Email',
-            type: 'email',
-          },
-        },
-        {
-          title: 'password',
-          type: 'text',
-          property: {
-            id: 'password',
-            placeholder: 'Insert Password',
-            type: 'password',
-          },
-        },
-        {
-          title: 'confirm password',
-          type: 'text',
-          property: {
-            id: 'confirm',
-            placeholder: 'Re enter password',
-            type: 'password',
-          },
-        },
-      ],
+
       typeForm: ['text', 'choice', 'dropdown', 'textarea', 'upload', 'date'],
     };
   },

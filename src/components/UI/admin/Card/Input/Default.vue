@@ -24,22 +24,35 @@ export default {
       required: true,
     },
   },
+  watch: {
+    value() {
+      this.val = this.value;
+      this.active = true;
+      this.checkPlaceholder = true;
+    },
+  },
   computed: {
     placeholder: {
       get() {
-        return this.val ? this.val : '';
+        return this.val;
       },
       set(newVal) {
         this.val = newVal;
       },
     },
-    checkPlaceholder() {
-      return this.placeholder.length > 0;
+    checkPlaceholder: {
+      get() {
+        console.log(this.placeholder);
+        return this.placeholder.length > 0;
+      },
+      set(val) {
+        return val;
+      },
     },
   },
   data() {
     return {
-      val: this.value,
+      val: '',
       active: false,
     };
   },

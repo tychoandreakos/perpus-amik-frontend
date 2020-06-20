@@ -10,8 +10,8 @@ import ThumbnailTable from '../../../UI/admin/ThumbnailTable/Default';
 import Header from '../../../UI/admin/Header';
 import PanelAction from '../../../UI/admin/PanelAction';
 
-import { getGMD } from '../../../../store/module/API/type';
-import { mapActions, mapGetters } from 'vuex';
+import { getGMD, cleanEditedData } from '../../../../store/module/API/type';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Membership',
@@ -21,6 +21,7 @@ export default {
     PanelAction,
   },
   created() {
+    this.cleanEditedData();
     this.getData({
       skip: 0,
       take: 5,
@@ -53,6 +54,9 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      cleanEditedData: cleanEditedData,
+    }),
     ...mapActions({
       getData: getGMD,
     }),

@@ -40,6 +40,7 @@ import {
   dialog,
   destroyData,
   deleteGMD,
+  updateMemberData,
 } from '../../../../store/module/API/type';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 
@@ -76,9 +77,13 @@ export default {
     ...mapActions({
       destroyData: destroyData,
       deleteGMD: deleteGMD,
+      updateMemberData: updateMemberData,
     }),
     editHandler(id) {
-      console.log(id);
+      this.updateMemberData(id);
+      this.$router.push({
+        name: 'membership.update',
+      });
     },
     removeHandler(id, e) {
       this.messagePrompt(this.msg.delete);
