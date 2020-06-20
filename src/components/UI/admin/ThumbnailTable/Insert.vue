@@ -136,7 +136,57 @@ export default {
       memberTypeHandler: getMemberType,
     }),
     submitHandler() {
-      this.submit(this.form);
+      if (this.dataEdit) {
+        this.editHandler();
+        console.log(this.form);
+      } else {
+        this.submit(this.form);
+      }
+    },
+    editHandler() {
+      const {
+        alamat,
+        birthdate,
+        email,
+        member_since,
+        id,
+        membertype_id,
+        name,
+        phone,
+        sex,
+        username,
+        image,
+      } = this.dataEdit.data;
+      const data = {
+        id,
+        membertype_id,
+        name,
+        sex,
+        birthdate,
+        member_since,
+        alamat,
+        username,
+        email,
+        password: '',
+        phone,
+        pending: false,
+        image,
+      };
+      let dataUpdated;
+      for (let key in this.form) {
+        if (this.form[key].length > 0) {
+          dataUpdated = {
+            ...dataUpdated,
+            [key]: this.form[key],
+          };
+        }
+      }
+
+      this.form = {
+        ...this.form,
+        ...data,
+        ...dataUpdated,
+      };
     },
     input(e, key) {
       this.form[key] = e;
