@@ -18,8 +18,8 @@
                                   div.img(:style="{background: 'url('+ item.img_name +')'}")
                               td(v-else-if="!item.img" :key="keyItem") {{ item }}
                           td.action
-                              button #[Icon(icon="pencil")]
-                              button #[Icon(icon="trash")]
+                              button(@click.stop="editHandler(body.id)") #[Icon(icon="pencil")]
+                              button(@click.stop="removeHandler(body.id, $event)") #[Icon(icon="trash")]
 
 </template>
 
@@ -35,8 +35,13 @@ import {
   cleanTableId,
   cleanCheckBox,
   selectCheckBoxAll,
+  msgPrompt,
+  messagePrompt,
+  dialog,
+  destroyData,
+  deleteGMD,
 } from '../../../../store/module/API/type';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
   name: 'ThumbnailTable',
@@ -48,6 +53,7 @@ export default {
     ...mapGetters({
       checkBoxControl: checkBoxControl,
       checkbox: checkbox,
+      msg: msgPrompt,
     }),
   },
   props: {
@@ -64,7 +70,38 @@ export default {
       cleanTableId: cleanTableId,
       cleanCheckBox: cleanCheckBox,
       selectCheckboxAll: selectCheckBoxAll,
+      messagePrompt: messagePrompt,
+      dialog: dialog,
     }),
+    ...mapActions({
+      destroyData: destroyData,
+      deleteGMD: deleteGMD,
+    }),
+    editHandler(id) {
+      console.log(id);
+    },
+    removeHandler(id, e) {
+      this.messagePrompt(this.msg.delete);
+      const parent = e.originalTarget.offsetParent.parentElement;
+      this.dialog(() => {
+        parent.classList.add('remove');
+        setTimeout(() => {
+          parent.classList.add('none');
+        }, 200);
+
+        setTimeout(() => {
+          if (this.tableProps.enabled.destroy) {
+            this.destroyData({
+              id,
+            });
+          } else {
+            this.deleteGMD({
+              id,
+            });
+          }
+        }, 500);
+      });
+    },
     selectAllHandler() {
       const limit = this.tableProps.content.dataCount;
       this.setCheckboxAll();

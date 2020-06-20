@@ -34,6 +34,14 @@ export default {
       if (!Array.isArray(this.getMember.result)) {
         return {
           // ...this.dataComponent[this.titleState.toLowerCase()][1],
+          enabled: {
+            checkbox: true,
+            edit: true,
+            remove: true,
+            action: true,
+            retrieve: false,
+            destroy: false,
+          },
           content: this.getMember.result,
         };
       }
