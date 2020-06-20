@@ -7,13 +7,13 @@
                 div.form-wrapper
                     label {{ item.title }}
                     template(v-if="item.type == typeForm[0]")
-                      Input(:property="item.property" :value="valState[i].value" :disabledLabel="true" @input="input($event, item.property.id)")
+                      Input(:property="item.property" :value="valState[i] ? valState[i].value : ''" :disabledLabel="true" @input="input($event, item.property.id)")
                     template(v-if="item.type == typeForm[1]")
                       Choice(:state="item.choiceData" @choice="choiceHandler($event, item.id)")
                     template(v-if="item.type == typeForm[2]")
-                      Dropdown(:typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember" @choice="input($event, item.id)")
+                      Dropdown(:placeholderID="memberType ? memberType : 1" :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  @choice="input($event, item.id)")
                     template(v-if="item.type == typeForm[3]")
-                      TextArea(@input="input($event, item.id)")
+                      TextArea(@input="input($event, item.id)" :value="item.value")
                     template(v-if="item.type == typeForm[4]")
                       Upload(@upload="input($event, item.id)")
                     template(v-if="item.type == typeForm[5]")
@@ -64,31 +64,59 @@ export default {
       return this.getMemberType;
     },
   },
+  updated() {
+    this.stateData[2].choiceData[this.sex].selected = true;
+    this.stateData[3].date = this.birthDate;
+    this.stateData[4].date = this.registerDate;
+    this.stateData[6].value = this.address;
+  },
   computed: {
     ...mapGetters({
       getMemberType: getMemberType,
     }),
+    sex() {
+      if (this.dataEdit) return this.dataEdit.data.sex;
+      return false;
+    },
+    birthDate() {
+      if (this.dataEdit) return this.dataEdit.data.birthdate;
+      return false;
+    },
+    registerDate() {
+      if (this.dataEdit) return this.dataEdit.data.member_since;
+      return false;
+    },
+    address() {
+      if (this.dataEdit) return this.dataEdit.data.alamat;
+      return false;
+    },
+    memberType() {
+      if (this.dataEdit) return this.dataEdit.data.member_type.id;
+      return false;
+    },
     valState() {
-      return {
-        0: {
-          value: this.dataEdit ? String(this.dataEdit.data.id) : '',
-        },
-        1: {
-          value: this.dataEdit ? this.dataEdit.data.name : '',
-        },
-        7: {
-          value: this.dataEdit ? this.dataEdit.data.phone : '',
-        },
-        9: {
-          value: this.dataEdit ? this.dataEdit.data.email : '',
-        },
-        10: {
-          value: '',
-        },
-        11: {
-          value: '',
-        },
-      };
+      if (this.dataEdit)
+        return {
+          0: {
+            value: this.dataEdit ? String(this.dataEdit.data.id) : '',
+          },
+          1: {
+            value: this.dataEdit ? this.dataEdit.data.name : '',
+          },
+          7: {
+            value: this.dataEdit ? this.dataEdit.data.phone : '',
+          },
+          9: {
+            value: this.dataEdit ? this.dataEdit.data.email : '',
+          },
+          10: {
+            value: '',
+          },
+          11: {
+            value: '',
+          },
+        };
+      return false;
     },
   },
   methods: {
@@ -194,6 +222,7 @@ export default {
           title: 'address',
           id: 'alamat',
           type: 'textarea',
+          value: '',
         },
         {
           title: 'phone number',

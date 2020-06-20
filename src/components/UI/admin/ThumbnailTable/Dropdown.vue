@@ -26,6 +26,10 @@ export default {
       type: Object,
       required: true,
     },
+    placeholderID: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
     listHandler(key) {
@@ -35,7 +39,7 @@ export default {
   },
   data() {
     return {
-      placeholder: this.typeMember[1],
+      placeholder: this.typeMember[this.placeholderID],
       dropdown: false,
     };
   },
