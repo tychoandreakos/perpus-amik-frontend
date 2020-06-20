@@ -11,7 +11,7 @@
                     template(v-if="item.type == typeForm[1]")
                       Choice(:state="item.choiceData" @choice="choiceHandler($event, item.id)")
                     template(v-if="item.type == typeForm[2]")
-                      Dropdown(:placeholderID="memberType ? memberType : 1" :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  @choice="input($event, item.id)")
+                      Dropdown(:placeholderID="memberType" :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  @choice="input($event, item.id)")
                     template(v-if="item.type == typeForm[3]")
                       TextArea(@input="input($event, item.id)" :value="item.value")
                     template(v-if="item.type == typeForm[4]")
@@ -65,10 +65,13 @@ export default {
     },
   },
   updated() {
-    this.stateData[2].choiceData[this.sex].selected = true;
-    this.stateData[3].date = this.birthDate;
-    this.stateData[4].date = this.registerDate;
-    this.stateData[6].value = this.address;
+    if (this.dataEdit) {
+      this.stateData[2].choiceData[this.sex].selected = true;
+      this.stateData[3].date = this.birthDate;
+      this.stateData[4].date = this.registerDate;
+      this.stateData[6].value = this.address;
+      this.memberType = this.typeMember;
+    }
   },
   computed: {
     ...mapGetters({
@@ -95,8 +98,8 @@ export default {
         return `http://localhost/storage/${this.dataEdit.data.image}`;
       return false;
     },
-    memberType() {
-      if (this.dataEdit) return this.dataEdit.data.member_type_id;
+    typeMember() {
+      if (this.dataEdit) return this.dataEdit.data.member_type.id;
       return false;
     },
     valState() {
@@ -152,6 +155,7 @@ export default {
   },
   data() {
     return {
+      memberType: 1,
       title: 'insert',
       form: {
         id: '',

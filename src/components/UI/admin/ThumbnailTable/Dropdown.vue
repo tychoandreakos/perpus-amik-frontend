@@ -20,6 +20,14 @@ export default {
     memberData() {
       return this.typeMember;
     },
+    placeholderP() {
+      return this.placeholderID;
+    },
+  },
+  watch: {
+    placeholderP(key) {
+      this.placeholder = this.typeMember[key];
+    },
   },
   props: {
     typeMember: {
@@ -39,7 +47,7 @@ export default {
   },
   data() {
     return {
-      placeholder: this.typeMember[this.placeholderID],
+      placeholder: this.typeMember[1],
       dropdown: false,
     };
   },

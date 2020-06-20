@@ -19,14 +19,13 @@ export default {
   },
   props: {
     imgProps: {
-      type: String,
       required: false,
     },
   },
   computed: {
     img() {
       return {
-        background: "url('" + this.imgProps || this.urlImg + "')",
+        background: "url('" + (this.imgProps || this.urlImg) + "')",
       };
     },
   },
