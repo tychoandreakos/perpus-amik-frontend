@@ -7,17 +7,17 @@
                     template(v-if="enabledImage ? enabledImage : item != 'image'")
                         th(:key="i") {{ item }}
             tbody
-                template(v-for="(body, keyBodies) in tableProps.content.result")
-                    tr(:key="keyBodies")
-                        td #[Checkbox(:check="false")]
-                        template(v-for="(item, keyItem) in body")
-                            td(v-if="item.img && enabledImage" :key="keyItem")
-                                div.img(:style="{background: 'url('+ item.img_name +')'}")
-                                //- img(:src="`${item.img_name}`" :alt="item.title")
-                            td(v-else-if="!item.img" :key="keyItem") {{ item }}
-                        td.action
-                            button #[Icon(icon="pencil")]
-                            button #[Icon(icon="trash")]
+              template(v-if="tableProps.content")
+                  template(v-for="(body, keyBodies) in tableProps.content.result")
+                      tr(:key="keyBodies" @click="checkBoxHandler(keyBodies)")
+                          td #[Checkbox(:check="checkbox[keyBodies] || false" @click="checkBoxHandler(keyBodies)")]
+                          template(v-for="(item, keyItem) in body")
+                              td(v-if="item.img && enabledImage" :key="keyItem")
+                                  div.img(:style="{background: 'url('+ item.img_name +')'}")
+                              td(v-else-if="!item.img" :key="keyItem") {{ item }}
+                          td.action
+                              button #[Icon(icon="pencil")]
+                              button #[Icon(icon="trash")]
 
 </template>
 
@@ -25,16 +25,42 @@
 import Icon from 'vue-themify-icons';
 import Checkbox from '../Checkbox';
 
+import {
+  checkBoxControl,
+  checkbox,
+  tableId,
+  removeTableId,
+} from '../../../../store/module/API/type';
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
   name: 'ThumbnailTable',
   components: {
     Icon,
     Checkbox,
   },
+  computed: {
+    ...mapGetters({
+      checkBoxControl: checkBoxControl,
+      checkbox: checkbox,
+    }),
+  },
   props: {
     tableProps: {
-      type: Object,
       required: true,
+    },
+  },
+  methods: {
+    ...mapMutations({
+      setCheckboxALl: checkBoxControl,
+      setCheckbox: checkbox,
+      tableId: tableId,
+      removeTableId: removeTableId,
+    }),
+    checkBoxHandler(key) {
+      this.setCheckbox(key);
+      const id = this.tableProps.content.result[key].id;
+      this.checkbox[key] ? this.tableId(id) : this.removeTableId(id);
     },
   },
   data() {
