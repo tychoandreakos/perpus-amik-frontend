@@ -7,22 +7,23 @@
     h3.title Please {{ title }} Data.
     form
         div.form
-            //- template(v-if="stateData")
-            //-     template(v-for="(item, i) in stateData")
-            //-         div.form-wrapper
-            //-             label {{ item.title }}
-            //-             template(v-if="item.type == part[0]")
-            //-                 Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
-            //-             template(v-if="item.type == part[1]")
-            //-                 dropdown(
-            //-                     placeholderID="0" 
-            //-                     :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  
-            //-                     @choice="input($event, item.id)"
-            //-                 )
-            //-             template(v-if="item.type == part[2]")
-            //-               TextArea(@input="input($event, item.id)" :value="''")
-            //-             template(v-if="item.type == part[3]")
-            //-               Date.date(v-model="item.date" @input="input($event, item.id)")
+            template(v-if="stateData")
+                template(v-for="(item, i) in stateData")
+                    transition(name="slide")
+                      div.form-wrapper(v-if="item.tabs == countTab")
+                          label {{ item.title }}
+                          template(v-if="item.type == part[0]")
+                              Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
+                          template(v-if="item.type == part[1]")
+                              dropdown(
+                                  placeholderID="0" 
+                                  :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  
+                                  @choice="input($event, item.id)"
+                              )
+                          template(v-if="item.type == part[2]")
+                            TextArea(@input="input($event, item.id)" :value="''")
+                          template(v-if="item.type == part[3]")
+                            Date.date(v-model="item.date" @input="input($event, item.id)")
         div.btn
             Button(:buttonProp="button")
 </template>
@@ -52,16 +53,19 @@ export default {
       console.log(e);
     },
     header(key) {
+      this.show = !this.show;
       const border = this.$refs.border;
       const el = this.$refs.els[key];
       const left = el.offsetLeft / 10;
       const width = el.offsetWidth / 10 + 1;
       border.style.left = left + '%';
       border.style.width = width + '%';
+      this.countTab = key;
     },
   },
   data() {
     return {
+      countTab: 0,
       headerLink: [
         {
           title: 'Book',
@@ -81,6 +85,7 @@ export default {
       stateData: [
         {
           title: 'book title',
+          tabs: 0,
           type: 'text',
           property: {
             id: 'id',
@@ -91,6 +96,7 @@ export default {
         {
           title: 'book title',
           type: 'text',
+          tabs: 0,
           property: {
             id: 'bebay',
             placeholder: 'Insert your title',
@@ -99,6 +105,7 @@ export default {
         },
         {
           title: 'Edition',
+          tabs: 0,
           type: 'text',
           property: {
             id: 'edisi',
@@ -108,6 +115,7 @@ export default {
         },
         {
           title: 'GMD',
+          tabs: 1,
           id: 'gmd_id',
           type: 'dropdown',
           typeMember: {
@@ -118,6 +126,7 @@ export default {
         },
         {
           title: 'Content Type',
+          tabs: 1,
           id: 'contentType_id',
           type: 'dropdown',
           typeMember: {
@@ -127,6 +136,7 @@ export default {
         },
         {
           title: 'Media Type',
+          tabs: 1,
           id: 'media_id',
           type: 'dropdown',
           typeMember: {
@@ -137,6 +147,7 @@ export default {
         },
         {
           title: 'IBSN / ISNN',
+          tabs: 0,
           type: 'text',
           property: {
             id: 'isbn',
@@ -146,6 +157,7 @@ export default {
         },
         {
           title: 'Publisher',
+          tabs: 0,
           id: 'publisher',
           type: 'dropdown',
           typeMember: {
@@ -156,12 +168,14 @@ export default {
         },
         {
           title: 'Publisher Year',
+          tabs: 0,
           id: 'publisherYear',
           type: 'date',
           date: '2020-01-01',
         },
         {
           title: 'Publishing Place',
+          tabs: 0,
           id: 'place',
           type: 'dropdown',
           typeMember: {
@@ -172,6 +186,7 @@ export default {
         },
         {
           title: 'Physics (Width x Height)',
+          tabs: 0,
           type: 'text',
           property: {
             id: 'width',
@@ -181,6 +196,7 @@ export default {
         },
         {
           title: 'Physics (Pages)',
+          tabs: 0,
           type: 'text',
           property: {
             id: 'pages',
@@ -190,6 +206,7 @@ export default {
         },
         {
           title: 'Classification',
+          tabs: 1,
           id: 'classification',
           type: 'dropdown',
           typeMember: {
@@ -200,6 +217,7 @@ export default {
         },
         {
           title: 'Call Number',
+          tabs: 1,
           type: 'text',
           property: {
             id: 'callNumber',
@@ -209,6 +227,7 @@ export default {
         },
         {
           title: 'Language',
+          tabs: 0,
           id: 'language',
           type: 'dropdown',
           typeMember: {
@@ -219,6 +238,7 @@ export default {
         },
         {
           title: 'Notes',
+          tabs: 0,
           id: 'notes',
           type: 'textarea',
         },
@@ -240,6 +260,19 @@ export default {
 </script>
 
 <style lang="scss">
+.slide-leave-active,
+.slide-enter-active {
+  transition: opacity 0.3s ease-in-out, transform 0.25s ease-out;
+}
+.slide-enter {
+  opacity: 1;
+  transform: translate(-100%, 0);
+}
+.slide-leave-to {
+  opacity: 0;
+  transform: translate(-100%, 0);
+}
+
 .insert-form {
   .header {
     width: 100%;
@@ -248,6 +281,7 @@ export default {
       right: 0.8rem;
       bottom: 0.8rem;
     }
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     position: relative;
@@ -278,12 +312,13 @@ export default {
       );
       transition: all 0.5s ease-in-out;
       width: 7%;
-      box-shadow: 0 0 3px 1px rgba(98, 98, 98, 0.192);
-      height: 1.6px;
+      box-shadow: 0 0 2px 1px rgba(98, 98, 98, 0.192);
+      height: 1.8px;
     }
   }
   .form {
     display: grid;
+    overflow: hidden;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
     width: 100%;
