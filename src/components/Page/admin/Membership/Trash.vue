@@ -3,6 +3,7 @@
         HeaderComponent(:title="title" :breadcrumbsHeader="breadcrumbs")
         h3.info {{ info }}
         PanelActionComponent(
+            v-if="database.content"
             :title="title"
             :restore="database.content.dataCount > 0"
             :settings="panelAction"
@@ -37,9 +38,6 @@ export default {
   methods: {
     count(e) {},
   },
-  mounted() {
-    console.log(this.getTrash.result.data);
-  },
   computed: {
     ...mapGetters({
       getTrash: updateMemberData,
@@ -50,7 +48,7 @@ export default {
         enabled: {
           checkbox: true,
           edit: false,
-          remove: true,
+          remove: false,
           action: true,
           retrieve: true,
           destroy: true,

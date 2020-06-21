@@ -1,8 +1,7 @@
 <template lang="pug">
     section#table
-        table
             thead
-                th 
+                th(v-if="tableProps.enabled && tableProps.enabled.checkbox")
                   div(style="margin-left: .5rem" @click="selectAllHandler")
                     Checkbox(:check="checkBoxControl")
                 template(v-if="head")
@@ -10,17 +9,19 @@
                       template(v-if="enabledImage ? enabledImage : item != 'image'")
                           th(:key="i") {{ item }}
             tbody
-              template(v-if="tableProps.content")
+              template(v-if="tableProps && tableProps.content")
                   template(v-for="(body, keyBodies) in tableProps.content.result")
                       tr(:key="keyBodies" @click="checkBoxHandler(keyBodies)")
-                          td #[Checkbox(:check="checkbox[keyBodies] || false" @click="checkBoxHandler(keyBodies)")]
+                          td(v-if="tableProps.enabled.checkbox") #[Checkbox(:check="checkbox[keyBodies] || false" @click="checkBoxHandler(keyBodies)")]
                           template(v-for="(item, keyItem) in body")
                               td(v-if="item.img && enabledImage" :key="keyItem")
                                   div.img(:style="{background: 'url('+ item.img_name +')'}")
                               td(v-else-if="!item.img" :key="keyItem") {{ item }}
-                          td.action
-                              button(@click.stop="editHandler(body.id)") #[Icon(icon="pencil")]
-                              button(@click.stop="removeHandler(body.id, $event)") #[Icon(icon="trash")]
+                          td.action(v-if="tableProps.enabled.action")
+                              button(v-if="tableProps.enabled.edit" @click.stop="editHandler(body.id)") #[Icon(icon="pencil")]
+                              button(v-if="tableProps.enabled.remove" @click.stop="removeHandler(body.id, $event)") #[Icon(icon="trash")]
+                              button(v-if="tableProps.enabled.retrieve" @click.stop="editHandler(body.id)") #[Icon(icon="reload")]
+                              button(v-if="tableProps.enabled.destroy" @click.stop="removeHandler(body.id, $event)") #[Icon(icon="trash")]
 
 </template>
 
@@ -148,32 +149,6 @@ export default {
         'action',
       ],
       enabledImage: true,
-      bodies: [
-        {
-          image: {
-            img: true,
-            url:
-              'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/06.png',
-            title: 'image',
-          },
-          name: 'Fitbit - Activity Tracker',
-          category: 'fitness',
-          popularity: '80',
-          orderStatus: 'delivered',
-        },
-        {
-          image: {
-            img: true,
-            url:
-              'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/09.png',
-            title: 'image',
-          },
-          name: 'Fitbit - Flex Wireless Activity',
-          category: 'fitness',
-          popularity: '50',
-          orderStatus: 'pending',
-        },
-      ],
     };
   },
 };
