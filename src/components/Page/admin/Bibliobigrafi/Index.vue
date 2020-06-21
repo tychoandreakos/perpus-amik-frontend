@@ -10,7 +10,7 @@
       :button="dataState.button"
       @count="count"      
     )
-    ThumbnailTable(:tableProps="database")
+    ThumbnailTable(:tableProps="database" :bibliobigrafiControl="true")
 </template>
 
 <script>
@@ -58,7 +58,14 @@ export default {
         },
       },
       database: {
-        head: ['Book Image', 'Title', 'ISBN/ISNN', 'Copies', 'Last Update'],
+        head: [
+          'Book Image',
+          'Title',
+          'ISBN/ISNN',
+          'Copies',
+          'Last Update',
+          'Action',
+        ],
         enabled: {
           checkbox: true,
           edit: true,
@@ -71,8 +78,12 @@ export default {
           dataCount: 3,
           result: [
             {
-              img:
-                'https://images-na.ssl-images-amazon.com/images/I/41pgnDUnI1L.jpg',
+              image: {
+                img: true,
+                title: 'image',
+                img_name:
+                  'https://images-na.ssl-images-amazon.com/images/I/41pgnDUnI1L.jpg',
+              },
               desc: {
                 title:
                   'PostgreSQL : a comprehensive guide to building, programming, and administering PostgreSQL databases',
@@ -83,8 +94,12 @@ export default {
               lastUpdate: '2020-06-21 06:00:03',
             },
             {
-              img:
-                'https://images-na.ssl-images-amazon.com/images/I/51pzvNtXuiL._SX361_BO1,204,203,200_.jpg',
+              image: {
+                img: true,
+                title: 'image',
+                img_name:
+                  'https://images-na.ssl-images-amazon.com/images/I/51pzvNtXuiL._SX361_BO1,204,203,200_.jpg',
+              },
               desc: {
                 title:
                   'Ajax : creating Web pages with asynchronous JavaScript and XML',
@@ -95,12 +110,16 @@ export default {
               lastUpdate: '2020-06-21 06:00:03',
             },
             {
-              img:
-                'https://images-na.ssl-images-amazon.com/images/I/41aX8Y0Rb-L._SX404_BO1,204,203,200_.jpg',
+              image: {
+                img: true,
+                title: 'image',
+                img_name:
+                  'https://images-na.ssl-images-amazon.com/images/I/41aX8Y0Rb-L._SX404_BO1,204,203,200_.jpg',
+              },
               desc: {
                 title:
                   'Web application architecture : principles, protocols, and practices',
-                author: ['Shklar, Leon', 'Rosen, Richard'],
+                author: ['Shklar', 'Leon', 'Rosen', 'Richard'],
               },
               isbn: '0471486566',
               copies: 0,
@@ -113,5 +132,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss"></style>
