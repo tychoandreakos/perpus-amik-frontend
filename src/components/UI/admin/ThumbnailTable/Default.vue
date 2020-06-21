@@ -5,9 +5,10 @@
                 th 
                   div(style="margin-left: .5rem" @click="selectAllHandler")
                     Checkbox(:check="checkBoxControl")
-                template(v-for="(item, i) in head")
-                    template(v-if="enabledImage ? enabledImage : item != 'image'")
-                        th(:key="i") {{ item }}
+                template(v-if="head")
+                  template(v-for="(item, i) in head")
+                      template(v-if="enabledImage ? enabledImage : item != 'image'")
+                          th(:key="i") {{ item }}
             tbody
               template(v-if="tableProps.content")
                   template(v-for="(body, keyBodies) in tableProps.content.result")

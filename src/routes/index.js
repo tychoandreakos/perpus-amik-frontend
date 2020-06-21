@@ -16,6 +16,7 @@ import AdminComponent from '../components/Page/admin/HomepageAdmin';
 import MembershipComponent from '../components/Page/admin/Membership/Default';
 import MembershipIndex from '../components/Page/admin/Membership/Index';
 import InsertMembership from '../components/Page/admin/Membership/Insert';
+import TrashMembership from '../components/Page/admin/Membership/Trash';
 
 // children
 import FirstPage from '../components/Page/user/FirstPage';
@@ -36,7 +37,7 @@ import TrashComponent from '../components/Page/admin/master/Trash';
 import UpdateComponent from '../components/Page/admin/master/Update';
 
 import { store } from '../store';
-import { titleComponent } from '../store/module/API/type';
+import { titleComponent, recycleMemberData } from '../store/module/API/type';
 
 const title = 'Diglib STMIK AMIK BANDUNG';
 
@@ -313,6 +314,30 @@ const router = [
             },
             meta: {
               title: putTitle('Membership Type'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
+            },
+          },
+          {
+            path: 'recycle',
+            name: 'membership.recycle',
+            component: TrashMembership,
+            beforeEnter(to, from, next) {
+              const title = 'member';
+              store.commit(titleComponent, title);
+              store.dispatch(recycleMemberData);
+              next();
+            },
+            meta: {
+              title: putTitle('Recycle Bin'),
               metaTags: [
                 {
                   name: 'description',

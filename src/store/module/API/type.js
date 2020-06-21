@@ -50,6 +50,7 @@ export const updateMemberData = 'membership/getEditedData';
 export const cleanEditedData = 'membership/cleanEditedData';
 export const checkIfDataAvailable = 'membership/checkIfDataAvailable';
 export const editedMemberData = 'membership/editedData';
+export const recycleMemberData = 'membership/recycle;';
 
 export const resourceURL = 'master/resourceURL';
 export const resourceUrlGMD = 'master/resource/GMD';

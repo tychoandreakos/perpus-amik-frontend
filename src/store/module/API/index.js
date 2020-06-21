@@ -700,8 +700,23 @@ export default {
     [types.editedMemberData]: ({ commit }, payload) => {
       commit(types.editedMemberData, payload);
     },
+    [types.recycleMemberData]: ({ commit }) => {
+      commit(types.recycleMemberData);
+    },
   },
   mutations: {
+    [types.recycleMemberData]: (state) => {
+      axios
+        .get(
+          `${state[types.titleComponent].toLowerCase()}/${
+            types.deleteMethodGMD
+          }`
+        )
+        .then((res) => {
+          state[types.updateMemberData].result = res.data;
+        })
+        .catch((err) => (state[types.updateMemberData].error = err.data));
+    },
     [types.editedMemberData]: (state, { id, form }) => {
       axios.put(
         `${state[types.titleComponent].toLowerCase()}/${id}/${
