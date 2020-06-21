@@ -15,6 +15,7 @@ import AdminComponent from '../components/Page/admin/HomepageAdmin';
 // Bibliobigrafi
 import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi/Default';
 import BibliobigrafiIndex from '../components/Page/admin/Bibliobigrafi/Index';
+import BibliobigrafiInsert from '../components/Page/admin/Bibliobigrafi/Insert';
 
 // membership
 import MembershipComponent from '../components/Page/admin/Membership/Default';
@@ -271,6 +272,24 @@ const router = [
             name: 'bibliobigrafi.index',
             meta: {
               title: putTitle('Bibliobigrafi'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
+            },
+          },
+          {
+            path: 'add',
+            component: BibliobigrafiInsert,
+            name: 'bibliobigrafi.add',
+            meta: {
+              title: putTitle('Add New Bibliobigrafi'),
               metaTags: [
                 {
                   name: 'description',

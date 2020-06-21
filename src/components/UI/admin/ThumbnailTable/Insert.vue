@@ -388,10 +388,11 @@ export default {
 
       .date {
         width: 100%;
+        margin-top: 0.35rem;
 
         input {
           width: 100%;
-          padding: 0.5rem;
+          padding: 0.8rem;
           background: #fcfcfc;
           border: 1px solid rgba(0, 0, 0, 0.2);
           border-radius: 7px;

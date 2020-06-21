@@ -57,12 +57,13 @@ export default {
 <style lang="scss">
 .dropdown-membership {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.7rem 0.6rem;
   background: #fcfcfc;
   border-radius: 5px;
   cursor: pointer;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 0.4rem;
 
   .backdrop-dropdown {
     position: fixed;
