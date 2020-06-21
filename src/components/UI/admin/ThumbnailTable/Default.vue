@@ -20,9 +20,8 @@
                               td(v-else-if="!item.img" :key="keyItem") {{ item }}
                           td.action(v-if="tableProps.enabled.action")
                               button(v-if="tableProps.enabled.edit" @click.stop="editHandler(body.id)") #[Icon(icon="pencil")]
-                              button(v-if="tableProps.enabled.remove" @click.stop="removeHandler(body.id, $event)") #[Icon(icon="trash")]
-                              button(v-if="tableProps.enabled.retrieve" @click.stop="editHandler(body.id)") #[Icon(icon="reload")]
-                              button(v-if="tableProps.enabled.destroy" @click.stop="removeHandler(body.id, $event)") #[Icon(icon="trash")]
+                              button(v-if="tableProps.enabled.retrieve" @click.stop="reloadHandler(body.id, $event)") #[Icon(icon="reload")]
+                              button(@click.stop="removeHandler(body.id, $event)") #[Icon(icon="trash")]
 
 </template>
 
@@ -44,6 +43,7 @@ import {
   destroyData,
   deleteGMD,
   updateMemberData,
+  restoreSome,
 } from '../../../../store/module/API/type';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 
@@ -81,11 +81,28 @@ export default {
       destroyData: destroyData,
       deleteGMD: deleteGMD,
       updateMemberData: updateMemberData,
+      restoreSome: restoreSome,
     }),
     editHandler(id) {
       this.updateMemberData(id);
       this.$router.push({
         name: 'membership.update',
+      });
+    },
+    reloadHandler(id, e) {
+      this.messagePrompt(this.msg.restore);
+      const parent = e.originalTarget.offsetParent.parentElement;
+      this.dialog(() => {
+        parent.classList.add('remove');
+        setTimeout(() => {
+          parent.classList.add('none');
+        }, 200);
+
+        setTimeout(() => {
+          this.restoreSome({
+            id,
+          });
+        }, 500);
       });
     },
     removeHandler(id, e) {
