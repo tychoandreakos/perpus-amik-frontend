@@ -10,7 +10,7 @@
             template(v-if="stateData")
                 template(v-for="(item, i) in stateData")
                     transition(name="slide")
-                      div.form-wrapper(v-if="item.tabs == countTab")
+                      div.form-wrapper(:style="item.type == part[5] ? {gridColumn: '1/4'} : {}"  v-if="item.tabs == countTab")
                           label {{ item.title }}
                           template(v-if="item.type == part[0]")
                               Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
@@ -24,6 +24,10 @@
                             TextArea(@input="input($event, item.id)" :value="''")
                           template(v-if="item.type == part[3]")
                             Date.date(v-model="item.date" @input="input($event, item.id)")
+                          template(v-if="item.type == part[4]")
+                            Upload(:property="item.property")
+                          template(v-if="item.type == part[5]")
+                            UploadFiles
         div.btn
             Button(:buttonProp="button")
 </template>
@@ -33,6 +37,9 @@ import Button from '../../../UI/admin/Button';
 import Input from '../../../UI/admin/Card/Input/Default';
 import Dropdown from '../../../UI/admin/ThumbnailTable/Dropdown';
 import TextArea from '../../../UI/admin/ThumbnailTable/Textarea';
+import Upload from './Upload';
+import UploadFiles from './UploadFiles';
+
 import Date from 'vue-date-pick';
 import Icon from 'vue-themify-icons';
 import 'vue-date-pick/dist/vueDatePick.css';
@@ -46,6 +53,8 @@ export default {
     TextArea,
     Date,
     Icon,
+    Upload,
+    UploadFiles,
   },
 
   methods: {
@@ -68,21 +77,28 @@ export default {
       countTab: 0,
       headerLink: [
         {
-          title: 'Book',
-          icon: 'book',
+          title: 'Bibliobigrafi',
+          icon: 'bookmark-alt',
         },
         {
-          title: 'Book Additional',
-          icon: 'book',
+          title: 'Bibliobigrafi Additional',
+          icon: 'files',
         },
         {
-          title: 'Upload PDF',
-          icon: 'book',
+          title: 'Upload Files',
+          icon: 'cloud-down',
         },
       ],
-      part: ['text', 'dropdown', 'textarea', 'date'],
+      part: ['text', 'dropdown', 'textarea', 'date', 'upload', 'files'],
       title: 'insert',
       stateData: [
+        {
+          tabs: 0,
+          type: 'upload',
+          property: {
+            placeholder: 'insert your cover of image',
+          },
+        },
         {
           title: 'book title',
           tabs: 0,
@@ -242,6 +258,13 @@ export default {
           id: 'notes',
           type: 'textarea',
         },
+        {
+          tabs: 2,
+          type: 'files',
+          property: {
+            placeholder: 'insert your cover of image',
+          },
+        },
       ],
       button: {
         title: 'Submit Data',
@@ -262,7 +285,7 @@ export default {
 <style lang="scss">
 .slide-leave-active,
 .slide-enter-active {
-  transition: opacity 0.3s ease-in-out, transform 0.25s ease-out;
+  transition: opacity 0.2s ease-in-out, transform 0.25s ease-out;
 }
 .slide-enter {
   opacity: 1;
@@ -311,7 +334,7 @@ export default {
         rgba(81, 67, 235, 0.596)
       );
       transition: all 0.5s ease-in-out;
-      width: 7%;
+      width: 13%;
       box-shadow: 0 0 2px 1px rgba(98, 98, 98, 0.192);
       height: 1.8px;
     }
@@ -326,6 +349,10 @@ export default {
       display: flex !important;
       flex-direction: column !important;
       align-items: flex-start !important;
+
+      .upload {
+        flex-wrap: nowrap;
+      }
     }
   }
 }
