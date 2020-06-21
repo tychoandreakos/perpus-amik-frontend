@@ -110,13 +110,14 @@ export default {
           },
         },
         {
-          title: 'book title',
-          type: 'text',
+          title: 'Author',
+          id: 'author_id',
+          type: 'dropdown',
           tabs: 0,
-          property: {
-            id: 'bebay',
-            placeholder: 'Insert your title',
-            type: 'text',
+          typeMember: {
+            0: 'Sutendi Styles',
+            1: 'Ahmad Zaky',
+            2: 'Titaful Sembiring',
           },
         },
         {
@@ -259,6 +260,17 @@ export default {
           type: 'textarea',
         },
         {
+          title: 'Subject',
+          tabs: 1,
+          id: 'subject',
+          type: 'dropdown',
+          typeMember: {
+            0: 'PHP',
+            1: 'Java',
+            2: 'Software Engineering',
+          },
+        },
+        {
           tabs: 2,
           type: 'files',
           property: {
@@ -341,7 +353,7 @@ export default {
   }
   .form {
     display: grid;
-    overflow: hidden;
+    overflow-x: hidden;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
     width: 100%;

@@ -143,7 +143,6 @@ const router = [
   {
     path: '/home',
     component: UserComponent,
-    name: 'homepage',
     redirect: '/home',
     children: [
       {
@@ -241,7 +240,6 @@ const router = [
   {
     path: '/admin',
     component: AdminComponent,
-    name: 'admin',
     children: [
       {
         path: '/',
@@ -264,7 +262,6 @@ const router = [
       {
         path: 'bibliobigrafi',
         component: BibliobigrafiComponent,
-        name: 'bibliobigrafi',
         children: [
           {
             path: '/',
@@ -307,7 +304,6 @@ const router = [
       {
         path: 'membership',
         component: MembershipIndex,
-        name: 'membership',
         children: [
           {
             path: '/',
@@ -430,7 +426,6 @@ const router = [
       {
         path: 'circulation',
         component: CirculationComponent,
-        name: 'circulation',
         redirect: { name: 'circulationPrime' },
         children: [
           {
@@ -454,7 +449,6 @@ const router = [
           {
             path: 'user',
             component: CirculationTransactionComponent,
-            name: 'circulationTransaction',
             meta: {
               title: putTitle('Circulation Transaction'),
               metaTags: [
