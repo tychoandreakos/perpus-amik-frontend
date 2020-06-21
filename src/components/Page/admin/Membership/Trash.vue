@@ -53,6 +53,15 @@ export default {
           retrieve: true,
           destroy: true,
         },
+        head: [
+          'member image',
+          'ID',
+          'name',
+          'membership type',
+          'email',
+          'last updated',
+          'action',
+        ],
         content: this.getTrash.result.data,
       };
     },

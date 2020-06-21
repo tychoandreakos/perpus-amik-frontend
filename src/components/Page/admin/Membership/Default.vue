@@ -42,6 +42,15 @@ export default {
             retrieve: false,
             destroy: false,
           },
+          head: [
+            'member image',
+            'ID',
+            'name',
+            'membership type',
+            'email',
+            'last updated',
+            'action',
+          ],
           content: this.getMember.result,
         };
       }
@@ -67,7 +76,7 @@ export default {
         title: 'Membership',
         breadcrumbs: ['data list'],
         PanelAction: {
-          detail: false,
+          detail: true,
           edit: true,
           delete: true,
           recycle: true,

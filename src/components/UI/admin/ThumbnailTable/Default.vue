@@ -5,8 +5,8 @@
                 th(v-if="tableProps.enabled && tableProps.enabled.checkbox")
                   div(style="margin-left: .5rem" @click="selectAllHandler")
                     Checkbox(:check="checkBoxControl")
-                template(v-if="head")
-                  template(v-for="(item, i) in head")
+                template(v-if="tableProps.head")
+                  template(v-for="(item, i) in tableProps.head")
                       template(v-if="enabledImage ? enabledImage : item != 'image'")
                           th(:key="i") {{ item }}
             tbody
@@ -157,15 +157,6 @@ export default {
   },
   data() {
     return {
-      head: [
-        'member image',
-        'ID',
-        'name',
-        'membership type',
-        'email',
-        'last updated',
-        'action',
-      ],
       enabledImage: true,
     };
   },
