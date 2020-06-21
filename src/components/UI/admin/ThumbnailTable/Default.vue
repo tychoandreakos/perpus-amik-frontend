@@ -1,5 +1,6 @@
 <template lang="pug">
     section#table
+        table
             thead
                 th(v-if="tableProps.enabled && tableProps.enabled.checkbox")
                   div(style="margin-left: .5rem" @click="selectAllHandler")
