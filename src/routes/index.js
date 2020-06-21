@@ -12,6 +12,10 @@ import HistoryUserComponent from '../components/Page/user/History';
 // admin component
 import AdminComponent from '../components/Page/admin/HomepageAdmin';
 
+// Bibliobigrafi
+import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi/Default';
+import BibliobigrafiIndex from '../components/Page/admin/Bibliobigrafi/Index';
+
 // membership
 import MembershipComponent from '../components/Page/admin/Membership/Default';
 import MembershipIndex from '../components/Page/admin/Membership/Index';
@@ -22,7 +26,6 @@ import TrashMembership from '../components/Page/admin/Membership/Trash';
 import FirstPage from '../components/Page/user/FirstPage';
 import InSearchComponent from '../components/Page/user/InSearch';
 import DashboardAdmin from '../components/Page/admin/Dashboard';
-import BibliobigrafiComponent from '../components/Page/admin/Bibliobigrafi';
 import CirculationComponent from '../components/Page/admin/Circulation';
 import MasterComponent from '../components/Page/admin/Master';
 import GMDComponent from '../components/Page/admin/master/GMD';
@@ -261,19 +264,26 @@ const router = [
         path: 'bibliobigrafi',
         component: BibliobigrafiComponent,
         name: 'bibliobigrafi',
-        meta: {
-          title: putTitle('Bibliobigrafi'),
-          metaTags: [
-            {
-              name: 'description',
-              content: 'The about page of our example app.',
+        children: [
+          {
+            path: '/',
+            component: BibliobigrafiIndex,
+            name: 'bibliobigrafi.index',
+            meta: {
+              title: putTitle('Bibliobigrafi'),
+              metaTags: [
+                {
+                  name: 'description',
+                  content: 'The about page of our example app.',
+                },
+                {
+                  property: 'og:description',
+                  content: 'The about page of our example app.',
+                },
+              ],
             },
-            {
-              property: 'og:description',
-              content: 'The about page of our example app.',
-            },
-          ],
-        },
+          },
+        ],
       },
       {
         path: 'membership',

@@ -66,8 +66,8 @@ export default {
         },
         {
           title: 'Bibliobigrafi',
-          icon: 'receipt',
-          href: 'bibliobigrafi'
+          icon: 'bookmark-alt',
+          href: 'bibliobigrafi.index'
         },
         {
           title: 'Circulation',
@@ -81,7 +81,7 @@ export default {
         },
         {
           title: 'Master File',
-          icon: 'file',
+          icon: 'server',
           children: [
             {
               title: 'GMD',
