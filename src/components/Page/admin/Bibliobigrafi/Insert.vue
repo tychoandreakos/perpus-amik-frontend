@@ -56,7 +56,9 @@ export default {
     Upload,
     UploadFiles,
   },
-
+  mounted() {
+    this.$refs.els[this.countTab].style.color = 'rgb(81, 67, 235)';
+  },
   methods: {
     input(e) {
       console.log(e);
@@ -69,6 +71,8 @@ export default {
       const width = el.offsetWidth / 10 + 1;
       border.style.left = left + '%';
       border.style.width = width + '%';
+      this.$refs.els[this.countTab].style.color = 'rgb(44, 62, 80)';
+      this.$refs.els[key].style.color = 'rgb(81, 67, 235)';
       this.countTab = key;
     },
   },
@@ -329,10 +333,6 @@ export default {
       cursor: pointer;
       font: {
         size: 0.89rem;
-      }
-
-      &:first-child {
-        color: rgba(81, 67, 235, 777);
       }
     }
 
