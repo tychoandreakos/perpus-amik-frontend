@@ -10,7 +10,7 @@
             template(v-if="stateData")
                 template(v-for="(item, i) in stateData")
                     transition(name="slide")
-                      div.form-wrapper(:style="item.type == part[5] ? {gridColumn: '1/4'} : {}"  v-if="item.tabs == countTab")
+                      div.form-wrapper(:style="[item.type == part[5] ? {gridColumn: '1/4'} : {}, item.type == part[6] ? {gridColumn: '1/3'} : {}]"  v-if="item.tabs == countTab")
                           label {{ item.title }}
                           template(v-if="item.type == part[0]")
                               Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
@@ -28,6 +28,8 @@
                             Upload(:property="item.property")
                           template(v-if="item.type == part[5]")
                             UploadFiles
+                          template(v-if="item.type == part[6]")
+                            Editor(@inputEditor="input")
         div.btn
             Button(:buttonProp="button")
 </template>
@@ -39,6 +41,7 @@ import Dropdown from '../../../UI/admin/ThumbnailTable/Dropdown';
 import TextArea from '../../../UI/admin/ThumbnailTable/Textarea';
 import Upload from './Upload';
 import UploadFiles from './UploadFiles';
+import Editor from '../../../UI/admin/Editor/Default';
 
 import Date from 'vue-date-pick';
 import Icon from 'vue-themify-icons';
@@ -55,6 +58,7 @@ export default {
     Icon,
     Upload,
     UploadFiles,
+    Editor,
   },
   mounted() {
     this.$refs.els[this.countTab].style.color = 'rgb(81, 67, 235)';
@@ -93,7 +97,15 @@ export default {
           icon: 'cloud-down',
         },
       ],
-      part: ['text', 'dropdown', 'textarea', 'date', 'upload', 'files'],
+      part: [
+        'text',
+        'dropdown',
+        'textarea',
+        'date',
+        'upload',
+        'files',
+        'editor',
+      ],
       title: 'insert',
       stateData: [
         {
@@ -262,6 +274,12 @@ export default {
           tabs: 0,
           id: 'notes',
           type: 'textarea',
+        },
+        {
+          title: 'description',
+          tabs: 0,
+          id: 'description',
+          type: 'editor',
         },
         {
           title: 'Subject',
