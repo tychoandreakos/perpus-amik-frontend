@@ -98,11 +98,6 @@ export default {
       padding: 0.5rem 0.4rem;
       color: #626262;
       text-transform: capitalize;
-
-      &:hover {
-        background: rgba(204, 204, 204, 0.151);
-        color: #111;
-      }
     }
   }
 

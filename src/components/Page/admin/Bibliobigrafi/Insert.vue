@@ -39,7 +39,7 @@
 <script>
 import Button from '../../../UI/admin/Button';
 import Input from '../../../UI/admin/Card/Input/Default';
-import Dropdown from '../../../UI/admin/ThumbnailTable/Dropdown';
+import Dropdown from '../../../UI/admin/ThumbnailTable/DropdownAlternate';
 import TextArea from '../../../UI/admin/ThumbnailTable/Textarea';
 import Upload from './Upload';
 import UploadFiles from './UploadFiles';
@@ -139,6 +139,9 @@ export default {
             0: 'Sutendi Styles',
             1: 'Ahmad Zaky',
             2: 'Titaful Sembiring',
+            3: 'Matthew Heally',
+            4: 'Gareth Bale',
+            5: 'Cristiano Ronaldo',
           },
         },
         {

@@ -3,7 +3,7 @@
         div.border
         div.methods
             Icon(icon="plus")
-            span Add Pattern
+            span {{ title }}
         div.pattern-wrapper
             template(v-for="(item, i) in stateData")
                 div.form-wrapper(:key="i")
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Dropdown from '../ThumbnailTable/Dropdown';
+import Dropdown from '../ThumbnailTable/DropdownAlternate';
 import Input from '../Card/Input/Default';
 import Icon from 'vue-themify-icons';
 
@@ -35,6 +35,7 @@ export default {
   },
   data() {
     return {
+      title: 'Add Pattern',
       part: ['dropdown', 'text'],
       stateData: [
         {
@@ -86,6 +87,7 @@ export default {
 .pattern-bibliobigrafi {
   margin-top: 0.9rem;
   position: relative;
+  width: 100%;
 
   .drp {
     width: 100%;
@@ -102,14 +104,14 @@ export default {
 
   .methods {
     position: absolute;
-    right: 1rem;
-    top: -2.7rem;
+    right: 0;
+    top: -2.86rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     background: rgb(115, 103, 240);
     color: #fff;
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1rem;
     border-radius: 50px;
     text-transform: capitalize;
     font: {
