@@ -10,13 +10,13 @@
             template(v-if="stateData")
                 template(v-for="(item, i) in stateData")
                     transition(name="slide")
-                      div.form-wrapper(:style="[item.type == part[5] ? {gridColumn: '1/4'} : {}, item.type == part[6] ? {gridColumn: '1/3'} : {}]"  v-if="item.tabs == countTab")
+                      div.form-wrapper(:style="[item.type == part[5] ? {gridColumn: '1/4'} : {}, item.type == part[6] ? {gridColumn: '1/3'} : {}, item.type == part[7] ? {gridColumn: '1/3'} : {}]"  v-if="item.tabs == countTab" :key="i")
                           label {{ item.title }}
                           template(v-if="item.type == part[0]")
                               Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
                           template(v-if="item.type == part[1]")
-                              dropdown(
-                                  placeholderID="0" 
+                              Dropdown(
+                                  :placeholderID="0" 
                                   :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  
                                   @choice="input($event, item.id)"
                               )
@@ -30,6 +30,8 @@
                             UploadFiles
                           template(v-if="item.type == part[6]")
                             Editor(@inputEditor="input")
+                          template(v-if="item.type == part[7]")
+                            PatternBibliobigrafi
         div.btn
             Button(:buttonProp="button")
 </template>
@@ -42,6 +44,7 @@ import TextArea from '../../../UI/admin/ThumbnailTable/Textarea';
 import Upload from './Upload';
 import UploadFiles from './UploadFiles';
 import Editor from '../../../UI/admin/Editor/Default';
+import PatternBibliobigrafi from '../../../UI/admin/Pattern/Default';
 
 import Date from 'vue-date-pick';
 import Icon from 'vue-themify-icons';
@@ -59,6 +62,7 @@ export default {
     Upload,
     UploadFiles,
     Editor,
+    PatternBibliobigrafi,
   },
   mounted() {
     this.$refs.els[this.countTab].style.color = 'rgb(81, 67, 235)';
@@ -105,6 +109,7 @@ export default {
         'upload',
         'files',
         'editor',
+        'pattern',
       ],
       title: 'insert',
       stateData: [
@@ -218,6 +223,13 @@ export default {
           },
         },
         {
+          title: 'Bibliobigrafi Item Generator',
+          tabs: 0,
+          id: 'pattern',
+          type: 'pattern',
+        },
+
+        {
           title: 'Physics (Width x Height)',
           tabs: 0,
           type: 'text',
@@ -281,6 +293,7 @@ export default {
           id: 'description',
           type: 'editor',
         },
+
         {
           title: 'Subject',
           tabs: 1,
