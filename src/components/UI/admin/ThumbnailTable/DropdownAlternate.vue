@@ -12,7 +12,7 @@
                     @input="input"
                 )
             div.list
-                li(v-for="(item, i) in memberData" ref="list" :key="i" @click="listHandler(i)") {{ item }} #[Icon.icon(icon="check")]
+                li(v-for="(item, i) in memberData" ref="list" :key="i" @click="listHandler(i)") {{ item }} #[Icon.icon(icon="check" v-if="false")]
                 
             li
                 div.btn(@click.prevent="choiceHandler")

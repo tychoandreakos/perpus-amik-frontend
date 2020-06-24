@@ -1,9 +1,15 @@
 <template lang="pug">
     section.pattern-bibliobigrafi
         div.border
-        div.methods
-            Icon(icon="plus")
-            span {{ title }}
+        div.methods(:style="slide ? {background: '#ea5455'} : {}" @click="slide = !slide")
+            template(v-if="slide")
+                Icon(icon="close")
+                span {{ title.remove }}
+            template(v-else)
+                Icon(icon="plus")
+                span {{ title.add }}
+        div.add-pattern(:style="slide ? {height: '350px'} : {}")
+          AddPattern
         div.pattern-wrapper
             template(v-for="(item, i) in stateData")
                 div.form-wrapper(:key="i")
@@ -22,6 +28,7 @@
 import Dropdown from '../ThumbnailTable/DropdownAlternate';
 import Input from '../Card/Input/Default';
 import Icon from 'vue-themify-icons';
+import AddPattern from './Insert';
 
 export default {
   name: 'patternBibliobigrafi',
@@ -29,13 +36,18 @@ export default {
     Dropdown,
     Input,
     Icon,
+    AddPattern,
   },
   methods: {
     input(e) {},
   },
   data() {
     return {
-      title: 'Add Pattern',
+      title: {
+        remove: 'Close Pattern',
+        add: 'Add Pattern',
+      },
+      slide: true,
       part: ['dropdown', 'text'],
       stateData: [
         {
@@ -89,6 +101,12 @@ export default {
   position: relative;
   width: 100%;
 
+  .add-pattern {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.4s ease-in-out;
+  }
+
   .drp {
     width: 100%;
   }
@@ -114,6 +132,8 @@ export default {
     padding: 0.7rem 1rem;
     border-radius: 50px;
     text-transform: capitalize;
+    transition: width 0.4 ease-in-out;
+    transition: background 0.5s ease-in-out;
     font: {
       size: 0.8rem;
       family: 'Poppins', sans-serif;
