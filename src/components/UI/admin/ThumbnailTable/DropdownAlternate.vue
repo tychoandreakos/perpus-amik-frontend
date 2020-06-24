@@ -14,9 +14,11 @@
             div.list
                 li(v-for="(item, i) in memberData" ref="list" :key="i" @click="listHandler(i)") {{ item }} #[Icon.icon(icon="check" v-if="false")]
                 
-            li
+            li.last
+                div.btn-add(@click.prevent="activePanel")
+                    Button(:buttonProp="button.add")
                 div.btn(@click.prevent="choiceHandler")
-                    Button(:buttonProp="button")
+                    Button(:buttonProp="button.finish")
         div.backdrop-dropdown(@click.stop="dropdown = false"  v-if="dropdown")
 </template>
 
@@ -24,6 +26,15 @@
 import Input from '../Card/Input/Default';
 import Icon from 'vue-themify-icons';
 import Button from '../Button';
+
+import {
+  titleComponent,
+  dataComponent,
+  getType,
+  postGMD,
+} from '../../../../store/module/API/type';
+
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'DropdownAlternate',
@@ -40,11 +51,18 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      dataComponent: dataComponent,
+      titleState: titleComponent,
+    }),
     memberData() {
       return this.typeMember;
     },
     placeholderP() {
       return this.placeholderID;
+    },
+    dataState() {
+      return this.dataComponent[this.titleState.toLowerCase()][0];
     },
   },
   watch: {
@@ -63,6 +81,28 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      setPanel: 'setPanel',
+      titleComponent: titleComponent,
+      setCreateInput: 'setCreateInput',
+      getType: getType,
+    }),
+    activePanel() {
+      this.titleComponent('gmd');
+      this.setCreateInput(this.dataState.createProp);
+      this.getType(postGMD);
+      if (this.dataComponent[this.titleState.toLowerCase()][0].selected) {
+        this.setDropdownChoice({
+          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1]
+            .id]: this.dataComponent[this.titleState.toLowerCase()][0].selected,
+        });
+        this.setSelectedDropdown({
+          [this.dataComponent[this.titleState.toLowerCase()][0].createProp[1]
+            .id]: this.dataComponent[this.titleState.toLowerCase()][0].selected,
+        });
+      }
+      this.setPanel();
+    },
     input(e) {},
     choiceHandler() {
       let data = [];
@@ -106,16 +146,34 @@ export default {
         placeholder: 'insert your cover of image',
       },
       button: {
-        title: 'Finish',
-        icon: 'check',
-        type: 'add',
-        style: {
-          margin: 'auto',
-          borderRadius: '4px',
-          fontSize: '.9rem',
-          padding: '.6rem',
-          marginTop: '.9rem',
-          padding: '.5rem 2.5rem',
+        add: {
+          title: 'Add',
+          icon: 'plus',
+          type: 'add',
+          style: {
+            margin: 'auto',
+            borderRadius: '4px',
+            fontSize: '.9rem',
+            padding: '.6rem',
+            marginTop: '.9rem',
+            padding: '.5rem 2.5rem',
+            background: '#ff9f43',
+            border: '1px solid #ff9f43',
+            color: '#fff',
+          },
+        },
+        finish: {
+          title: 'Finish',
+          icon: 'check',
+          type: 'add',
+          style: {
+            margin: 'auto',
+            borderRadius: '4px',
+            fontSize: '.9rem',
+            padding: '.6rem',
+            marginTop: '.9rem',
+            padding: '.5rem 2.5rem',
+          },
         },
       },
       selected: [],
@@ -128,6 +186,12 @@ export default {
 
 <style lang="scss">
 .dropdown-list {
+  .last {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   .list {
     height: 110px;
     overflow-y: scroll;
