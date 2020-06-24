@@ -47,7 +47,7 @@ export default {
         remove: 'Close Pattern',
         add: 'Add Pattern',
       },
-      slide: true,
+      slide: false,
       part: ['dropdown', 'text'],
       stateData: [
         {

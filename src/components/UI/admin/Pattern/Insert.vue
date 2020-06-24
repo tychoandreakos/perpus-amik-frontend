@@ -80,9 +80,9 @@ export default {
   padding: 1rem;
   .form {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0.9rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-gap: 0.9rem !important;
+    margin-top: 2rem !important;
   }
 
   .preview {
