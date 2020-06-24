@@ -1,11 +1,14 @@
 <template lang="pug">
     div.upload-bibliobigrafi
-        div.img
+        div.img(:style="this.img.length > 0 ? imgStyle : ''")
+        input(ref="upload" type="file" hidden="hidden" accept="image/png,image/jpeg"  @change="choiceHandler")
         div.desc
             h3 {{ property.placeholder }}
             div.btn
-                Button(:buttonProp="button.upload")
-                Button(:buttonProp="button.remove")
+                div.upload(@click.prevent="uploadHandler")
+                  Button(:buttonProp="button.upload")
+                div.remove( @click.prevent="removeHandler")
+                  Button(:buttonProp="btnRemove ?  button.remove : button.removeDisabled")
 </template>
 
 <script>
@@ -22,8 +25,47 @@ export default {
       required: true,
     },
   },
+  computed: {
+    imgStyle() {
+      return {
+        background: "url('" + this.img + "')",
+      };
+    },
+  },
+  methods: {
+    setUpload() {
+      this.$emit('upload', this.img);
+    },
+    removeHandler() {
+      if (this.btnRemove) {
+        this.btnRemove = false;
+        this.uploadText = '';
+        this.img = this.imgDefault;
+        this.$emit('upload', undefined);
+      }
+    },
+    choiceHandler(e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      let data = reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        this.uploadText = file.name;
+        this.img = e.target.result;
+        this.setUpload();
+      };
+      this.btnRemove = true;
+    },
+    uploadHandler() {
+      this.$refs.upload.click();
+    },
+  },
   data() {
     return {
+      imgDefault:
+        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png',
+      img: '',
+      btnRemove: false,
+      uploadText: '',
       button: {
         remove: {
           title: 'Remove',
@@ -36,6 +78,22 @@ export default {
             padding: '.6rem',
             marginLeft: '1rem',
             width: '125px',
+          },
+        },
+        removeDisabled: {
+          title: 'Remove',
+          icon: 'trash',
+          type: 'add',
+          style: {
+            margin: 'auto',
+            borderRadius: '4px',
+            fontSize: '.9rem',
+            padding: '.6rem',
+            marginLeft: '1rem',
+            width: '125px',
+            opacity: 0.4,
+            cursor: 'default',
+            pointerEvents: 'none',
           },
         },
         upload: {
@@ -69,7 +127,7 @@ export default {
     border-radius: 2px;
     height: 105px;
     width: 85px;
-    background: url('https://learning.oreilly.com/library/cover/9781484250464/');
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png');
     background-size: contain !important;
     background-repeat: no-repeat !important;
   }
