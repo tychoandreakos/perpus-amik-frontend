@@ -16,6 +16,7 @@
                               Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
                           template(v-if="item.type == part[1]")
                               Dropdown(
+                                  :url="item.url"
                                   :placeholderID="0" 
                                   :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  
                                   @choice="input($event, item.id)"
@@ -134,6 +135,7 @@ export default {
           title: 'Author',
           id: 'author_id',
           type: 'dropdown',
+          url: 'author',
           tabs: 0,
           typeMember: {
             0: 'Sutendi Styles',
@@ -158,6 +160,7 @@ export default {
           title: 'GMD',
           tabs: 1,
           id: 'gmd_id',
+          url: 'gmd',
           type: 'dropdown',
           typeMember: {
             0: 'Art Original',
@@ -169,6 +172,7 @@ export default {
           title: 'Content Type',
           tabs: 1,
           id: 'contentType_id',
+          url: 'content',
           type: 'dropdown',
           typeMember: {
             0: 'Image',
@@ -179,6 +183,7 @@ export default {
           title: 'Media Type',
           tabs: 1,
           id: 'media_id',
+          url: 'media',
           type: 'dropdown',
           typeMember: {
             0: 'Audio',
@@ -200,6 +205,7 @@ export default {
           title: 'Publisher',
           tabs: 0,
           id: 'publisher',
+          url: 'publisher',
           type: 'dropdown',
           typeMember: {
             0: "O'reilly",
@@ -219,6 +225,7 @@ export default {
           tabs: 0,
           id: 'place',
           type: 'dropdown',
+          type: 'place',
           typeMember: {
             0: 'New York',
             1: 'Manhattan',
@@ -278,6 +285,7 @@ export default {
           tabs: 0,
           id: 'language',
           type: 'dropdown',
+          url: 'bahasa',
           typeMember: {
             0: 'Indonesia',
             1: 'English',
@@ -302,6 +310,7 @@ export default {
           tabs: 1,
           id: 'subject',
           type: 'dropdown',
+          url: 'subject',
           typeMember: {
             0: 'PHP',
             1: 'Java',

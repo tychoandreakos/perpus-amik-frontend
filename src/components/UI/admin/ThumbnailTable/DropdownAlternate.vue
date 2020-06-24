@@ -5,6 +5,8 @@
             Icon(icon="angle-down")
         ul.dropdown-list(v-if="dropdown")
             li
+                div.plus(@click="activePanel")
+                    Icon(icon="plus")
                 Input(
                     :property="property" 
                     :value="''" 
@@ -13,10 +15,7 @@
                 )
             div.list
                 li(v-for="(item, i) in memberData" ref="list" :key="i" @click="listHandler(i)") {{ item }} #[Icon.icon(icon="check" v-if="false")]
-                
             li.last
-                div.btn-add(@click.prevent="activePanel")
-                    Button(:buttonProp="button.add")
                 div.btn(@click.prevent="choiceHandler")
                     Button(:buttonProp="button.finish")
         div.backdrop-dropdown(@click.stop="dropdown = false"  v-if="dropdown")
@@ -79,6 +78,10 @@ export default {
       type: Number,
       required: true,
     },
+    url: {
+      type: String,
+      required: false,
+    },
   },
   methods: {
     ...mapMutations({
@@ -88,7 +91,7 @@ export default {
       getType: getType,
     }),
     activePanel() {
-      this.titleComponent('gmd');
+      this.titleComponent(this.url);
       this.setCreateInput(this.dataState.createProp);
       this.getType(postGMD);
       if (this.dataComponent[this.titleState.toLowerCase()][0].selected) {
@@ -109,7 +112,7 @@ export default {
       for (let i = 0; i < this.selected.length; i++) {
         data = [...data, this.typeMember[this.selected[i]]];
       }
-      this.placeholder = data.join(', ');
+      this.placeholder = data.length > 0 ? data.join(', ') : this.typeMember[1];
       this.dropdown = false;
     },
     hoverList(key) {
@@ -192,6 +195,25 @@ export default {
     align-items: center;
   }
 
+  .plus {
+    position: absolute;
+    top: 1.85rem;
+    right: 1.7rem;
+    overflow: hidden;
+    padding: 0.4rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #28c76f;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font: {
+      size: 0.8rem;
+    }
+  }
+
   .list {
     height: 110px;
     overflow-y: scroll;
@@ -204,6 +226,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
 
       .icon {
         margin-right: 1rem;
