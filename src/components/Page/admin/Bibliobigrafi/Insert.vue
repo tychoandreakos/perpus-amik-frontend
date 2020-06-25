@@ -18,7 +18,7 @@
                               Dropdown(
                                   :url="item.url"
                                   :placeholderID="0" 
-                                  :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  
+                                  :dataAdditional="Array.isArray(item.dataAdditional) ? {} : item.dataAdditional"  
                                   @choice="input($event, item.id)"
                               )
                           template(v-if="item.type == part[2]")
@@ -137,7 +137,7 @@ export default {
           type: 'dropdown',
           url: 'author',
           tabs: 0,
-          typeMember: {
+          dataAdditional: {
             0: 'Sutendi Styles',
             1: 'Ahmad Zaky',
             2: 'Titaful Sembiring',
@@ -162,7 +162,7 @@ export default {
           id: 'gmd_id',
           url: 'gmd',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: 'Art Original',
             1: 'Chart',
             2: 'Computer Software',
@@ -174,7 +174,7 @@ export default {
           id: 'contentType_id',
           url: 'content',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: 'Image',
             1: 'Datasets',
           },
@@ -185,7 +185,7 @@ export default {
           id: 'media_id',
           url: 'media',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: 'Audio',
             1: 'Computer',
             2: 'Video',
@@ -207,7 +207,7 @@ export default {
           id: 'publisher',
           url: 'publisher',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: "O'reilly",
             1: 'Manning',
             2: 'Packt',
@@ -224,9 +224,9 @@ export default {
           title: 'Publishing Place',
           tabs: 0,
           id: 'place',
+          url: 'place',
           type: 'dropdown',
-          type: 'place',
-          typeMember: {
+          dataAdditional: {
             0: 'New York',
             1: 'Manhattan',
             2: 'Texas',
@@ -264,7 +264,7 @@ export default {
           tabs: 1,
           id: 'classification',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: 'Computer',
             1: 'Moral',
             2: 'Engineer',
@@ -286,7 +286,7 @@ export default {
           id: 'language',
           type: 'dropdown',
           url: 'bahasa',
-          typeMember: {
+          dataAdditional: {
             0: 'Indonesia',
             1: 'English',
             2: 'Japan',
@@ -311,7 +311,7 @@ export default {
           id: 'subject',
           type: 'dropdown',
           url: 'subject',
-          typeMember: {
+          dataAdditional: {
             0: 'PHP',
             1: 'Java',
             2: 'Software Engineering',

@@ -55,7 +55,7 @@ export default {
       titleState: titleComponent,
     }),
     memberData() {
-      return this.typeMember;
+      return this.dataAdditional;
     },
     placeholderP() {
       return this.placeholderID;
@@ -66,11 +66,11 @@ export default {
   },
   watch: {
     placeholderP(key) {
-      this.placeholder = this.typeMember[key];
+      this.placeholder = this.dataAdditional[key];
     },
   },
   props: {
-    typeMember: {
+    dataAdditional: {
       type: Object,
       required: true,
     },
@@ -110,9 +110,9 @@ export default {
     choiceHandler() {
       let data = [];
       for (let i = 0; i < this.selected.length; i++) {
-        data = [...data, this.typeMember[this.selected[i]]];
+        data = [...data, this.dataAdditional[this.selected[i]]];
       }
-      this.placeholder = data.length > 0 ? data.join(', ') : this.typeMember[1];
+      this.placeholder = data.length > 0 ? data.join(', ') : this.dataAdditional[1];
       this.dropdown = false;
     },
     hoverList(key) {
@@ -180,7 +180,7 @@ export default {
         },
       },
       selected: [],
-      placeholder: this.typeMember[1],
+      placeholder: this.dataAdditional[1],
       dropdown: false,
     };
   },

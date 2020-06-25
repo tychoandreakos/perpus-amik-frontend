@@ -19,7 +19,7 @@
                     template(v-if="item.type == part[0]")
                         Dropdown.drp(
                             :placeholderID="0" 
-                            :typeMember="Array.isArray(item.typeMember) ? {} : item.typeMember"  
+                            :dataAdditional="Array.isArray(item.dataAdditional) ? {} : item.dataAdditional"  
                             @choice="input($event, item.id)"
                                 )
 </template>
@@ -54,7 +54,7 @@ export default {
           title: 'Choose Pattern',
           id: 'pattern_id',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: 'Sutendi Styles',
             1: 'Ahmad Zaky',
             2: 'Titaful Sembiring',
@@ -73,7 +73,7 @@ export default {
           title: 'Collection Type',
           id: 'collection_id',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: 'Sutendi Styles',
             1: 'Ahmad Zaky',
             2: 'Titaful Sembiring',
@@ -83,7 +83,7 @@ export default {
           title: 'Location',
           id: 'location_id',
           type: 'dropdown',
-          typeMember: {
+          dataAdditional: {
             0: 'Sutendi Styles',
             1: 'Ahmad Zaky',
             2: 'Titaful Sembiring',
