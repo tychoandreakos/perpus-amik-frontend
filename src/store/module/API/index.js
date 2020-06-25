@@ -8,6 +8,10 @@ export default {
       result: [],
       error: [],
     },
+    [types.getSimple]: {
+      result: [],
+      error: [],
+    },
     [types.getMemberType]: {},
     [types.dataComponent]: {
       'member-type': [
@@ -572,6 +576,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.getSimple]: (state) => {
+      return state[types.getSimple];
+    },
     [types.checkIfDataAvailable]: (state) => {
       return state[types.checkIfDataAvailable];
     },
@@ -703,8 +710,19 @@ export default {
     [types.recycleMemberData]: ({ commit }) => {
       commit(types.recycleMemberData);
     },
+    [types.getSimple]: ({ commit }) => {
+      commit(types.getSimple);
+    },
   },
   mutations: {
+    [types.getSimple]: (state) => {
+      axios
+        .get(`${state[types.titleComponent].toLowerCase()}/${types.urlSimple}`)
+        .then((res) => {
+          state[types.getSimple].result = res.data;
+        })
+        .catch((err) => (state[types.getSimple].error = err.data));
+    },
     [types.recycleMemberData]: (state) => {
       axios
         .get(

@@ -14,7 +14,7 @@
                     @input="input"
                 )
             div.list
-                li(v-for="(item, i) in memberData" ref="list" :key="i" @click="listHandler(i)") {{ item }} #[Icon.icon(icon="check" v-if="false")]
+                li(v-for="item in items" ref="list" :key="item.id" @click="listHandler(item.id)") {{ item[show]}} #[Icon.icon(icon="check" v-if="false")]
             li.last
                 div.btn(@click.prevent="choiceHandler")
                     Button(:buttonProp="button.finish")
@@ -31,9 +31,10 @@ import {
   dataComponent,
   getType,
   postGMD,
+  getSimple,
 } from '../../../../store/module/API/type';
 
-import { mapMutations, mapGetters } from 'vuex';
+import { mapMutations, mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'DropdownAlternate',
@@ -49,11 +50,19 @@ export default {
       }
     }
   },
+  created() {
+    this.titleComponent('gmd');
+    this.setSimple();
+  },
   computed: {
     ...mapGetters({
       dataComponent: dataComponent,
       titleState: titleComponent,
+      getSimple: getSimple,
     }),
+    items() {
+      return this.getSimple.result.data.result;
+    },
     memberData() {
       return this.dataAdditional;
     },
@@ -70,6 +79,10 @@ export default {
     },
   },
   props: {
+    show: {
+      type: String,
+      required: false,
+    },
     dataAdditional: {
       type: Object,
       required: true,
@@ -84,15 +97,22 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      setSimple: getSimple,
+    }),
     ...mapMutations({
       setPanel: 'setPanel',
       titleComponent: titleComponent,
       setCreateInput: 'setCreateInput',
       getType: getType,
+      setCountUpdateDefault: 'setCountUpdateDefault',
+      setHeader: 'setHeader',
+      setDefaultParams: 'setDefaultParams',
     }),
     activePanel() {
-      this.titleComponent(this.url);
+      this.setHeader(`Add New ${this.url}`);
       this.setCreateInput(this.dataState.createProp);
+      this.setDefaultParams();
       this.getType(postGMD);
       if (this.dataComponent[this.titleState.toLowerCase()][0].selected) {
         this.setDropdownChoice({
@@ -112,7 +132,8 @@ export default {
       for (let i = 0; i < this.selected.length; i++) {
         data = [...data, this.dataAdditional[this.selected[i]]];
       }
-      this.placeholder = data.length > 0 ? data.join(', ') : this.dataAdditional[1];
+      this.placeholder =
+        data.length > 0 ? data.join(', ') : this.dataAdditional[1];
       this.dropdown = false;
     },
     hoverList(key) {

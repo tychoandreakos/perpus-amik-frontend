@@ -16,6 +16,7 @@
                               Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
                           template(v-if="item.type == part[1]")
                               Dropdown(
+                                :show="item.show"
                                   :url="item.url"
                                   :placeholderID="0" 
                                   :dataAdditional="Array.isArray(item.dataAdditional) ? {} : item.dataAdditional"  
@@ -134,6 +135,7 @@ export default {
         {
           title: 'Author',
           id: 'author_id',
+          show: 'gmd_name',
           type: 'dropdown',
           url: 'author',
           tabs: 0,
@@ -159,6 +161,7 @@ export default {
         {
           title: 'GMD',
           tabs: 1,
+          show: 'gmd_name',
           id: 'gmd_id',
           url: 'gmd',
           type: 'dropdown',
