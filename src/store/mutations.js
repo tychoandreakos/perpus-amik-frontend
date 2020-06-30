@@ -27,6 +27,9 @@ export const setCountUpdate = (state) => {
 export const setGetUpdate = (state, payload) => {
   state.getUpdate = payload;
 };
+export const setCountUpdateAlternate = (state) => {
+  state.countUpdate = 1;
+};
 export const setCountUpdateDefault = (state) => {
   state.countUpdate = 0;
 };

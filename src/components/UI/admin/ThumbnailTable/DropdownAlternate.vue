@@ -113,11 +113,12 @@ export default {
       titleComponent: titleComponent,
       setCreateInput: 'setCreateInput',
       getType: getType,
-      setCountUpdateDefault: 'setCountUpdateDefault',
+      setCountUpdateAlternate: 'setCountUpdateAlternate',
       setHeader: 'setHeader',
       setDefaultParams: 'setDefaultParams',
     }),
     activePanel() {
+      this.setCountUpdateAlternate();
       this.setHeader(`Add New ${this.url}`);
       this.setCreateInput(this.dataState.createProp);
       this.setDefaultParams();
