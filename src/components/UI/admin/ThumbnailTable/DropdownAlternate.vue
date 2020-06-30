@@ -14,7 +14,7 @@
                     @input="input"
                 )
             div.list
-                li(v-for="item in items" ref="list" :key="item.id" @click="listHandler(item.id)") {{ item[show]}} #[Icon.icon(icon="check" v-if="false")]
+                li(v-for="(item, key) in items" ref="list" :key="item.id" @click="listHandler(item.id, key)") {{ item[show]}} #[Icon.icon(icon="check" v-if="false")]
             li.last
                 div.btn(@click.prevent="choiceHandler")
                     Button(:buttonProp="button.finish")
@@ -144,23 +144,23 @@ export default {
         this.$refs.list[key].style.background = color;
       }
     },
-    listHandler(key) {
+    listHandler(id, key) {
       if (this.selected.length > 0) {
-        if (this.selected.includes(key) == false) {
-          this.selected = [...this.selected, key];
+        if (this.selected.includes(id) == false) {
+          this.selected = [...this.selected, id];
         } else {
           let selected = [];
           for (let val of this.selected) {
-            if (val != key) {
+            if (val != id) {
               selected = [...selected, val];
             }
           }
           this.selected = selected;
         }
       } else {
-        this.selected = [...this.selected, key];
+        this.selected = [...this.selected, id];
       }
-      this.$emit('choice', key);
+      this.$emit('choice', id);
       this.hoverList(key);
     },
   },
