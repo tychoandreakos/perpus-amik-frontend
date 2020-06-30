@@ -51,7 +51,7 @@ export default {
     }
   },
   created() {
-    this.placeholder = this.titleState;
+    this.placeholder = this.titleLabel;
     this.titleComponent('gmd');
     this.setSimple();
   },
@@ -73,7 +73,7 @@ export default {
     dataState() {
       return this.dataComponent[this.titleState.toLowerCase()][0];
     },
-    titleState() {
+    titleLabel() {
       return `choice ${this.title}`;
     },
   },
@@ -140,7 +140,7 @@ export default {
       for (let i = 0; i < this.selected.length; i++) {
         data = [...data, this.items[this.selected[i]][this.show]];
       }
-      this.placeholder = data.length > 0 ? data.join(', ') : this.titleState;
+      this.placeholder = data.length > 0 ? data.join(', ') : this.titleLabel;
       this.dropdown = false;
     },
     hoverList(key) {
