@@ -14,7 +14,7 @@
                     @input="input"
                 )
             div.list
-                li(v-for="(item, key) in items" ref="list" :key="item.id" @click="listHandler(item.id, key)") {{ item[show]}} #[Icon.icon(icon="check" v-if="false")]
+                li(v-for="(item, key) in items" :ref="key" :key="key" @click="listHandler(key)") {{ item[show]}} #[Icon.icon(icon="check" v-if="false")]
             li.last
                 div.btn(@click.prevent="choiceHandler")
                     Button(:buttonProp="button.finish")
@@ -137,30 +137,31 @@ export default {
       this.dropdown = false;
     },
     hoverList(key) {
+      const [list] = this.$refs[key];
       const color = 'rgba(114, 103, 240, 0.089)';
-      if (this.$refs.list[key].style.background) {
-        this.$refs.list[key].style.removeProperty('background');
+      if (list.style.background) {
+        list.style.removeProperty('background');
       } else {
-        this.$refs.list[key].style.background = color;
+        list.style.background = color;
       }
     },
-    listHandler(id, key) {
+    listHandler(key) {
       if (this.selected.length > 0) {
-        if (this.selected.includes(id) == false) {
-          this.selected = [...this.selected, id];
+        if (this.selected.includes(key) == false) {
+          this.selected = [...this.selected, key];
         } else {
           let selected = [];
           for (let val of this.selected) {
-            if (val != id) {
+            if (val != key) {
               selected = [...selected, val];
             }
           }
           this.selected = selected;
         }
       } else {
-        this.selected = [...this.selected, id];
+        this.selected = [...this.selected, key];
       }
-      this.$emit('choice', id);
+      this.$emit('choice', key);
       this.hoverList(key);
     },
   },

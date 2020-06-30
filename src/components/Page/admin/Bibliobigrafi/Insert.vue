@@ -135,7 +135,7 @@ export default {
         {
           title: 'Author',
           id: 'author_id',
-          show: 'gmd_name',
+          show: 'name',
           type: 'dropdown',
           url: 'author',
           tabs: 0,
