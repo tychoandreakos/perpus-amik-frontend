@@ -16,6 +16,7 @@
                               Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
                           template(v-if="item.type == part[1]")
                               Dropdown(
+                                :title="item.title"
                                 :show="item.show"
                                   :url="item.url"
                                   :placeholderID="0" 

@@ -51,6 +51,7 @@ export default {
     }
   },
   created() {
+    this.placeholder = this.titleState;
     this.titleComponent('gmd');
     this.setSimple();
   },
@@ -72,6 +73,9 @@ export default {
     dataState() {
       return this.dataComponent[this.titleState.toLowerCase()][0];
     },
+    titleState() {
+      return `choice ${this.title}`;
+    },
   },
   watch: {
     placeholderP(key) {
@@ -79,6 +83,10 @@ export default {
     },
   },
   props: {
+    title: {
+      type: String,
+      required: false,
+    },
     show: {
       type: String,
       required: false,
@@ -130,10 +138,9 @@ export default {
     choiceHandler() {
       let data = [];
       for (let i = 0; i < this.selected.length; i++) {
-        data = [...data, this.dataAdditional[this.selected[i]]];
+        data = [...data, this.items[this.selected[i]][this.show]];
       }
-      this.placeholder =
-        data.length > 0 ? data.join(', ') : this.dataAdditional[1];
+      this.placeholder = data.length > 0 ? data.join(', ') : this.titleState;
       this.dropdown = false;
     },
     hoverList(key) {
@@ -145,6 +152,7 @@ export default {
         list.style.background = color;
       }
     },
+
     listHandler(key) {
       if (this.selected.length > 0) {
         if (this.selected.includes(key) == false) {
@@ -202,7 +210,7 @@ export default {
         },
       },
       selected: [],
-      placeholder: this.dataAdditional[1],
+      placeholder: '',
       dropdown: false,
     };
   },
