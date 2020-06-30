@@ -18,6 +18,7 @@
                         Input(:property="item.property" :value="''" :disabledLabel="false" @input="input")
                     template(v-if="item.type == part[0]")
                         Dropdown.drp(
+                            :title="item.title"
                             :placeholderID="0" 
                             :dataAdditional="Array.isArray(item.dataAdditional) ? {} : item.dataAdditional"  
                             @choice="input($event, item.id)"
@@ -51,7 +52,7 @@ export default {
       part: ['dropdown', 'text'],
       stateData: [
         {
-          title: 'Choose Pattern',
+          title: 'Pattern',
           id: 'pattern_id',
           type: 'dropdown',
           dataAdditional: {
