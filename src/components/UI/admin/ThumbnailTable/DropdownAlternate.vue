@@ -52,7 +52,7 @@ export default {
   },
   created() {
     this.placeholder = this.titleLabel;
-    this.titleComponent('gmd');
+    this.titleComponent('location');
     this.setSimple();
   },
   computed: {
