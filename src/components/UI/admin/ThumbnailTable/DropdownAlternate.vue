@@ -14,7 +14,7 @@
                     @input="input"
                 )
             div.list
-                li(v-for="(item, key) in items" :ref="key" :key="key" @click="listHandler(key)") {{ item[show]}} #[Icon.icon(icon="check" v-if="false")]
+                li(v-for="(item, key) in items.data.result" :ref="key" :key="key" @click="listHandler(key)") {{ item[show]}} #[Icon.icon(icon="check" v-if="false")]
             li.last
                 div.btn(@click.prevent="choiceHandler")
                     Button(:buttonProp="button.finish")
@@ -26,12 +26,13 @@ import Input from '../Card/Input/Default';
 import Icon from 'vue-themify-icons';
 import Button from '../Button';
 
+import axios from '../../../../store/module/API/axios';
+
 import {
   titleComponent,
   dataComponent,
   getType,
   postGMD,
-  getSimple,
 } from '../../../../store/module/API/type';
 
 import { mapMutations, mapGetters, mapActions } from 'vuex';
@@ -52,18 +53,19 @@ export default {
   },
   created() {
     this.placeholder = this.titleLabel;
-    this.titleComponent('location');
-    this.setSimple();
+    this.titleComponent(this.url);
+    axios
+      .get(`${this.url}/simple`)
+      .then((json) => json.data)
+      .then((data) => (this.items = data))
+      .catch((err) => console.log(err));
   },
   computed: {
     ...mapGetters({
       dataComponent: dataComponent,
       titleState: titleComponent,
-      getSimple: getSimple,
     }),
-    items() {
-      return this.getSimple.result.data.result;
-    },
+
     memberData() {
       return this.dataAdditional;
     },
@@ -105,9 +107,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      setSimple: getSimple,
-    }),
     ...mapMutations({
       setPanel: 'setPanel',
       titleComponent: titleComponent,
@@ -176,6 +175,7 @@ export default {
   },
   data() {
     return {
+      items: {},
       property: {
         placeholder: 'insert your cover of image',
       },

@@ -208,6 +208,7 @@ export default {
         {
           title: 'Publisher',
           tabs: 0,
+          show: 'name',
           id: 'publisher',
           url: 'publisher',
           type: 'dropdown',
@@ -227,6 +228,7 @@ export default {
         {
           title: 'Publishing Place',
           tabs: 0,
+          show: 'name',
           id: 'place',
           url: 'place',
           type: 'dropdown',
@@ -287,6 +289,7 @@ export default {
         {
           title: 'Language',
           tabs: 0,
+          show: 'name',
           id: 'language',
           type: 'dropdown',
           url: 'bahasa',
