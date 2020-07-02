@@ -89,10 +89,6 @@ export default {
       type: String,
       required: false,
     },
-    show: {
-      type: String,
-      required: false,
-    },
     dataAdditional: {
       type: Object,
       required: true,
@@ -138,7 +134,7 @@ export default {
     choiceHandler() {
       let data = [];
       for (let i = 0; i < this.selected.length; i++) {
-        data = [...data, this.items[this.selected[i]][this.show]];
+        data = [...data, this.items.data.result[this.selected[i]][this.show]];
       }
       this.placeholder = data.length > 0 ? data.join(', ') : this.titleLabel;
       this.dropdown = false;
@@ -175,7 +171,8 @@ export default {
   },
   data() {
     return {
-      items: {},
+      items: [],
+      show: 'name',
       property: {
         placeholder: 'insert your cover of image',
       },

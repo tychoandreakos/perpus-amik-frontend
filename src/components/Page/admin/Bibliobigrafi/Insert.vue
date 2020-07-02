@@ -17,7 +17,6 @@
                           template(v-if="item.type == part[1]")
                               Dropdown(
                                 :title="item.title"
-                                :show="item.show"
                                   :url="item.url"
                                   :placeholderID="0" 
                                   :dataAdditional="Array.isArray(item.dataAdditional) ? {} : item.dataAdditional"  
@@ -136,7 +135,6 @@ export default {
         {
           title: 'Author',
           id: 'author_id',
-          show: 'name',
           type: 'dropdown',
           url: 'author',
           tabs: 0,
@@ -162,7 +160,6 @@ export default {
         {
           title: 'GMD',
           tabs: 1,
-          show: 'gmd_name',
           id: 'gmd_id',
           url: 'gmd',
           type: 'dropdown',
@@ -208,7 +205,6 @@ export default {
         {
           title: 'Publisher',
           tabs: 0,
-          show: 'name',
           id: 'publisher',
           url: 'publisher',
           type: 'dropdown',
@@ -228,7 +224,6 @@ export default {
         {
           title: 'Publishing Place',
           tabs: 0,
-          show: 'name',
           id: 'place',
           url: 'place',
           type: 'dropdown',
@@ -289,7 +284,6 @@ export default {
         {
           title: 'Language',
           tabs: 0,
-          show: 'name',
           id: 'language',
           type: 'dropdown',
           url: 'bahasa',
@@ -403,10 +397,11 @@ export default {
   }
   .form {
     display: grid;
-    overflow-x: hidden;
+    overflow-y: hidden;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
     width: 100%;
+    padding-bottom: 2rem;
     .form-wrapper {
       display: flex !important;
       flex-direction: column !important;
