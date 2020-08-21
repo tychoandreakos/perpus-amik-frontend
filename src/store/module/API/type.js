@@ -52,7 +52,7 @@ export const checkIfDataAvailable = 'membership/checkIfDataAvailable';
 export const editedMemberData = 'membership/editedData';
 export const recycleMemberData = 'membership/recycle';
 
-export const getSimple = 'bibliobigrafi/getSimple';
+export const bibliobigrafiState = 'bibliobigrafi/state';
 export const urlSimple = 'simple';
 
 export const resourceURL = 'master/resourceURL';

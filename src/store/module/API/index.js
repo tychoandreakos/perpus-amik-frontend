@@ -3,6 +3,7 @@ import * as types from './type';
 
 export default {
   state: {
+    [types.bibliobigrafiState]: [],
     [types.checkIfDataAvailable]: false,
     [types.updateMemberData]: {
       result: [],
@@ -572,6 +573,9 @@ export default {
     [types.IDPOST]: '',
   },
   getters: {
+    [types.bibliobigrafiState]: (state) => {
+      return state[types.bibliobigrafiState];
+    },
     [types.checkIfDataAvailable]: (state) => {
       return state[types.checkIfDataAvailable];
     },
@@ -705,6 +709,12 @@ export default {
     },
   },
   mutations: {
+    [types.bibliobigrafiState]: (state, { key, value }) => {
+      state[bibliobigrafiState] = {
+        ...state[types.bibliobigrafiState],
+        [key]: [...state[types.bibliobigrafiState][key], value],
+      };
+    },
     [types.recycleMemberData]: (state) => {
       axios
         .get(

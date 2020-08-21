@@ -52,6 +52,8 @@ export default {
     }
   },
   created() {
+  },
+  mounted() {
     this.placeholder = this.titleLabel;
     this.titleComponent(this.url);
     axios
