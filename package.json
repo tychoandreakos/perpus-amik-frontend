@@ -14,7 +14,7 @@
     "chart.js": "^2.9.3",
     "core-js": "^3.4.4",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "pdfjs-dist": "^2.2.228",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
